@@ -43,7 +43,8 @@
     "pretty-quick": "^1.6.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
-    "save-dev": "^2.0.0"
+    "save-dev": "^2.0.0",
+    "snyk": "^1.100.1"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.2.0",
@@ -109,7 +110,9 @@
     "api": "better-npm-run dev-api",
     "offline": "better-npm-run dev-offline",
     "mockend": "better-npm-run dev-mockend",
-    "auth": "better-npm-run auth"
+    "auth": "better-npm-run auth",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "betterScripts": {
     "start": {
@@ -187,5 +190,6 @@
     "react-router"
   ],
   "author": "@navikt/aura",
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
