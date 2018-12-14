@@ -40,6 +40,7 @@
 
 // NavMenu
 .nav {
+  font-weight: bold;
   display: table;
   overflow: hidden;
   list-style: none;
@@ -52,6 +53,7 @@
   display: block;
 }
 .nav > li > a {
+  border-top: 3px solid #fff;
   position: relative;
   display: block;
   padding: 10px 15px;
@@ -70,9 +72,7 @@
   color: @navigation-font;
 }
 .nav-tabs > li > a:hover {
-  border-color: @border-color;
-  background: #fff;
-  color: @highlight-color;
+  border-bottom: 3px solid @highlight-color;
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
