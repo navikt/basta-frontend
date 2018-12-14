@@ -10,27 +10,20 @@
 
 .overviewGrid {
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-row-gap: 30px;
+  grid-template-columns: 10% 20% auto;
+  grid-template-rows: auto, auto;
+  grid-column-gap: 10px;
+  word-wrap: normal;
 }
 
-.overviewLine {
-  border-bottom: 1px solid @border-color;
-}
-
-.overviewLabel {
-  margin-top: 10px;
-  padding-bottom: 10px;
-  font-weight: 700;
-  font-size: 0.9em;
-}
-
-.overviewValue {
-  font-size: 0.9em;
-  margin-top: 10px;
-  padding-bottom: 10px;
-  min-width: 200px;
-  max-width: 300px;
+.externalId {
+  grid-column: 1 / span 3;
   word-wrap: break-word;
+}
+
+.rightpad {
+  padding-right: 5px;
 }
 
 @media all and (max-width: 800px) {

@@ -10,7 +10,7 @@ const Log = props => {
   function logBody(history) {
     return (
       <div>
-        {history.map(event => {
+        {history.sort((a, b) => b.id - a.id).map(event => {
           function buildEventStatus(status) {
             switch (status) {
               case 'info':

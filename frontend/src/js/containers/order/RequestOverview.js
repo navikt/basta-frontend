@@ -1,21 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
+import ExternalId from './ExternalId'
 
 const RequestOverview = props => {
   const { data } = props
   return (
-    <div className="results">
-      <div className="overviewGrid">
-        <div className="overviewLabel">Order Status</div>
-        <div className="overviewValue">{getOrderStatus(data.status)}</div>
-        <div className="overviewLabel">Created By</div>
-        <div className="overviewValue">{`${data.createdByDisplayName} (${data.createdBy})`}</div>
-        <div className="overviewLabel">Created Date</div>
-        <div className="overviewValue">{moment(data.created).format('lll')}</div>
-        <div className="overviewLabel">External ID</div>
-        <div className="overviewValue">{data.externalId}</div>
+    <div className="overviewGrid">
+      <div>{getOrderStatus(data.status)}</div>
+      <div>
+        <i className="fa fa-user rightpad" />
+        {`${data.createdByDisplayName} (${data.createdBy})`}
       </div>
+      <div>
+        <i className="fa fa-calendar rightpad" />
+        {moment(data.created).format('YYYY-MM-DD HH:mm:ss')}
+      </div>
+      <ExternalId extId={data.externalId} />
     </div>
   )
 }
