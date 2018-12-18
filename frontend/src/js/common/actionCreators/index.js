@@ -9,7 +9,8 @@ import {
   MQCLUSTERS_REQUEST,
   MQCLUSTERS_RECEIVED,
   DBTEMPLATES_REQUEST,
-  VMLOOKUP_REQUEST
+  VMLOOKUP_REQUEST,
+  SUBMIT_OPERATION
 } from '../actionTypes'
 
 export const fetchUserProfile = () => {
@@ -53,4 +54,8 @@ export const fetchDbTemplates = (environmentClass, zone) => {
 
 export const fetchVmInfo = hostnames => {
   return { type: VMLOOKUP_REQUEST, hostnames }
+}
+
+export const submitOperation = (key, form) => {
+  return { type: SUBMIT_OPERATION, key, orders: form }
 }

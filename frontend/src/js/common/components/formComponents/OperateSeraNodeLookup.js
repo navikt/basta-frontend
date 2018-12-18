@@ -10,17 +10,20 @@ export class OperateSeraNodeLookup extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      input: ''
+      input: '',
+      hostnames: new Set(),
+      requiredAccess: 'ROLE_OPERATIONS'
     }
   }
 
   componentDidMount() {}
 
   componentDidUpdate(prevProps, prevState) {
-    const { dispatch, vmInfoArr } = this.props
-    const { hostnames } = this.state
-    if (prevState.hostnames !== hostnames) {
+    const { dispatch } = this.props
+    const { hostnames, requiredAccess } = this.state
+    if (prevState.hostnames !== hostnames && hostnames.size > 0) {
       dispatch(fetchVmInfo(hostnames))
+      this.props.onChange({ hostnames, requiredAccess })
     }
   }
 
@@ -36,24 +39,39 @@ export class OperateSeraNodeLookup extends Component {
       const trimmed = e.trim()
       if (trimmed.match(/^\w+\.\w+\.\w+$/)) set.add(trimmed)
     })
-    if (set.size > 0) this.setState({ hostnames: set })
+    if (set.size > 0) {
+      this.resolveAccessRequirement(set)
+    } else {
+      this.setState({ hostnames: new Set() })
+    }
   }
 
-  serverList(hostnames) {
-    let elements = []
-    if (hostnames) {
-      hostnames.forEach((e, i) => {
-        elements.push(<NodeInformation key={i} hostname={e} />)
-      })
-    }
-    return elements
+  resolveAccessRequirement(hostnames) {
+    hostnames.forEach(hostname => {
+      switch (hostname.toLowerCase().charAt(0)) {
+        case 'a':
+          this.setState({ requiredAccess: 'ROLE_PROD_OPERATIONS' })
+          break
+        case 'b':
+          this.setState({ requiredAccess: 'ROLE_OPERATIONS' })
+          break
+        case 'd':
+          this.setState({ requiredAccess: 'ROLE_OPERATIONS' })
+          break
+        case 'e':
+          this.setState({ requiredAccess: 'ROLE_OPERATIONS' })
+          break
+        default:
+          this.setState({ requiredAccess: 'ROLE_PROD_OPERATIONS' })
+          break
+      }
+      this.setState({ hostnames: hostnames })
+    })
   }
 
   render() {
-    const { label, description, placeholder } = this.props
+    const { label, description, placeholder, vmInfoArr } = this.props
     const { hostnames } = this.state
-    console.log(this.state)
-    // console.log(vmInfoArr)
     return (
       <div className="formComponentGrid">
         <div className="formComponentLabel">
@@ -74,7 +92,9 @@ export class OperateSeraNodeLookup extends Component {
             value={this.state.input}
             onChange={e => this.handleChange(e)}
           />
-          <div className="operationsServerList">{this.serverList(hostnames)}</div>
+          <div className="operationsServerList">
+            <NodeInformation hostnames={hostnames} vmInfoArr={vmInfoArr} />
+          </div>
         </div>
         <ReactTooltip />
       </div>
@@ -90,7 +110,3 @@ const mapStateToProps = state => {
   }
 }
 export default connect(mapStateToProps)(OperateSeraNodeLookup)
-
-// ^.+\..+\..+
-
-// ^\w+\.\w+\.\w+$|^\w+\.\w+\-\w+\.\w+$
