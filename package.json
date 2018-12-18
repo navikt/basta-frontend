@@ -133,7 +133,7 @@
       "command": "ncp node_modules/font-awesome/fonts/ frontend/src/fonts"
     },
     "dev-api": {
-      "command": "nodemon api/src/server.js",
+      "command": "parcel frontend/src/index.html --public-url /static|nodemon api/src/server.js",
       "env": {
         "NODE_ENV": "development",
         "BASTA_BACKEND": "http://localhost:6996"
@@ -147,7 +147,7 @@
       }
     },
     "dev-offline": {
-      "command": "parcel frontend/src/index.html --public-url /static | nodemon api/test/server.js",
+      "command": "parcel frontend/src/index.html --public-url /static|nodemon api/test/server.js",
       "env": {
         "NODE_ENV": "offline",
         "BASTA_BACKEND": "http://localhost:6996"

@@ -1,7 +1,7 @@
 FROM node:10-alpine as builder
 WORKDIR /home/app
 
-COPY ./package.* ./
+COPY ./package* ./
 COPY ./ ./
 RUN npm run build
 

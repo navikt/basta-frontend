@@ -30,7 +30,14 @@ export class History extends Component {
   }
 
   onBottom() {
-    this.setState({ nMaxResults: this.state.nMaxResults + 10 })
+    const nMaxResults = this.state.nMaxResults
+    const totalOrders = this.props.totalOrders
+
+    if (nMaxResults + 10 <= totalOrders) {
+      this.setState({ nMaxResults: nMaxResults + 10 })
+    } else {
+      this.setState({ nMaxResults: nMaxResults + (totalOrders - nMaxResults) })
+    }
   }
 
   componentDidMount() {
