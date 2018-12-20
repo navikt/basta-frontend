@@ -56,6 +56,6 @@ export const fetchVmInfo = hostnames => {
   return { type: VMLOOKUP_REQUEST, hostnames }
 }
 
-export const submitOperation = (key, form) => {
-  return { type: SUBMIT_OPERATION, key, orders: form }
+export const submitOperation = (key, form, operation) => {
+  return { type: SUBMIT_OPERATION, key, form, operation }
 }

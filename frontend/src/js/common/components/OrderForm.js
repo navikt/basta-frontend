@@ -13,6 +13,7 @@ import {
 import orderTypes from '../../../configuration/'
 import OrderDropDown from './formComponents/OrderDropDown'
 import { submitForm } from '../../containers/order/actionCreators'
+import { submitOperation } from '../../common/actionCreators'
 import { withRouter } from 'react-router-dom'
 import connect from 'react-redux/es/connect/connect'
 
@@ -230,19 +231,25 @@ export class OrderForm extends Component {
               <div className="orderFormOperateButtons">
                 <div
                   className="start"
-                  onClick={() => dispatch(submitForm(this.currentComponent, this.state, 'start'))}
+                  onClick={() =>
+                    dispatch(submitOperation(this.currentComponent, this.state, 'start'))
+                  }
                 >
                   <span className="fa fa-play" /> Start
                 </div>
                 <div
                   className="stop"
-                  onClick={() => dispatch(submitForm(this.currentComponent, this.state, 'stop'))}
+                  onClick={() =>
+                    dispatch(submitOperation(this.currentComponent, this.state, 'stop'))
+                  }
                 >
                   <span className="fa fa-pause" /> Stop
                 </div>
                 <div
                   className="delete"
-                  onClick={() => dispatch(submitForm(this.currentComponent, this.state, 'delete'))}
+                  onClick={() =>
+                    dispatch(submitOperation(this.currentComponent, this.state, 'delete'))
+                  }
                 >
                   <span className="fa fa-trash" /> Delete
                 </div>

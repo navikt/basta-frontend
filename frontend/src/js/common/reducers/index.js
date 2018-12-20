@@ -6,6 +6,7 @@ import navMenu from '../../containers/navMenu/reducer'
 import orderHistory from '../../containers/history/reducers'
 import order from '../../containers/order/reducers'
 import orderFormData from './orderFormData'
+import operationsForm from './operationsForm'
 
 const rootReducer = combineReducers({
   routing: routerReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   history,
   order,
   orderFormData,
-  orderHistory
+  orderHistory,
+  operationsForm
 })
 
 export default rootReducer
