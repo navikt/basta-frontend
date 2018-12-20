@@ -6,4 +6,5 @@ frontend/src/.DS_Store
 frontend/src/fonts/
 .vscode/
 .env
+package-lock.json
 dockerbuild.sh
