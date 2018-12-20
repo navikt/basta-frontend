@@ -1,4 +1,4 @@
-const { host, port, api } = require('./config/')
+const { host, port } = require('./config/')
 
 const startServer = app => {
   console.log(
@@ -7,7 +7,6 @@ const startServer = app => {
   app.listen(port, () => {
     console.log(`SERVER HOSTNAME:         ${host}`)
     console.log(`PORT:                    ${port}`)
-    console.log(`API VERSION:             ${api}`)
     console.log(`BASTA_BACKEND:           ${process.env.BASTA_BACKEND}`)
   })
 }

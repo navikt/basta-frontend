@@ -1,5 +1,4 @@
 const request = require('request-promise')
-const config = require('../config/passportConfig')
 let ms_access_token = ''
 
 exports.getAccessToken = async (tokenURI, resource) => {
@@ -19,12 +18,10 @@ exports.getAccessToken = async (tokenURI, resource) => {
     ) {
       ms_access_token = JSON.parse(body).access_token
 
-      // console.log('access token: ', ms_access_token)
       return ms_access_token
     })
     return ms_access_token
   } catch (e) {
-    //console.error('Could not get access_token', e)
     return e
   }
 }
@@ -46,12 +43,9 @@ exports.getAccessTokenUser = async (tokenURI, refreshToken, resource) => {
       body
     ) {
       ms_access_token = JSON.parse(body).access_token
-
-      // console.log('access token: ', ms_access_token)
     })
     return ms_access_token
   } catch (e) {
-    //console.error('Could not get access_token', e)
     return e
   }
 }

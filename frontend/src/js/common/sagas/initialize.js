@@ -3,8 +3,7 @@ import {
   INITIALIZE_APPLICATION,
   APPLICATION_READY,
   USER_PROFILE_REQUEST,
-  USER_PROFILE_REQUEST_FAILED,
-  USER_SESSION_POLLING_START
+  USER_PROFILE_REQUEST_FAILED
 } from '../actionTypes'
 
 export function* initializeApplication() {
@@ -13,7 +12,6 @@ export function* initializeApplication() {
   switch (result.type) {
     case 'USER_PROFILE_RECEIVED':
       yield put({ type: APPLICATION_READY })
-      //      yield put({ type: USER_SESSION_POLLING_START })
       break
     case 'USER_PROFILE_REQUEST_FAILED':
       yield put({ type: APPLICATION_READY })

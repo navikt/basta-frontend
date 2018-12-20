@@ -11,7 +11,7 @@ const app = express()
 app.use(
   logger('dev', {
     skip: function(req, res) {
-      return req.url === '/isAlive' || req.url === '/api/v1/user/session'
+      return req.url === '/isAlive' || req.url === '/user/session'
     }
   })
 )

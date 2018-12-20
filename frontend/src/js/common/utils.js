@@ -1,7 +1,6 @@
 // eslint-disable-next-line
 import React from 'react'
 const request = require('request-promise')
-import { api } from '../../../../api/src/config/config'
 
 const NO_CONTENT = 204
 
@@ -55,10 +54,9 @@ export const postForm = (url, form) => {
 
 export const getUserPhoto = async userUpn => {
   const userPhoto = await request.get({
-    url: `${api}/user/photo`,
+    url: '/user/photo',
     headers: { userUpn: userUpn }
   })
-  // console.log(proxyPhoto)
   return userPhoto
 }
 

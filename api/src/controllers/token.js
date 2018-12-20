@@ -3,26 +3,6 @@ const config = require('../config/passportConfig')
 const request = require('request-promise')
 const finduser = require('../config/findUser')
 
-exports.getToken = () => {
-  return async (req, res) => {
-    const accessToken = await token.getAccessToken(
-      config.tokenURI,
-      process.env['BASTAAZURECONFIG_CLIENTID']
-    )
-    res.send(accessToken)
-  }
-}
-exports.getTokenUser = () => {
-  return async (req, res) => {
-    const accessToken = await token.getAccessTokenUser(
-      config.tokenURI,
-      req.session.refreshToken,
-      process.env['BASTAAZURECONFIG_CLIENTID']
-    )
-    res.send(accessToken)
-  }
-}
-
 exports.verifyToken = () => {
   return async (req, res) => {
     const accessToken = await token.getAccessTokenUser(
