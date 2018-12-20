@@ -13,6 +13,7 @@ import {
 import orderTypes from '../../../configuration/'
 import OrderDropDown from './formComponents/OrderDropDown'
 import { submitForm } from '../../containers/order/actionCreators'
+import { submitOperation } from '../../common/actionCreators'
 import { withRouter } from 'react-router-dom'
 import connect from 'react-redux/es/connect/connect'
 
@@ -76,6 +77,11 @@ export class OrderForm extends Component {
     }
   }
 
+  doesUserHaveRole(role) {
+    if (this.props.user.userProfile.roles.includes(role)) return true
+    return false
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.state !== prevState) {
       this.setSpecializedTexts(prevState)
@@ -85,7 +91,6 @@ export class OrderForm extends Component {
   render() {
     const orderFields = this.orderFields
     const { dispatch } = this.props
-    console.log(this.props.match.params.orderType)
     return (
       <div>
         <div className="orderForm">
@@ -222,15 +227,30 @@ export class OrderForm extends Component {
             })}
           </div>
           {this.operationsForm ? (
-            this.validOrder() ? (
+            this.validOrder() && this.doesUserHaveRole(this.state.hostnames.requiredAccess) ? (
               <div className="orderFormOperateButtons">
-                <div className="start">
+                <div
+                  className="start"
+                  onClick={() =>
+                    dispatch(submitOperation(this.currentComponent, this.state, 'start'))
+                  }
+                >
                   <span className="fa fa-play" /> Start
                 </div>
-                <div className="stop">
+                <div
+                  className="stop"
+                  onClick={() =>
+                    dispatch(submitOperation(this.currentComponent, this.state, 'stop'))
+                  }
+                >
                   <span className="fa fa-pause" /> Stop
                 </div>
-                <div className="delete">
+                <div
+                  className="delete"
+                  onClick={() =>
+                    dispatch(submitOperation(this.currentComponent, this.state, 'delete'))
+                  }
+                >
                   <span className="fa fa-trash" /> Delete
                 </div>
               </div>

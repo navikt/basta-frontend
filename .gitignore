@@ -8,3 +8,4 @@ frontend/src/fonts/
 .env
 dockerbuild.sh
 package-lock.json
+

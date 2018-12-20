@@ -25,12 +25,7 @@ import {
   DBTEMPLATES_REQUEST,
   DBTEMPLATES_FETCHING,
   DBTEMPLATES_REQUEST_FAILED,
-  DBTEMPLATES_RECEIVED,
-  VMLOOKUP_REQUEST,
-  VMLOOKUP_DUPLICATE_REQUEST_CANCELLED,
-  VMLOOKUP_FETCHING,
-  VMLOOKUP_REQUEST_FAILED,
-  VMLOOKUP_RECEIVED
+  DBTEMPLATES_RECEIVED
 } from '../actionTypes'
 
 export function* fetchScopedResource(action) {
@@ -112,35 +107,6 @@ export function* fetchDbTemplates(action) {
   }
 }
 
-const createQuery = hostnames => {
-  let queryString = ''
-  hostnames.forEach(e => {
-    queryString += `hostname=${e}&`
-  })
-  return queryString
-}
-
-export function* fetchVmInfo(action) {
-  console.log('fetchVmInfo', action.hostnames)
-  const lastQuery = yield select(getLastQuery)
-  const newQuery = `/rest/v1/servers?${createQuery(action.hostnames)}`
-  if (newQuery === lastQuery) {
-    yield put({ type: VMLOOKUP_DUPLICATE_REQUEST_CANCELLED })
-  } else {
-    try {
-      yield put({ type: VMLOOKUP_FETCHING })
-      const vmInfo = yield call(getUrl, newQuery)
-      yield put({
-        type: VMLOOKUP_RECEIVED,
-        value: vmInfo,
-        query: `/rest/v1/servers?${createQuery(action.hostnames)}`
-      })
-    } catch (err) {
-      yield put({ type: VMLOOKUP_REQUEST_FAILED, err })
-    }
-  }
-}
-
 export function* watchOrderData() {
   yield fork(takeEvery, ENVIRONMENTS_REQUEST, fetchEnvironments)
   yield fork(takeEvery, APPLICATIONS_REQUEST, fetchApplications)
@@ -148,5 +114,4 @@ export function* watchOrderData() {
   yield fork(takeEvery, SCOPED_RESOURCE_REQUEST, fetchScopedResource)
   yield fork(takeEvery, MQCLUSTERS_REQUEST, fetchMqClusters)
   yield fork(takeEvery, DBTEMPLATES_REQUEST, fetchDbTemplates)
-  yield fork(takeLatest, VMLOOKUP_REQUEST, fetchVmInfo)
 }
