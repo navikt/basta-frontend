@@ -3,31 +3,6 @@ const config = require('../config/passportConfig')
 const request = require('request-promise')
 const finduser = require('../config/findUser')
 
-exports.verifyToken = () => {
-  return async (req, res) => {
-    const accessToken = await token.getAccessTokenUser(
-      config.tokenURI,
-      req.session.refreshToken,
-      process.env['BASTAAZURECONFIG_CLIENTID']
-    )
-    return request
-      .get({
-        url: `http://localhost:5050/auth`,
-        auth: { bearer: accessToken }
-      })
-      .then(response => {
-        console.log(response)
-
-        res.send(response)
-      })
-      .catch(err => {
-        console.log(err)
-
-        res.send(err)
-      })
-  }
-}
-
 exports.validateRefreshAndGetToken = async (userid, refreshToken, resource) => {
   let oldAccessToken = ''
   const now = new Date()
@@ -40,9 +15,8 @@ exports.validateRefreshAndGetToken = async (userid, refreshToken, resource) => {
     oldAccessToken = false
   }
   if (user && !oldAccessToken) {
-    console.log('found user but no existing accesstoken for ', resource)
-    console.log('Getting new accessToken for', resource)
-    const newAccessToken = await token.getAccessTokenUser(config.tokenURI, refreshToken, resource)
+    const newAccessToken = await getNewAccessToken(refreshToken, resource)
+
     exp = JSON.parse(exports.decodeToken(newAccessToken)).exp
     if (!user.tokens) {
       user.tokens = []
@@ -78,12 +52,20 @@ exports.validateRefreshAndGetToken = async (userid, refreshToken, resource) => {
   return oldAccessToken
 }
 
+getNewAccessToken = async (refreshToken, resource) => {
+  console.log('found user but no existing accesstoken for ', resource)
+  try {
+    return await token.getAccessTokenUser(config.tokenURI, refreshToken, resource)
+  } catch (error) {
+    Promise.reject(new Error('Unable to get new access token', error))
+  }
+}
+
 exports.decodeToken = encodedToken => {
   if (encodedToken) {
     if (encodedToken.startsWith('eyJ0')) {
       const tokenSplit = encodedToken.split('.')
       const tokenDecoded = Buffer.from(tokenSplit[1], 'base64').toString()
-      //console.log(tokenDecoded)
       return tokenDecoded
     } else {
       console.log('token decode error')

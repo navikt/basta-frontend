@@ -14,9 +14,10 @@ export class NavUserMenu extends Component {
     const { displayMenu } = this.state
 
     return (
-      <div className="navUserMenu">
-        <div className="navUserImage" onClick={() => this.setState({ displayMenu: !displayMenu })}>
-          <img src={user.userProfile.photo} />
+      <div className="navUserMenu" onClick={() => this.setState({ displayMenu: !displayMenu })}>
+        <div className="navUserImage">
+          <i class="fa fa-user fa-2x rightpad" />
+          {user.userProfile.firstName} {user.userProfile.lastName}
         </div>
         {displayMenu ? (
           <div className="navUserMenu-content">

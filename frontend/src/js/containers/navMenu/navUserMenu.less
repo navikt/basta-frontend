@@ -6,24 +6,15 @@
 
 .navUserImage {
   float: right;
-  margin-top: 3px;
+  margin-top: 15px;
   margin-right: 10px;
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 25px;
-  border: 2px solid @border-color;
+  color: @border-color;
 }
 
-.navUserImage > img {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
-  width: 35px;
-  border-radius: 35px;
+.navUserImage:hover {
+  color: lighten(@border-color, 10%);
+  border-bottom: 3px solid @highlight-color;
+  cursor: default;
 }
 
 .navUserMenu-content {

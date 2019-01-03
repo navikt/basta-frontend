@@ -1,5 +1,5 @@
 import { takeEvery, put, fork, call } from 'redux-saga/effects'
-import { getUrl, getUserPhoto } from '../utils'
+import { getUrl } from '../utils'
 import {
   USER_PROFILE_REQUEST,
   USER_PROFILE_FETCHING,

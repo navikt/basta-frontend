@@ -52,14 +52,6 @@ export const postForm = (url, form) => {
   })
 }
 
-export const getUserPhoto = async userUpn => {
-  const userPhoto = await request.get({
-    url: '/user/photo',
-    headers: { userUpn: userUpn }
-  })
-  return userPhoto
-}
-
 export const isAvailable = (access, roles) => {
   if (!access) return true
   let validAccess = false

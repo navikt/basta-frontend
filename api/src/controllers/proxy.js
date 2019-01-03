@@ -25,7 +25,7 @@ const restream = (proxyReq, req, res, options) => {
 
 exports.attachToken = () => {
   return async (req, res, next) => {
-    resource = process.env['BASTAAZURECONFIG_CLIENTID']
+    resource = process.env['BASTA_BACKEND_CLIENT_ID']
     const accessToken = await token.validateRefreshAndGetToken(
       req.session.userid,
       req.session.refreshToken,
