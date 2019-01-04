@@ -17,7 +17,7 @@
 @import 'containers/navMenu/navUserMenu.less';
 
 @navigation-font: #333;
-@header-color: #757575;
+@header-color: #333;
 @menu-color: #fafbfc;
 @inverse-font-color: #f5f5f5;
 @font-color: #333;
@@ -52,7 +52,7 @@ a:link {
   height: 100vh;
   min-width: 375px;
   grid-template-areas: 'header header header' 'navLeft navigation navRight' 'left main right';
-  grid-template-rows: 50px 50px 1fr;
+  grid-template-rows: 55px 50px 1fr;
   grid-template-columns: 3% auto 3%;
 }
 
@@ -126,22 +126,18 @@ main {
 
 .navBrand {
   display: table;
-  height: 50px;
-  color: @inverse-font-color;
-}
-
-.navBrand:hover {
-  color: #fff;
+  color: #eee;
+  cursor: pointer;
 }
 
 .navLogo {
-  display: table-cell;
-  vertical-align: middle;
-  padding-top: 5px;
-  padding-left: 10px;
   padding-right: 20px;
-  height: 40px;
-  cursor: pointer;
+  color: lighten(@header-color, 15%);
+  color: #3bb15d;
+}
+
+.fa-cubes {
+  color: #eee;
 }
 
 .navName {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import connect from 'react-redux/es/connect/connect'
+const userImage = require('../../../img/default-user.jpeg')
 
 export class NavUserMenu extends Component {
   constructor(props) {
@@ -15,10 +16,13 @@ export class NavUserMenu extends Component {
 
     return (
       <div className="navUserMenu" onClick={() => this.setState({ displayMenu: !displayMenu })}>
-        <div className="navUserImage">
-          <i class="fa fa-user fa-2x rightpad" />
+        <div className="navUserInfo">
           {user.userProfile.firstName} {user.userProfile.lastName}
         </div>
+        <div>
+          <img className="navUserImage" src={userImage} />
+        </div>
+
         {displayMenu ? (
           <div className="navUserMenu-content">
             <a href="https://account.activedirectory.windowsazure.com/r#/profile">

@@ -4,14 +4,25 @@
   display: inline;
 }
 
-.navUserImage {
+.navUserInfo {
   float: right;
-  margin-top: 15px;
+  margin-top: 20px;
   margin-right: 10px;
-  color: @border-color;
+  color: #eee;
 }
 
-.navUserImage:hover {
+.navUserImage {
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+  border: 2px solid @border-color;
+}
+
+.navUserInfo:hover {
   color: lighten(@border-color, 10%);
   border-bottom: 3px solid @highlight-color;
   cursor: default;

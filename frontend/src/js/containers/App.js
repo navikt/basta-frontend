@@ -53,8 +53,11 @@ class App extends Component {
         <div className="wrapper" onClick={() => this.setState({ time: 0 })}>
           <header>
             <div className="navBasta">
-              <div className="navBrand" href="/">
-                <img className="navLogo" src={bastaLogo} onClick={() => history.push('/')} />
+              <div className="navBrand" onClick={() => history.push('/')}>
+                <span class="fa-stack fa-2x navLogo">
+                  <i class="fa fa-circle fa-stack-2x" />
+                  <i class="fa fa-cubes fa-stack-1x fa-inverse" />
+                </span>
                 <div className="navName">basta</div>
               </div>
             </div>
