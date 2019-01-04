@@ -21,6 +21,7 @@ exports.getAccessTokenUser = async (tokenURI, refreshToken, resource) => {
     })
     return ms_access_token
   } catch (e) {
+    console.log(e)
     throw new Error(e)
   }
 }
