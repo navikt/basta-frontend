@@ -24,7 +24,4 @@ const roles = {
   ROLE_SUPERUSER: SUPERUSER_GROUPS,
   ROLE_PROD_OPERATIONS: PROD_OPERATIONS_GROUPS,
   ROLE_OPERATIONS: OPERATION_GROUPS
-  // ROLE_USER: ['928636f4-fd0d-4149-978e-a6fb68bb19de', 'c10e6466-4d28-4467-8e93-43cacfbcff92'], //All ad users
-  // TEST1: ['xxx', 'yyy'],
-  // TEST2: ['yyy']
 }
