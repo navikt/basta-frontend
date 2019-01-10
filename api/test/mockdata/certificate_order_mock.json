@@ -1,0 +1,40 @@
+{
+  "id": 27548,
+  "created": 1547093142226,
+  "createdBy": "srvauraautodeploy",
+  "updated": 1547093142226,
+  "updatedBy": "srvauraautodeploy",
+  "updatedByDisplayName": "Service User",
+  "createdByDisplayName": "Service User",
+  "orderType": "ServiceUser",
+  "results": ["srvoppgavebacken_u@devillo.no"],
+  "input": {
+    "environmentClass": "u",
+    "application": "oppgavebackend",
+    "zone": "fss",
+    "resourceType": "Certificate"
+  },
+  "externalId": "N/A",
+  "uri": "https://basta.adeo.no/rest/orders/27548",
+  "status": "SUCCESS",
+  "errorMessage": null,
+  "orderDescription": "Certificate",
+  "orderOperation": "CREATE",
+  "nextOrderId": 27549,
+  "previousOrderId": 27547,
+  "resultDetails": [
+    {
+      "resultName": "srvoppgavebacken_u@devillo.no",
+      "details": {
+        "fasit_id": "2313963",
+        "alias": "srvoppgavebackend",
+        "fasitUrl": "https://fasit.adeo.no/search/2313963",
+        "accountname": "srvoppgavebacken_u",
+        "type": "Certificate",
+        "domain": "Devillo"
+      },
+      "history": [],
+      "description": null
+    }
+  ]
+}

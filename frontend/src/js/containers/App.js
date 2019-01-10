@@ -54,9 +54,9 @@ class App extends Component {
           <header>
             <div className="navBasta">
               <div className="navBrand" onClick={() => history.push('/')}>
-                <span class="fa-stack fa-2x navLogo">
-                  <i class="fa fa-circle fa-stack-2x" />
-                  <i class="fa fa-cubes fa-stack-1x fa-inverse" />
+                <span className="fa-stack fa-2x navLogo">
+                  <i className="fa fa-circle fa-stack-2x" />
+                  <i className="fa fa-cubes fa-stack-1x fa-inverse" />
                 </span>
                 <div className="navName">basta</div>
               </div>

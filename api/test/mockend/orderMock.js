@@ -1,7 +1,10 @@
 const orders = require('../mockdata/orders.json')
 // Uncomment line below if you need to test with a large list of orders (20000). Note: This will probably make the dev experience slow
 //const orders = require('../mockdata/large_order_list_for_pagination_test.json')
-const order = require('../mockdata/order.json')
+
+// Uncomment line below to use certificate order details instead of vm order details
+const order = require('../mockdata/certificate_order_mock.json')
+//const order = require('../mockdata/vm_order_mocks.json')
 const statusLog = require('../mockdata/statuslog.json')
 const orderCreated = require('../mockdata/orderCreated.json')
 

@@ -13,6 +13,7 @@ const ExternalId = props => {
       </div>
     )
   }
+  return null
 }
 
 ExternalId.propTypes = {
