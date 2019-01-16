@@ -14,8 +14,6 @@ import Login from '../containers/login/Login'
 import moment from 'moment'
 import Services from '../common/components/Services'
 
-const bastaLogo = require('../../img/basta.png')
-
 class App extends Component {
   navigate(location) {
     if (location === 'History') location = '/'
