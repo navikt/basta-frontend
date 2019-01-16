@@ -1,6 +1,6 @@
 .resultLine {
   display: grid;
-  grid-template-columns: 180px auto 1fr;
+  grid-template-columns: auto auto 1fr;
   grid-template-areas: 'result history operations';
 }
 .resultLine > .result {
@@ -10,6 +10,7 @@
 
 .resultLine > .history {
   grid-area: history;
+  padding-left: 10px;
   min-width: 220px;
   max-width: inherit;
 }
@@ -24,6 +25,7 @@
   color: @highlight-color;
   cursor: pointer;
 }
+
 @media all and (max-width: 500px) {
   .resultLine {
     display: grid;
