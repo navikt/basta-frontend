@@ -59,7 +59,7 @@ export class Operate extends Component {
 const orderTypes = [
   {
     title: 'Nodes',
-    description: 'Viartual machines',
+    description: 'Virtual machines',
     image: redhatImage,
     tags: ['node', 'server', 'start', 'stop', 'delete'],
     url: '/operate/nodes'
