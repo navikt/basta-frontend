@@ -52,7 +52,7 @@ jobs:
             echo $VERSION
             docker build -t navikt/basta-frontend:$VERSION .
             docker push navikt/basta-frontend:$VERSION
-            git clone https://${CIRCLE_PROJECT_USERNAME}:${GITHUB_TOKEN}@github.com/navikt/nais-yaml && cd nais-yaml
+            git clone git@github.com:navikt/nais-yaml.git && cd nais-yaml
             sed -i 's/version.*/version\: '"${VERSION}"'/g' vars/basta-frontend.yaml
             git commit -am "Update basta-frontend to ${VERSION}"
             git push origin master
