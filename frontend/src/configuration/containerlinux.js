@@ -8,9 +8,6 @@ const orderFields = {
   osType: {
     value: 'coreos'
   },
-  classification: {
-    value: { type: 'custom' }
-  },
   environmentClass: {
     label: 'Env. class',
     description: '',
