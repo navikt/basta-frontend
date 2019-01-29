@@ -32,7 +32,7 @@ export class Order extends Component {
           </div>
         </div>
       )
-    } else if (form.failed) {
+    } else if (form.error) {
       return (
         <div className="panel panel-error">
           <div className="panel-heading">Submitting form failed</div>
