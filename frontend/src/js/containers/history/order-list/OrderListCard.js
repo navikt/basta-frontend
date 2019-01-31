@@ -75,7 +75,7 @@ const OrderCard = props => {
         </div>
         <div className="orderListCardName">
           <div>{orderType(order.orderOperation, order.orderType, order.orderDescription)}</div>
-          <i>{order.createdByDisplayName + ` (${order.createdBy})`}</i>
+          {order.createdByDisplayName + ` (${order.createdBy})`}
         </div>
         <div className="orderListCardResults"> {orderResults(order.results)}</div>
         <div className="orderListCardCreated">{order.created}</div>

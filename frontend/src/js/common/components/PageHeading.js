@@ -10,10 +10,8 @@ export const PageHeading = props => {
         {' '}
         <i className="fa fa-circle fa-stack-2x" /> <i className={iconClasses} />{' '}
       </span>{' '}
-      &nbsp; {heading} &nbsp;
-      <small style={{ color: '#aaa' }}>
-        <i>&nbsp; {description}</i>
-      </small>
+      {heading}
+      <small style={{ color: '#aaa', paddingLeft: '8px' }}>{description}</small>
     </h3>
   )
 }
