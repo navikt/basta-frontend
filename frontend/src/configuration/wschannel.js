@@ -3,7 +3,7 @@ const title = 'MQ'
 const image = require('../img/orderTypes/websphere.png')
 const orderFields = {
   class: {
-    label: 'Env. class',
+    label: 'Environment class',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [

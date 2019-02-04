@@ -3,7 +3,7 @@ const description = 'proxy'
 const image = require('../img/orderTypes/openam.png')
 const orderFields = {
   environmentClass: {
-    label: 'Env. class',
+    label: 'Environment class',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [

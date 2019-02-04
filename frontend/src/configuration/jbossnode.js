@@ -9,7 +9,7 @@ const orderFields = {
     value: { type: 'standard' }
   },
   environmentClass: {
-    label: 'Env. class',
+    label: 'Environment class',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [

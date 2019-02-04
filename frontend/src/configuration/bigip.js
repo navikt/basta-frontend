@@ -3,7 +3,7 @@ const title = 'BIG-IP'
 const image = require('../img/orderTypes/big-ip.png')
 const orderFields = {
   environmentClass: {
-    label: 'Env. class',
+    label: 'Environment class',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [

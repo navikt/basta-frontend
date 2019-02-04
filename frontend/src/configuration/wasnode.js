@@ -6,7 +6,7 @@ const orderFields = {
     value: 'WAS_NODES'
   },
   environmentClass: {
-    label: 'Env. class',
+    label: 'Environment class',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [

@@ -6,7 +6,7 @@ const orderFields = {
     value: 'sbs'
   },
   environmentClass: {
-    label: 'Env. class',
+    label: 'Environment class',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [

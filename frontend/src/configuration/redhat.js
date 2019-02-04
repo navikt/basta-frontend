@@ -5,11 +5,8 @@ const orderFields = {
   nodeType: {
     value: 'PLAIN_LINUX'
   },
-  /* classification: {
-    value: { type: 'custom' }
-  }, */
   environmentClass: {
-    label: 'Env. class',
+    label: 'Environment class',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [

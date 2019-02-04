@@ -3,7 +3,7 @@ const description = 'Start, stop or delete'
 const image = require('../img/orderTypes/mq.png')
 const orderFields = {
   environmentClass: {
-    label: 'Env. class',
+    label: 'Environment class',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [

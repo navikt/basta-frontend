@@ -7,7 +7,7 @@ const orderFields = {
     value: 'DB_ORACLE'
   },
   environmentClass: {
-    label: 'Env. class',
+    label: 'Environment class',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [

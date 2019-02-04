@@ -6,7 +6,7 @@ const orderFields = {
     value: 'LIBERTY'
   },
   environmentClass: {
-    label: 'Env. class',
+    label: 'Environment class',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [

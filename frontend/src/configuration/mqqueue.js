@@ -6,7 +6,7 @@ const infobox = {
 }
 const orderFields = {
   environmentClass: {
-    label: 'Env. class',
+    label: 'Environment class',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [
