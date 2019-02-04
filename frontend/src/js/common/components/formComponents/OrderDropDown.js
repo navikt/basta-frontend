@@ -10,7 +10,7 @@ export const OrderDropDown = props => {
     <div className="formComponentGrid">
       <div className="formComponentField">
         <div className="formComponentDropdownField">
-          <label for="">{label}</label>
+          <label htmlFor="">{label}</label>
           <Select
             options={options}
             value={findOption(options, value)}

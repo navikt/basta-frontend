@@ -49,7 +49,7 @@ export class MqClusterCheckBox extends Component {
     return (
       <div className="formComponentGrid">
         <div className="formComponentField">
-          <label for="">{label}</label>
+          <label htmlFor="">{label}</label>
           <div className="formComponentCheckBoxContainer">
             <input type="checkbox" checked={value} />
             <span className="formComponentCheckBox" onClick={() => onChange(!value)} />

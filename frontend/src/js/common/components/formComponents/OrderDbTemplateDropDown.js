@@ -20,7 +20,7 @@ export class OrderDbTemplateDropDown extends Component {
       <div className="formComponentGrid">
         <div className="formComponentField">
           <div className="formComponentDropdownField">
-            <label for="">{label}</label>
+            <label htmlFor="">{label}</label>
             <Select
               options={mapToOptions(dbTemplates)}
               value={value ? { label: value, value } : null}

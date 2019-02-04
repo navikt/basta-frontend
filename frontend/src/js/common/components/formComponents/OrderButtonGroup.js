@@ -8,7 +8,7 @@ export const OrderButtonGroup = props => {
   return (
     <div className="formComponentGrid">
       <div className="formComponentField">
-        <label for="">{label}</label>
+        <label htmlFor="">{label}</label>
         <div className="formComponentButtonGroup">
           {alternatives.map(alt => {
             return isAvailable(alt.access, roles) ? (

@@ -8,7 +8,7 @@ export const OrderTextBox = props => {
   return (
     <div className="formComponentGrid">
       <div className="formComponentField">
-        <label for="">{label}</label>
+        <label htmlFor="">{label}</label>
         <input
           className="formComponentTextField"
           type="text"

@@ -40,7 +40,7 @@ export class EnvironmentsDropDown extends Component {
     return (
       <div className="formComponentGrid">
         <div className="formComponentField">
-          <label for="">{label}</label>
+          <label htmlFor="">{label}</label>
           <div className="formComponentDropdownField">
             <Select
               options={mapToOptions(this.state.filteredEnvironments)}
