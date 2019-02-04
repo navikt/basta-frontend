@@ -1,21 +1,17 @@
-.queueManagerDropdownAlternative {
-  color: red;
-  font-size: 3px;
-}
 .orderForm {
   margin-top: 50px;
   display: grid;
-  padding: 10px 10px 30px 10px;
-  grid-template-columns: 200px 1fr;
+  padding: 10px 10px 300px 10px;
+  grid-template-columns: 120px 1fr;
   grid-template-rows: 150px auto auto;
   border: 1px solid @border-color;
   grid-row-gap: 10px;
 }
 .orderFormImage {
-  width: 120px;
-  height: 120px;
+  width: 90px;
+  height: 90px;
   border: 2px solid @border-color;
-  border-radius: 100px;
+  border-radius: 45px;
   position: relative;
 }
 .orderFormImage > img {
@@ -25,11 +21,11 @@
   right: 0;
   left: 0;
   margin: auto;
-  width: 100px;
+  width: 70px;
 }
 .orderFormHeading {
-  align-self: center;
-  line-height: 40px;
+  margin-top: 30px;
+  line-height: 30px;
 }
 .orderFormTitle {
   font-size: 1.5em;
@@ -117,9 +113,9 @@
   line-height: 40px;
   background-color: @default-button-color;
   height: 40px;
-  margin-top: 30px;
+  margin-top: 20px;
   width: 110px;
-  border: 2px solid @border-color;
+  border: 2px solid @default-button-color;
   border-radius: 2px;
   color: @inverse-font-color;
   text-align: center;
@@ -154,17 +150,6 @@
 }
 
 @media all and (max-width: 600px) {
-  .orderFormImage {
-    width: 90px;
-    height: 90px;
-    border: 2px solid @border-color;
-    border-radius: 45px;
-    position: relative;
-  }
-  .orderFormImage > img {
-    width: 70px;
-  }
-
   .orderFormHeading {
     min-width: 220px;
   }
