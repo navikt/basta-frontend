@@ -18,9 +18,9 @@ export class OrderDbTemplateDropDown extends Component {
     const { label, value, onChange, description, dbTemplates } = this.props
     return (
       <div className="formComponentGrid">
-        <div className="formComponentLabel">{label}</div>
         <div className="formComponentField">
           <div className="formComponentDropdownField">
+            <label for="">{label}</label>
             <Select
               options={mapToOptions(dbTemplates)}
               value={value ? { label: value, value } : null}

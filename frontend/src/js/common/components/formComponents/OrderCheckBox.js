@@ -6,16 +6,8 @@ export const OrderCheckBox = props => {
   const { label, value, description, onChange } = props
   return (
     <div className="formComponentGrid">
-      <div className="formComponentLabel">
-        {label}
-        {description ? (
-          <i
-            className="fa fa-question-circle formComponentLabelDescription"
-            data-tip={description}
-          />
-        ) : null}
-      </div>
       <div className="formComponentField">
+        <label for="">{label}</label>
         <div className="formComponentCheckBoxContainer">
           <input type="checkbox" checked={value} />
           <span className="formComponentCheckBox" onClick={() => onChange(!value)} />

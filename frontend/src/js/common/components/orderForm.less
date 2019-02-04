@@ -33,6 +33,7 @@
 }
 .orderFormTitle {
   font-size: 1.5em;
+  font-weight: 700;
 }
 .orderFormDescription {
   font-size: 1.2em;
@@ -42,22 +43,7 @@
   grid-column-start: 1;
   grid-column-end: 5;
 }
-.orderFormItemsGrid {
-  display: inline-grid;
-  height: 1.4em;
-  width: 100%;
-  grid-template-columns: 200px 1fr;
-}
-.orderItemLabel {
-  align-self: center;
-  text-align: right;
-  font-size: 1.3em;
-  padding-right: 20px;
-}
-.orderItemOptions {
-  align-self: center;
-  width: 50%;
-}
+
 .orderFormOperateButtons {
   cursor: pointer;
   line-height: 50px;
@@ -118,35 +104,25 @@
 .button {
   background-color: border-color;
   color: @font-color-secondary;
-  //border-bottom: 2px solid @border-color;;
   font-size: 1.2em;
-  //color: @navigation-font;
   border: 0px;
-  //list-style-type: none;
 }
 
 .button:hover {
-  //border-bottom: 2px;
-  //border-bottom: 2px solid @highlight-color;
-  //color: @highlight-color;
-  //background-color: lighten(@border-color, 10%)
   cursor: not-allowed;
 }
 
 .orderFormSubmitButton {
   cursor: pointer;
-  float: right;
-  line-height: 50px;
-  grid-column: 2;
-  background-color: @highlight-color;
-  height: 50px;
-  width: 100px;
+  line-height: 40px;
+  background-color: @default-button-color;
+  height: 40px;
+  margin-top: 30px;
+  width: 110px;
   border: 2px solid @border-color;
   border-radius: 2px;
   color: @inverse-font-color;
   text-align: center;
-  margin-right: 10px;
-  margin-left: auto;
 }
 .orderFormSubmitButton.disabled {
   background-color: @font-color-secondary;
@@ -159,7 +135,7 @@
 }
 .orderFormSubmitButton:hover {
   color: #fff;
-  background-color: darken(@highlight-color, 10%);
+  background-color: lighten(@default-button-color, 10%);
 }
 @media all and (max-width: 1012px) {
   .orderForm {
@@ -170,6 +146,7 @@
   }
   .orderFormTitle {
     font-size: 1.3em;
+    font-weight: 700;
   }
   .orderFormDescription {
     font-size: 1.1em;
@@ -177,11 +154,6 @@
 }
 
 @media all and (max-width: 600px) {
-  .orderForm {
-    grid-template-columns: 100px 1fr;
-    grid-template-rows: 100px auto;
-    border: 1px solid @border-color;
-  }
   .orderFormImage {
     width: 90px;
     height: 90px;
@@ -192,18 +164,8 @@
   .orderFormImage > img {
     width: 70px;
   }
-  .orderItemLabel {
-    display: block;
-    text-align: left;
-  }
+
   .orderFormHeading {
     min-width: 220px;
-  }
-  .orderFormTitle {
-    font-size: 3.7vw;
-    font-weight: 700;
-  }
-  .orderFormDescription {
-    font-size: 3vw;
   }
 }

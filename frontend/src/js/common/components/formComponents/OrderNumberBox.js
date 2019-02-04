@@ -6,16 +6,8 @@ export const OrderNumberBox = props => {
   const { label, min, max, description, onChange, value, valid } = props
   return (
     <div className="formComponentGrid">
-      <div className="formComponentLabel">
-        {label}
-        {description ? (
-          <i
-            className="fa fa-question-circle formComponentLabelDescription"
-            data-tip={description}
-          />
-        ) : null}
-      </div>
       <div className="formComponentField">
+        <label for="">{label}</label>
         <input
           className="formComponentNumberField"
           maxLength="1"

@@ -8,17 +8,9 @@ export const OrderDropDown = props => {
   const options = mapToOptions(alternatives)
   return (
     <div className="formComponentGrid">
-      <div className="formComponentLabel">
-        {label}
-        {description ? (
-          <i
-            className="fa fa-question-circle formComponentLabelDescription"
-            data-tip={description}
-          />
-        ) : null}
-      </div>
       <div className="formComponentField">
         <div className="formComponentDropdownField">
+          <label for="">{label}</label>
           <Select
             options={options}
             value={findOption(options, value)}

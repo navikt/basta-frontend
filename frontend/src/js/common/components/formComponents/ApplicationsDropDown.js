@@ -18,8 +18,8 @@ export class ApplicationsDropDown extends Component {
     const { label, value, onChange, description, applications } = this.props
     return (
       <div className="formComponentGrid">
-        <div className="formComponentLabel">{label}</div>
         <div className="formComponentField">
+          <label for="">{label}</label>
           <div className="formComponentDropdownField">
             <Select
               options={mapToOptions(applications)}

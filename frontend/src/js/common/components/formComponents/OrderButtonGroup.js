@@ -7,16 +7,8 @@ export const OrderButtonGroup = props => {
   const { label, value, description, alternatives, roles, onChange } = props
   return (
     <div className="formComponentGrid">
-      <div className="formComponentLabel">
-        {label}
-        {description ? (
-          <i
-            className="fa fa-question-circle formComponentLabelDescription"
-            data-tip={description}
-          />
-        ) : null}
-      </div>
       <div className="formComponentField">
+        <label for="">{label}</label>
         <div className="formComponentButtonGroup">
           {alternatives.map(alt => {
             return isAvailable(alt.access, roles) ? (

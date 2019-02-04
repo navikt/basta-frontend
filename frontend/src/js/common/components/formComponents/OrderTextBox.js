@@ -7,16 +7,8 @@ export const OrderTextBox = props => {
   const { label, value, onChange, description, placeholder } = props
   return (
     <div className="formComponentGrid">
-      <div className="formComponentLabel">
-        {label}
-        {description ? (
-          <i
-            className="fa fa-question-circle formComponentLabelDescription"
-            data-tip={description}
-          />
-        ) : null}
-      </div>
       <div className="formComponentField">
+        <label for="">{label}</label>
         <input
           className="formComponentTextField"
           type="text"
