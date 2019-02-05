@@ -6,6 +6,7 @@ import Operate from '../containers/operate/Operate'
 import Create from '../containers/create/Create'
 import { NotFound } from '../containers/notfound/NotFound'
 import OrderForm from './components/OrderForm'
+import OperationsForm from './components/OperationsForm'
 import OrderDetails from '../containers/order/OrderDetails'
 import Order from '../containers/order/Order'
 import MqQueue from '../containers/create/MqQueue'
@@ -19,7 +20,7 @@ export const Routes = () => {
       <Route exact path="/order" component={Order} />
       <Route path="/orders/:orderId" component={OrderDetails} />
       <Route exact path="/operate" component={Operate} />
-      <Route path="/operate/:orderType" component={OrderForm} />
+      <Route path="/operate/:orderType" component={OperationsForm} />
       <Route exact path="/create" component={Create} />
       <Route exact path="/create/mqqueue" component={MqQueue} />
       <Route exact path="/create/mqchannel" component={MqChannel} />
