@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import ReactTooltip from 'react-tooltip'
 import { NodeInformation } from './NodeInformation'
-import Select from 'react-select'
 import { fetchVmInfo } from '../../actionCreators'
 
 export class OperateSeraNodeLookup extends Component {
@@ -53,11 +51,7 @@ export class OperateSeraNodeLookup extends Component {
           this.setState({ requiredAccess: 'ROLE_PROD_OPERATIONS' })
           break
         case 'b':
-          this.setState({ requiredAccess: 'ROLE_OPERATIONS' })
-          break
         case 'd':
-          this.setState({ requiredAccess: 'ROLE_OPERATIONS' })
-          break
         case 'e':
           this.setState({ requiredAccess: 'ROLE_OPERATIONS' })
           break

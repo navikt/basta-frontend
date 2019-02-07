@@ -22,7 +22,6 @@ import windows from './windows'
 import bigip from './bigip'
 
 // Operate forms
-import nodes from './nodes'
 import credentials from './credentials'
 import mqchannels from './mqchannels'
 import mqqueues from './mqqueues'
@@ -52,7 +51,6 @@ module.exports = {
   mqqueue,
 
   // Operate
-  nodes,
   credentials,
   mqchannels,
   mqqueues

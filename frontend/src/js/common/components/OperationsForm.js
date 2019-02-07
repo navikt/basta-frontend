@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  OrderTextBox,
-  OrderButtonGroup,
-  ApplicationsDropDown,
-  OperateSeraNodeLookup
-} from './formComponents'
+import { OrderTextBox, OrderButtonGroup, ApplicationsDropDown } from './formComponents'
 import orderTypes from '../../../configuration/'
 import OrderDropDown from './formComponents/OrderDropDown'
-import { submitOperation } from '../../common/actionCreators'
 import { withRouter } from 'react-router-dom'
 import connect from 'react-redux/es/connect/connect'
+import { submitOperation } from '../../common/actionCreators'
+import OperationsButtons from './formComponents/OperationsButtons'
 
 export class OperationsForm extends Component {
   constructor(props) {
@@ -20,7 +16,6 @@ export class OperationsForm extends Component {
     this.orderFields = this.configuration.orderFields
 
     for (const key in this.orderFields) {
-      this.orderFields[key].valid = true
       this.state = { ...this.state, [key]: this.orderFields[key].value }
     }
   }
@@ -30,6 +25,12 @@ export class OperationsForm extends Component {
     this.setState({ [field]: value })
   }
 
+  submitHandler(operationsType) {
+    // todo for other operations such as mq and channels
+    const { dispatch } = this.props
+    dispatch(submitOperation('nodes', this.state, operationsType))
+  }
+
   doesUserHaveRole(role) {
     if (this.props.user.userProfile.roles.includes(role)) return true
     return false
@@ -37,7 +38,7 @@ export class OperationsForm extends Component {
 
   render() {
     const orderFields = this.orderFields
-    const { dispatch } = this.props
+    //const { dispatch } = this.props
     return (
       <div>
         <div className="orderForm">
@@ -96,16 +97,6 @@ export class OperationsForm extends Component {
                       onChange={v => this.handleChange(orderFieldKey, v)}
                     />
                   )
-                case 'seraLookup':
-                  return (
-                    <OperateSeraNodeLookup
-                      key={orderFieldKey}
-                      label={orderField.label}
-                      value={this.state[orderFieldKey]}
-                      placeholder={orderField.description}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
-                    />
-                  )
                 default:
                   if (orderField.fieldType) {
                     console.log(
@@ -117,44 +108,10 @@ export class OperationsForm extends Component {
               }
             })}
           </div>
-          {this.doesUserHaveRole(this.state.hostnames.requiredAccess) ? (
-            <div className="orderFormOperateButtons">
-              <div
-                className="start"
-                onClick={() =>
-                  dispatch(submitOperation(this.currentComponent, this.state, 'start'))
-                }
-              >
-                <span className="fa fa-play" /> Start
-              </div>
-              <div
-                className="stop"
-                onClick={() => dispatch(submitOperation(this.currentComponent, this.state, 'stop'))}
-              >
-                <span className="fa fa-pause" /> Stop
-              </div>
-              <div
-                className="delete"
-                onClick={() =>
-                  dispatch(submitOperation(this.currentComponent, this.state, 'delete'))
-                }
-              >
-                <span className="fa fa-trash" /> Delete
-              </div>
-            </div>
-          ) : (
-            <div className="orderFormOperateButtons disabled">
-              <div className="start">
-                <span className="fa fa-play" /> Start
-              </div>
-              <div className="stop">
-                <span className="fa fa-pause" /> Stop
-              </div>
-              <div className="delete">
-                <span className="fa fa-trash" /> Delete
-              </div>
-            </div>
-          )}
+          <OperationsButtons
+            hasAccess={this.doesUserHaveRole(this.state.hostnames.requiredAccess)}
+            onClickHandler={() => submitHandler}
+          />
         </div>
       </div>
     )
