@@ -1,5 +1,5 @@
 .orderForm {
-  margin-top: 50px;
+  margin-top: 30px;
   display: grid;
   padding: 10px 10px 300px 10px;
   grid-template-columns: 120px 1fr;
@@ -14,6 +14,7 @@
   border-radius: 45px;
   position: relative;
 }
+
 .orderFormImage > img {
   position: absolute;
   top: 0;
@@ -43,10 +44,9 @@
 .orderFormOperateButtons {
   cursor: pointer;
   line-height: 40px;
-  grid-column: 2;
-  margin-right: 10px;
-  margin-left: auto;
+  grid-column: auto / span 2;
 }
+
 .orderFormOperateButtons > * {
   width: 70px;
   height: 40px;

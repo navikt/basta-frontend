@@ -109,7 +109,7 @@ export class OperationsForm extends Component {
             })}
           </div>
           <OperationsButtons
-            hasAccess={this.doesUserHaveRole(this.state.hostnames.requiredAccess)}
+            hasAccess={this.doesUserHaveRole(this.state.requiredAccess)}
             onClickHandler={() => submitHandler}
           />
         </div>
