@@ -42,7 +42,15 @@ const filterArray = (array, filter) => {
   return array.filter(e => {
     let bool = false
     e.tags.forEach(tag => {
-      if (tag.match(regexp)) bool = true
+      if (typeof tag === 'object' && tag.length > 0 && tag[0] != null) {
+        tag.forEach(result => {
+          if (result.match(regexp)) bool = true
+        })
+      } else if (typeof tag != 'undefined' && tag && typeof tag === 'string') {
+        if (tag.match(regexp)) bool = true
+      } else {
+        return null
+      }
     })
     return bool
   })
@@ -67,5 +75,12 @@ const formatString = string => {
 }
 
 const buildTags = e => {
-  return [e.createdBy, e.createdByDisplayName, e.orderDescription, e.orderOperation, e.orderType]
+  return [
+    e.createdBy,
+    e.createdByDisplayName,
+    e.orderDescription,
+    e.orderOperation,
+    e.orderType,
+    e.results
+  ]
 }

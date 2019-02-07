@@ -26,7 +26,7 @@ it('(History view sagas - applyOrderHistoryFilter) dispatches with filter, selec
           updatedByDisplayName: 'Service User',
           createdByDisplayName: 'Service User',
           orderType: 'VM',
-          results: [],
+          results: ['d26jbsl01518.test.local'],
           input: null,
           externalId:
             'https://orcprod.adeo.no:443/vco/api/workflows/557dccf4-863a-49b3-b9f5-53a70f5b9fc2/executions/8a819397652704a001653c4d65db2fd3/',
@@ -38,7 +38,7 @@ it('(History view sagas - applyOrderHistoryFilter) dispatches with filter, selec
           nextOrderId: null,
           previousOrderId: null,
           resultDetails: [],
-          tags: ['srvfasit', 'Service User', 'JBOSS', 'DELETE', 'VM']
+          tags: ['srvfasit', 'Service User', 'JBOSS', 'DELETE', 'VM', ['d26jbsl01518.test.local']]
         }
       ],
       totalOrders: 0,
@@ -143,7 +143,7 @@ const plainOrders = [
     updatedByDisplayName: 'Service User',
     createdByDisplayName: 'Service User',
     orderType: 'VM',
-    results: [],
+    results: ['d26jbsl01518.test.local'],
     input: null,
     externalId:
       'https://orcprod.adeo.no:443/vco/api/workflows/557dccf4-863a-49b3-b9f5-53a70f5b9fc2/executions/8a819397652704a001653c4d65db2fd3/',
