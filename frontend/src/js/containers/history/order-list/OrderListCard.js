@@ -74,7 +74,8 @@ const OrderCard = props => {
           <img src={image} />
         </div>
         <div className="orderListCardName">
-          <div>{orderType(order.orderOperation, order.orderType, order.orderDescription)}</div>
+          <div>{orderOperation(order)}</div>
+          <div>{orderType(order)}</div>
           {order.createdByDisplayName + ` (${order.createdBy})`}
         </div>
         <div className="orderListCardResults"> {orderResults(order.results)}</div>
@@ -84,8 +85,15 @@ const OrderCard = props => {
   )
 }
 
-const orderType = (orderOperation, orderType, orderDescription) => {
-  return `${orderOperation} | ${orderType} | ${orderDescription}`
+const orderOperation = order => {
+  const { orderOperation, id } = order
+
+  return <span className="bold">{`${orderOperation} | ${id}`} </span>
+}
+
+const orderType = order => {
+  const { orderType, orderDescription, id } = order
+  return <span>{`${orderType} | ${orderDescription}`}</span>
 }
 
 const orderResults = results => {
@@ -96,10 +104,6 @@ const orderResults = results => {
       </div>
     )
   })
-}
-
-const orderCreatedBy = (created, createdByDisplayName, createdBy) => {
-  return `${created} | ${createdByDisplayName} (${createdBy})`
 }
 
 const orderListCardStatus = status => {
