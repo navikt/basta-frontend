@@ -27,11 +27,13 @@ export const formatOrders = orders => {
   return orders.map(e => {
     return {
       ...e,
+      id: e.id.toString(),
       created: formatTimestamp(e.created),
       orderDescription: formatString(e.orderDescription),
       orderOperation: formatString(e.orderOperation),
       orderType: e.orderType,
       updated: formatTimestamp(e.updated),
+
       tags: buildTags(e)
     }
   })
@@ -81,6 +83,7 @@ const buildTags = e => {
     e.orderDescription,
     e.orderOperation,
     e.orderType,
+    e.id.toString(),
     e.results
   ]
 }
