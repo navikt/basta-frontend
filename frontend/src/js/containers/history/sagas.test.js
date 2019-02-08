@@ -38,7 +38,15 @@ it('(History view sagas - applyOrderHistoryFilter) dispatches with filter, selec
           nextOrderId: null,
           previousOrderId: null,
           resultDetails: [],
-          tags: ['srvfasit', 'Service User', 'JBOSS', 'DELETE', 'VM', ['d26jbsl01518.test.local']]
+          tags: [
+            'srvfasit',
+            'Service User',
+            'JBOSS',
+            'DELETE',
+            'VM',
+            '24402',
+            ['d26jbsl01518.test.local']
+          ]
         }
       ],
       totalOrders: 0,
