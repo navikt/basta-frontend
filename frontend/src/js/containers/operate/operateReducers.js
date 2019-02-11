@@ -2,7 +2,7 @@ import {
   OPERATION_SUBMITTING,
   OPERATION_SUBMIT_SUCCESSFUL,
   OPERATION_SUBMIT_FAILED
-} from '../actionTypes'
+} from './operateActionTypes'
 
 export default (
   state = {

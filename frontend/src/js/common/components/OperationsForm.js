@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { OrderTextBox, OrderButtonGroup, ApplicationsDropDown } from './formComponents'
+import {
+  OrderTextBox,
+  OrderButtonGroup,
+  ApplicationsDropDown,
+  OrderCheckBox
+} from './formComponents'
 import orderTypes from '../../../configuration/'
 import OrderDropDown from './formComponents/OrderDropDown'
 import { withRouter } from 'react-router-dom'
 import connect from 'react-redux/es/connect/connect'
-import { submitOperation } from '../../common/actionCreators'
+import { submitOperation } from '../../containers/operate/operateActionCreators'
 import OperationsButtons from './formComponents/OperationsButtons'
 
 export class OperationsForm extends Component {
@@ -97,6 +102,18 @@ export class OperationsForm extends Component {
                       onChange={v => this.handleChange(orderFieldKey, v)}
                     />
                   )
+
+                case 'checkBox':
+                  return (
+                    <OrderCheckBox
+                      key={orderFieldKey}
+                      label={orderField.label}
+                      value={this.state[orderFieldKey]}
+                      description={orderField.description}
+                      onChange={v => this.handleChange(orderFieldKey, v)}
+                    />
+                  )
+
                 default:
                   if (orderField.fieldType) {
                     console.log(

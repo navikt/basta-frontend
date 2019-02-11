@@ -1,7 +1,6 @@
 import { takeEvery, takeLatest, put, fork, call, select } from 'redux-saga/effects'
-import history from '../../common/history'
-import { getUrl, postForm } from '../utils'
-import { getLastQuery } from './selectors'
+import { getUrl, postForm } from '../../common/utils'
+import { getLastQuery } from './operateSelectors'
 import {
   VMLOOKUP_REQUEST,
   VMLOOKUP_DUPLICATE_REQUEST_CANCELLED,
@@ -12,7 +11,7 @@ import {
   OPERATION_SUBMITTING,
   OPERATION_SUBMIT_SUCCESSFUL,
   OPERATION_SUBMIT_FAILED
-} from '../actionTypes'
+} from './operateActionTypes'
 
 const createQuery = hostnames => {
   let queryString = ''
