@@ -33,6 +33,7 @@ export class OperationsForm extends Component {
   submitHandler(operationsType) {
     // todo for other operations such as mq and channels
     const { dispatch } = this.props
+    console.log(this.state)
     dispatch(submitOperation('nodes', this.state, operationsType))
   }
 
@@ -43,7 +44,6 @@ export class OperationsForm extends Component {
 
   render() {
     const orderFields = this.orderFields
-    //const { dispatch } = this.props
     return (
       <div>
         <div className="orderForm">

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import OperateSeraNodeLookup from './formComponents/OperateSeraNodeLookup'
-import { submitOperation } from '../../common/actionCreators'
+import { submitOperation } from '../../containers/operate/operateActionCreators'
 import { withRouter } from 'react-router-dom'
 import connect from 'react-redux/es/connect/connect'
 import OperationsButtons from './formComponents/OperationsButtons'
