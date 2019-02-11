@@ -76,13 +76,22 @@ const OrderCard = props => {
         <div className="orderListCardName">
           <div>{orderOperation(order)}</div>
           <div>{orderType(order)}</div>
-          {order.createdByDisplayName + ` (${order.createdBy})`}
         </div>
         <div className="orderListCardResults"> {orderResults(order.results)}</div>
-        <div className="orderListCardCreated">{order.created}</div>
+        <div className="orderListCardCreated">
+          <div>{order.created}</div>
+          <div>{formatDisplayName(order.createdByDisplayName, order.createdBy)}</div>
+        </div>
       </div>
     </Link>
   )
+}
+
+const formatDisplayName = (displayName, userId) => {
+  if (displayName.includes('@')) {
+    return displayName.substring(0, displayName.indexOf('@')).replace(new RegExp('\\.', 'g'), ' ')
+  }
+  return `${displayName} ( ${userId} )`
 }
 
 const orderOperation = order => {
