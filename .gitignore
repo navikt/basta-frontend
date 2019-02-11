@@ -9,3 +9,4 @@ frontend/src/fonts/
 dockerbuild.sh
 package-lock.json
 
+.DS_Store
