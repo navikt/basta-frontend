@@ -22,7 +22,6 @@ const createQuery = hostnames => {
 }
 
 export function* fetchVmInfo(action) {
-  console.log('fetchVmInfo', action.hostnames)
   const lastQuery = yield select(getLastQuery)
   const newQuery = `/rest/v1/servers?${createQuery(action.hostnames)}`
   if (newQuery === lastQuery) {
@@ -31,6 +30,7 @@ export function* fetchVmInfo(action) {
     try {
       yield put({ type: VMLOOKUP_FETCHING })
       const vmInfo = yield call(getUrl, newQuery)
+
       yield put({
         type: VMLOOKUP_RECEIVED,
         value: vmInfo,

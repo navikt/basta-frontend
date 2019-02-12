@@ -16,10 +16,7 @@ import {
   ENVIRONMENTS_FETCHING,
   DBTEMPLATES_REQUEST_FAILED,
   DBTEMPLATES_RECEIVED,
-  DBTEMPLATES_FETCHING,
-  VMLOOKUP_REQUEST_FAILED,
-  VMLOOKUP_RECEIVED,
-  VMLOOKUP_FETCHING
+  DBTEMPLATES_FETCHING
 } from '../actionTypes'
 
 export default (
@@ -58,19 +55,11 @@ export default (
       fetching: false,
       error: null,
       data: []
-    },
-    vmOperations: {
-      fetching: false,
-      error: null,
-      lastQuery: null,
-      data: []
     }
   },
   action
 ) => {
   switch (action.type) {
-    // APPLICATIONS
-
     case APPLICATIONS_FETCHING:
       return {
         ...state,
@@ -98,8 +87,6 @@ export default (
           data: []
         }
       }
-    // RESOURCES
-
     case RESOURCES_FETCHING:
       return {
         ...state,
@@ -127,8 +114,6 @@ export default (
           data: state.resources.data
         }
       }
-    // SCOPED_RESOURCE
-
     case SCOPED_RESOURCE_FETCHING:
       return {
         ...state,
@@ -156,7 +141,6 @@ export default (
           data: []
         }
       }
-    // MQ Clusters
     case MQCLUSTERS_FETCHING:
       return {
         ...state,
@@ -184,7 +168,6 @@ export default (
           data: []
         }
       }
-    // ENVIRONMENTS
     case ENVIRONMENTS_FETCHING:
       return {
         ...state,
@@ -238,35 +221,6 @@ export default (
           fetching: false,
           error: action.error,
           data: []
-        }
-      }
-    // VM OPERATIONS LOOKUP
-    case VMLOOKUP_FETCHING:
-      return {
-        ...state,
-        vmOperations: {
-          fetching: true,
-          error: null,
-          data: [...state.vmOperations.data]
-        }
-      }
-    case VMLOOKUP_RECEIVED:
-      return {
-        ...state,
-        vmOperations: {
-          fetching: false,
-          error: null,
-          lastQuery: action.query,
-          data: action.value
-        }
-      }
-    case VMLOOKUP_REQUEST_FAILED:
-      return {
-        ...state,
-        vmOperations: {
-          fetching: false,
-          error: action.error,
-          data: [...state.vmOperations.data]
         }
       }
     default:

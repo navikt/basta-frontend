@@ -1,1 +1,1 @@
-export const getLastQuery = state => state.orderFormData.vmOperations.lastQuery
+export const getLastQuery = state => state.operationsForm.vmOperations.lastQuery

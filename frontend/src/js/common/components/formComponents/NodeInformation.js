@@ -2,9 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const mergeServerInfo = (hostnames, vmInfoArr) => {
-  const arr = Array.from(hostnames) // konverterer fra Set til Array for map() og filter()
-  return arr.map(hostname => {
-    const results = vmInfoArr.filter(vmInfo => vmInfo.hostname === hostname)
+  //const arr = Array.from(hostnames) // konverterer fra Set til Array for map() og filter()
+  return [...hostnames].map(hostname => {
+    const results = vmInfoArr.filter(vmInfo => {
+      return vmInfo.hostname === hostname
+    })
     return results.length > 0 ? results[0] : { hostname: hostname, notFound: true }
   })
 }
