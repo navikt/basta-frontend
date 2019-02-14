@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import OperateSeraNodeLookup from './formComponents/OperateSeraNodeLookup'
-import { submitOperation } from '../../containers/operate/operateActionCreators'
+import OperateSeraNodeLookup from '../Operations/OperateSeraNodeLookup'
+import { submitOperation } from '../../../containers/operate/operateActionCreators'
 import { withRouter } from 'react-router-dom'
 import connect from 'react-redux/es/connect/connect'
-import OperationsButtons from './formComponents/OperationsButtons'
-import image from '../../../img/orderTypes/redhat.png'
+import OperationsButtons from '../formComponents/OperationsButtons'
+import image from '../../../../img/orderTypes/redhat.png'
 
 export class NodeOperationsForm extends Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactTooltip from 'react-tooltip'
-import { NodeInformation } from './NodeInformation'
+import { NodeInformation } from '../Operations/NodeInformation'
 import { fetchVmInfo } from '../../../containers/operate/operateActionCreators'
 
 export class OperateSeraNodeLookup extends Component {

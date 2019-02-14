@@ -11,7 +11,7 @@ import OrderDetails from '../containers/order/OrderDetails'
 import Order from '../containers/order/Order'
 import MqQueue from '../containers/create/MqQueue'
 import MqChannel from '../containers/create/MqChannel'
-import NodeOperationsForm from './components/NodeOperationsForm'
+import NodeOperationsForm from './components/Operations/NodeOperationsForm'
 
 // Routes
 export const Routes = () => {
