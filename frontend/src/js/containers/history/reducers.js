@@ -11,6 +11,8 @@ export default (
     orderHistory: [],
     filteredOrderHistory: [],
     totalOrders: 0,
+    maxOrders: 5000,
+    pageId: 0,
     orderHistoryCompleted: false,
     requestFailed: false,
     requestStatus: ''
