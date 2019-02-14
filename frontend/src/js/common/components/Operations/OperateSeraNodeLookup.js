@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ReactTooltip from 'react-tooltip'
-import { NodeInformation } from './NodeInformation'
+import { NodeInformation } from '../Operations/NodeInformation'
 import { fetchVmInfo } from '../../../containers/operate/operateActionCreators'
 
 export class OperateSeraNodeLookup extends Component {
@@ -65,6 +65,7 @@ export class OperateSeraNodeLookup extends Component {
 
   render() {
     const { label, description, placeholder, vmInfoArr } = this.props
+
     const { hostnames } = this.state
     return (
       <div className="formComponentGrid">
@@ -100,7 +101,7 @@ OperateSeraNodeLookup.propTypes = {}
 
 const mapStateToProps = state => {
   return {
-    vmInfoArr: state.orderFormData.vmOperations.data
+    vmInfoArr: state.operationsForm.vmOperations.data
   }
 }
 export default connect(mapStateToProps)(OperateSeraNodeLookup)
