@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware } from 'redux'
+// import { compose } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
 
@@ -9,10 +10,12 @@ const sagaMiddleware = createSagaMiddleware()
 
 const middlewares = [sagaMiddleware]
 
-const finalCreateStore = composeWithDevTools(
-  // bytt til redux/compose for å fjerne devtools
-  applyMiddleware(...middlewares)
-)(createStore)
+// switch to compose to disable devtools
+const finalCreateStore = composeWithDevTools(applyMiddleware(...middlewares))(createStore)
+
+// const finalCreateStore = compose(
+//   applyMiddleware(...middlewares)
+// )(createStore)
 
 export function configureStore() {
   const store = finalCreateStore(rootReducer)

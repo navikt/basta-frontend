@@ -1,5 +1,5 @@
 import { takeEvery, put, fork, call, select, take, takeLatest } from 'redux-saga/effects'
-import { getOrders } from './selectors'
+import { getOrders, getTotalOrders } from './selectors'
 import { filterOrders, formatOrders } from './filters'
 import { getUrl } from '../../common/utils'
 import {
@@ -25,7 +25,10 @@ export function* getPartialHistory(action, pageId) {
     getUrl,
     `/rest/orders/page/${pageId}/${action.pageSize}/${action.fromDate}/${action.toDate}`
   )
-  if (value.length > 0) {
+  const totalOrders = yield select(getTotalOrders)
+  console.log(totalOrders)
+  console.log(value.length)
+  if (value.length > 0 && !(totalOrders >= 4000)) {
     pageId++
     yield put({ type: HISTORY_RECEIVED, value })
     yield call(delay, 200)
