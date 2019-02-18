@@ -1,5 +1,6 @@
 import { takeEvery, takeLatest, put, fork, call, select } from 'redux-saga/effects'
 import { getUrl, postForm } from '../../common/utils'
+import history from '../../common/history'
 import { getLastQuery } from './operateSelectors'
 import {
   VMLOOKUP_REQUEST,
@@ -45,12 +46,11 @@ export function* fetchVmInfo(action) {
 export function* submitOperation(action) {
   let value
   yield put({ type: OPERATION_SUBMITTING, value: action })
-  // yield history.push('/operate')
+
   try {
     switch (action.key) {
       case 'nodes':
         const hostnames = Array.from(action.form)
-        console.log('hostnames in saga', hostnames)
 
         switch (action.operation) {
           case 'start':
@@ -65,6 +65,9 @@ export function* submitOperation(action) {
         }
     }
     yield put({ type: OPERATION_SUBMIT_SUCCESSFUL, value })
+    const redirectUrl = value.orderId ? `/orders/${value.orderId}` : '/'
+
+    yield history.push(redirectUrl)
   } catch (error) {
     yield put({ type: OPERATION_SUBMIT_FAILED, error })
   }
