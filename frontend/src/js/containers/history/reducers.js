@@ -10,9 +10,12 @@ export default (
   state = {
     orderHistory: [],
     filteredOrderHistory: [],
+    fromDate: 0,
+    toDate: 0,
     totalOrders: 0,
-    maxOrders: 5000,
+    maxOrders: 0,
     pageId: 0,
+    pageSize: 1000,
     orderHistoryCompleted: false,
     requestFailed: false,
     requestStatus: ''
@@ -25,8 +28,10 @@ export default (
     case HISTORY_FETCHING:
       return {
         ...state,
-        orderHistory: [],
-        totalOrders: 0,
+        maxOrders: action.maxOrders,
+        toDate: action.toDate,
+        fromDate: action.fromDate,
+        pageSize: action.pageSize,
         orderHistoryCompleted: false,
         requestFailed: false,
         requestStatus: 'Fetching history log'
@@ -36,6 +41,7 @@ export default (
         ...state,
         orderHistory: state.orderHistory.concat(action.value),
         totalOrders: state.orderHistory.length,
+        pageId: action.pageId,
         requestFailed: false,
         requestStatus: 'Order history partially complete'
       }

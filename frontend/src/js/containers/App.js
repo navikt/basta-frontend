@@ -31,12 +31,13 @@ class App extends Component {
     if (prevProps.user.isUserAuthenticated !== user.isUserAuthenticated && user.isUserAuthenticated)
       dispatch(
         getOrderHistory(
-          1000,
+          500,
           moment('2013-01-01').valueOf(),
           moment()
             .add(1, 'days')
             .startOf('day')
-            .valueOf()
+            .valueOf(),
+          5000
         )
       )
   }

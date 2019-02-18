@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { applyOrderHistoryFilter } from './actionCreators'
+import { applyOrderHistoryFilter, getOrderHistory } from './actionCreators'
 import PageHeading from '../../common/components/PageHeading'
 import BottomScrollListener from '../../common/components/BottomScrollListener'
 import propTypes from 'prop-types'
@@ -13,8 +13,7 @@ export class History extends Component {
     super(props)
     this.state = {
       filter: '',
-      maxResults: 20,
-      maxOrders: 5000
+      maxResults: 20
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -48,8 +47,8 @@ export class History extends Component {
   }
 
   render() {
-    const { filteredOrderHistory, totalOrders } = this.props
-    const { maxResults, maxOrders } = this.state
+    const { dispatch, filteredOrderHistory, totalOrders, maxOrders } = this.props
+    const { maxResults } = this.state
 
     return (
       <div>
@@ -59,8 +58,9 @@ export class History extends Component {
           <HistoryCounter
             totalOrders={totalOrders}
             displayingOrders={maxResults}
-            nMaxOrders={maxOrders}
-            handleChange={event => this.handleChange(event)}
+            maxOrders={maxOrders}
+            getOrderHistory={getOrderHistory}
+            dispatch={dispatch}
           />
         </div>
         <HistoryFilter
@@ -76,13 +76,15 @@ export class History extends Component {
 History.propTypes = {
   dispatch: propTypes.func,
   filteredOrderHistory: propTypes.array,
-  totalOrders: propTypes.number
+  totalOrders: propTypes.number,
+  maxOrders: propTypes.number
 }
 
 const mapStateToProps = state => {
   return {
     filteredOrderHistory: state.orderHistory.filteredOrderHistory,
-    totalOrders: state.orderHistory.totalOrders
+    totalOrders: state.orderHistory.totalOrders,
+    maxOrders: state.orderHistory.maxOrders
   }
 }
 
