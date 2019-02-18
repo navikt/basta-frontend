@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom'
 import connect from 'react-redux/es/connect/connect'
 import OperationsButtons from '../formComponents/OperationsButtons'
 import image from '../../../../img/orderTypes/redhat.png'
+import ErrorPanel from '../formComponents/ErrorPanel'
 
 export class NodeOperationsForm extends Component {
   constructor(props) {
@@ -50,6 +51,11 @@ export class NodeOperationsForm extends Component {
               onChange={v => this.handleChange(v)}
             />
           </div>
+          <ErrorPanel
+            heading="Node operation failed"
+            message={this.props.submitError}
+            show={this.state.resolvedHosts.length > 0 && this.props.submitError}
+          />
           <OperationsButtons
             hasAccess={this.state.hasAccess}
             onClick={this.submitHandler.bind(this)}
@@ -69,7 +75,8 @@ NodeOperationsForm.propTypes = {
 }
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    submitError: state.operationsForm.nodes.error
   }
 }
 

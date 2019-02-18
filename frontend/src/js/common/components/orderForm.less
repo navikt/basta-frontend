@@ -3,7 +3,7 @@
   display: grid;
   padding: 10px 10px 300px 10px;
   grid-template-columns: 120px 1fr;
-  grid-template-rows: 150px auto auto;
+  grid-template-rows: 150px auto auto auto;
   border: 1px solid @border-color;
   grid-row-gap: 10px;
 }
@@ -23,6 +23,12 @@
   left: 0;
   margin: auto;
   width: 70px;
+}
+
+.error-message {
+  float: left;
+  grid-column: span 3;
+  color: @error-font;
 }
 .orderFormHeading {
   margin-top: 30px;
