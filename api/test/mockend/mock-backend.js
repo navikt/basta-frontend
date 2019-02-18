@@ -37,6 +37,7 @@ router.get(`/rest/v1/fasit/resources`, fasitMock.getResources())
 router.get(`/rest/v1/mq/clusters`, mqMock.getClusters())
 router.get(`/rest/v1/oracledb/templates`, dbMock.getTemplates())
 router.get(`/rest/v1/servers`, seraMock.getVmInfo())
+router.post(`/rest/vm/operations/decommission`, orderMock.decommission())
 
 // ERROR HANDLING
 app.use((err, req, res, next) => {

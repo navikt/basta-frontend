@@ -62,6 +62,12 @@ exports.getStatusLog = () => {
   }
 }
 
+exports.decommission = () => {
+  return (req, res) => {
+    res.status(200).json({ orderId: 6969 })
+  }
+}
+
 exports.postOrder = () => {
   return (req, res) => {
     try {
