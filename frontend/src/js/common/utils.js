@@ -47,7 +47,7 @@ export const postForm = (url, form) => {
       })
       return json
     } else {
-      throw `Error posting form( ${res.status} ${res.statusText} )`
+      throw `Error posting form ( ${res.status} ${res.statusText} )`
     }
   })
 }
