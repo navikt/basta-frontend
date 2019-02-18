@@ -10,20 +10,25 @@ import image from '../../../../img/orderTypes/redhat.png'
 export class NodeOperationsForm extends Component {
   constructor(props) {
     super(props)
-    this.state = { hostnames: '' }
+    this.state = { resolvedHosts: [], hasAccess: false }
   }
 
   handleChange(value) {
-    this.setState({ hostnames: value })
+    const hosts = value.resolvedHosts
+    const hasAccess = this.hasAccessToAllHosts(hosts)
+    this.setState({ resolvedHosts: hosts, hasAccess })
+  }
+
+  hasAccessToAllHosts(hosts) {
+    return hosts.filter(host => !host.hasAccess).length === 0
   }
 
   submitHandler(operationsType) {
     const { dispatch } = this.props
-    dispatch(submitOperation('nodes', this.state, operationsType))
-  }
+    const hostnames = this.state.resolvedHosts.map(host => host.hostname)
+    const uniqueHostnames = new Set(hostnames)
 
-  doesUserHaveRole(role) {
-    return this.props.user.userProfile.roles.includes(role)
+    dispatch(submitOperation('nodes', uniqueHostnames, operationsType))
   }
 
   render() {
@@ -41,13 +46,12 @@ export class NodeOperationsForm extends Component {
             <OperateSeraNodeLookup
               key="hostnames"
               label=""
-              value={this.state.hostnames}
-              placeholder={'comma separated list of hosts'}
+              placeholder={'Comma separated list of hosts'}
               onChange={v => this.handleChange(v)}
             />
           </div>
           <OperationsButtons
-            hasAccess={this.doesUserHaveRole(this.state.hostnames.requiredAccess)}
+            hasAccess={this.state.hasAccess}
             onClick={this.submitHandler.bind(this)}
           />
         </div>

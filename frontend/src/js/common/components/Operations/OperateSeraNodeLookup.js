@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import ReactTooltip from 'react-tooltip'
-import { NodeInformation } from '../Operations/NodeInformation'
+import { HostEntries } from '../Operations/HostEntries'
 import { fetchVmInfo } from '../../../containers/operate/operateActionCreators'
 
 export class OperateSeraNodeLookup extends Component {
@@ -9,8 +8,7 @@ export class OperateSeraNodeLookup extends Component {
     super(props)
     this.state = {
       input: '',
-      hostnames: new Set(),
-      requiredAccess: 'ROLE_OPERATIONS'
+      resolvedHosts: []
     }
   }
 
@@ -18,66 +16,62 @@ export class OperateSeraNodeLookup extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { dispatch } = this.props
-    const { hostnames, requiredAccess } = this.state
-    if (prevState.hostnames !== hostnames && hostnames.size > 0) {
-      dispatch(fetchVmInfo(hostnames))
-      this.props.onChange({ hostnames, requiredAccess })
+    const { resolvedHosts } = this.state
+
+    if (prevState.resolvedHosts.length !== resolvedHosts.length && resolvedHosts.length > 0) {
+      dispatch(fetchVmInfo(resolvedHosts.map(host => host.hostname)))
+      this.props.onChange({ resolvedHosts })
     }
   }
 
   handleChange(event) {
-    this.splitMatchAndTrim(event.target.value)
+    this.resolveHostnames(event.target.value)
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  splitMatchAndTrim(hostnames) {
-    let set = new Set()
-    const arr = hostnames.split(',')
-    arr.forEach(e => {
-      const trimmed = e.trim()
-      if (trimmed.match(/^\w+\.\w+\.\w+$/)) set.add(trimmed)
-    })
-    if (set.size > 0) {
-      this.resolveAccessRequirement(set)
-    } else {
-      this.setState({ hostnames: new Set() })
+  resolveHostnames(hostnames) {
+    const THREE_WORDS_SEPARATED_BY_DOTS = /^\w+\.\w+\.\w+$/
+
+    const hosts = hostnames
+      .split(',')
+      .filter(maybeHostname => maybeHostname.trim().match(THREE_WORDS_SEPARATED_BY_DOTS))
+      .map(hostname => hostname.trim())
+      .map(hostname => {
+        return {
+          hostname,
+          requiredRole: this.requiredRoleFor(hostname),
+          hasAccess: this.hasUserAccessToHost(hostname)
+        }
+      })
+
+    this.setState({ resolvedHosts: hosts })
+  }
+
+  hasUserAccessToHost(hostname) {
+    const roles = this.props.user.userProfile.roles
+    const requiredRole = this.requiredRoleFor(hostname)
+    return roles.includes(requiredRole) || roles.includes('ROLE_SUPERUSER')
+  }
+
+  requiredRoleFor(hostname) {
+    switch (hostname.toLowerCase().charAt(0)) {
+      case 'a':
+        return 'ROLE_PROD_OPERATIONS'
+      case 'b':
+      case 'd':
+        return 'ROLE_OPERATIONS'
+      case 'e':
+        return 'ROLE_USER'
+      default:
+        return 'ROLE_PROD_OPERATIONS'
     }
   }
 
-  resolveAccessRequirement(hostnames) {
-    hostnames.forEach(hostname => {
-      switch (hostname.toLowerCase().charAt(0)) {
-        case 'a':
-          this.setState({ requiredAccess: 'ROLE_PROD_OPERATIONS' })
-          break
-        case 'b':
-        case 'd':
-        case 'e':
-          this.setState({ requiredAccess: 'ROLE_OPERATIONS' })
-          break
-        default:
-          this.setState({ requiredAccess: 'ROLE_PROD_OPERATIONS' })
-          break
-      }
-      this.setState({ hostnames: hostnames })
-    })
-  }
-
   render() {
-    const { label, description, placeholder, vmInfoArr } = this.props
-
-    const { hostnames } = this.state
+    const { placeholder, vmInfoArr } = this.props
+    const { resolvedHosts } = this.state
     return (
       <div className="formComponentGrid">
-        <div className="formComponentLabel">
-          {label}
-          {description ? (
-            <i
-              className="fa fa-question-circle formComponentLabelDescription"
-              data-tip={description}
-            />
-          ) : null}
-        </div>
         <div className="formComponentField">
           <input
             className="formComponentTextField"
@@ -88,10 +82,9 @@ export class OperateSeraNodeLookup extends Component {
             onChange={e => this.handleChange(e)}
           />
           <div className="operationsServerList">
-            <NodeInformation hostnames={hostnames} vmInfoArr={vmInfoArr} />
+            <HostEntries hosts={resolvedHosts} vmInfoArr={vmInfoArr} />
           </div>
         </div>
-        <ReactTooltip />
       </div>
     )
   }
@@ -101,7 +94,8 @@ OperateSeraNodeLookup.propTypes = {}
 
 const mapStateToProps = state => {
   return {
-    vmInfoArr: state.operationsForm.vmOperations.data
+    vmInfoArr: state.operationsForm.vmOperations.data,
+    user: state.user
   }
 }
 export default connect(mapStateToProps)(OperateSeraNodeLookup)

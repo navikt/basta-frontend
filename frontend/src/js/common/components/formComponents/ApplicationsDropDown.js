@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import connect from 'react-redux/es/connect/connect'
-import ReactTooltip from 'react-tooltip'
 import Select from 'react-select'
 import { fetchApplications, fetchEnvironments } from '../../actionCreators'
 
@@ -29,7 +28,6 @@ export class ApplicationsDropDown extends Component {
             <div className="formComponentDescription">{description}</div>
           </div>
         </div>
-        <ReactTooltip />
       </div>
     )
   }

@@ -43,14 +43,15 @@ export function* fetchVmInfo(action) {
 }
 
 export function* submitOperation(action) {
-  console.log('alt funker', action)
   let value
   yield put({ type: OPERATION_SUBMITTING, value: action })
   // yield history.push('/operate')
   try {
     switch (action.key) {
       case 'nodes':
-        const hostnames = Array.from(action.form.hostnames.hostnames)
+        const hostnames = Array.from(action.form)
+        console.log('hostnames in saga', hostnames)
+
         switch (action.operation) {
           case 'start':
             value = yield call(postForm, `/rest/vm/operations/start`, hostnames)

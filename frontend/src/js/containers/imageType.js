@@ -15,8 +15,6 @@ const coreosImage = require('../../img/orderTypes/containerlinux.png')
 const unknown = require('../../img/basta.png')
 
 export default function imageType(orderDescription) {
-  console.log('bananfjes', orderDescription)
-
   if (!orderDescription) {
     return unknown
   }
