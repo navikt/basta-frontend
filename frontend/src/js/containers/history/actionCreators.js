@@ -1,7 +1,11 @@
-import { HISTORY_REQUEST, HISTORY_APPLY_FILTER, HISTORY_EXPAND_FILTER_ARRAY } from './actionTypes'
+import { HISTORY_REQUEST, HISTORY_APPLY_FILTER, HISTORY_UPDATE_REQUEST } from './actionTypes'
 
-export const getOrderHistory = (pageSize, fromDate, toDate) => {
-  return { type: HISTORY_REQUEST, pageSize, toDate, fromDate }
+export const getOrderHistory = (pageSize, fromDate, toDate, maxOrders) => {
+  return { type: HISTORY_REQUEST, pageSize, toDate, fromDate, maxOrders }
+}
+
+export const updateOrderHistory = () => {
+  return { type: HISTORY_UPDATE_REQUEST }
 }
 
 export const applyOrderHistoryFilter = (filter, nMaxResults) => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { applyOrderHistoryFilter } from './actionCreators'
+import { applyOrderHistoryFilter, getOrderHistory } from './actionCreators'
 import PageHeading from '../../common/components/PageHeading'
 import BottomScrollListener from '../../common/components/BottomScrollListener'
 import propTypes from 'prop-types'
@@ -13,7 +13,7 @@ export class History extends Component {
     super(props)
     this.state = {
       filter: '',
-      nMaxResults: 20
+      maxResults: 20
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -30,38 +30,44 @@ export class History extends Component {
   }
 
   onBottom() {
-    const nMaxResults = this.state.nMaxResults
+    const maxResults = this.state.maxResults
     const totalOrders = this.props.totalOrders
 
-    if (nMaxResults + 10 <= totalOrders) {
-      this.setState({ nMaxResults: nMaxResults + 10 })
+    if (maxResults + 10 <= totalOrders) {
+      this.setState({ maxResults: maxResults + 10 })
     } else {
-      this.setState({ nMaxResults: nMaxResults + (totalOrders - nMaxResults) })
+      this.setState({ maxResults: maxResults + (totalOrders - maxResults) })
     }
   }
 
   componentDidMount() {
     const { dispatch } = this.props
-    const { filter, nMaxResults } = this.state
+    const { filter } = this.state
     dispatch(applyOrderHistoryFilter(filter))
   }
 
   render() {
-    const { filteredOrderHistory, totalOrders } = this.props
-    const { nMaxResults } = this.state
+    const { dispatch, filteredOrderHistory, totalOrders, maxOrders } = this.props
+    const { maxResults } = this.state
 
     return (
       <div>
         <BottomScrollListener onBottom={() => this.onBottom()} />
         <div className="history-header">
           <PageHeading icon="fa-history" heading="Order history" description="" />
-          <HistoryCounter totalOrders={totalOrders} displayingOrders={nMaxResults} />
+          <HistoryCounter
+            totalOrders={totalOrders}
+            displayingOrders={maxResults}
+            maxOrders={maxOrders}
+            getOrderHistory={getOrderHistory}
+            dispatch={dispatch}
+          />
         </div>
         <HistoryFilter
           handleSubmit={event => this.handleSubmit(event)}
           handleChange={event => this.handleChange(event)}
         />
-        <OrderList orderHistory={filteredOrderHistory.slice(0, this.state.nMaxResults)} />
+        <OrderList orderHistory={filteredOrderHistory.slice(0, maxResults)} />
       </div>
     )
   }
@@ -70,13 +76,15 @@ export class History extends Component {
 History.propTypes = {
   dispatch: propTypes.func,
   filteredOrderHistory: propTypes.array,
-  totalOrders: propTypes.number
+  totalOrders: propTypes.number,
+  maxOrders: propTypes.number
 }
 
 const mapStateToProps = state => {
   return {
     filteredOrderHistory: state.orderHistory.filteredOrderHistory,
-    totalOrders: state.orderHistory.totalOrders
+    totalOrders: state.orderHistory.totalOrders,
+    maxOrders: state.orderHistory.maxOrders
   }
 }
 

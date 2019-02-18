@@ -250,7 +250,7 @@ describe('(Component) History container rendering', () => {
   it('renders HistoryCounter once with props', () => {
     expect(wrapper.find(HistoryCounter)).toHaveLength(1)
     expect(wrapper.find(HistoryCounter).props().totalOrders).toBe(10)
-    wrapper.setState({ nMaxResults: 10 })
+    wrapper.setState({ maxResults: 10 })
     expect(wrapper.find(HistoryCounter).props().displayingOrders).toBe(10)
   })
 
@@ -262,7 +262,7 @@ describe('(Component) History container rendering', () => {
 
   it('renders OrderList once', () => {
     expect(wrapper.find(OrderList)).toHaveLength(1)
-    wrapper.setState({ nMaxResults: 5 })
+    wrapper.setState({ maxResults: 5 })
     expect(wrapper.find(OrderList).props().orderHistory).toHaveLength(5)
   })
 })
@@ -284,8 +284,8 @@ describe('(Component) History container logic', () => {
   })
 
   it('(onBottom) increments state', () => {
-    wrapper.instance().onBottom({ target: { value: 'new filter' } })
-    expect(wrapper.state().nMaxResults).toBe(10)
+    wrapper.instance().onBottom()
+    expect(wrapper.state().maxResults).toBe(10)
   })
 
   it('(componentDidMount) dispatches right action with args', () => {

@@ -1,5 +1,12 @@
 import { takeEvery, put, fork, call, select, take, takeLatest } from 'redux-saga/effects'
-import { getOrders, getTotalOrders } from './selectors'
+import {
+  getOrders,
+  getTotalOrders,
+  getPageId,
+  getToDate,
+  getFromDate,
+  getPageSize
+} from './selectors'
 import { filterOrders, formatOrders } from './filters'
 import { getUrl } from '../../common/utils'
 import {
@@ -26,11 +33,9 @@ export function* getPartialHistory(action, pageId) {
     `/rest/orders/page/${pageId}/${action.pageSize}/${action.fromDate}/${action.toDate}`
   )
   const totalOrders = yield select(getTotalOrders)
-  console.log(totalOrders)
-  console.log(value.length)
-  if (value.length > 0 && !(totalOrders >= 4000)) {
+  if (value.length > 0 && !(totalOrders >= action.maxOrders - action.pageSize)) {
     pageId++
-    yield put({ type: HISTORY_RECEIVED, value })
+    yield put({ type: HISTORY_RECEIVED, value, pageId: pageId })
     yield call(delay, 200)
     yield getPartialHistory(action, pageId)
   } else {
@@ -39,10 +44,18 @@ export function* getPartialHistory(action, pageId) {
 }
 
 export function* getOrderHistory(action) {
-  let pageId = 0
-  if (!action.toDate) action.toDate = 0
-  if (!action.fromDate) action.fromDate = 0
-  yield put({ type: HISTORY_FETCHING })
+  let pageId = yield select(getPageId)
+  if (!pageId) pageId = 0
+  if (!action.pageSize) action.pageSize = yield select(getPageSize)
+  if (!action.toDate) action.toDate = yield select(getToDate)
+  if (!action.fromDate) action.fromDate = yield select(getFromDate)
+  yield put({
+    type: HISTORY_FETCHING,
+    maxOrders: action.maxOrders,
+    toDate: action.toDate,
+    fromDate: action.fromDate,
+    pageSize: action.pageSize
+  })
   try {
     yield getPartialHistory(action, pageId)
   } catch (err) {
@@ -66,6 +79,6 @@ export function* applyOrderHistoryFilter(action) {
 }
 
 export function* watcHistory() {
-  yield fork(takeEvery, HISTORY_REQUEST, getOrderHistory)
+  yield fork(takeLatest, HISTORY_REQUEST, getOrderHistory)
   yield fork(takeLatest, HISTORY_APPLY_FILTER, applyOrderHistoryFilter)
 }
