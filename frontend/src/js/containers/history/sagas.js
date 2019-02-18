@@ -16,9 +16,7 @@ import {
   HISTORY_COMPLETE,
   HISTORY_REQUEST_FAILED,
   HISTORY_APPLY_FILTER,
-  HISTORY_APPLY_FILTER_COMPLETE,
-  HISTORY_UPDATE_REQUEST,
-  HISTORY_UPDATE_PARAMETERS
+  HISTORY_APPLY_FILTER_COMPLETE
 } from './actionTypes'
 
 const delay = millis => {
@@ -46,7 +44,8 @@ export function* getPartialHistory(action, pageId) {
 }
 
 export function* getOrderHistory(action) {
-  const pageId = yield select(getPageId)
+  let pageId = yield select(getPageId)
+  if (!pageId) pageId = 0
   if (!action.pageSize) action.pageSize = yield select(getPageSize)
   if (!action.toDate) action.toDate = yield select(getToDate)
   if (!action.fromDate) action.fromDate = yield select(getFromDate)

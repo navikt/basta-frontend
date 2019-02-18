@@ -27,11 +27,11 @@ const incrementValueBy = (origValue, incrementedBy) => {
 }
 
 HistoryCounter.propTypes = {
-  dispatch: propTypes.func.isRequired,
-  getOrderHistory: propTypes.func.isRequired,
-  totalOrders: propTypes.number.isRequired,
-  displayingOrders: propTypes.number.isRequired,
-  maxOrders: propTypes.number.isRequired
+  dispatch: propTypes.func,
+  getOrderHistory: propTypes.func,
+  totalOrders: propTypes.number,
+  displayingOrders: propTypes.number,
+  maxOrders: propTypes.number
 }
 
 export default HistoryCounter

@@ -2,7 +2,7 @@ import { select, call } from 'redux-saga/effects'
 import { expectSaga } from 'redux-saga-test-plan'
 import { applyOrderHistoryFilter, getOrderHistory } from './sagas'
 import historyReducer from './reducers'
-import { getOrders } from './selectors'
+import { getOrders, getPageId } from './selectors'
 import * as matchers from 'redux-saga-test-plan/matchers'
 import { throwError } from 'redux-saga-test-plan/providers'
 import { getUrl } from '../../common/utils'
@@ -49,7 +49,12 @@ it('(History view sagas - applyOrderHistoryFilter) dispatches with filter, selec
           ]
         }
       ],
+      fromDate: 0,
+      toDate: 0,
       totalOrders: 0,
+      maxOrders: 0,
+      pageId: 0,
+      pageSize: 1000,
       orderHistoryCompleted: false,
       requestFailed: false,
       requestStatus: ''
@@ -59,7 +64,7 @@ it('(History view sagas - applyOrderHistoryFilter) dispatches with filter, selec
 
 it('(History view sagas - getOrderHistory) fetches orders from backend with correct pagination', () => {
   const noOrders = []
-  const action = { pageSize: 2 }
+  const action = { maxOrders: 1, toDate: 1, fromDate: 2, pageSize: 2 }
   let pageId = 0
   return expectSaga(getOrderHistory, action)
     .withReducer(historyReducer)
@@ -76,13 +81,25 @@ it('(History view sagas - getOrderHistory) fetches orders from backend with corr
         return next()
       }
     })
-    .put({ type: 'HISTORY_FETCHING' })
+    .put({
+      type: 'HISTORY_FETCHING',
+      maxOrders: 1,
+      toDate: 1,
+      fromDate: 2,
+      pageSize: 2
+    })
     .put({
       type: 'HISTORY_RECEIVED',
-      value: plainOrders
+      value: plainOrders,
+      pageId: 1
     })
     .put({ type: 'HISTORY_COMPLETE' })
     .hasFinalState({
+      pageSize: 2,
+      maxOrders: 1,
+      toDate: 1,
+      fromDate: 2,
+      pageId: 1,
       orderHistory: plainOrders,
       filteredOrderHistory: [],
       totalOrders: 2,
@@ -94,19 +111,28 @@ it('(History view sagas - getOrderHistory) fetches orders from backend with corr
 })
 
 it('(History view sagas - getOrderHistory) handles errors', () => {
-  const action = { pageSize: 2 }
+  const action = { maxOrders: 4, toDate: 1, fromDate: 2, pageSize: 2 }
   const err = Error('error')
   return expectSaga(getOrderHistory, action)
     .withReducer(historyReducer)
     .provide([[matchers.call.fn(getUrl), throwError(err)]])
     .put({
-      type: 'HISTORY_FETCHING'
+      type: 'HISTORY_FETCHING',
+      maxOrders: 4,
+      toDate: 1,
+      fromDate: 2,
+      pageSize: 2
     })
     .put({
       type: 'HISTORY_REQUEST_FAILED',
       err: err
     })
     .hasFinalState({
+      pageSize: 2,
+      maxOrders: 4,
+      toDate: 1,
+      fromDate: 2,
+      pageId: 0,
       orderHistory: [],
       filteredOrderHistory: [],
       totalOrders: 0,
