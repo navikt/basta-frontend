@@ -78,7 +78,7 @@ export default (
     case LATEST_ORDER_RECEIVED:
       return {
         ...state,
-        orderHistory: state.orderHistory.unshift(action.value),
+        orderHistory: state.orderHistory.unshift(action.value[0]),
         totalOrders: state.orderHistory.length,
         requestFailed: false,
         requestStatus: 'Fetching latest order complete'
