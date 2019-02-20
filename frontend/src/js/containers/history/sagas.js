@@ -83,10 +83,11 @@ export function* applyOrderHistoryFilter(action) {
 }
 
 export function* getLatestOrder() {
-  console.log('get latest')
   yield put({ type: LATEST_ORDER_FETCHING })
   try {
-    const value = yield call(getUrl, `/rest/orders/page/1/1/0/0`)
+    const fromDate = yield selct(getFromDate)
+    const toDate = yield select(getToDate)
+    const value = yield call(getUrl, `/rest/orders/page/0/1/${fromDate}/${toDate}`)
     yield put({
       type: LATEST_ORDER_RECEIVED,
       value: value
