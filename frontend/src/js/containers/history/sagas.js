@@ -86,7 +86,7 @@ export function* getLatestOrder() {
   console.log('get latest')
   yield put({ type: LATEST_ORDER_FETCHING })
   try {
-    const fromDate = yield selct(getFromDate)
+    const fromDate = yield select(getFromDate)
     const toDate = yield select(getToDate)
     console.log('from', fromDate, 'to', toDate)
     const value = yield call(getUrl, `/rest/orders/page/0/1/${fromDate}/${toDate}`)
