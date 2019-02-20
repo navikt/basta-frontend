@@ -83,16 +83,20 @@ export function* applyOrderHistoryFilter(action) {
 }
 
 export function* getLatestOrder() {
+  console.log('get latest')
   yield put({ type: LATEST_ORDER_FETCHING })
   try {
     const fromDate = yield selct(getFromDate)
     const toDate = yield select(getToDate)
+    console.log('from', fromDate, 'to', toDate)
     const value = yield call(getUrl, `/rest/orders/page/0/1/${fromDate}/${toDate}`)
+    console.log('value', value)
     yield put({
       type: LATEST_ORDER_RECEIVED,
       value: value
     })
   } catch (err) {
+    console.log('err', err)
     yield put({ type: LATEST_ORDER_REQUEST_FAILED, err })
   }
 }
