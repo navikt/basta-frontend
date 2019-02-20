@@ -15,6 +15,7 @@ import {
   ORDER_RECEIVED,
   ORDER_REQUEST_FAILED
 } from './actionTypes'
+import { LATEST_ORDER_REQUEST } from '../history/actionTypes'
 
 export function* submitForm(action) {
   let value = ''
@@ -78,6 +79,7 @@ export function* submitForm(action) {
         break
     }
     yield put({ type: FORM_SUBMIT_SUCCESSFUL, value })
+    yield put({ type: LATEST_ORDER_REQUEST })
   } catch (error) {
     yield put({ type: FORM_SUBMIT_FAILED, error })
   }

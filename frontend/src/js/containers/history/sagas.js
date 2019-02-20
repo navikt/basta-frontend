@@ -16,7 +16,11 @@ import {
   HISTORY_COMPLETE,
   HISTORY_REQUEST_FAILED,
   HISTORY_APPLY_FILTER,
-  HISTORY_APPLY_FILTER_COMPLETE
+  HISTORY_APPLY_FILTER_COMPLETE,
+  LATEST_ORDER_REQUEST,
+  LATEST_ORDER_RECEIVED,
+  LATEST_ORDER_FETCHING,
+  LATEST_ORDER_REQUEST_FAILED
 } from './actionTypes'
 
 const delay = millis => {
@@ -78,7 +82,22 @@ export function* applyOrderHistoryFilter(action) {
   }
 }
 
+export function* getLatestOrder() {
+  console.log('get latest')
+  yield put({ type: LATEST_ORDER_FETCHING })
+  try {
+    const value = yield call(getUrl, `/rest/orders/page/1/1/0/0`)
+    yield put({
+      type: LATEST_ORDER_RECEIVED,
+      value: value
+    })
+  } catch (err) {
+    yield put({ type: LATEST_ORDER_REQUEST_FAILED, err })
+  }
+}
+
 export function* watcHistory() {
   yield fork(takeLatest, HISTORY_REQUEST, getOrderHistory)
   yield fork(takeLatest, HISTORY_APPLY_FILTER, applyOrderHistoryFilter)
+  yield fork(takeEvery, LATEST_ORDER_REQUEST, getLatestOrder)
 }

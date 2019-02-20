@@ -3,7 +3,10 @@ import {
   HISTORY_RECEIVED,
   HISTORY_COMPLETE,
   HISTORY_REQUEST_FAILED,
-  HISTORY_APPLY_FILTER_COMPLETE
+  HISTORY_APPLY_FILTER_COMPLETE,
+  LATEST_ORDER_FETCHING,
+  LATEST_ORDER_RECEIVED,
+  LATEST_ORDER_REQUEST_FAILED
 } from './actionTypes'
 
 export default (
@@ -65,6 +68,26 @@ export default (
       return {
         ...state,
         filteredOrderHistory: action.orders
+      }
+    case LATEST_ORDER_FETCHING:
+      return {
+        ...state,
+        requestFailed: false,
+        requestStatus: 'Fetching latest order'
+      }
+    case LATEST_ORDER_RECEIVED:
+      return {
+        ...state,
+        orderHistory: state.orderHistory.unshift(action.value),
+        totalOrders: state.orderHistory.length,
+        requestFailed: false,
+        requestStatus: 'Fetching latest order complete'
+      }
+    case LATEST_ORDER_REQUEST_FAILED:
+      return {
+        ...state,
+        requestFailed: true,
+        requestStatus: action.err
       }
     default:
       return state
