@@ -13,6 +13,7 @@ import {
   OPERATION_SUBMIT_SUCCESSFUL,
   OPERATION_SUBMIT_FAILED
 } from './operateActionTypes'
+import { LATEST_ORDER_REQUEST } from '../history/actionTypes'
 
 const createQuery = hostnames => {
   let queryString = ''
@@ -65,6 +66,7 @@ export function* submitOperation(action) {
         }
     }
     yield put({ type: OPERATION_SUBMIT_SUCCESSFUL, value })
+    yield put({ type: LATEST_ORDER_REQUEST })
     const redirectUrl = value.orderId ? `/orders/${value.orderId}` : '/'
 
     yield history.push(redirectUrl)
