@@ -10,7 +10,7 @@ const orderFields = {
       { label: 'Development', value: 'u' },
       { label: 'Test', value: 't' },
       { label: 'PreProd', value: 'q' },
-      { label: 'Production', value: 'p', access: ['ROLE_PROD'] }
+      { label: 'Production', value: 'p', access: ['ROLE_PROD_OPERATIONS'] }
     ],
     value: 'u'
   },

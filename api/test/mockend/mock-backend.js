@@ -8,6 +8,7 @@ const fasitMock = require('./fasitMock')
 const mqMock = require('./mqMock')
 const dbMock = require('./dbTemplateMock')
 const seraMock = require('./seraMock')
+const credentialsMock = require('./credentialsMock')
 const app = express()
 app.use(logger('dev'))
 
@@ -38,6 +39,14 @@ router.get(`/rest/v1/mq/clusters`, mqMock.getClusters())
 router.get(`/rest/v1/oracledb/templates`, dbMock.getTemplates())
 router.get(`/rest/v1/servers`, seraMock.getVmInfo())
 router.post(`/rest/vm/operations/decommission`, orderMock.decommission())
+router.get(`/rest/operation/serviceuser/credential/user`, credentialsMock.user())
+router.get(`/rest/orders/serviceuser/credential/existInAD`, credentialsMock.existInAD())
+router.get(`/rest/orders/serviceuser/credential/existInFasit`, credentialsMock.existInFasit())
+
+// /rest/operation/serviceuser/credential/user?application=sera&environmentClass=u&zone=fss
+
+// /rest/orders/serviceuser/credential/existInAD?application=sera&environmentClass=u&zone=fss
+//
 
 // ERROR HANDLING
 app.use((err, req, res, next) => {

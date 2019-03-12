@@ -4,7 +4,10 @@ import {
   OPERATION_SUBMIT_FAILED,
   VMLOOKUP_FETCHING,
   VMLOOKUP_RECEIVED,
-  VMLOOKUP_REQUEST_FAILED
+  VMLOOKUP_REQUEST_FAILED,
+  CREDENTIAL_LOOKUP_SUBMITTING,
+  CREDENTIAL_LOOKUP_SUCCESSFUL,
+  CREDENTIAL_LOOKUP_FAILED
 } from './operateActionTypes'
 
 export default (
@@ -20,6 +23,16 @@ export default (
       error: null,
       lastQuery: null,
       data: []
+    },
+    credentialOperations: {
+      fetching: false,
+      lastRequest: {},
+      error: null,
+      data: {
+        existInAD: null,
+        existInFasit: null,
+        user: {}
+      }
     }
   },
   action
@@ -81,6 +94,32 @@ export default (
           fetching: false,
           error: action.error,
           data: [...state.vmOperations.data]
+        }
+      }
+    case CREDENTIAL_LOOKUP_SUBMITTING:
+      return {
+        ...state,
+        credentialOperations: {
+          fetching: true,
+          error: null,
+          data: state.credentialOperations.data
+        }
+      }
+    case CREDENTIAL_LOOKUP_SUCCESSFUL:
+      return {
+        ...state,
+        credentialOperations: {
+          fetching: false,
+          error: null,
+          data: action.credentialInfo
+        }
+      }
+    case CREDENTIAL_LOOKUP_FAILED:
+      return {
+        ...state,
+        credentialOperations: {
+          fetching: false,
+          error: action.err
         }
       }
     default:

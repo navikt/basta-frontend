@@ -43,7 +43,6 @@ export class OperateSeraNodeLookup extends Component {
           hasAccess: this.hasUserAccessToHost(hostname)
         }
       })
-
     this.setState({ resolvedHosts: hosts })
   }
 
