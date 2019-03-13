@@ -54,7 +54,6 @@ export class CredentialsOperationForm extends Component {
   }
 
   verifySchema() {
-    console.log('resolve access')
     const { existInAD, existInFasit } = this.props.credentialsInfo
     let hasAccess
     let messages = []
@@ -76,6 +75,7 @@ export class CredentialsOperationForm extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    const { existInAD, existInFasit } = this.props.credentialsInfo
     if (prevState.form !== this.state.form && this.state.form.applicationMappingName) {
       this.credentialLookup(this.state.form)
     }
@@ -85,9 +85,6 @@ export class CredentialsOperationForm extends Component {
   }
 
   render() {
-    console.log('state', this.state)
-    console.log('props', this.props)
-    console.log(this.state.messages)
     const messages = this.state.messages
     return (
       <div>

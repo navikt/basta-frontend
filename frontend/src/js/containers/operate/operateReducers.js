@@ -29,8 +29,8 @@ export default (
       lastRequest: {},
       error: null,
       data: {
-        existInAD: null,
-        existInFasit: null,
+        existInAD: true,
+        existInFasit: true,
         user: {}
       }
     }

@@ -100,7 +100,6 @@ export function* submitOperation(action) {
         yield history.push(redirectUrl)
         break
       case 'credentials':
-        console.log('credentials', action)
         switch (action.operation) {
           case 'start':
             value = yield call(
@@ -129,10 +128,6 @@ export function* submitOperation(action) {
     yield put({ type: OPERATION_SUBMIT_FAILED, error })
   }
 }
-
-// https://basta.adeo.no/rest/operation/serviceuser/credential/start
-
-// {"environmentClass":"u","zone":"fss","application":"sera"}
 
 export function* watchOperations() {
   yield fork(takeLatest, VMLOOKUP_REQUEST, fetchVmInfo)
