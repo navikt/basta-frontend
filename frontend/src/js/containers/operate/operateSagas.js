@@ -103,7 +103,11 @@ export function* submitOperation(action) {
         console.log('credentials', action)
         switch (action.operation) {
           case 'start':
-            value = yield call(postForm, `rest/operation/serviceuser/credential/start`, action.form)
+            value = yield call(
+              postForm,
+              `/rest/operation/serviceuser/credential/start`,
+              action.form
+            )
             break
           case 'stop':
             value = yield call(postForm, `/rest/operation/serviceuser/credential/stop`, action.form)
@@ -111,7 +115,7 @@ export function* submitOperation(action) {
           case 'delete':
             value = yield call(
               postForm,
-              `/rest/rest/operation/serviceuser/credential/delete`,
+              `/rest/operation/serviceuser/credential/delete`,
               action.form
             )
             break
