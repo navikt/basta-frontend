@@ -18,7 +18,7 @@ const ErrorPanel = props => {
 
 ErrorPanel.propTypes = {
   heading: PropTypes.string,
-  message: PropTypes.string
+  message: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 }
 
 export default ErrorPanel

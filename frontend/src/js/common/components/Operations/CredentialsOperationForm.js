@@ -38,34 +38,19 @@ export class CredentialsOperationForm extends Component {
   }
 
   credentialLookup(form) {
-    console.log('credential lookup')
     this.props.dispatch(submitCredentialLookup(form))
-  }
-
-  credentialMissingMessage() {
-    const { existInAD, existInFasit } = this.props.credentialsInfo
-    if (!existInAD && existInFasit) {
-      return 'AD'
-    } else if (existInAD && !existInFasit) {
-      return 'Fasit'
-    } else if (!existInAD && !existInFasit) {
-      return 'AD or Fasit'
-    }
   }
 
   verifySchema() {
     const { existInAD, existInFasit } = this.props.credentialsInfo
     let hasAccess
     let messages = []
-    // Verify if user exists
     if (!(existInAD || existInFasit)) {
       messages.push('Service user not found either in AD or Fasit.')
       hasAccess = false
     } else {
-      // Verify if found in AD
       if (!existInAD && existInFasit) {
         messages.push('Service user not found in AD.')
-        // Verify if found in Fasit
       } else if (existInAD && !existInFasit) {
         messages.push('Service user not found in Fasit.')
       }
@@ -75,7 +60,6 @@ export class CredentialsOperationForm extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { existInAD, existInFasit } = this.props.credentialsInfo
     if (prevState.form !== this.state.form && this.state.form.applicationMappingName) {
       this.credentialLookup(this.state.form)
     }
@@ -155,6 +139,7 @@ CredentialsOperationForm.propTypes = {
   dispatch: PropTypes.func,
   credentialsInfo: PropTypes.object
 }
+
 const mapStateToProps = state => {
   return {
     user: state.user,

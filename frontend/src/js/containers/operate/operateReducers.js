@@ -119,7 +119,8 @@ export default (
         ...state,
         credentialOperations: {
           fetching: false,
-          error: action.err
+          error: action.err,
+          data: state.credentialOperations.data
         }
       }
     default:
