@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import connect from 'react-redux/es/connect/connect'
+import { connect } from 'react-redux'
 const userImage = require('../../../img/default-user.jpeg')
 
 export class NavUserMenu extends Component {

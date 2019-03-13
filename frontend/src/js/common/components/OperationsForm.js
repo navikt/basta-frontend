@@ -9,7 +9,7 @@ import {
 import orderTypes from '../../../configuration/'
 import OrderDropDown from './formComponents/OrderDropDown'
 import { withRouter } from 'react-router-dom'
-import connect from 'react-redux/es/connect/connect'
+import { connect } from 'react-redux'
 import { submitOperation } from '../../containers/operate/operateActionCreators'
 import OperationsButtons from './formComponents/OperationsButtons'
 

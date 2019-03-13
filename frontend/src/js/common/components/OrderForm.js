@@ -13,7 +13,7 @@ import orderTypes from '../../../configuration/'
 import OrderDropDown from './formComponents/OrderDropDown'
 import { submitForm } from '../../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
-import connect from 'react-redux/es/connect/connect'
+import { connect } from 'react-redux'
 
 export class OrderForm extends Component {
   constructor(props) {

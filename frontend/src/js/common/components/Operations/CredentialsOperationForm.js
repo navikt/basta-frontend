@@ -4,14 +4,15 @@ import {
   submitOperation,
   submitCredentialLookup
 } from '../../../containers/operate/operateActionCreators'
-import { withRouter } from 'react-router-dom'
-import connect from 'react-redux/es/connect/connect'
-import OperationsButtons from '../formComponents/OperationsButtons'
+import { connect } from 'react-redux'
 import image from '../../../../img/orderTypes/redhat.png'
-import ErrorPanel from '../formComponents/ErrorPanel'
-import InfoPanel from '../formComponents/InfoPanel'
-
-import { OrderButtonGroup, ApplicationsDropDown } from '../formComponents'
+import {
+  ErrorPanel,
+  InfoPanel,
+  OrderButtonGroup,
+  ApplicationsDropDown,
+  OperationsButtons
+} from '../formComponents'
 
 export class CredentialsOperationForm extends Component {
   constructor(props) {
@@ -148,4 +149,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(CredentialsOperationForm))
+export default connect(mapStateToProps)(CredentialsOperationForm)

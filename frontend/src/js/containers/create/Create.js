@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import PageHeading from '../../common/components/PageHeading'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import OrderGrid from '../../common/components/OrderGrid'
 import OrderCard from '../../common/components/OrderCard'
 import OrderFilter from '../../common/components/OrderFilter'
-import roles from '../../../configuration/roles'
 import { isAvailable } from '../../common/utils'
 
 const wasImage = require('../../../img/orderTypes/websphere.png')

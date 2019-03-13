@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ReactTooltip from 'react-tooltip'
 import { fetchMqClusters, clearMqClusters } from '../../actionCreators'
-import connect from 'react-redux/es/connect/connect'
+import { connect } from 'react-redux'
 
 export class MqClusterCheckBox extends Component {
   constructor(props) {

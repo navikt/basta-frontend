@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import connect from 'react-redux/es/connect/connect'
+import { connect } from 'react-redux'
 import moment from 'moment'
 
 import PageHeading from '../../common/components/PageHeading'

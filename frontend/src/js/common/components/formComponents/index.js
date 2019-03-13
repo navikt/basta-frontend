@@ -9,6 +9,8 @@ import QueueManagerDropDown from './QueueManagerDropDown'
 import MqClusterCheckBox from './MqClusterCheckBox'
 import OrderDbTemplateDropDown from './OrderDbTemplateDropDown'
 import OperationsButtons from './OperationsButtons'
+import ErrorPanel from './ErrorPanel'
+import InfoPanel from './InfoPanel'
 
 module.exports = {
   EnvironmentsDropDown,
@@ -21,5 +23,7 @@ module.exports = {
   OrderButtonGroup,
   OrderDropDown,
   OrderDbTemplateDropDown,
-  OperationsButtons
+  OperationsButtons,
+  ErrorPanel,
+  InfoPanel
 }
