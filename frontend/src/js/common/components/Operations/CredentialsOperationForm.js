@@ -144,8 +144,8 @@ CredentialsOperationForm.propTypes = {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    credentialsInfo: state.operationsForm.credentialOperations.data,
-    submitError: state.operationsForm.credentialOperations.error
+    credentialsInfo: state.operationsForm.credentialLookup.data,
+    submitError: state.operationsForm.operations.error
   }
 }
 

@@ -12,21 +12,19 @@ import {
 
 export default (
   state = {
-    nodes: {
+    operations: {
       fetching: false,
-      lastRequest: {},
       error: null,
-      data: []
+      lastOrderId: null
     },
-    vmOperations: {
+    vmLookup: {
       fetching: false,
       error: null,
       lastQuery: null,
       data: []
     },
-    credentialOperations: {
+    credentialLookup: {
       fetching: false,
-      lastRequest: {},
       error: null,
       data: {
         existInAD: true,
@@ -41,46 +39,43 @@ export default (
     case OPERATION_SUBMITTING:
       return {
         ...state,
-        nodes: {
+        operations: {
           fetching: true,
-          lastRequest: action.value,
           error: null,
-          data: []
+          lastOrderId: null
         }
       }
     case OPERATION_SUBMIT_SUCCESSFUL:
       return {
         ...state,
-        nodes: {
+        operations: {
           fetching: false,
-          lastRequest: state.nodes.lastRequest,
           error: null,
-          data: action.value
+          lastOrderId: action.value.orderId
         }
       }
     case OPERATION_SUBMIT_FAILED:
       return {
         ...state,
-        nodes: {
+        operations: {
           fetching: false,
-          lastRequest: state.nodes.lastRequest,
           error: action.error,
-          data: []
+          lastOrderId: null
         }
       }
     case VMLOOKUP_FETCHING:
       return {
         ...state,
-        vmOperations: {
+        vmLookup: {
           fetching: true,
           error: null,
-          data: [...state.vmOperations.data]
+          data: [...state.vmLookup.data]
         }
       }
     case VMLOOKUP_RECEIVED:
       return {
         ...state,
-        vmOperations: {
+        vmLookup: {
           fetching: false,
           error: null,
           lastQuery: action.query,
@@ -90,25 +85,25 @@ export default (
     case VMLOOKUP_REQUEST_FAILED:
       return {
         ...state,
-        vmOperations: {
+        vmLookup: {
           fetching: false,
           error: action.error,
-          data: [...state.vmOperations.data]
+          data: [...state.vmLookup.data]
         }
       }
     case CREDENTIAL_LOOKUP_SUBMITTING:
       return {
         ...state,
-        credentialOperations: {
+        credentialLookup: {
           fetching: true,
           error: null,
-          data: state.credentialOperations.data
+          data: state.credentialLookup.data
         }
       }
     case CREDENTIAL_LOOKUP_SUCCESSFUL:
       return {
         ...state,
-        credentialOperations: {
+        credentialLookup: {
           fetching: false,
           error: null,
           data: action.credentialInfo
@@ -117,10 +112,10 @@ export default (
     case CREDENTIAL_LOOKUP_FAILED:
       return {
         ...state,
-        credentialOperations: {
+        credentialLookup: {
           fetching: false,
-          error: action.err,
-          data: state.credentialOperations.data
+          error: action.error,
+          data: state.credentialLookup.data
         }
       }
     default:

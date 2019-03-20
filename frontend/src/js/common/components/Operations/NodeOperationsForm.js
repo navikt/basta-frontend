@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import OperateSeraNodeLookup from '../Operations/OperateSeraNodeLookup'
 import { submitOperation } from '../../../containers/operate/operateActionCreators'
-import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import OperationsButtons from '../formComponents/OperationsButtons'
 import image from '../../../../img/orderTypes/redhat.png'
@@ -76,8 +75,8 @@ NodeOperationsForm.propTypes = {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    submitError: state.operationsForm.nodes.error
+    submitError: state.operationsForm.operations.error
   }
 }
 
-export default withRouter(connect(mapStateToProps)(NodeOperationsForm))
+export default connect(mapStateToProps)(NodeOperationsForm)

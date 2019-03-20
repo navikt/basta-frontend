@@ -41,8 +41,8 @@ export function* fetchVmInfo(action) {
         value: vmInfo,
         query: `/rest/v1/servers?${createVmQuery(action.hostnames)}`
       })
-    } catch (err) {
-      yield put({ type: VMLOOKUP_REQUEST_FAILED, err })
+    } catch (error) {
+      yield put({ type: VMLOOKUP_REQUEST_FAILED, error })
     }
   }
 }
@@ -70,8 +70,8 @@ export function* credentialLookup(action) {
       }&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
     )
     yield put({ type: CREDENTIAL_LOOKUP_SUCCESSFUL, credentialInfo })
-  } catch (err) {
-    yield put({ type: CREDENTIAL_LOOKUP_FAILED, err })
+  } catch (error) {
+    yield put({ type: CREDENTIAL_LOOKUP_FAILED, error })
   }
 }
 
@@ -121,7 +121,8 @@ export function* submitOperation(action) {
         }
         yield put({ type: OPERATION_SUBMIT_SUCCESSFUL, value })
         yield put({ type: LATEST_ORDER_REQUEST })
-        redirectUrl = value.id ? `/orders/${value.id}` : '/'
+        redirectUrl = value.orderId ? `/orders/${value.orderId}` : '/'
+        yield history.push(redirectUrl)
         break
     }
   } catch (error) {

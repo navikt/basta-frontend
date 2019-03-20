@@ -1,4 +1,4 @@
-import { select, call } from 'redux-saga/effects'
+import { select } from 'redux-saga/effects'
 import { expectSaga } from 'redux-saga-test-plan'
 import { applyOrderHistoryFilter, getOrderHistory } from './sagas'
 import historyReducer from './reducers'

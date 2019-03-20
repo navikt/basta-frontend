@@ -93,7 +93,7 @@ OperateSeraNodeLookup.propTypes = {}
 
 const mapStateToProps = state => {
   return {
-    vmInfoArr: state.operationsForm.vmOperations.data,
+    vmInfoArr: state.operationsForm.vmLookup.data,
     user: state.user
   }
 }
