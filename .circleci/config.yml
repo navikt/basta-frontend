@@ -37,6 +37,7 @@ jobs:
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
+      - checkout
       - run:
           name: Login to Dockerhub
           command: echo "$GPR_PASSWORD" | docker login -u "$GPR_USER" --password-stdin docker.pkg.github.com
