@@ -1,26 +1,17 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
-version: 2
+version: 2.1
+orbs:
+  nais-deployment: navikt/nais-deployment@1.1.1
 jobs:
-  build:
+  build_and_test:
     environment:
       EMAIL: noreply@nav.no
-      GIT_AUTHOR_NAME: CircleCI
-      GIT_COMMITTER_NAME: CircleCI
     docker:
-      # specify the version you desire here
       - image: circleci/node:10.9
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-
     working_directory: ~/repo
 
     steps:
-      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
       - checkout
       - add_ssh_keys:
           fingerprints:
@@ -42,17 +33,41 @@ jobs:
 
       - run: npm test
 
+  release:
+    docker:
+      - image: circleci/node:10.9
+    steps:
       - run:
           name: Login to Dockerhub
-          command: echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USER" --password-stdin
+          command: echo "$GRP_PASSWORD" | docker login -u "$GPR_USER" --password-stdin
       - run:
           name: 'Release, tag and build Docker'
           command: |
-            export VERSION=$(date "+%Y-%m-%d")-$(git --no-pager log -1 --pretty=%h)
+            mkdir /tmp/workspace
+            export VERSION="$(date '+%Y-%m-%d')-$(git --no-pager log -1 --pretty=%h)"
+            echo "export VERSION="$VERSION" >> /tmp/workspace/properties.env
             echo $VERSION
-            docker build -t navikt/basta-frontend:$VERSION .
-            docker push navikt/basta-frontend:$VERSION
-            git clone git@github.com:navikt/nais-yaml.git && cd nais-yaml
-            sed -i 's/version.*/version\: '"${VERSION}"'/g' vars/basta-frontend.yaml
-            git commit -am "Update basta-frontend to ${VERSION}"
-            git push origin master
+            docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:$VERSION .
+            docker push ndocker.pkg.github.com/navikt/basta-frontend/basta-frontend:$VERSION
+            #git clone git@github.com:navikt/nais-yaml.git && cd nais-yaml
+            #sed -i 's/version.*/version\: '"${VERSION}"'/g' vars/basta-frontend.yaml
+            #git commit -am "Update basta-frontend to ${VERSION}"
+            #git push origin master
+
+workflows:
+  build_and_release:
+    jobs:
+      - build_and_test
+      - release:
+          filter:
+            branches:
+              only: master
+          requires:
+            - build_and_test
+      #-nais/deploy:
+      #  repo: navikt/basta-frontend
+      #  image: docker.pkg.github.com/navikt/basta-frontend/basta-frontend
+      #github-app-id: 1234
+      #  nais-template: nais.yaml
+      #  environment: dev-gcp
+      #  team: aura
