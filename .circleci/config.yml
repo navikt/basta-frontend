@@ -44,9 +44,7 @@ jobs:
           name: 'Release, tag and build Docker'
           command: |
             mkdir /tmp/workspace
-            export VERSION="$(date '+%Y-%m-%d')-$(git --no-pager log -1 --pretty=%h)"
-            echo "export VERSION="$VERSION" >> /tmp/workspace/properties.env
-            echo $VERSION
+            echo "export VERSION=\"$(date '+%Y-%m-%d')-$(git --no-pager log -1 --pretty=%h)\"" >> /tmp/workspace/properties.env
             docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:$VERSION .
             docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:$VERSION
             #git clone git@github.com:navikt/nais-yaml.git && cd nais-yaml
