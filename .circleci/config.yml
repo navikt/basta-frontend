@@ -39,7 +39,7 @@ jobs:
           docker_layer_caching: true
       - run:
           name: Login to Dockerhub
-          command: echo "$GPR_PASSWORD" | docker login -u "$GPR_USER" --password-stdin
+          command: echo "$GPR_PASSWORD" | docker login -u "$GPR_USER" --password-stdin docker.pkg.github.com
       - run:
           name: 'Release, tag and build Docker'
           command: |
@@ -48,7 +48,7 @@ jobs:
             echo "export VERSION="$VERSION" >> /tmp/workspace/properties.env
             echo $VERSION
             docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:$VERSION .
-            docker push ndocker.pkg.github.com/navikt/basta-frontend/basta-frontend:$VERSION
+            docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:$VERSION
             #git clone git@github.com:navikt/nais-yaml.git && cd nais-yaml
             #sed -i 's/version.*/version\: '"${VERSION}"'/g' vars/basta-frontend.yaml
             #git commit -am "Update basta-frontend to ${VERSION}"
