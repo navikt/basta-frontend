@@ -41,6 +41,7 @@ jobs:
       - run:
           name: Login to Dockerhub
           command: echo "$GPR_PASSWORD" | docker login -u "$GPR_USER" --password-stdin docker.pkg.github.com
+      - run: npm install
       - run:
           name: 'Release, tag and build Docker'
           command: |
