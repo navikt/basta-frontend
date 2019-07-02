@@ -39,7 +39,7 @@ jobs:
           docker_layer_caching: true
       - run:
           name: Login to Dockerhub
-          command: echo "$GRP_PASSWORD" | docker login -u "$GPR_USER" --password-stdin
+          command: echo "$GPR_PASSWORD" | docker login -u "$GPR_USER" --password-stdin
       - run:
           name: 'Release, tag and build Docker'
           command: |
