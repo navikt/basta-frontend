@@ -59,7 +59,7 @@ workflows:
     jobs:
       - build_and_test
       - release:
-          filter:
+          filters:
             branches:
               only: master
           requires:
