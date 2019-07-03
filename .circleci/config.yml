@@ -55,7 +55,7 @@ jobs:
             #sed -i 's/version.*/version\: '"${VERSION}"'/g' vars/basta-frontend.yaml
             #git commit -am "Update basta-frontend to ${VERSION}"
             #git push origin master
-  deploy-dev:
+  deploy_dev:
     docker:
       - image: 'navikt/deployment-cli:0.1.8'
     steps:
