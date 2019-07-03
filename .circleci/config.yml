@@ -38,6 +38,9 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - 'e2:70:a3:2f:ce:7a:56:53:02:b5:56:b2:4d:c4:ea:dc'
       - run:
           name: Login to GPR
           command: echo "$GPR_PASSWORD" | docker login -u "$GPR_USER" --password-stdin docker.pkg.github.com
