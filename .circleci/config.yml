@@ -49,21 +49,23 @@ jobs:
             export VERSION=$(date "+%Y-%m-%d")-$(git --no-pager log -1 --pretty=%h)
             echo "export VERSION=\"$VERSION\"" >> /tmp/workspace/properties.env
             echo $VERSION
+            cat /tmp/workspace/properties.env
             docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} .
             docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}
             #git clone git@github.com:navikt/nais-yaml.git && cd nais-yaml
             #sed -i 's/version.*/version\: '"${VERSION}"'/g' vars/basta-frontend.yaml
             #git commit -am "Update basta-frontend to ${VERSION}"
             #git push origin master
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - properties.env
   deploy_dev:
     docker:
       - image: 'navikt/deployment-cli:v0.1.8'
     steps:
       - attach_workspace:
           at: /tmp/workspace
-      - run:
-          name: 'Ekko ekko ekko'
-          command: source $BASH_ENV; echo $VERSION
       - add_ssh_keys:
           fingerprints:
             - 'e2:70:a3:2f:ce:7a:56:53:02:b5:56:b2:4d:c4:ea:dc'
