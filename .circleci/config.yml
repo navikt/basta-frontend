@@ -69,9 +69,9 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - '30:aa:a9:49:5c:a7:cc:8f:15:be:08:ab:1f:d5:bc:00'
-      - run:
-          name: Set up environment variables
-          command: cat /tmp/workspace/properties.env >> $BASH_ENV
+      #- run:
+      #    name: Set up environment variables
+      #    command: cat /tmp/workspace/properties.env >> $BASH_ENV
       - run:
           name: 'Checkout aura-infra repo'
           command: git clone git@github.com:navikt/aura-infra.git
