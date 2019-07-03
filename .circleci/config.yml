@@ -66,9 +66,9 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/workspace
-      - add_ssh_keys:
-          fingerprints:
-            - 'e2:70:a3:2f:ce:7a:56:53:02:b5:56:b2:4d:c4:ea:dc'
+      #- add_ssh_keys:
+      #    fingerprints:
+      #      - 'e2:70:a3:2f:ce:7a:56:53:02:b5:56:b2:4d:c4:ea:dc'
       - run:
           name: Set up environment variables
           command: cat /tmp/workspace/properties.env >> $BASH_ENV
