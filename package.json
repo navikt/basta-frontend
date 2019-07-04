@@ -46,7 +46,7 @@
     "re": "^0.1.4",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
-    "snyk": "^1.105.0"
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
@@ -109,7 +109,8 @@
     "mockend": "better-npm-run dev-mockend",
     "auth": "better-npm-run auth",
     "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "prepare": "npm run snyk-protect",
+    "prepublish": "npm run snyk-protect"
   },
   "betterScripts": {
     "start": {
