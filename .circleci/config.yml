@@ -70,7 +70,8 @@ jobs:
           fingerprints:
             #- '29:af:38:3a:ec:90:4a:ba:fc:bd:d8:42:ff:ae:97:d8'
             #- 'e2:70:a3:2f:ce:7a:56:53:02:b5:56:b2:4d:c4:ea:dc'
-            - '62:85:b7:7e:5f:b1:48:5e:f0:02:1d:b8:97:d8:15:d7'
+            #- '62:85:b7:7e:5f:b1:48:5e:f0:02:1d:b8:97:d8:15:d7'
+            - '01:47:91:7b:1c:26:c3:bb:de:ac:1f:3b:78:94:c6:55'
       #- run:
       #    name: Set up environment variables
       #    command: cat /tmp/workspace/properties.env >> $BASH_ENV
