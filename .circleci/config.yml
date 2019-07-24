@@ -22,14 +22,12 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: npm install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      - run: npm test
+      #- run: npm install
+      #- save_cache:
+      #    paths:
+      #      - node_modules
+      #    key: v1-dependencies-{{ checksum "package.json" }}
+      #- run: npm test
 
   release:
     docker:
@@ -85,7 +83,7 @@ jobs:
 workflows:
   build_and_release:
     jobs:
-      #- build_and_test
+      - build_and_test
       #- release:
       #    filters:
       #      branches:
@@ -96,7 +94,8 @@ workflows:
           filters:
             branches:
               only: master
-          #requires:
+          requires:
+            - build_and_test
           #  - release
       #-nais/deploy:
       #  repo: navikt/basta-frontend
