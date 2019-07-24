@@ -14,14 +14,12 @@ jobs:
       #- add_ssh_keys:
       #    fingerprints:
       #      - 'e2:70:a3:2f:ce:7a:56:53:02:b5:56:b2:4d:c4:ea:dc'
-
       # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
+      #- restore_cache:
+      #    keys:
+      #      - v1-dependencies-{{ checksum "package.json" }}
+      # fallback to using the latest cache if no exact match is found
+      #   - v1-dependencies-
       #- run: npm install
       #- save_cache:
       #    paths:
