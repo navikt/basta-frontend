@@ -69,14 +69,14 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             #- '29:af:38:3a:ec:90:4a:ba:fc:bd:d8:42:ff:ae:97:d8'
-            - 'e2:70:a3:2f:ce:7a:56:53:02:b5:56:b2:4d:c4:ea:dc'
-            #- '30:aa:a9:49:5c:a7:cc:8f:15:be:08:ab:1f:d5:bc:00'
+            #- 'e2:70:a3:2f:ce:7a:56:53:02:b5:56:b2:4d:c4:ea:dc'
+            - '62:85:b7:7e:5f:b1:48:5e:f0:02:1d:b8:97:d8:15:d7'
       #- run:
       #    name: Set up environment variables
       #    command: cat /tmp/workspace/properties.env >> $BASH_ENV
       - run:
           name: 'Checkout aura-infra repo'
-          command: git clone git@github.com:navikt/nais-yaml.git
+          command: git clone git@github.com:navikt/aura-infra.git
       # - run:
       #     name: Create github deployment for dev-gcp
       #     command: source $BASH_ENV; deployment-cli deploy create --cluster=dev-gcp --repository=navikt/aura-infra --team aura -r=aura-infra/basta-frontend/dev-gcp/naiserator.yaml --version=${VERSION}
