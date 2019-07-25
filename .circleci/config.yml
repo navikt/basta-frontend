@@ -1,109 +1,151 @@
 version: 2.1
+
 orbs:
   nais-deployment: navikt/nais-deployment@1.1.1
-jobs:
-  build_and_test:
-    environment:
-      EMAIL: noreply@nav.no
+
+references:
+  container_config: &container_config
     docker:
       - image: circleci/node:10.9
-    working_directory: ~/repo
+    working_directory: /root/frontend
+
+  workspace_root: &workspace_root /tmp/workspace
+
+restore_source: &restore_source
+  restore_cache:
+    keys:
+      - v1-repo-{{ .Branch }}-{{ .Revision }}
+
+restore_node_modules: &restore_node_modules
+  restore_cache:
+    keys:
+      - v1-dependencies-{{ checksum "package.json" }}
+
+attach_workspace: &attach_workspace
+  attach_workspace:
+    at: *workspace_root
+
+jobs:
+  checkout_code:
+    <<: *container_config
     steps:
       - checkout
-      - run:
-          name: list shit
-          command: pwd
-      - run:
-          name: list shit 2
-          command: ls -la
-      #- add_ssh_keys:
-      #    fingerprints:
-      #      - 'e2:70:a3:2f:ce:7a:56:53:02:b5:56:b2:4d:c4:ea:dc'
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            #fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      - save_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - .
+
+  build_and_test:
+    #environment:
+    #  EMAIL: noreply@nav.no
+    #docker:
+    #  - image: circleci/node:10.9
+    #working_directory: ~/repo
+    <<: *container_config
+    steps:
+      - *restore_source
+      - checkout
+      - *restore_node_modules
       - run: npm install
       - save_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm test
 
-  release:
-    docker:
-      - image: circleci/node:10.9
+  generate_version_number:
+    <<: *container_config
     steps:
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - checkout
+      - *restore_source
       - run:
-          name: Login to GPR
-          command: echo "$GPR_PASSWORD" | docker login -u "$GPR_USER" --password-stdin docker.pkg.github.com
-      - run: npm install
-      - run:
-          name: 'Release, tag and build Docker'
-          command: |
-            mkdir /tmp/workspace
-            export VERSION=$(date "+%Y-%m-%d")-$(git --no-pager log -1 --pretty=%h)
-            echo "export VERSION=\"$VERSION\"" >> /tmp/workspace/properties.env
-            echo $VERSION
-            cat /tmp/workspace/properties.env
-            docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} .
-            docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}
-            #git clone git@github.com:navikt/nais-yaml.git && cd nais-yaml
-            #sed -i 's/version.*/version\: '"${VERSION}"'/g' vars/basta-frontend.yaml
-            #git commit -am "Update basta-frontend to ${VERSION}"
-            #git push origin master
+        name: 'Generate version number'
+        command: |
+          mkdir /tmp/workspace
+          export VERSION=$(date "+%Y-%m-%d")-$(git --no-pager log -1 --pretty=%h)
+          echo "export VERSION=\"$VERSION\"" >> /tmp/workspace/properties.env
       - persist_to_workspace:
-          root: /tmp/workspace
-          paths:
-            - properties.env
-  deploy_dev:
-    docker:
-      - image: 'navikt/deployment-cli:v0.1.8'
+        root: *workspace_root
+        paths:
+          - properties.env
+
+  release:
+    <<: *container_config
     steps:
-      #- attach_workspace:
-      #    at: /tmp/workspace
-      - add_ssh_keys:
-          fingerprints:
-            #- '29:af:38:3a:ec:90:4a:ba:fc:bd:d8:42:ff:ae:97:d8'
-            #- 'e2:70:a3:2f:ce:7a:56:53:02:b5:56:b2:4d:c4:ea:dc'
-            #- '62:85:b7:7e:5f:b1:48:5e:f0:02:1d:b8:97:d8:15:d7'
-            - '01:47:91:7b:1c:26:c3:bb:de:ac:1f:3b:78:94:c6:55'
-      #- run:
-      #    name: Set up environment variables
-      #    command: cat /tmp/workspace/properties.env >> $BASH_ENV
+      - *restore_source
+      - *restore_node_modules
+      - *attach_workspace
+      - setup_remote_docker:
+        docker_layer_caching: true
       - run:
-          name: 'Checkout aura-infra repo'
-          command: git clone git@github.com:navikt/aura-infra.git
-      # - run:
-      #     name: Create github deployment for dev-gcp
-      #     command: source $BASH_ENV; deployment-cli deploy create --cluster=dev-gcp --repository=navikt/aura-infra --team aura -r=aura-infra/basta-frontend/dev-gcp/naiserator.yaml --version=${VERSION}
+        name: Set up environment variables
+        command: cat /tmp/workspace/properties.env >> $BASH_ENV
+      - run:
+        name: Login to GPR
+        command: echo "$GPR_PASSWORD" | docker login -u "$GPR_USER" --password-stdin docker.pkg.github.com
+      - run:
+        name: Build and push docker image
+        command: |
+          docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} .
+          docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}
+
+        #deploy_dev:
+        #  docker:
+        #    - image: 'navikt/deployment-cli:v0.1.8'
+        #  steps:
+        #    #- attach_workspace:
+        #    #    at: /tmp/workspace
+        #    - add_ssh_keys:
+        #        fingerprints:
+        #          #- '29:af:38:3a:ec:90:4a:ba:fc:bd:d8:42:ff:ae:97:d8'
+        #          #- 'e2:70:a3:2f:ce:7a:56:53:02:b5:56:b2:4d:c4:ea:dc'
+        #          #- '62:85:b7:7e:5f:b1:48:5e:f0:02:1d:b8:97:d8:15:d7'
+        #          - '01:47:91:7b:1c:26:c3:bb:de:ac:1f:3b:78:94:c6:55'
+        #    #- run:
+        #    #    name: Set up environment variables
+        #    #    command: cat /tmp/workspace/properties.env >> $BASH_ENV
+        #    - run:
+        #        name: 'Checkout aura-infra repo'
+        #        command: git clone git@github.com:navikt/aura-infra.git
+        #    # - run:
+        #     name: Create github deployment for dev-gcp
+        #     command: source $BASH_ENV; deployment-cli deploy create --cluster=dev-gcp --repository=navikt/aura-infra --team aura -r=aura-infra/basta-frontend/dev-gcp/naiserator.yaml --version=${VERSION}
 
 workflows:
   build_and_release:
     jobs:
-      - build_and_test
-      #- release:
-      #    filters:
-      #      branches:
-      #        only: master
-      #    requires:
-      #      - build_and_test
-      #- deploy_dev:
-      #    filters:
-      #      branches:
-      #        only: master
-      #    requires:
-      #      - build_and_test
-      #  - release
-      #-nais/deploy:
-      #  repo: navikt/basta-frontend
-      #  image: docker.pkg.github.com/navikt/basta-frontend/basta-frontend
-      #github-app-id: 1234
-      #  nais-template: nais.yaml
-      #  environment: dev-gcp
-      #  team: aura
+      - checkout_code
+      - build_and_test:
+          requires:
+            - checkout_code
+      - generate_version_number:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build_and_test
+      - release:
+          filters:
+            branches:
+              only: master
+          requires:
+            - generate_version_number
+    #- release:
+    #    filters:
+    #      branches:
+    #        only: master
+    #    requires:
+    #      - build_and_test
+    #- deploy_dev:
+    #    filters:
+    #      branches:
+    #        only: master
+    #    requires:
+    #      - build_and_test
+    #  - release
+    #-nais/deploy:
+    #  repo: navikt/basta-frontend
+    #  image: docker.pkg.github.com/navikt/basta-frontend/basta-frontend
+    #github-app-id: 1234
+    #  nais-template: nais.yaml
+    #  environment: dev-gcp
+    #  team: aura
