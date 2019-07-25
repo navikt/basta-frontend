@@ -19,7 +19,7 @@ restore_source: &restore_source
 restore_node_modules: &restore_node_modules
     restore_cache:
         keys:
-        - v1-dependencies-{{ checksum "package.json" }}
+        - v1-dependencies-node{{ checksum "package.json" }}
 
 attach_workspace: &attach_workspace
     attach_workspace:
@@ -41,7 +41,7 @@ jobs:
             - *restore_source
             - run: npm install
             - save_cache:
-                key: v1-dependencies-{{ checksum "package.json" }}
+                key: v1-dependencies-node{{ checksum "package.json" }}
                 paths:
                     - node_modules
             - run: npm test
