@@ -33,13 +33,12 @@ jobs:
             - save_cache:
                 key: v1-repo-{{ .Branch }}-{{ .Revision }}
                 paths:
-                - .
+                    - .
 
     build_and_test:
         <<: *container_config
         steps:
             - *restore_source
-            - *restore_node_modules
             - run: npm install
             - save_cache:
                 key: v1-dependencies-{{ checksum "package.json" }}
