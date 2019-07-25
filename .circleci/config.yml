@@ -75,7 +75,7 @@ jobs:
             - run:
                 name: Login to GPR
                 command: echo "$GPR_PASSWORD" | docker login -u "$GPR_USER" --password-stdin docker.pkg.github.com
-            -run:
+            - run:
                 name: EKKO
                 command: echo $VERSION
             - run:
