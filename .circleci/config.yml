@@ -1,92 +1,87 @@
 version: 2.1
 
 orbs:
-  nais-deployment: navikt/nais-deployment@1.1.1
+    nais-deployment: navikt/nais-deployment@1.1.1
 
 references:
-  container_config: &container_config
+    container_config: &container_config
     docker:
-      - image: circleci/node:10.9
+        - image: circleci/node:10.9
     working_directory: /root/frontend
 
-  workspace_root: &workspace_root /tmp/workspace
+workspace_root: &workspace_root /tmp/workspace
 
 restore_source: &restore_source
-  restore_cache:
-    keys:
-      - v1-repo-{{ .Branch }}-{{ .Revision }}
+    restore_cache:
+        keys:
+            - v1-repo-{{ .Branch }}-{{ .Revision }}
 
 restore_node_modules: &restore_node_modules
-  restore_cache:
-    keys:
-      - v1-dependencies-{{ checksum "package.json" }}
+    restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "package.json" }}
 
 attach_workspace: &attach_workspace
-  attach_workspace:
-    at: *workspace_root
+    attach_workspace:
+        at: *workspace_root
 
 jobs:
-  checkout_code:
-    <<: *container_config
-    steps:
-      - checkout
-      - save_cache:
-          key: v1-repo-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - .
+    checkout_code:
+        <<: *container_config
+        steps:
+            - checkout
+            - save_cache:
+                key: v1-repo-{{ .Branch }}-{{ .Revision }}
+                paths:
+                - .
 
-  build_and_test:
-    #environment:
-    #  EMAIL: noreply@nav.no
-    #docker:
-    #  - image: circleci/node:10.9
-    #working_directory: ~/repo
-    <<: *container_config
-    steps:
-      - *restore_source
-      - checkout
-      - *restore_node_modules
-      - run: npm install
-      - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-      - run: npm test
+    build_and_test:
+        <<: *container_config
+        steps:
+            - *restore_source
+            - checkout
+            - *restore_node_modules
+            - run: npm install
+            - save_cache:
+                key: v1-dependencies-{{ checksum "package.json" }}
+                paths:
+                    - node_modules
+            - run: npm test
 
-  generate_version_number:
-    <<: *container_config
-    steps:
-      - *restore_source
-      - run:
-        name: 'Generate version number'
-        command: |
-          mkdir /tmp/workspace
-          export VERSION=$(date "+%Y-%m-%d")-$(git --no-pager log -1 --pretty=%h)
-          echo "export VERSION=\"$VERSION\"" >> /tmp/workspace/properties.env
-      - persist_to_workspace:
-        root: *workspace_root
-        paths:
-          - properties.env
+    generate_version_number:
+        <<: *container_config
+        steps:
+        - *restore_source
+        - run:
+            name: 'Generate version number'
+            command: |
+                mkdir /tmp/workspace
+                export VERSION=$(date "+%Y-%m-%d")-$(git --no-pager log -1 --pretty=%h)
+                echo "export VERSION=\"$VERSION\"" >> /tmp/workspace/properties.env
+        - persist_to_workspace:
+            root: *workspace_root
+            paths:
+                - properties.env
 
-  release:
-    <<: *container_config
-    steps:
-      - *restore_source
-      - *restore_node_modules
-      - *attach_workspace
-      - setup_remote_docker:
-        docker_layer_caching: true
-      - run:
-        name: Set up environment variables
-        command: cat /tmp/workspace/properties.env >> $BASH_ENV
-      - run:
-        name: Login to GPR
-        command: echo "$GPR_PASSWORD" | docker login -u "$GPR_USER" --password-stdin docker.pkg.github.com
-      - run:
-        name: Build and push docker image
-        command: |
-          docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} .
-          docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}
+    release:
+        <<: *container_config
+        steps:
+            - *restore_source
+            - *restore_node_modules
+            - *attach_workspace
+            - setup_remote_docker:
+                docker_layer_caching: true
+            - run:
+                name: Set up environment variables
+                command: cat /tmp/workspace/properties.env >> $BASH_ENV
+            - run:
+                name: Login to GPR
+                command: echo "$GPR_PASSWORD" | docker login -u "$GPR_USER" --password-stdin docker.pkg.github.com
+            - run:
+                name: Build and push docker image
+                command: |
+                    docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} .
+                    docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}
 
         #deploy_dev:
         #  docker:
@@ -111,24 +106,24 @@ jobs:
         #     command: source $BASH_ENV; deployment-cli deploy create --cluster=dev-gcp --repository=navikt/aura-infra --team aura -r=aura-infra/basta-frontend/dev-gcp/naiserator.yaml --version=${VERSION}
 
 workflows:
-  build_and_release:
-    jobs:
-      - checkout_code
-      - build_and_test:
-          requires:
+    build_and_release:
+        jobs:
             - checkout_code
-      - generate_version_number:
-          filters:
-            branches:
-              only: master
-          requires:
-            - build_and_test
-      - release:
-          filters:
-            branches:
-              only: master
-          requires:
-            - generate_version_number
+            - build_and_test:
+                requires:
+                    - checkout_code
+            - generate_version_number:
+                filters:
+                    branches:
+                        only: master
+                requires:
+                    - build_and_test
+            - release:
+                filters:
+                branches:
+                    only: master
+                requires:
+                    - generate_version_number
     #- release:
     #    filters:
     #      branches:
