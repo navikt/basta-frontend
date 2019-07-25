@@ -39,7 +39,6 @@ jobs:
         <<: *container_config
         steps:
             - *restore_source
-            - checkout
             - *restore_node_modules
             - run: npm install
             - save_cache:
