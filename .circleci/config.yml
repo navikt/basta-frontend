@@ -119,8 +119,8 @@ workflows:
                     - build_and_test
             - release:
                 filters:
-                branches:
-                    only: master
+                    branches:
+                        only: master
                 requires:
                     - generate_version_number
     #- release:
