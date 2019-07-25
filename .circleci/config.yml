@@ -5,9 +5,9 @@ orbs:
 
 references:
     container_config: &container_config
-    docker:
-        - image: circleci/node:10.9
-    working_directory: /root/frontend
+        docker:
+            - image: circleci/node:10.9
+        working_directory: /root/frontend
 
 workspace_root: &workspace_root /tmp/workspace
 
