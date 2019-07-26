@@ -90,19 +90,20 @@ jobs:
                 command: |
                     docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} .
                     docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}
-        deploy_to_dev:
-            docker:
-                - image: navikt/deployment-cli:0.2.0
-            steps:
-                - *restore_source
-                - *attach_workspace
-                - *read_environment_variables
-                - run: 
-                    - name: LS
-                    - command: ls -la 
-                - run:
-                    - name: deploy to dev-gcp
-                    - command: deployment-cli deploy create --cluster=dev-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/dev-gcp/nais.yaml --var version=${VERSION} --appid=21324 --key=aura-infra/deployment-keys/github.key.pem.enc
+    
+    deploy_to_dev:
+        docker:
+            - image: 'navikt/deployment-cli:0.2.0'
+        steps:
+            - *restore_source
+            - *attach_workspace
+            - *read_environment_variables
+            - run: 
+                - name: LS
+                - command: ls -la 
+            - run:
+                - name: deploy to dev-gcp
+                - command: deployment-cli deploy create --cluster=dev-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/dev-gcp/nais.yaml --var version=${VERSION} --appid=21324 --key=aura-infra/deployment-keys/github.key.pem.enc
 
 workflows:
     build_and_release:
