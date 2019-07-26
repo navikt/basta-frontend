@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-    nais-deployment: navikt/nais-deployment@1.1.1
+    nais-deployment: navikt/nais-deployment@1.3.0
 
 references:
     container_config: &container_config
@@ -19,17 +19,29 @@ restore_source: &restore_source
 restore_node_modules: &restore_node_modules
     restore_cache:
         keys:
-        - v1-dependencies-node{{ checksum "package.json" }}
+        - v1-dependencies-node-{{ checksum "package.json" }}
 
 attach_workspace: &attach_workspace
     attach_workspace:
         at: *workspace_root
+
+read_environment_variables: &read_environment_variables
+    - run:
+        name: Set up environment variables
+        command: cat /tmp/workspace/properties.env >> $BASH_ENV
+
 
 jobs:
     checkout_code:
         <<: *container_config
         steps:
             - checkout
+            - add_ssh_keys:
+                fingerprints: 
+                    - '01:47:91:7b:1c:26:c3:bb:de:ac:1f:3b:78:94:c6:55'
+            - run:
+                name: 'Checkout aura-infra repo'
+                command: git clone git@github.com:navikt/aura-infra.git
             - save_cache:
                 key: v1-repo-{{ .Branch }}-{{ .Revision }}
                 paths:
@@ -41,7 +53,7 @@ jobs:
             - *restore_source
             - run: npm install
             - save_cache:
-                key: v1-dependencies-node{{ checksum "package.json" }}
+                key: v1-dependencies-node-{{ checksum "package.json" }}
                 paths:
                     - node_modules
             - run: npm test
@@ -67,47 +79,30 @@ jobs:
             - *restore_source
             - *restore_node_modules
             - *attach_workspace
+            - *read_environment_variables
             - setup_remote_docker:
                 docker_layer_caching: true
             - run:
-                name: Set up environment variables
-                command: cat /tmp/workspace/properties.env >> $BASH_ENV
-            - run:
                 name: Login to GPR
                 command: echo "$GPR_PASSWORD" | docker login -u "$GPR_USER" --password-stdin docker.pkg.github.com
-            - run:
-                name: EKKO
-                command: echo $VERSION
-            - run:
-                name: LS
-                command: ls -la
             - run:
                 name: Build and push docker image
                 command: |
                     docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} .
                     docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}
-
-        #deploy_dev:
-        #  docker:
-        #    - image: 'navikt/deployment-cli:v0.1.8'
-        #  steps:
-        #    #- attach_workspace:
-        #    #    at: /tmp/workspace
-        #    - add_ssh_keys:
-        #        fingerprints:
-        #          #- '29:af:38:3a:ec:90:4a:ba:fc:bd:d8:42:ff:ae:97:d8'
-        #          #- 'e2:70:a3:2f:ce:7a:56:53:02:b5:56:b2:4d:c4:ea:dc'
-        #          #- '62:85:b7:7e:5f:b1:48:5e:f0:02:1d:b8:97:d8:15:d7'
-        #          - '01:47:91:7b:1c:26:c3:bb:de:ac:1f:3b:78:94:c6:55'
-        #    #- run:
-        #    #    name: Set up environment variables
-        #    #    command: cat /tmp/workspace/properties.env >> $BASH_ENV
-        #    - run:
-        #        name: 'Checkout aura-infra repo'
-        #        command: git clone git@github.com:navikt/aura-infra.git
-        #    # - run:
-        #     name: Create github deployment for dev-gcp
-        #     command: source $BASH_ENV; deployment-cli deploy create --cluster=dev-gcp --repository=navikt/aura-infra --team aura -r=aura-infra/basta-frontend/dev-gcp/naiserator.yaml --version=${VERSION}
+        deploy_to_dev:
+            docker:
+                - image: navikt/deployment-cli:0.2.0
+            steps:
+                - *restore_source
+                - *attach_workspace
+                - *read_environment_variables
+                - run: 
+                    - name: LS
+                    - command: ls -la 
+                - run:
+                    - name: deploy to dev-gcp
+                    - command: deployment-cli deploy create --cluster=dev-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/dev-gcp/nais.yaml --var version=${VERSION} --appid=21324 --key=aura-infra/deployment-keys/github.key.pem.enc
 
 workflows:
     build_and_release:
@@ -128,23 +123,9 @@ workflows:
                         only: master
                 requires:
                     - generate_version_number
-    #- release:
-    #    filters:
-    #      branches:
-    #        only: master
-    #    requires:
-    #      - build_and_test
-    #- deploy_dev:
-    #    filters:
-    #      branches:
-    #        only: master
-    #    requires:
-    #      - build_and_test
-    #  - release
-    #-nais/deploy:
-    #  repo: navikt/basta-frontend
-    #  image: docker.pkg.github.com/navikt/basta-frontend/basta-frontend
-    #github-app-id: 1234
-    #  nais-template: nais.yaml
-    #  environment: dev-gcp
-    #  team: aura
+            - deploy_to_dev:
+                filters:
+                    branches:
+                        only: master
+                requires:
+                    - release
