@@ -105,6 +105,8 @@ jobs:
             - run:
                 name: 'Checkout aura-infra repo'
                 command: git clone git@github.com:navikt/aura-infra.git
+
+            - decrypt-private-key
             #- run: 
             #    name: PWD
             #    command: pwd
@@ -117,7 +119,17 @@ jobs:
             - run:
                 name: deploy to dev-gcp
                 command: | 
-                    deployment-cli deploy create --cluster=dev-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/dev-gcp/nais.yaml --var version=2019-07-26-95d8c0f --appid=21324 --key=aura-infra/deployment-keys/github.key.pem.enc
+                    deployment-cli deploy create --cluster=dev-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/dev-gcp/nais.yaml --var version=2019-07-26-95d8c0f --appid=21324 --key=github.key.pem
+
+commands: 
+    decrypt-private-key:
+        description: "Decrypt private key"
+        steps:
+        - run:
+            name: "Decrypt private key"
+            command: |
+                openssl aes-256-cbc -K $OPENSSL_KEY -iv $OPENSSL_IV -in aura-infra/deployment-keys/github.key.pem.enc github.key.pem.enc -out github.key.pem -d
+                rm github.key.pem
         
 workflows:
     build_and_release:
