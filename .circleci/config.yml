@@ -96,7 +96,7 @@ jobs:
             - image: 'navikt/deployment-cli:v0.2.0'
         steps:
             #- *restore_source
-            #- *attach_workspace
+            - *attach_workspace
             - *read_environment_variables
             - add_ssh_keys:
                 fingerprints: 
@@ -116,27 +116,27 @@ jobs:
             - run:
                 name: deploy to dev-gcp
                 command: | 
-                    deployment-cli deploy create --cluster=dev-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/dev-gcp/nais.yaml --var version=${VERSION} --appid=21324 --key=aura-infra/deployment-keys/github.key.pem.enc
+                    deployment-cli deploy create --cluster=dev-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/dev-gcp/nais.yaml --var version=2019-07-26-95d8c0f --appid=21324 --key=aura-infra/deployment-keys/github.key.pem.enc
         
 workflows:
     build_and_release:
         jobs:
             - checkout_code
-            - build_and_test:
-                requires:
-                    - checkout_code
-            - generate_version_number:
-                filters:
-                    branches:
-                        only: master
-                requires:
-                    - build_and_test
-            - release:
-                filters:
-                    branches:
-                        only: master
-                requires:
-                    - generate_version_number
+            #- build_and_test:
+            #    requires:
+            #        - checkout_code
+            #- generate_version_number:
+            #    filters:
+            #        branches:
+            #            only: master
+            #    requires:
+            #        - build_and_test
+            #- release:
+            #    filters:
+            #        branches:
+            #            only: master
+            #    requires:
+            #        - generate_version_number
             - deploy_to_dev:
                 filters:
                     branches:
