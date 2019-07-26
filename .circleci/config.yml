@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-    nais-deployment: navikt/nais-deployment@1.3.0
+    nais: navikt/nais-deployment@1.3.0
 
 references:
     container_config: &container_config
