@@ -79,7 +79,7 @@ jobs:
             - *restore_source
             - *restore_node_modules
             - *attach_workspace
-            - *read_environment_variables
+            #- *read_environment_variables
             - setup_remote_docker:
                 docker_layer_caching: true
             - run:
