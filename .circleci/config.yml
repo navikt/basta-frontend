@@ -88,6 +88,7 @@ jobs:
             - run:
                 name: Build and push docker image
                 command: |
+                    echo $CIRCLE_SHA1
                     docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:$CIRCLE_SHA1 .
                     docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:$CIRCLE_SHA1
     
