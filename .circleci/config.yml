@@ -99,11 +99,12 @@ jobs:
             - *attach_workspace
             - *read_environment_variables
             - run: 
-                - name: LS
-                - command: ls -la 
+                name: LS
+                command: ls -la 
             - run:
-                - name: deploy to dev-gcp
-                - command: deployment-cli deploy create --cluster=dev-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/dev-gcp/nais.yaml --var version=${VERSION} --appid=21324 --key=aura-infra/deployment-keys/github.key.pem.enc
+                name: deploy to dev-gcp
+                command: | 
+                    deployment-cli deploy create --cluster=dev-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/dev-gcp/nais.yaml --var version=${VERSION} --appid=21324 --key=aura-infra/deployment-keys/github.key.pem.enc
 
 workflows:
     build_and_release:
