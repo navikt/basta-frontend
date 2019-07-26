@@ -131,7 +131,7 @@ commands:
             name: "Decrypt private key"
             command: |
                 ls -la aura-infra/deployment-keys/
-                openssl aes-256-cbc -K $OPENSSL_KEY -iv $OPENSSL_IV -in aura-infra/deployment-keys/github.key.pem.enc github.key.pem.enc -out github.key.pem -d
+                openssl aes-256-cbc -K $OPENSSL_KEY -iv $OPENSSL_IV -in aura-infra/deployment-keys/github.key.pem.enc -out github.key.pem -d
                 
         
 workflows:
