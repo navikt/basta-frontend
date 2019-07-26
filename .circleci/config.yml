@@ -25,10 +25,10 @@ attach_workspace: &attach_workspace
     attach_workspace:
         at: *workspace_root
 
-#read_environment_variables: &read_environment_variables
-#    run:
-#        name: Set up environment variables
-#        command: cat /tmp/workspace/properties.env >> $BASH_ENV
+read_environment_variables: &read_environment_variables
+    run:
+        name: Set up environment variables
+        command: cat /tmp/workspace/properties.env >> $BASH_ENV
 
 
 jobs:
@@ -62,16 +62,16 @@ jobs:
         <<: *container_config
         steps:
         - *restore_source
-        #- run:
-        #    name: 'Generate version number'
-        #    command: |
-        #        mkdir /tmp/workspace
-        #        export VERSION=$(date "+%Y-%m-%d")-$(git --no-pager log -1 --pretty=%h)
-        #        echo "export VERSION=\"$VERSION\"" >> /tmp/workspace/properties.env
-        #- persist_to_workspace:
-        #    root: *workspace_root
-        #    paths:
-        #        - properties.env
+        - run:
+            name: 'Generate version number'
+            command: |
+                mkdir /tmp/workspace
+                export VERSION=$(date "+%Y-%m-%d")-$(git --no-pager log -1 --pretty=%h)
+                echo "export VERSION=\"$VERSION\"" >> /tmp/workspace/properties.env
+        - persist_to_workspace:
+            root: *workspace_root
+            paths:
+                - properties.env
 
     release:
         <<: *container_config
@@ -79,7 +79,7 @@ jobs:
             - *restore_source
             - *restore_node_modules
             - *attach_workspace
-            #- *read_environment_variables
+            - *read_environment_variables
             - setup_remote_docker:
                 docker_layer_caching: true
             - run:
@@ -89,8 +89,8 @@ jobs:
                 name: Build and push docker image
                 command: |
                     echo $CIRCLE_SHA1
-                    docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:$CIRCLE_SHA1 .
-                    docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:$CIRCLE_SHA1
+                    docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}:$CIRCLE_SHA1 .
+                    docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}:$CIRCLE_SHA1
     
     deploy_to_dev:
         docker:
@@ -157,7 +157,7 @@ workflows:
             - nais/deploy:
                 build-and-push-docker-image: false
                 repo: navikt/basta-frontend
-                image: docker.pkg.github.com/navikt/basta-frontend/basta-frontend
+                image: docker.pkg.github.com/navikt/basta-frontend/basta-frontend:2019-07-26-95d8c0f
                 github-app-id: 21324
                 nais-template: aura-infra/basta-frontend/dev-gcp/nais.yaml
                 environment: dev-gcp
