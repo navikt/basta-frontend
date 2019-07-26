@@ -103,7 +103,7 @@ jobs:
                 command: pwd
             - run: 
                 name: home
-                command: ls -la  ~
+                command: ls -la  /home/circleci/frontend
             - run: 
                 name: LS
                 command: ls -la 
