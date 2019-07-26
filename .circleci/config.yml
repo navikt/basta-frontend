@@ -26,7 +26,7 @@ attach_workspace: &attach_workspace
         at: *workspace_root
 
 read_environment_variables: &read_environment_variables
-    - run:
+    run:
         name: Set up environment variables
         command: cat /tmp/workspace/properties.env >> $BASH_ENV
 
@@ -105,7 +105,7 @@ jobs:
                 name: deploy to dev-gcp
                 command: | 
                     deployment-cli deploy create --cluster=dev-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/dev-gcp/nais.yaml --var version=${VERSION} --appid=21324 --key=aura-infra/deployment-keys/github.key.pem.enc
-
+        
 workflows:
     build_and_release:
         jobs:
