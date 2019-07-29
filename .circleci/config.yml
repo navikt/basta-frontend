@@ -4,7 +4,7 @@ orbs:
     nais: navikt/nais-deployment@1.4.0
 
 executors:
-  go-executor:
+  deployment-cli:
     docker:
       - image: navikt/deployment-cli:v0.2.0
 
@@ -92,25 +92,21 @@ jobs:
     
      
     deploy_to_dev:
-        docker:
-            - image: 'navikt/deployment-cli:v0.2.0'
         steps:
             - deploy-to-nais:
-                nais-template: aura-infra/basta-frontend/dev-gcp/nais.yaml
                 environment: dev-gcp
+                placeholder-values: aura-infra/vars/basta-frontend-dev-gcp.json
 
     deploy_to_prod:
-        docker:
-            - image: 'navikt/deployment-cli:v0.2.0'
         steps:
              - deploy-to-nais:
-                nais-template: aura-infra/basta-frontend/prod-gcp/nais.yaml
                 environment: prod-gcp
+                placeholder-values: aura-infra/vars/basta-frontend-prod-gcp.json
 
 commands:
     deploy-to-nais:
         parameters:
-            nais-template:
+            placeholder-values:
                 type: string
             environment:
                 type: string
@@ -127,10 +123,19 @@ commands:
 
             - decrypt-private-key   
             - run:
-                name: deploy to dev-gcp
-                command: | 
-                    deployment-cli deploy create --cluster=<< parameters.environment >>  --repository=navikt/basta-frontend --team aura --resource=<< parameters.nais-template >> --var version=docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} --appid=21324 --key=github.key.pem
-                    rm github.key.pem
+                name: deploy to << parameters.environment >> 
+                command: deployment-cli deploy create 
+                    --cluster=<< parameters.environment >>  
+                    --repository=navikt/basta-frontend 
+                    --team aura 
+                    --resource=aura-infra/templates/basta-frontend.yaml 
+                    --vars=<< parameters.placeholder-values >>
+                    --var version=${VERSION} 
+                    --appid=21324 
+                    --key=github.key.pem
+            - run:
+                name: cleanup
+                command: rm github.key.pem
 
     decrypt-private-key:
         steps:
@@ -160,12 +165,14 @@ workflows:
                 requires:
                     - generate_version_number
             - deploy_to_dev:
+                executor: deployment-cli
                 filters:
                     branches:
                         only: master
                 requires:
                     - release
             - deploy_to_prod:
+                executor: deployment-cli
                 filters:
                     branches: 
                         only: master
