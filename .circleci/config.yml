@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-    nais: navikt/nais-deployment@1.3.0
+    nais: navikt/nais-deployment@1.4.0
 
 references:
     container_config: &container_config
@@ -149,17 +149,16 @@ commands:
                 type: integer
                 default: 300
         steps:
-        - decrypt-private-key
-        - run:
-            name: "Create NAIS Github deployment"
-            command: |
-                deployment-cli deploy create --cluster=<< parameters.environment >> --repository=<< parameters.repo >> --appid=<< parameters.github-app-id >> \
-                --team=<< parameters.team >> --version=<< parameters.image >>:<< parameters.image-version >> --key=.circleci/github.key.pem --resource=<< parameters.nais-template >> --await=<< parameters.await >>
-                rm .circleci/github.key.pem
+            - decrypt-private-key
+            - run:
+                name: "Create NAIS Github deployment"
+                command: |
+                    deployment-cli deploy create --cluster=<< parameters.environment >> --repository=<< parameters.repo >> --appid=<< parameters.github-app-id >> \
+                    --team=<< parameters.team >> --version=<< parameters.image >>:<< parameters.image-version >> --key=.circleci/github.key.pem --resource=<< parameters.nais-template >> --await=<< parameters.await >>
+                    rm .circleci/github.key.pem
 
     decrypt-private-key:
-        description: "Decrypt private key"
-            steps:
+        steps:
             - run:
                 name: "Decrypt private key"
                 command: |
