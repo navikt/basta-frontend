@@ -166,7 +166,7 @@ jobs:
                 name: deploy to dev-gcp
                 command: | 
                     #cat github.key.pem
-                    deployment-cli deploy create --cluster=dev-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/dev-gcp/nais.yaml --var version=${VERSION} --appid=21324 --key=github.key.pem
+                    deployment-cli deploy create --cluster=dev-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/dev-gcp/nais.yaml --var version=docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} --appid=21324 --key=github.key.pem
                     rm github.key.pem
 
     deploy_to_prod:
@@ -198,7 +198,7 @@ jobs:
                 name: deploy to prod-gcp
                 command: | 
                     #cat github.key.pem
-                    deployment-cli deploy create --cluster=prod-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/prod-gcp/nais.yaml --var version=${VERSION} --appid=21324 --key=github.key.pem
+                    deployment-cli deploy create --cluster=prod-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/prod-gcp/nais.yaml --var version=docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} --appid=21324 --key=github.key.pem
                     rm github.key.pem
 
 commands:
