@@ -93,9 +93,9 @@ jobs:
             - run:
                 name: Build and push docker image
                 command: |
-                    echo $CIRCLE_SHA1
-                    docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}:$CIRCLE_SHA1 .
-                    docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}:$CIRCLE_SHA1
+                    #echo $CIRCLE_SHA1
+                    docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} .
+                    docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}
     
     generate-nais-deployment:
         description: "Generate NAIS Github deployment"
@@ -182,21 +182,21 @@ workflows:
     build_and_release:
         jobs:
             - checkout_code
-            - build_and_test:
-                requires:
-                    - checkout_code
-            - generate_version_number:
-                filters:
-                    branches:
-                        only: master
-                requires:
-                    - build_and_test
-            - release:
-                filters:
-                    branches:
-                        only: master
-                requires:
-                    - generate_version_number
+            #- build_and_test:
+            #    requires:
+            #        - checkout_code
+            #- generate_version_number:
+            #    filters:
+            #        branches:
+            #            only: master
+            #    requires:
+            #        - build_and_test
+            #- release:
+            #    filters:
+            #        branches:
+            #            only: master
+            #    requires:
+            #        - generate_version_number
             - generate-nais-deployment:
                 executor: go-executor
                 build-and-push-docker-image: false
