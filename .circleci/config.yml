@@ -98,9 +98,9 @@ jobs:
                     docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}
     
     generate-nais-deployment:
-         docker:
+        docker:
             - image: 'navikt/deployment-cli:v0.2.0'
-        description: "Generate NAIS Github deployment"
+        #description: "Generate NAIS Github deployment"
         parameters:
             nais-template:
                 type: string
