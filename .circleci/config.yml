@@ -41,12 +41,6 @@ jobs:
         <<: *container_config
         steps:
             - checkout
-            #- add_ssh_keys:
-            #    fingerprints: 
-            #        - '01:47:91:7b:1c:26:c3:bb:de:ac:1f:3b:78:94:c6:55'
-            #- run:
-            #    name: 'Checkout aura-infra repo'
-            #    command: git clone git@github.com:navikt/aura-infra.git
             - save_cache:
                 key: v1-repo-{{ .Branch }}-{{ .Revision }}
                 paths:
@@ -93,87 +87,34 @@ jobs:
             - run:
                 name: Build and push docker image
                 command: |
-                    #echo $CIRCLE_SHA1
                     docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} .
                     docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}
     
-     #deploy_to_dev:
-     #   executor: executor: go-executor
-     #   #docker:
-     #   #    - image: 'navikt/deployment-cli:v0.2.0'
-     ##   #description: "Generate NAIS Github deployment"
-     ##   parameters:
-     #       nais-template:
-     #           type: string
-     #       github-app-id:
-     #           type: integer
-     #       image:
-     #           type: string
-     #       image-version:
-     #           type: string
-     #           default: $CIRCLE_SHA1
-     #       environment:
-     ##           type: string
-     #       repo:
-     #           type: string
-     #       team:
-     #           type: string
-     #       await:
-     #           type: integer
-     #           default: 300
-     #   steps:
-     #       - checkout
-     #       - add_ssh_keys:
-     #           fingerprints: 
-     #               - '01:47:91:7b:1c:26:c3:bb:de:ac:1f:3b:78:94:c6:55'
-     #       - run:
-     #           name: 'Checkout aura-infra repo'
-     #           command: git clone git@github.com:navikt/aura-infra.git
-     #       - decrypt-private-key
-     #       - run:
-     #           name: "Create NAIS Github deployment"
-     #           command: |
-     #               deployment-cli deploy create --cluster=<< parameters.environment >> --repository=<< parameters.repo >> --appid=<< parameters.github-app-id >> \
-     #               --team=<< parameters.team >> --version=<< parameters.image >>:<< parameters.image-version >> --key=.circleci/github.key.pem --resource=<< parameters.nais-template >> --await=<< parameters.await >>
-     #               rm .circleci/github.key.pem
-
+     
     deploy_to_dev:
         docker:
             - image: 'navikt/deployment-cli:v0.2.0'
         steps:
-            #- *restore_source
-            - *attach_workspace
-            - *read_environment_variables
-            - checkout
-            - add_ssh_keys:
-                fingerprints: 
-                    - '01:47:91:7b:1c:26:c3:bb:de:ac:1f:3b:78:94:c6:55'
-            - run:
-                name: 'Checkout aura-infra repo'
-                command: git clone git@github.com:navikt/aura-infra.git
-
-            - decrypt-private-key   
-            #- run: 
-            #    name: PWD
-            #    command: pwd
-            #- run: 
-            #    name: home
-            #    command: ls -la  /home/circleci/frontend
-            #- run: 
-            #    name: LS
-            #    command: ls -la 
-            - run:
-                name: deploy to dev-gcp
-                command: | 
-                    #cat github.key.pem
-                    deployment-cli deploy create --cluster=dev-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/dev-gcp/nais.yaml --var version=docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} --appid=21324 --key=github.key.pem
-                    rm github.key.pem
+            - deploy-to-nais:
+                nais-template: aura-infra/basta-frontend/dev-gcp/nais.yaml
+                environment: dev-gcp
 
     deploy_to_prod:
         docker:
             - image: 'navikt/deployment-cli:v0.2.0'
         steps:
-            #- *restore_source
+             - deploy-to-nais:
+                nais-template: aura-infra/basta-frontend/prod-gcp/nais.yaml
+                environment: prod-gcp
+
+commands:
+    deploy-to-nais:
+          parameters:
+            nais-template:
+                type: string
+            environment:
+                type: string
+        steps:
             - *attach_workspace
             - *read_environment_variables
             - checkout
@@ -185,62 +126,11 @@ jobs:
                 command: git clone git@github.com:navikt/aura-infra.git
 
             - decrypt-private-key   
-            #- run: 
-            #    name: PWD
-            #    command: pwd
-            #- run: 
-            #    name: home
-            #    command: ls -la  /home/circleci/frontend
-            #- run: 
-            #    name: LS
-            #    command: ls -la 
             - run:
-                name: deploy to prod-gcp
+                name: deploy to dev-gcp
                 command: | 
-                    #cat github.key.pem
-                    deployment-cli deploy create --cluster=prod-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/prod-gcp/nais.yaml --var version=docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} --appid=21324 --key=github.key.pem
+                    deployment-cli deploy create --cluster=<< parameters.environment >>  --repository=navikt/basta-frontend --team aura --resource=<< parameters.nais-template >> --var version=docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION} --appid=21324 --key=github.key.pem
                     rm github.key.pem
-
-commands:
-    #generate-nais-deployment:
-    #    docker:
-    #        - image: 'navikt/deployment-cli:v0.2.0'
-    #    #description: "Generate NAIS Github deployment"
-    #    parameters:
-    #        nais-template:
-    #            type: string
-    #        github-app-id:
-    #            type: integer
-    #        image:
-    #            type: string
-    #        image-version:
-    #            type: string
-    #            default: $CIRCLE_SHA1
-    #        environment:
-    #            type: string
-    #        repo:
-    #            type: string
-    #        team:
-    #            type: string
-    #        await:
-    #            type: integer
-    #            default: 300
-    #    steps:
-    #        - checkout
-    #        - add_ssh_keys:
-    #            fingerprints: 
-    #                - '01:47:91:7b:1c:26:c3:bb:de:ac:1f:3b:78:94:c6:55'
-    #        - run:
-    #            name: 'Checkout aura-infra repo'
-    #            command: git clone git@github.com:navikt/aura-infra.git
-    #        - decrypt-private-key
-    #        - run:
-    #            name: "Create NAIS Github deployment"
-    #            command: |
-    #                deployment-cli deploy create --cluster=<< parameters.environment >> --repository=<< parameters.repo >> --appid=<< parameters.github-app-id >> \
-    #                --team=<< parameters.team >> --version=<< parameters.image >>:<< parameters.image-version >> --key=.circleci/github.key.pem --resource=<< parameters.nais-template >> --await=<< parameters.await >>
-    #                rm .circleci/github.key.pem
-    
 
     decrypt-private-key:
         steps:
@@ -248,14 +138,6 @@ commands:
                 name: "Decrypt private key"
                 command: |
                     openssl aes-256-cbc -K $OPENSSL_KEY -iv $OPENSSL_IV -in aura-infra/deployment-keys/github.key.pem.enc -out github.key.pem -d
-    #decrypt-private-key:
-    #    description: "Decrypt private key"
-    #    steps:
-    #    - run:
-    #        name: "Decrypt private key"
-    #        command: |
-    #            ls -la aura-infra/deployment-keys/
-    #            openssl aes-256-cbc -K $OPENSSL_KEY -iv $OPENSSL_IV -in aura-infra/deployment-keys/github.key.pem.enc -out github.key.pem -d
                 
         
 workflows:
@@ -289,42 +171,3 @@ workflows:
                         only: master
                 requires:
                     - deploy_to_dev
-                        
-            #- generate-nais-deployment:
-            #    #executor: go-executor
-            #    #build-and-push-docker-image: false
-            #    repo: navikt/basta-frontend
-            #    image: docker.pkg.github.com/navikt/basta-frontend/basta-frontend
-            #    image-version: 2019-07-26-95d8c0f
-            #    github-app-id: 21324
-            #    nais-template: aura-infra/basta-frontend/dev-gcp/nais.yaml
-            #    environment: dev-gcp
-            #    team: aura
-            #    filters:
-            #        branches:
-            #            only: master
-            #    requires:
-            #        - release
-            #- generate-nais-deployment:
-            #    #executor: go-executor
-            #    #build-and-push-docker-image: false
-            #    repo: navikt/basta-frontend
-            #    image: docker.pkg.github.com/navikt/basta-frontend/basta-frontend
-            #    image-version: 2019-07-26-95d8c0f
-            #    github-app-id: 21324
-            #    nais-template: aura-infra/basta-frontend/dev-gcp/nais.yaml
-            #    environment: prod-gcp
-            #    team: aura
-            #    filters:
-            #        branches:
-            #            only: master
-            #    requires:
-            #        - release
-
-            
-            #- deploy_to_dev:
-            #    filters:
-            #        branches:
-            #            only: master
-                #requires:
-                #    - release
