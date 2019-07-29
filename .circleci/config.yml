@@ -201,7 +201,7 @@ workflows:
             #        - generate_version_number
             - generate-nais-deployment:
                 #executor: go-executor
-                build-and-push-docker-image: false
+                #build-and-push-docker-image: false
                 repo: navikt/basta-frontend
                 image: docker.pkg.github.com/navikt/basta-frontend/basta-frontend
                 image-version: 2019-07-26-95d8c0f
