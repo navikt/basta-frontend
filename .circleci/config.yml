@@ -92,12 +92,14 @@ jobs:
     
      
     deploy_to_dev:
+        executor: deployment-cli
         steps:
             - deploy-to-nais:
                 environment: dev-gcp
                 placeholder-values: aura-infra/vars/basta-frontend-dev-gcp.json
 
     deploy_to_prod:
+        executor: deployment-cli
         steps:
              - deploy-to-nais:
                 environment: prod-gcp
@@ -165,14 +167,12 @@ workflows:
                 requires:
                     - generate_version_number
             - deploy_to_dev:
-                executor: deployment-cli
                 filters:
                     branches:
                         only: master
                 requires:
                     - release
             - deploy_to_prod:
-                executor: deployment-cli
                 filters:
                     branches: 
                         only: master
