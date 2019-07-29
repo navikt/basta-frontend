@@ -159,7 +159,7 @@ workflows:
                     branches:
                         only: master
                 requires:
-                    - build_and_test
+                    - checkout_code
             - release:
                 filters:
                     branches:
