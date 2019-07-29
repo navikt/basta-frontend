@@ -124,15 +124,54 @@ jobs:
                     deployment-cli deploy create --cluster=dev-gcp --repository=navikt/basta-frontend --team aura --resource=aura-infra/basta-frontend/dev-gcp/nais.yaml --var version=2019-07-26-95d8c0f --appid=21324 --key=github.key.pem
                     rm github.key.pem
 
-commands: 
+commands:
+    generate-nais-deployment:
+        docker:
+            - image: 'navikt/deployment-cli:v0.2.0'
+        description: "Generate NAIS Github deployment"
+        parameters:
+            nais-template:
+                type: string
+            github-app-id:
+                type: integer
+            image:
+                type: string
+            image-version:
+                type: string
+                default: $CIRCLE_SHA1
+            environment:
+                type: string
+            repo:
+                type: string
+            team:
+                type: string
+            await:
+                type: integer
+                default: 300
+        steps:
+        - decrypt-private-key
+        - run:
+            name: "Create NAIS Github deployment"
+            command: |
+                deployment-cli deploy create --cluster=<< parameters.environment >> --repository=<< parameters.repo >> --appid=<< parameters.github-app-id >> \
+                --team=<< parameters.team >> --version=<< parameters.image >>:<< parameters.image-version >> --key=.circleci/github.key.pem --resource=<< parameters.nais-template >> --await=<< parameters.await >>
+                rm .circleci/github.key.pem
+
     decrypt-private-key:
         description: "Decrypt private key"
-        steps:
-        - run:
-            name: "Decrypt private key"
-            command: |
-                ls -la aura-infra/deployment-keys/
-                openssl aes-256-cbc -K $OPENSSL_KEY -iv $OPENSSL_IV -in aura-infra/deployment-keys/github.key.pem.enc -out github.key.pem -d
+            steps:
+            - run:
+                name: "Decrypt private key"
+                command: |
+                    openssl aes-256-cbc -K $OPENSSL_KEY -iv $OPENSSL_IV -in aura-infra/deployment-keys/github.key.pem.enc -out .circleci/github.key.pem -d
+    #decrypt-private-key:
+    #    description: "Decrypt private key"
+    #    steps:
+    #    - run:
+    #        name: "Decrypt private key"
+    #        command: |
+    #            ls -la aura-infra/deployment-keys/
+    #            openssl aes-256-cbc -K $OPENSSL_KEY -iv $OPENSSL_IV -in aura-infra/deployment-keys/github.key.pem.enc -out github.key.pem -d
                 
         
 workflows:
@@ -154,10 +193,11 @@ workflows:
                         only: master
                 requires:
                     - generate_version_number
-            - nais/deploy:
+            - generate-nais-deployment:
                 build-and-push-docker-image: false
                 repo: navikt/basta-frontend
-                image: docker.pkg.github.com/navikt/basta-frontend/basta-frontend:2019-07-26-95d8c0f
+                image: docker.pkg.github.com/navikt/basta-frontend/basta-frontend
+                image-version: 2019-07-26-95d8c0f
                 github-app-id: 21324
                 nais-template: aura-infra/basta-frontend/dev-gcp/nais.yaml
                 environment: dev-gcp
