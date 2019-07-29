@@ -3,6 +3,11 @@ version: 2.1
 orbs:
     nais: navikt/nais-deployment@1.4.0
 
+executors:
+  go-executor:
+    docker:
+      - image: navikt/deployment-cli:v0.2.0
+
 references:
     container_config: &container_config
         docker:
@@ -126,8 +131,6 @@ jobs:
 
 commands:
     generate-nais-deployment:
-        docker:
-            - image: 'navikt/deployment-cli:v0.2.0'
         description: "Generate NAIS Github deployment"
         parameters:
             nais-template:
@@ -193,6 +196,7 @@ workflows:
                 requires:
                     - generate_version_number
             - generate-nais-deployment:
+                executor: go-executor
                 build-and-push-docker-image: false
                 repo: navikt/basta-frontend
                 image: docker.pkg.github.com/navikt/basta-frontend/basta-frontend
