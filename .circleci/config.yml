@@ -212,8 +212,8 @@ workflows:
                 filters:
                     branches:
                         only: master
-                requires:
-                    - release
+                #requires:
+                #    - release
 
             
             #- deploy_to_dev:
