@@ -97,6 +97,36 @@ jobs:
                     docker build -t docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}:$CIRCLE_SHA1 .
                     docker push docker.pkg.github.com/navikt/basta-frontend/basta-frontend:${VERSION}:$CIRCLE_SHA1
     
+    generate-nais-deployment:
+        description: "Generate NAIS Github deployment"
+        parameters:
+            nais-template:
+                type: string
+            github-app-id:
+                type: integer
+            image:
+                type: string
+            image-version:
+                type: string
+                default: $CIRCLE_SHA1
+            environment:
+                type: string
+            repo:
+                type: string
+            team:
+                type: string
+            await:
+                type: integer
+                default: 300
+        steps:
+            - decrypt-private-key
+            - run:
+                name: "Create NAIS Github deployment"
+                command: |
+                    deployment-cli deploy create --cluster=<< parameters.environment >> --repository=<< parameters.repo >> --appid=<< parameters.github-app-id >> \
+                    --team=<< parameters.team >> --version=<< parameters.image >>:<< parameters.image-version >> --key=.circleci/github.key.pem --resource=<< parameters.nais-template >> --await=<< parameters.await >>
+                    rm .circleci/github.key.pem
+
     deploy_to_dev:
         docker:
             - image: 'navikt/deployment-cli:v0.2.0'
@@ -130,35 +160,7 @@ jobs:
                     rm github.key.pem
 
 commands:
-    generate-nais-deployment:
-        description: "Generate NAIS Github deployment"
-        parameters:
-            nais-template:
-                type: string
-            github-app-id:
-                type: integer
-            image:
-                type: string
-            image-version:
-                type: string
-                default: $CIRCLE_SHA1
-            environment:
-                type: string
-            repo:
-                type: string
-            team:
-                type: string
-            await:
-                type: integer
-                default: 300
-        steps:
-            - decrypt-private-key
-            - run:
-                name: "Create NAIS Github deployment"
-                command: |
-                    deployment-cli deploy create --cluster=<< parameters.environment >> --repository=<< parameters.repo >> --appid=<< parameters.github-app-id >> \
-                    --team=<< parameters.team >> --version=<< parameters.image >>:<< parameters.image-version >> --key=.circleci/github.key.pem --resource=<< parameters.nais-template >> --await=<< parameters.await >>
-                    rm .circleci/github.key.pem
+    
 
     decrypt-private-key:
         steps:
