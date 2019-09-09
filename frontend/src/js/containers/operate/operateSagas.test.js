@@ -17,7 +17,7 @@ it('(Operate view sagas - fetchVmInfo) dispatches with hostnames, fetches data f
       vmLookup: {
         fetching: false,
         error: null,
-        lastQuery: '/rest/v1/servers?hostname=a.a.a&hostname=b.b.b&',
+        lastQuery: '/api/v1/servers?hostname=a.a.a&hostname=b.b.b&',
         data: vmInfo
       }
     })
