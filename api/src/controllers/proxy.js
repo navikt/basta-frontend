@@ -7,7 +7,20 @@ exports.doProxy = () => {
     onProxyReq: restream,
     secure: true,
     changeOrigin: true,
-    logLevel: 'debug',
+    logLevel: 'info',
+    onError: (err, req, res) => {
+      console.log('error in proxy', err)
+    }
+  })
+}
+
+exports.proxySera = () => {
+  return proxy('/api', {
+    target: `${process.env.SERA_API}`,
+    onProxyReq: restream,
+    secure: true,
+    changeOrigin: true,
+    logLevel: 'info',
     onError: (err, req, res) => {
       console.log('error in proxy', err)
     }

@@ -32,7 +32,6 @@ app.use(
 app.use(helmet())
 
 // CORS
-
 const cors = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', host)
   res.setHeader('Access-Control-Allow-Credentials', 'true')
@@ -65,6 +64,7 @@ app.use(passport.session())
 
 // ROUTES
 app.use('/static', express.static('./dist'))
+app.use('/api/', proxy.proxySera())
 app.use('/rest/', auth.ensureAuthenticated(), proxy.attachToken(), proxy.doProxy())
 app.use('/', router)
 
@@ -78,7 +78,7 @@ app.use((err, req, res, next) => {
   res.locals.error = req.app.get('env') === 'development' ? err : {}
   res.status(err.status || 500).send(err)
   next()
-})
+})  
 
 // STARTUP
 startApp(app)

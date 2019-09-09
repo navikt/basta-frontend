@@ -29,7 +29,7 @@ const createVmQuery = hostnames => {
 
 export function* fetchVmInfo(action) {
   const lastQuery = yield select(getLastQuery)
-  const newQuery = `/rest/v1/servers?${createVmQuery(action.hostnames)}`
+  const newQuery = `/api/v1/servers?${createVmQuery(action.hostnames)}`
   if (newQuery === lastQuery) {
     yield put({ type: VMLOOKUP_DUPLICATE_REQUEST_CANCELLED })
   } else {
@@ -39,7 +39,7 @@ export function* fetchVmInfo(action) {
       yield put({
         type: VMLOOKUP_RECEIVED,
         value: vmInfo,
-        query: `/rest/v1/servers?${createVmQuery(action.hostnames)}`
+        query: newQuery
       })
     } catch (error) {
       yield put({ type: VMLOOKUP_REQUEST_FAILED, error })
@@ -53,21 +53,15 @@ export function* credentialLookup(action) {
   try {
     credentialInfo.existInAD = yield call(
       getUrl,
-      `/rest/orders/serviceuser/credential/existInAD?application=${
-        action.form.applicationMappingName
-      }&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
+      `/rest/orders/serviceuser/credential/existInAD?application=${action.form.applicationMappingName}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
     )
     credentialInfo.existInFasit = yield call(
       getUrl,
-      `/rest/orders/serviceuser/credential/existInFasit?application=${
-        action.form.applicationMappingName
-      }&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
+      `/rest/orders/serviceuser/credential/existInFasit?application=${action.form.applicationMappingName}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
     )
     credentialInfo.user = yield call(
       getUrl,
-      `/rest/operation/serviceuser/credential/user?application=${
-        action.form.applicationMappingName
-      }&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
+      `/rest/operation/serviceuser/credential/user?application=${action.form.applicationMappingName}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
     )
     yield put({ type: CREDENTIAL_LOOKUP_SUCCESSFUL, credentialInfo })
   } catch (error) {
