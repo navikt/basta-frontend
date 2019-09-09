@@ -27,15 +27,8 @@ export const orderTypes = [
     image: mqImage,
     tags: ['mq', 'channel', 'websphere', 'ibm'],
     url: '/create/mqchannel'
-    //    access: ['Random']
-  },
-  {
-    title: 'IApp Tools',
-    description: 'Available via VPN',
-    image: iappImage,
-    tags: ['developer', 'tools', 'iapp', 'jenkins', 'vpn'],
-    url: '/create/iapptools'
     //    access: [roles.ROLE_OPERATIONS, roles.ROLE_PROD_OPERATIONS]
+    //    access: ['Random']
   },
   {
     title: 'Devillo Tools',
