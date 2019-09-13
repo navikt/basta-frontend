@@ -11,7 +11,6 @@ const windowsImage = require('../../../img/orderTypes/windows.png')
 const bigipImage = require('../../../img/orderTypes/big-ip.png')
 const mqImage = require('../../../img/orderTypes/mq.png')
 const developertoolsImage = require('../../../img/orderTypes/devtools.png')
-const iappImage = require('../../../img/orderTypes/devtools-iapp.png')
 
 export const orderTypes = [
   {
@@ -27,8 +26,6 @@ export const orderTypes = [
     image: mqImage,
     tags: ['mq', 'channel', 'websphere', 'ibm'],
     url: '/create/mqchannel'
-    //    access: [roles.ROLE_OPERATIONS, roles.ROLE_PROD_OPERATIONS]
-    //    access: ['Random']
   },
   {
     title: 'Devillo Tools',
@@ -36,7 +33,6 @@ export const orderTypes = [
     image: developertoolsImage,
     tags: ['developer', 'tools', 'devillo', 'jenkins'],
     url: '/create/developertools'
-    //   access: ['Random']
   },
 
   {
@@ -107,48 +103,55 @@ export const orderTypes = [
     description: 'Application server',
     image: libertyImage,
     tags: ['server', 'node', 'was', 'liberty', 'application', 'websphere'],
-    url: '/create/liberty'
+    url: '/create/liberty',
+    access: ['ROLE_SUPERUSER']
   },
   {
     title: 'WildFly',
     description: 'Application server',
     image: wildflyImage,
     tags: ['server', 'node', 'wildfly', 'application'],
-    url: '/create/wildflynode'
+    url: '/create/wildflynode',
+    access: ['ROLE_SUPERUSER']
   },
   {
     title: 'JBoss',
     description: 'Application server',
     image: jbossImage,
     tags: ['server', 'node', 'jboss', 'application'],
-    url: '/create/jbossnode'
+    url: '/create/jbossnode',
+    access: ['ROLE_SUPERUSER']
   },
   {
     title: 'WAS',
     description: 'Node',
     image: wasImage,
     tags: ['server', 'node', 'was', 'websphere'],
-    url: '/create/wasnode'
+    url: '/create/wasnode',
+    access: ['ROLE_SUPERUSER']
   },
   {
     title: 'WAS',
     description: 'Deployment Manager',
     image: wasImage,
     tags: ['server', 'deployment manager', 'was', 'websphere'],
-    url: '/create/wasdmgr'
+    url: '/create/wasdmgr',
+    access: ['ROLE_SUPERUSER']
   },
   {
     title: 'BPM',
     description: 'Node',
     image: wasImage,
     tags: ['server', 'node', 'was', 'websphere'],
-    url: '/create/bpmnode'
+    url: '/create/bpmnode',
+    access: ['ROLE_SUPERUSER']
   },
   {
     title: 'BPM',
     description: 'Deployment Manager',
     image: wasImage,
     tags: ['server', 'deployment manager', 'was', 'websphere'],
-    url: '/create/bpmdmgr'
+    url: '/create/bpmdmgr',
+    access: ['ROLE_SUPERUSER']
   }
 ]
