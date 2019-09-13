@@ -37,8 +37,9 @@ export class MqChannel extends Component {
       this.setState({ application: '', queueManager: '' })
     }
     if (prevState.mqChannelName != mqChannelName || prevState.application != application) {
+      const normalizedAppName = application.replace('-', '_').toUpperCase()
       this.setState({
-        mqChannelName: `${environmentName.toUpperCase()}_${application.toUpperCase()}`,
+        mqChannelName: `${environmentName.toUpperCase()}_${normalizedAppName}`,
         fasitAlias: `${application}_channel`
       })
     }
