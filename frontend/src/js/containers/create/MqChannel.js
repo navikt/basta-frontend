@@ -23,49 +23,56 @@ export class MqChannel extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { environmentClass, environmentName, channelName, applicationMappingName } = this.state
+    const { environmentClass, environmentName, mqChannelName, application } = this.state
     if (prevState.environmentClass != environmentClass) {
       this.setState({
         environmentName: '',
-        applicationMappingName: '',
+        application: '',
         queueManager: '',
-        channelName: '',
+        mqChannelName: '',
         alias: ''
       })
     }
     if (prevState.environmentName != environmentName) {
-      this.setState({ applicationMappingName: '', queueManager: '' })
+      this.setState({ application: '', queueManager: '' })
     }
-    if (
-      prevState.channelName != channelName ||
-      prevState.applicationMappingName != applicationMappingName
-    ) {
+    if (prevState.mqChannelName != mqChannelName || prevState.application != application) {
       this.setState({
-        channelName: `${environmentName.toUpperCase()}_${applicationMappingName.toUpperCase()}`,
-        alias: `${applicationMappingName}_channel`
+        mqChannelName: `${environmentName.toUpperCase()}_${application.toUpperCase()}`,
+        alias: `${application}_channel`
       })
     }
   }
 
   handleChange(field, value) {
+    console.log('HC', field, value)
+
     this.setState({ [field]: value })
   }
 
   validOrder() {
-    const { environmentName, applicationMappingName, queueManager, channelName, alias } = this.state
+    const { environmentName, application, queueManager, mqChannelName, alias } = this.state
 
     return (
       environmentName.length > 0 &&
-      applicationMappingName.length > 0 &&
+      application.length > 0 &&
       queueManager.length > 0 &&
-      channelName.length > 0 &&
+      mqChannelName.length > 0 &&
       alias.length > 0
     )
   }
 
   render() {
     const { user, dispatch } = this.props
-    const { name, environmentName, applicationMappingName } = this.state
+    const {
+      environmentName,
+      environmentClass,
+      application,
+      queueManager,
+      mqChannelName,
+      alias,
+      encrypted
+    } = this.state
     return (
       <div>
         <div className="orderForm">
@@ -79,7 +86,7 @@ export class MqChannel extends Component {
           <div className="orderFormItems">
             <OrderButtonGroup
               label={orderFields.environmentClass.label}
-              value={this.state['environmentClass']}
+              value={environmentClass}
               roles={user.userProfile.roles}
               description={orderFields.environmentClass.description}
               alternatives={orderFields.environmentClass.alternatives}
@@ -90,44 +97,42 @@ export class MqChannel extends Component {
               label={orderFields.environmentName.label}
               onChange={v => this.handleChange('environmentName', v)}
               environmentClass={this.state.environmentClass}
-              value={this.state['environmentName']}
+              value={environmentName}
             />
             <ApplicationsDropDown
-              key={'applicationMappingName'}
-              label={orderFields.applicationMappingName.label}
-              onChange={v => this.handleChange('applicationMappingName', v)}
-              value={this.state.applicationMappingName}
+              key={'application'}
+              label={orderFields.application.label}
+              onChange={v => this.handleChange('application', v)}
+              value={application}
             />
-            {environmentName && applicationMappingName ? (
+            {environmentName && application ? (
               <div className={'subcomponents'}>
                 <QueueManagerDropDown
                   key={'queueManager'}
                   label={orderFields.queueManager.label}
                   onChange={v => this.handleChange('queueManager', v)}
-                  envClass={this.state.environmentClass}
-                  envName={this.state.environmentName}
-                  application={this.state.applicationMappingName}
-                  value={this.state['queueManager']}
+                  envClass={environmentClass}
+                  envName={environmentName}
+                  application={application}
+                  value={queueManager}
                 />
                 <OrderTextBox
-                  key={'channelName'}
-                  label={orderFields.channelName.label}
-                  value={this.state['channelName']}
-                  placeholder={orderFields.channelName.description}
-                  onChange={v => this.handleChange('channelName', v)}
+                  key={'mqChannelName'}
+                  label={orderFields.mqChannelName.label}
+                  value={mqChannelName}
+                  placeholder={orderFields.mqChannelName.description}
+                  onChange={v => this.handleChange('mqChannelName', v)}
                 />
                 <OrderTextBox
                   key={'alias'}
                   label={orderFields.alias.label}
-                  value={this.state['alias']}
+                  value={alias}
                   onChange={v => this.handleChange('alias', v)}
                 />
                 <OrderCheckBox
                   key={'encrypted'}
                   label={orderFields.encrypted.label}
-                  //defaultChecked={orderFields.encrypted.value}
-                  value={this.state['encrypted']}
-                  //value={false}
+                  value={encrypted}
                   description={orderFields.encrypted.description}
                   onChange={v => this.handleChange('encrypted', v)}
                 />
@@ -169,7 +174,7 @@ const orderFields = {
     fieldType: 'environments',
     value: ''
   },
-  applicationMappingName: {
+  application: {
     label: 'Application',
     description: '',
     fieldType: 'applications',
@@ -184,7 +189,7 @@ const orderFields = {
     fieldType: 'text',
     value: ''
   },
-  channelName: {
+  mqChannelName: {
     label: 'Channel name',
     fieldType: 'text',
     value: ''
