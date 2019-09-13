@@ -2,17 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
   OrderCheckBox,
-  OrderNumberBox,
   OrderTextBox,
   OrderButtonGroup,
   EnvironmentsDropDown,
   QueueManagerDropDown,
-  MqClusterCheckBox,
   ApplicationsDropDown
 } from '../../common/components/formComponents'
 import { connect } from 'react-redux'
-import OrderDropDown from '../../common/components/formComponents/OrderDropDown'
-import { fetchMqClusters } from '../../common/actionCreators'
+import { submitForm } from '../../containers/order/actionCreators'
 
 const mqImage = require('../../../img/orderTypes/mq.png')
 
@@ -25,16 +22,8 @@ export class MqChannel extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState, ss) {
-    const {
-      environmentClass,
-      environmentName,
-      name,
-      channelName,
-      applicationMappingName,
-      queueManager
-    } = this.state
-    const { dispatch } = this.props
+  componentDidUpdate(prevProps, prevState) {
+    const { environmentClass, environmentName, channelName, applicationMappingName } = this.state
     if (prevState.environmentClass != environmentClass) {
       this.setState({
         environmentName: '',
@@ -59,25 +48,23 @@ export class MqChannel extends Component {
   }
 
   handleChange(field, value) {
-    const orderField = orderFields[field]
-    if ((orderField.min && value < orderField.min) || value > orderField.max) {
-      orderField.valid = false
-    } else {
-      orderField.valid = true
-    }
-    orderFields[field].value = value
     this.setState({ [field]: value })
   }
 
   validOrder() {
-    for (const key in orderFields) {
-      if (!orderFields[key].valid) return false
-    }
-    return true
+    const { environmentName, applicationMappingName, queueManager, channelName, alias } = this.state
+
+    return (
+      environmentName.length > 0 &&
+      applicationMappingName.length > 0 &&
+      queueManager.length > 0 &&
+      channelName.length > 0 &&
+      alias.length > 0
+    )
   }
 
   render() {
-    const { user } = this.props
+    const { user, dispatch } = this.props
     const { name, environmentName, applicationMappingName } = this.state
     return (
       <div>
@@ -138,14 +125,25 @@ export class MqChannel extends Component {
                 <OrderCheckBox
                   key={'encrypted'}
                   label={orderFields.encrypted.label}
+                  //defaultChecked={orderFields.encrypted.value}
                   value={this.state['encrypted']}
+                  //value={false}
                   description={orderFields.encrypted.description}
                   onChange={v => this.handleChange('encrypted', v)}
                 />
               </div>
             ) : null}
           </div>
-          <div className="orderFormSubmitButton">Submit</div>
+          {this.validOrder() ? (
+            <div
+              className="orderFormSubmitButton"
+              onClick={() => dispatch(submitForm('channel', this.state))}
+            >
+              Submit
+            </div>
+          ) : (
+            <div className="orderFormSubmitButton disabled">Submit</div>
+          )}
         </div>
       </div>
     )
@@ -175,11 +173,6 @@ const orderFields = {
     label: 'Application',
     description: '',
     fieldType: 'applications',
-    value: ''
-  },
-  name: {
-    label: 'Queue name',
-    description: 'Name of queue',
     value: ''
   },
   queueManager: {

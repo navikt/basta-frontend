@@ -9,7 +9,8 @@ export const OrderCheckBox = props => {
       <div className="formComponentField">
         <label htmlFor="">{label}</label>
         <div className="formComponentCheckBoxContainer">
-          <input type="checkbox" checked={value} />
+          {/*Need to have a dummy onchange handler on input element even though we handle change on span in order to avoid warning from Ract.  */}
+          <input type="checkbox" checked={value} onChange={e => {}} />
           <span className="formComponentCheckBox" onClick={() => onChange(!value)} />
         </div>
         <div className="formComponentDescription">{description}</div>

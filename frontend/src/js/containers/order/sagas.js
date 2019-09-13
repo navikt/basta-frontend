@@ -77,6 +77,9 @@ export function* submitForm(action) {
       case 'windows':
         value = yield call(postForm, `/rest/vm/orders/windows`, action.orders)
         break
+      case 'channel':
+        value = yield call(postForm, '/rest/v1/mq/order/channel', action.orders)
+        break
     }
     yield put({ type: FORM_SUBMIT_SUCCESSFUL, value })
     yield put({ type: LATEST_ORDER_REQUEST })
