@@ -30,7 +30,7 @@ export class MqChannel extends Component {
         application: '',
         queueManager: '',
         mqChannelName: '',
-        alias: ''
+        fasitAlias: ''
       })
     }
     if (prevState.environmentName != environmentName) {
@@ -39,7 +39,7 @@ export class MqChannel extends Component {
     if (prevState.mqChannelName != mqChannelName || prevState.application != application) {
       this.setState({
         mqChannelName: `${environmentName.toUpperCase()}_${application.toUpperCase()}`,
-        alias: `${application}_channel`
+        fasitAlias: `${application}_channel`
       })
     }
   }
@@ -51,14 +51,14 @@ export class MqChannel extends Component {
   }
 
   validOrder() {
-    const { environmentName, application, queueManager, mqChannelName, alias } = this.state
+    const { environmentName, application, queueManager, mqChannelName, fasitAlias } = this.state
 
     return (
       environmentName.length > 0 &&
       application.length > 0 &&
       queueManager.length > 0 &&
       mqChannelName.length > 0 &&
-      alias.length > 0
+      fasitAlias.length > 0
     )
   }
 
@@ -70,7 +70,7 @@ export class MqChannel extends Component {
       application,
       queueManager,
       mqChannelName,
-      alias,
+      fasitAlias,
       encrypted
     } = this.state
     return (
@@ -124,10 +124,10 @@ export class MqChannel extends Component {
                   onChange={v => this.handleChange('mqChannelName', v)}
                 />
                 <OrderTextBox
-                  key={'alias'}
-                  label={orderFields.alias.label}
-                  value={alias}
-                  onChange={v => this.handleChange('alias', v)}
+                  key={'fasitAlias'}
+                  label={orderFields.fasitAlias.label}
+                  value={fasitAlias}
+                  onChange={v => this.handleChange('fasitAlias', v)}
                 />
                 <OrderCheckBox
                   key={'encrypted'}
@@ -184,7 +184,7 @@ const orderFields = {
     label: 'Queue manager',
     value: ''
   },
-  alias: {
+  fasitAlias: {
     label: 'Fasit alias',
     fieldType: 'text',
     value: ''
