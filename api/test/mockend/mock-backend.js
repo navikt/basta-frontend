@@ -32,6 +32,7 @@ router.get(`/rest/orders/page/:pageId/:pageSize/:toDate/:fromDate`, orderMock.ge
 router.get(`/rest/orders/:id/`, orderMock.getOrder())
 router.post(`/rest/orders/:type/`, orderMock.postOrder())
 router.post(`/rest/v1/mq/order/channel`, orderMock.postOrder())
+router.post(`/rest/v1/mq/order/queue`, orderMock.postOrder())
 router.get(`/rest/orders/:id/statuslog`, orderMock.getStatusLog())
 router.get(`/rest/v1/fasit/environments`, fasitMock.getEnvironments())
 router.get(`/rest/v1/fasit/applications`, fasitMock.getApplications())

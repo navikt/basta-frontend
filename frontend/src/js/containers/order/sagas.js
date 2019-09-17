@@ -80,6 +80,11 @@ export function* submitForm(action) {
       case 'channel':
         value = yield call(postForm, '/rest/v1/mq/order/channel', action.orders)
         break
+      case 'queue':
+        // Remove fields name and exposed from orders as this is not needed by basta api
+        const { name, exposed, ...payload } = action.orders
+        value = yield call(postForm, '/rest/v1/mq/order/queue', payload)
+        break
     }
     yield put({ type: FORM_SUBMIT_SUCCESSFUL, value })
     yield put({ type: LATEST_ORDER_REQUEST })

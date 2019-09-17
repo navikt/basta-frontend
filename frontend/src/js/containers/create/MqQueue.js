@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
   OrderCheckBox,
-  OrderNumberBox,
   OrderTextBox,
   OrderButtonGroup,
   EnvironmentsDropDown,
@@ -12,7 +11,8 @@ import {
   ApplicationsDropDown
 } from '../../common/components/formComponents'
 import OrderDropDown from '../../common/components/formComponents/OrderDropDown'
-import { fetchMqClusters } from '../../common/actionCreators'
+import { submitForm } from '../../containers/order/actionCreators'
+import { fetchMqClusters, clearMqClusters } from '../../common/actionCreators'
 
 const mqImage = require('../../../img/orderTypes/mq.png')
 
@@ -25,34 +25,42 @@ export class MqQueue extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState, ss) {
-    const {
-      environmentClass,
-      environmentName,
-      name,
-      mqName,
-      applicationMappingName,
-      queueManager
-    } = this.state
+  componentDidUpdate(prevProps, prevState) {
+    const { environmentClass, environmentName, name, application, queueManager } = this.state
     const { dispatch } = this.props
     if (prevState.environmentClass != environmentClass) {
       this.setState({
         environmentName: '',
-        applicationMappingName: '',
+        application: '',
         queueManager: '',
-        mqName: '',
-        alias: ''
+        mqQueueName: '',
+        fasitAlias: ''
       })
     }
     if (prevState.environmentName != environmentName) {
-      this.setState({ applicationMappingName: '', queueManager: '' })
+      this.setState({ application: '', queueManager: '' })
     }
-    if (prevState.name != name || prevState.applicationMappingName != applicationMappingName) {
+    if (prevState.name != name || prevState.application != application) {
       this.setState({
-        mqName: `${environmentName.toUpperCase()}_${applicationMappingName.toUpperCase()}.${name.toUpperCase()}`,
-        alias: `${applicationMappingName}_${name}`
+        mqQueueName: `${environmentName.toUpperCase()}_${application.toUpperCase()}.${name.toUpperCase()}`,
+        fasitAlias: `${application}_${name}`
       })
     }
+    if (queueManager && prevState.queueManager != queueManager && queueManager != '') {
+      dispatch(fetchMqClusters(environmentClass, queueManager))
+    }
+  }
+
+  exposeToCluster(value) {
+    this.setState({
+      exposed: value,
+      clusterName: this.guessClusterName()
+    })
+  }
+
+  componentWillUnmount() {
+    const { dispatch } = this.props
+    dispatch(clearMqClusters())
   }
 
   handleChange(field, value) {
@@ -73,9 +81,34 @@ export class MqQueue extends Component {
     return true
   }
 
+  guessClusterName() {
+    const { environmentClass, environmentName } = this.state
+    if (environmentClass === 'u') {
+      return 'NL.DEV.D1.CLUSTER'
+    }
+    const envs = {
+      u: 'DEV',
+      t: 'TEST',
+      q: 'QASS',
+      p: 'PROD'
+    }
+    return `NL.${envs[environmentClass]}.${environmentName.toUpperCase()}.CLUSTER`
+  }
+
   render() {
-    const { user } = this.props
-    const { name, environmentName, applicationMappingName } = this.state
+    const { user, dispatch } = this.props
+    const {
+      environmentName,
+      application,
+      environmentClass,
+      name,
+      fasitAlias,
+      queueManager,
+      mqQueueName,
+      maxMessageSize,
+      queueDepth
+    } = this.state
+
     return (
       <div>
         <div className="orderForm">
@@ -89,7 +122,7 @@ export class MqQueue extends Component {
           <div className="orderFormItems">
             <OrderButtonGroup
               label={orderFields.environmentClass.label}
-              value={this.state['environmentClass']}
+              value={environmentClass}
               roles={user.userProfile.roles}
               description={orderFields.environmentClass.description}
               alternatives={orderFields.environmentClass.alternatives}
@@ -99,14 +132,14 @@ export class MqQueue extends Component {
               key={'environmentName'}
               label={orderFields.environmentName.label}
               onChange={v => this.handleChange('environmentName', v)}
-              environmentClass={this.state.environmentClass}
+              environmentClass={environmentClass}
               value={this.state['environmentName']}
             />
             <ApplicationsDropDown
-              key={'applicationMappingName'}
-              label={orderFields.applicationMappingName.label}
-              onChange={v => this.handleChange('applicationMappingName', v)}
-              value={this.state.applicationMappingName}
+              key={'application'}
+              label={orderFields.application.label}
+              onChange={v => this.handleChange('application', v)}
+              value={application}
             />
             <OrderTextBox
               key={'name'}
@@ -115,64 +148,74 @@ export class MqQueue extends Component {
               placeholder={orderFields.name.description}
               onChange={v => this.handleChange('name', v)}
             />
-            {environmentName && applicationMappingName && name ? (
+            {environmentName && application && name ? (
               <div className={'subcomponents'}>
                 <QueueManagerDropDown
                   key={'queueManager'}
                   label={orderFields.queueManager.label}
                   onChange={v => this.handleChange('queueManager', v)}
-                  envClass={this.state.environmentClass}
-                  envName={this.state.environmentName}
-                  application={this.state.applicationMappingName}
-                  value={this.state['queueManager']}
+                  envClass={environmentClass}
+                  envName={environmentName}
+                  application={application}
+                  value={queueManager}
                 />
                 <OrderTextBox
-                  key={'alias'}
-                  label={orderFields.alias.label}
-                  value={this.state['alias']}
-                  onChange={v => this.handleChange('alias', v)}
+                  key={'fasitAlias'}
+                  label={orderFields.fasitAlias.label}
+                  value={fasitAlias}
+                  onChange={v => this.handleChange('fasitAlias', v)}
                 />
                 <OrderTextBox
-                  key={'mqName'}
-                  label={orderFields.mqName.label}
-                  value={this.state['mqName']}
-                  onChange={v => this.handleChange('mqName', v)}
+                  key={'mqQueueName'}
+                  label={orderFields.mqQueueName.label}
+                  value={mqQueueName}
+                  onChange={v => this.handleChange('mqQueueName', v)}
                 />
                 <OrderDropDown
-                  key={'maxSize'}
-                  label={orderFields.maxSize.label}
-                  value={this.state.maxSize}
-                  alternatives={orderFields.maxSize.alternatives}
-                  onChange={v => this.handleChange('maxSize', v)}
+                  key={'maxMessageSize'}
+                  label={orderFields.maxMessageSize.label}
+                  value={maxMessageSize}
+                  alternatives={orderFields.maxMessageSize.alternatives}
+                  onChange={v => this.handleChange('maxMessageSize', v)}
                 />
                 <OrderDropDown
-                  key={'depth'}
-                  label={orderFields.depth.label}
-                  value={this.state.depth}
-                  alternatives={orderFields.depth.alternatives}
-                  onChange={v => this.handleChange('depth', v)}
+                  key={'queueDepth'}
+                  label={orderFields.queueDepth.label}
+                  value={queueDepth}
+                  alternatives={orderFields.queueDepth.alternatives}
+                  onChange={v => this.handleChange('queueDepth', v)}
                 />
                 <OrderCheckBox
-                  key={'backout'}
-                  label={orderFields.backout.label}
-                  value={this.state['backout']}
-                  description={orderFields.backout.description}
-                  onChange={v => this.handleChange('backout', v)}
+                  key={'createBackoutQueue'}
+                  label={orderFields.createBackoutQueue.label}
+                  value={this.state['createBackoutQueue']}
+                  description={orderFields.createBackoutQueue.description}
+                  onChange={v => this.handleChange('createBackoutQueue', v)}
                 />
                 <MqClusterCheckBox
                   queueManager={this.state.queueManager}
                   environmentClass={this.state.environmentClass}
+                  clusterName={this.guessClusterName()}
                   environmentName={this.state.environmentName}
                   key={'exposed'}
                   label={orderFields.exposed.label}
                   value={this.state['exposed']}
                   description={orderFields.exposed.description}
-                  onChange={v => this.handleChange('exposed', v)}
+                  onChange={v => this.exposeToCluster(v)}
                 />
               </div>
             ) : null}
           </div>
-          <div className="orderFormSubmitButton">Submit</div>
+          {this.validOrder() ? (
+            <div
+              className="orderFormSubmitButton"
+              onClick={() => dispatch(submitForm('queue', this.state))}
+            >
+              Submit
+            </div>
+          ) : (
+            <div className="orderFormSubmitButton disabled">Submit</div>
+          )}
         </div>
       </div>
     )
@@ -198,7 +241,7 @@ const orderFields = {
     fieldType: 'environments',
     value: ''
   },
-  applicationMappingName: {
+  application: {
     label: 'Application',
     description: '',
     fieldType: 'applications',
@@ -213,17 +256,17 @@ const orderFields = {
     label: 'Queue manager',
     value: ''
   },
-  alias: {
+  fasitAlias: {
     label: 'Fasit alias',
     fieldType: 'text',
     value: ''
   },
-  mqName: {
+  mqQueueName: {
     label: 'MQ queue name',
     fieldType: 'text',
     value: ''
   },
-  maxSize: {
+  maxMessageSize: {
     label: 'Max size',
     alternatives: [
       { label: '4 Mb', value: '4' },
@@ -233,7 +276,7 @@ const orderFields = {
     ],
     value: '4'
   },
-  depth: {
+  queueDepth: {
     label: 'Queue depth',
     alternatives: [
       { label: '1000', value: '1000' },
@@ -242,7 +285,7 @@ const orderFields = {
     ],
     value: '5000'
   },
-  backout: {
+  createBackoutQueue: {
     label: 'Backout queue',
     description: 'A queue for nondeliverable messages',
     value: false
