@@ -46,8 +46,6 @@ export class MqChannel extends Component {
   }
 
   handleChange(field, value) {
-    console.log('HC', field, value)
-
     this.setState({ [field]: value })
   }
 

@@ -41,8 +41,9 @@ export class MqQueue extends Component {
       this.setState({ application: '', queueManager: '' })
     }
     if (prevState.name != name || prevState.application != application) {
+      const normalizedAppName = application.replace('-', '_').toUpperCase()
       this.setState({
-        mqQueueName: `${environmentName.toUpperCase()}_${application.toUpperCase()}.${name.toUpperCase()}`,
+        mqQueueName: `${environmentName.toUpperCase()}_${normalizedAppName}.${name.toUpperCase()}`,
         fasitAlias: `${application}_${name}`
       })
     }
@@ -51,11 +52,15 @@ export class MqQueue extends Component {
     }
   }
 
-  exposeToCluster(value) {
-    this.setState({
-      exposed: value,
-      clusterName: this.guessClusterName()
-    })
+  exposeToCluster(exposeQueue) {
+    if (exposeQueue) {
+      this.setState({
+        exposed: exposeQueue,
+        clusterName: this.guessClusterName()
+      })
+    } else {
+      this.setState({ exposed: exposeQueue })
+    }
   }
 
   componentWillUnmount() {
