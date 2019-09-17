@@ -10,7 +10,6 @@ const windowsImage = require('../../img/orderTypes/windows.png')
 const bigipImage = require('../../img/orderTypes/big-ip.png')
 const mqImage = require('../../img/orderTypes/mq.png')
 const developertoolsImage = require('../../img/orderTypes/devtools.png')
-const iappImage = require('../../img/orderTypes/devtools-iapp.png')
 const coreosImage = require('../../img/orderTypes/containerlinux.png')
 const unknown = require('../../img/basta.png')
 

@@ -1,5 +1,4 @@
 // Create forms
-import iapptools from './iapptools'
 import developertools from './developertools'
 import jbossnode from './jbossnode'
 import liberty from './liberty'
@@ -28,7 +27,6 @@ import mqqueues from './mqqueues'
 
 module.exports = {
   // Create
-  iapptools,
   developertools,
   jbossnode,
   liberty,
