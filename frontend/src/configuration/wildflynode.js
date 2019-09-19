@@ -71,6 +71,26 @@ const orderFields = {
     max: 100,
     value: 0
   },
+  wildflyVersion: {
+    label: 'Wildfly version',
+    description: '',
+    fieldType: 'buttonGroup',
+    alternatives: [
+      { label: 'Wildfly 11', value: 'wildfly11' },
+      { label: 'Wildfly 17', value: 'wildfly17' }
+    ],
+    value: 'wildfly17'
+  },
+  javaVersion: {
+    label: 'Java version',
+    description: '',
+    fieldType: 'buttonGroup',
+    alternatives: [
+      { label: 'OpenJDK 8', value: 'OpenJDK8' },
+      { label: 'OpenJDK 11', value: 'OpenJDK11' }
+    ],
+    value: 'OpenJDK11'
+  },
   classification: {
     label: 'Custom',
     description: 'Classify this server as custom',
