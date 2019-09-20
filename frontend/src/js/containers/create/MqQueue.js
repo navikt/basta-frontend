@@ -80,10 +80,23 @@ export class MqQueue extends Component {
   }
 
   validOrder() {
-    for (const key in orderFields) {
-      if (!orderFields[key].valid) return false
-    }
-    return true
+    const {
+      environmentClass,
+      environmentName,
+      application,
+      queueManager,
+      mqQueueName,
+      fasitAlias
+    } = this.state
+
+    return (
+      environmentClass.length > 0 &&
+      environmentName.length > 0 &&
+      application.length > 0 &&
+      queueManager.length > 0 &&
+      mqQueueName.length > 0 &&
+      fasitAlias.length > 0
+    )
   }
 
   guessClusterName() {
