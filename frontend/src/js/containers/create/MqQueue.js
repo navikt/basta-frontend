@@ -100,7 +100,7 @@ export class MqQueue extends Component {
   }
 
   guessClusterName() {
-    const { environmentClass, environmentName } = this.state
+    const { environmentClass, environmentName } = this.props
     if (environmentClass === 'u') {
       return 'NL.DEV.D1.CLUSTER'
     }
@@ -110,7 +110,16 @@ export class MqQueue extends Component {
       q: 'QASS',
       p: 'PROD'
     }
-    return `NL.${envs[environmentClass]}.${environmentName.toUpperCase()}.CLUSTER`
+
+    let environmentDesignator = ''
+
+    if (environmentName === 'p') {
+      environmentDesignator = 'P1'
+    } else {
+      environmentDesignator = environmentName.toUpperCase()
+    }
+
+    return `NL.${envs[environmentClass]}.${environmentDesignator}.CLUSTER`
   }
 
   render() {
