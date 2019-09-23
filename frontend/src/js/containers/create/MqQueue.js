@@ -100,7 +100,7 @@ export class MqQueue extends Component {
   }
 
   guessClusterName() {
-    const { environmentClass, environmentName } = this.props
+    const { environmentClass, environmentName } = this.state
     if (environmentClass === 'u') {
       return 'NL.DEV.D1.CLUSTER'
     }
