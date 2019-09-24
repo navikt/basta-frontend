@@ -8,7 +8,7 @@ const orderFields = {
   osType: {
     value: 'rhel70'
   },
-  serversCount: {
+  serverCount: {
     label: 'Servers',
     description: 'Virtual Servers',
     fieldType: 'number',
