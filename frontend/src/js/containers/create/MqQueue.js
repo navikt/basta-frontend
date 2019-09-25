@@ -17,7 +17,7 @@ import { fetchMqClusters, clearMqClusters } from '../../common/actionCreators'
 const mqImage = require('../../../img/orderTypes/mq.png')
 
 export class MqQueue extends Component {
-  constructor(props) {
+  constructor(props) {  
     super(props)
     for (const key in orderFields) {
       orderFields[key].valid = true
@@ -81,7 +81,6 @@ export class MqQueue extends Component {
 
   validOrder() {
     const {
-      environmentClass,
       environmentName,
       application,
       queueManager,
@@ -90,7 +89,6 @@ export class MqQueue extends Component {
     } = this.state
 
     return (
-      environmentClass.length > 0 &&
       environmentName.length > 0 &&
       application.length > 0 &&
       queueManager.length > 0 &&
