@@ -130,6 +130,7 @@ export class BigIPOrderForm extends Component {
               key="contextroots"
               label="Context root(s)"
               value={contextroots}
+              disabled={matchingTypes === "hostname"}
               placeholder="Add context roots"
               onChange={v => this.handleChange('contextroots', v)}
             />
@@ -137,6 +138,7 @@ export class BigIPOrderForm extends Component {
               key="hostname"
               label="VS hostname / DNS"
               value={hostname}
+              disabled={matchingTypes === "context"}
               placeholder="Hostname of the virutal server"
               onChange={v => this.handleChange('hostname', v)}
             />
