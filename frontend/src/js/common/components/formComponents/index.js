@@ -11,6 +11,7 @@ import OrderDbTemplateDropDown from './OrderDbTemplateDropDown'
 import OperationsButtons from './OperationsButtons'
 import ErrorPanel from './ErrorPanel'
 import InfoPanel from './InfoPanel'
+import VirtualServerDropDown from './VirtualServerDropDown'
 
 module.exports = {
   EnvironmentsDropDown,
@@ -25,5 +26,6 @@ module.exports = {
   OrderDbTemplateDropDown,
   OperationsButtons,
   ErrorPanel,
-  InfoPanel
+  InfoPanel,
+  VirtualServerDropDown
 }

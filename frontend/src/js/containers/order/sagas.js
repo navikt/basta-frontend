@@ -21,16 +21,21 @@ export function* submitForm(action) {
   let value = ''
   yield put({ type: FORM_SUBMITTING })
   yield history.push('/order')
+
   try {
     switch (action.key) {
       case 'bigip':
-        value = yield call(postFrom, `/rest/v1/bigip`, action.orders)
+        const bigIpPayload = {
+          ...action.orders,
+          useHostnameMatching: action.orders.matchingTypes === 'hostname' ? 'true' : 'false'
+        }
+        value = yield call(postForm, `/rest/v1/bigip`, bigIpPayload)
         break
       case 'bpmdmgr':
-        value = yield call(postFrom, `/rest/vm/orders/bpm/dmgr`, action.orders)
+        value = yield call(postForm, `/rest/vm/orders/bpm/dmgr`, action.orders)
         break
       case 'bpmnode':
-        value = yield call(postFrom, `/rest/vm/orders/bpm/node`, action.orders)
+        value = yield call(postForm, `/rest/vm/orders/bpm/node`, action.orders)
         break
       case 'containerlinux':
         value = yield call(postForm, `/rest/vm/orders/containerlinux`, action.orders)

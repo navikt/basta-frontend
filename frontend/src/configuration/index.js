@@ -8,8 +8,6 @@ import bpmnode from './bpmnode'
 import bpmdmgr from './bpmdmgr'
 import wasnode from './wasnode'
 import wasdmgr from './wasdmgr'
-import mqqueue from './mqqueue'
-import mqchannel from './mqchannel'
 import credential from './credential'
 import certificate from './certificate'
 import openamserver from './openamserver'
@@ -18,7 +16,6 @@ import redhat from './redhat'
 import containerlinux from './containerlinux'
 import oracle from './oracle'
 import windows from './windows'
-import bigip from './bigip'
 
 // Operate forms
 import credentials from './credentials'
@@ -44,9 +41,6 @@ module.exports = {
   containerlinux,
   oracle,
   windows,
-  bigip,
-  mqchannel,
-  mqqueue,
 
   // Operate
   credentials,

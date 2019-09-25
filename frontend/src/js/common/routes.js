@@ -10,6 +10,7 @@ import OperationsForm from './components/OperationsForm'
 import OrderDetails from '../containers/order/OrderDetails'
 import Order from '../containers/order/Order'
 import MqQueue from '../containers/create/MqQueue'
+import BigIPOrderForm from '../order/BigIPOrderForm'
 import MqChannel from '../containers/create/MqChannel'
 import NodeOperationsForm from './components/Operations/NodeOperationsForm'
 import CredentialsOperationsForm from './components/Operations/CredentialsOperationForm'
@@ -26,8 +27,10 @@ export const Routes = () => {
       <Route path="/operate/credentials" component={CredentialsOperationsForm} />
       <Route path="/operate/:orderType" component={OperationsForm} />
       <Route exact path="/create" component={Create} />
+      <Route exact path="/create/bigip" component={BigIPOrderForm} />
       <Route exact path="/create/mqqueue" component={MqQueue} />
       <Route exact path="/create/mqchannel" component={MqChannel} />
+
       <Route path="/create/:orderType" component={OrderForm} />
       <Route path="*" component={NotFound} />
     </Switch>

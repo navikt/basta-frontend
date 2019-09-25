@@ -16,7 +16,10 @@ import {
   ENVIRONMENTS_FETCHING,
   DBTEMPLATES_REQUEST_FAILED,
   DBTEMPLATES_RECEIVED,
-  DBTEMPLATES_FETCHING
+  DBTEMPLATES_FETCHING,
+  VIRTUALSERVERS_REQUEST_FAILED,
+  VIRTUALSERVERS_RECEIVED,
+  VIRTUALSERVERS_FETCHING
 } from '../actionTypes'
 
 export default (
@@ -55,6 +58,11 @@ export default (
       fetching: false,
       error: null,
       data: []
+    },
+    virtualServers: {
+        fetching: false,
+        error: null,
+        data: []
     }
   },
   action
@@ -195,7 +203,6 @@ export default (
           data: []
         }
       }
-    // DBTEMPLATES
     case DBTEMPLATES_FETCHING:
       return {
         ...state,
@@ -218,6 +225,33 @@ export default (
       return {
         ...state,
         dbTemplates: {
+          fetching: false,
+          error: action.error,
+          data: []
+        }
+      }
+      case VIRTUALSERVERS_FETCHING:
+      return {
+        ...state,
+        virtualServers: {
+          fetching: true,
+          error: null,
+          data: []
+        }
+      }
+    case VIRTUALSERVERS_RECEIVED:
+      return {
+        ...state,
+        virtualServers: {
+          fetching: false,
+          error: null,
+          data: action.value
+        }
+      }
+    case VIRTUALSERVERS_REQUEST_FAILED:
+      return {
+        ...state,
+        virtualServers: {
           fetching: false,
           error: action.error,
           data: []

@@ -25,7 +25,11 @@ import {
   DBTEMPLATES_REQUEST,
   DBTEMPLATES_FETCHING,
   DBTEMPLATES_REQUEST_FAILED,
-  DBTEMPLATES_RECEIVED
+  DBTEMPLATES_RECEIVED,
+  VIRTUALSERVERS_REQUEST,
+  VIRTUALSERVERS_FETCHING,
+  VIRTUALSERVERS_REQUEST_FAILED,
+  VIRTUALSERVERS_RECEIVED
 } from '../actionTypes'
 
 export function* fetchScopedResource(action) {
@@ -33,9 +37,7 @@ export function* fetchScopedResource(action) {
   try {
     let resources = yield call(
       getUrl,
-      `/rest/v1/fasit/resources?application=${action.application}&envClass=${
-        action.envClass
-      }&environment=${action.environment}&type=QueueManager&bestmatch=true`
+      `/rest/v1/fasit/resources?application=${action.application}&envClass=${action.envClass}&environment=${action.environment}&type=QueueManager&bestmatch=true`
     )
     yield put({ type: SCOPED_RESOURCE_RECEIVED, value: resources })
   } catch (err) {
@@ -94,7 +96,6 @@ export function* fetchEnvironments(action) {
 }
 
 export function* fetchDbTemplates(action) {
-  console.log(action)
   yield put({ type: DBTEMPLATES_FETCHING })
   try {
     let templates = yield call(
@@ -107,6 +108,19 @@ export function* fetchDbTemplates(action) {
   }
 }
 
+export function* fetchVirtualServers(action) {
+  yield put({ type: VIRTUALSERVERS_FETCHING })
+  try {
+    const virtualServers = yield call(
+      getUrl,
+      `/rest/v1/bigip/virtualservers?application=${action.application}&environmentClass=${action.environmentClass}&environmentName=${action.environment}&zone=${action.zone}`
+    )
+    yield put({ type: VIRTUALSERVERS_RECEIVED, value: virtualServers })
+  } catch (err) {
+    yield put({ type: VIRTUALSERVERS_REQUEST_FAILED, err })
+  }
+}
+
 export function* watchOrderData() {
   yield fork(takeEvery, ENVIRONMENTS_REQUEST, fetchEnvironments)
   yield fork(takeEvery, APPLICATIONS_REQUEST, fetchApplications)
@@ -114,4 +128,5 @@ export function* watchOrderData() {
   yield fork(takeEvery, SCOPED_RESOURCE_REQUEST, fetchScopedResource)
   yield fork(takeEvery, MQCLUSTERS_REQUEST, fetchMqClusters)
   yield fork(takeEvery, DBTEMPLATES_REQUEST, fetchDbTemplates)
+  yield fork(takeEvery, VIRTUALSERVERS_REQUEST, fetchVirtualServers)
 }

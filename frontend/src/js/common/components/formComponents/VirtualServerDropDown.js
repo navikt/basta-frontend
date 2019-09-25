@@ -1,0 +1,85 @@
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import ReactTooltip from 'react-tooltip'
+import Select from 'react-select'
+import { fetchVirtualServers } from '../../actionCreators'
+
+export class VirtualServerDropDown extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  componentDidMount() {
+    this.queryVirtualServers()
+  }
+
+  componentDidUpdate(prevProps) {
+    const { environmentClass, environment, application, zone } = this.props
+    if (
+      prevProps.environmentClass != environmentClass ||
+      prevProps.environment != environment ||
+      prevProps.application != application ||
+      prevProps.zone != zone
+    ) {
+      this.queryVirtualServers()
+    }
+  }
+
+  queryVirtualServers() {
+    const { dispatch, environmentClass, environment, application, zone } = this.props
+    if (
+      environmentClass.length > 0 &&
+      environment.length > 0 &&
+      application.length > 0 &&
+      zone.length > 0
+    ) {
+
+      dispatch(fetchVirtualServers(environmentClass, environment, application, zone))
+    }
+  }
+
+  render() {
+    const { label, value, onChange, description, virtualServers } = this.props
+
+    return (
+      <div className="formComponentGrid">
+        <div className="formComponentField">
+          <div className="formComponentDropdownField">
+            <label htmlFor="">{label}</label>
+            <Select
+              options={mapToOptions(virtualServers)}
+              value={value ? { label: value, value } : null}
+              onChange={e => onChange(e.value)}
+              isDisabled={virtualServers.length == 0}
+            />
+            <div className="formComponentDescription">{description}</div>
+          </div>
+        </div>
+        <ReactTooltip />
+      </div>
+    )
+  }
+}
+const mapToOptions = alternatives => {
+  return (
+    alternatives.map(alt => {
+      return { label: alt, value: alt }
+    }) || []
+  )
+}
+
+VirtualServerDropDown.propTypes = {
+  environmentClass: PropTypes.string,
+  environment: PropTypes.string,
+  application: PropTypes.string,
+  zone: PropTypes.string,
+  onChange: PropTypes.func
+}
+
+const mapStateToProps = state => {
+  return {
+    virtualServers: state.orderFormData.virtualServers.data
+  }
+}
+export default connect(mapStateToProps)(VirtualServerDropDown)
