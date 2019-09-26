@@ -12,6 +12,7 @@ import OperationsButtons from './OperationsButtons'
 import ErrorPanel from './ErrorPanel'
 import InfoPanel from './InfoPanel'
 import VirtualServerDropDown from './VirtualServerDropDown'
+import AlertStripe from './AlertStripe'
 
 module.exports = {
   EnvironmentsDropDown,
@@ -27,5 +28,6 @@ module.exports = {
   OperationsButtons,
   ErrorPanel,
   InfoPanel,
-  VirtualServerDropDown
+  VirtualServerDropDown,
+  AlertStripe
 }

@@ -12,6 +12,7 @@ import { submitForm } from '../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import image from '../../img/orderTypes/big-ip.png'
+import AlertStripe from '../common/components/formComponents/AlertStripe';
 
 export class BigIPOrderForm extends Component {
   initialState() {
@@ -68,6 +69,7 @@ export class BigIPOrderForm extends Component {
             <div className="orderFormDescription">Load Balancer Config</div>
           </div>
           <div className="orderFormItems">
+          <AlertStripe message={"Load balancer config er ikke nødvendig hvis du har flyttet applikasjonen din til Nais."} show={true}/>  
             <OrderButtonGroup
               key="environmentClass"
               label="Environment class"
@@ -130,7 +132,7 @@ export class BigIPOrderForm extends Component {
               key="contextroots"
               label="Context root(s)"
               value={contextroots}
-              disabled={matchingTypes === "hostname"}
+              disabled={matchingTypes === 'hostname'}
               placeholder="Add context roots"
               onChange={v => this.handleChange('contextroots', v)}
             />
@@ -138,10 +140,12 @@ export class BigIPOrderForm extends Component {
               key="hostname"
               label="VS hostname / DNS"
               value={hostname}
-              disabled={matchingTypes === "context"}
+              disabled={matchingTypes === 'context'}
               placeholder="Hostname of the virutal server"
               onChange={v => this.handleChange('hostname', v)}
             />
+            <AlertStripe message="Bruk denne matching typen dersom du har kontroll på DNS som er i bruk. Hvis du er usikker, spør Marcel eller noen i #aura på Slack"  
+            show={matchingTypes === 'hostname'}/>
           </div>
           {this.validOrder() ? (
             <div

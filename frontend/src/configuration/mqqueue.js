@@ -1,9 +1,7 @@
 const title = 'WebSphere MQ'
 const description = 'Queue'
 const image = require('../img/orderTypes/mq.png')
-const infobox = {
-  header: 'What '
-}
+
 const orderFields = {
   environmentClass: {
     label: 'Environment class',
