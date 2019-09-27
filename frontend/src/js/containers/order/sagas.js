@@ -20,7 +20,6 @@ import { LATEST_ORDER_REQUEST } from '../history/actionTypes'
 export function* submitForm(action) {
   let value = ''
   yield put({ type: FORM_SUBMITTING })
-  yield history.push('/order')
 
   try {
     switch (action.key) {
@@ -97,6 +96,9 @@ export function* submitForm(action) {
         break
     }
     yield put({ type: FORM_SUBMIT_SUCCESSFUL, value })
+    
+    const orderId = value.id
+    yield history.push(`/orders/${orderId}`)
     yield put({ type: LATEST_ORDER_REQUEST })
   } catch (error) {
     yield put({ type: FORM_SUBMIT_FAILED, error })

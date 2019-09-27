@@ -35,7 +35,7 @@ export class BigIPOrderForm extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.environmentClass !== prevState.environmentClass) {
-      this.initialState()
+      this.setState(this.initialState())
     }
   }
 

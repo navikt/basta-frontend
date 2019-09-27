@@ -1,22 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import history from '../../common/history'
 import Spinner from '../../common/components/Spinner'
-import PropTypes from 'prop-types'
 
 export class Order extends Component {
   constructor(props) {
     super(props)
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { form } = nextProps.order
-
-    if (Number.isInteger(form.id)) {
-      history.push('/orders/' + form.id)
-    }
-  }
-
+  
   render() {
     const { form } = this.props.order
     if (form.submitting) {
