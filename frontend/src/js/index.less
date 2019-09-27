@@ -37,6 +37,8 @@
 @error-font: #a94442;
 @navOransje:#FF9100;
 @navOransjeLighten80:mix(@navOransje,#fff,20%);
+@navRod:#C30000;
+@navRodLighten80:mix(@navRod,#fff,20%);
 
 html,
 body {
@@ -154,27 +156,40 @@ main {
   display: inline-block;
 }
 
-.orderFormInfoBox  {
+.alertStripe  {
     display: flex;
     max-width: 600px;
     align-content: center;
     border-radius: 0.15rem;
-    border: 1px solid @navOransje;
-    background-color: @navOransjeLighten80;
     padding: 1rem 1rem 1rem 1rem;
 }
 
-.orderFormInfoBoksIcon {
+.infoStripe {
+    border: 1px solid @navOransje;
+    background-color: @navOransjeLighten80;
+}
+
+.errorStripe {
+    border: 1px solid @navRod;
+    background-color: @navRodLighten80;
+}
+
+.alertStripeIcon {
     margin-right: 0.75rem;
     display: flex;
     top: 1rem;
-    color: @navOransje;
-    
-    
 }
 
-.orderFormInfoBoksTekst {
-    margin: auto 0;
+.infoIcon {
+    color: @navOransje;
+}
+
+.errorIcon {
+    color: @navRod;
+}
+
+.alertStripeText {
+  margin: auto 0;
   max-width: 37.5rem;
   display: block;
   flex: 1;
