@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import AlertStripe from './formComponents/AlertStripe'
 
 class Spinner extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class Spinner extends Component {
   componentDidMount() {
     this.timeoutId = setTimeout(() => {
       this.setState({ timeOut: true })
-    }, 4000)
+    }, 10000)
   }
 
   componentWillUnmount() {
@@ -21,7 +22,7 @@ class Spinner extends Component {
 
   render() {
     return this.state.timeOut ? (
-      <div className="timeOut">¯\_(ツ)_/¯</div>
+      <AlertStripe show={true} message="API calls to basta backend timed out." type="error" />
     ) : (
       <div className="spinner">
         <div />
