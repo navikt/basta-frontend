@@ -15,9 +15,8 @@ import image from '../../img/orderTypes/big-ip.png'
 import { InfoStripe } from '../common/components/formComponents/AlertStripe'
 
 export class BigIPOrderForm extends Component {
-  initialState() {
+  resetState() {
     return {
-      environmentClass: 'u',
       zone: 'fss',
       environmentName: '',
       application: '',
@@ -30,12 +29,21 @@ export class BigIPOrderForm extends Component {
 
   constructor(props) {
     super(props)
-    this.state = this.initialState()
+    this.state = {
+      environmentClass: 'u',
+      zone: 'fss',
+      environmentName: '',
+      application: '',
+      virtualserver: '',
+      matchingTypes: 'context',
+      contextroots: '',
+      hostname: ''
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.environmentClass !== prevState.environmentClass) {
-      this.setState(this.initialState())
+      this.setState(this.resetState())
     }
   }
 
