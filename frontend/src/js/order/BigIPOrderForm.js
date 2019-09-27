@@ -12,7 +12,7 @@ import { submitForm } from '../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import image from '../../img/orderTypes/big-ip.png'
-import AlertStripe from '../common/components/formComponents/AlertStripe'
+import { InfoStripe } from '../common/components/formComponents/AlertStripe'
 
 export class BigIPOrderForm extends Component {
   initialState() {
@@ -75,7 +75,7 @@ export class BigIPOrderForm extends Component {
             <div className="orderFormDescription">Load Balancer Config</div>
           </div>
           <div className="orderFormItems">
-            <AlertStripe
+            <InfoStripe
               message={
                 'Load balancer config er ikke nødvendig hvis du har flyttet applikasjonen din til Nais.'
               }
@@ -155,7 +155,7 @@ export class BigIPOrderForm extends Component {
               placeholder="Hostname of the virutal server"
               onChange={v => this.handleChange('hostname', v)}
             />
-            <AlertStripe
+            <InfoStripe
               message="Bruk denne matching typen dersom du har kontroll på DNS som er i bruk. Hvis du er usikker, spør Marcel eller noen i #aura på Slack"
               show={matchingTypes === 'hostname'}
             />
