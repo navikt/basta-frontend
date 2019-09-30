@@ -7,7 +7,6 @@ import * as matchers from 'redux-saga-test-plan/matchers'
 import { throwError } from 'redux-saga-test-plan/providers'
 import { getUrl, postForm } from '../../common/utils'
 
-
 it('(Operate view sagas - credentialLookup) disoatches with app, and sets all fields to false', () => {
   const action = {
     type: 'CREDENTIAL_LOOKUP_REQUEST',
@@ -95,7 +94,6 @@ it('(Operate view sagas - submitOperation) disoatches with operation, returns fe
 
 const defaultOperationsState = {
   operations: { fetching: false, error: null, lastOrderId: null },
-  vmLookup: { fetching: false, error: null, lastQuery: null, data: [] },
   credentialLookup: {
     fetching: false,
     error: null,
