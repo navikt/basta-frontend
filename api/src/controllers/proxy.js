@@ -14,18 +14,7 @@ exports.doProxy = () => {
   })
 }
 
-exports.proxySera = () => {
-  return proxy('/api', {
-    target: `${process.env.SERA_API}`,
-    onProxyReq: restream,
-    secure: true,
-    changeOrigin: true,
-    logLevel: 'info',
-    onError: (err, req, res) => {
-      console.log('error in proxy', err)
-    }
-  })
-}
+
 
 const restream = (proxyReq, req, res, options) => {
   if (req.body) {

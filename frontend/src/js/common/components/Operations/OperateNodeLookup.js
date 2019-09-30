@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { HostEntries } from '../Operations/HostEntries'
-import { fetchVmInfo } from '../../../containers/operate/operateActionCreators'
+import { HostEntries } from './HostEntries'
 
-export class OperateSeraNodeLookup extends Component {
+export class OperateNodeLookup extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -15,11 +14,9 @@ export class OperateSeraNodeLookup extends Component {
   componentDidMount() {}
 
   componentDidUpdate(prevProps, prevState) {
-    const { dispatch } = this.props
     const { resolvedHosts } = this.state
 
     if (prevState.resolvedHosts.length !== resolvedHosts.length && resolvedHosts.length > 0) {
-      dispatch(fetchVmInfo(resolvedHosts.map(host => host.hostname)))
       this.props.onChange({ resolvedHosts })
     }
   }
@@ -89,12 +86,11 @@ export class OperateSeraNodeLookup extends Component {
   }
 }
 
-OperateSeraNodeLookup.propTypes = {}
+OperateNodeLookup.propTypes = {}
 
 const mapStateToProps = state => {
   return {
-    vmInfoArr: state.operationsForm.vmLookup.data,
     user: state.user
   }
 }
-export default connect(mapStateToProps)(OperateSeraNodeLookup)
+export default connect(mapStateToProps)(OperateNodeLookup)

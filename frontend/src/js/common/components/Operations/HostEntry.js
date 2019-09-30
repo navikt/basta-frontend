@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import imageType from '../../../containers/imageType'
 
 const HostEntry = props => {
   const { hostInfo } = props
@@ -10,18 +9,9 @@ const HostEntry = props => {
   return (
     <div className="hostCardWrapper">
       <div className="hostnameEntryCard">
-        <div className="seraNodeImage seraInfoImage">
-          <img src={imageType(hostInfo.type)} />
-        </div>
         <div className="seraInfo">
           <div className="bold">{hostInfo.hostname}</div>
-          <div>
-            {[hostInfo.application, hostInfo.environment, hostInfo.rpm_rpm]
-              .filter(elem => elem !== undefined)
-              .join(' | ')}
-          </div>
         </div>
-        <div className="powerstatus">{powerIcon(hostInfo.status)}</div>
         <div className={`access ${accessClass}`}>{hasAccessIcon(hostInfo.hasAccess)}</div>
       </div>
       {displayAccessDeniedMessage(hasAccess, hostInfo.requiredRole)}
@@ -39,15 +29,6 @@ function displayAccessDeniedMessage(hasAccess, requiredRole) {
 function hasAccessIcon(hasAccess) {
   const fontAwesomeIcon = !hasAccess ? 'fa-ban' : 'fa-check'
   return <i className={`fa ${fontAwesomeIcon} icon`} />
-}
-
-function powerIcon(powerStatus) {
-  if (!powerStatus) {
-    return null
-  }
-
-  const powerStatusClassName = powerStatus === 'poweredOff' ? 'powered-off' : 'powered-on'
-  return <i className={`fa fa-power-off ${powerStatusClassName} icon rightpad`} />
 }
 
 HostEntry.propTypes = {

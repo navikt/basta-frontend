@@ -7,7 +7,6 @@ const orderMock = require('./orderMock')
 const fasitMock = require('./fasitMock')
 const mqMock = require('./mqMock')
 const dbMock = require('./dbTemplateMock')
-const seraMock = require('./seraMock')
 const credentialsMock = require('./credentialsMock')
 const virtualserversMock = require('./virtualServersMock')
 const app = express()
@@ -40,7 +39,6 @@ router.get(`/rest/v1/fasit/applications`, fasitMock.getApplications())
 router.get(`/rest/v1/fasit/resources`, fasitMock.getResources())
 router.get(`/rest/v1/mq/clusters`, mqMock.getClusters())
 router.get(`/rest/v1/oracledb/templates`, dbMock.getTemplates())
-router.get(`/api/v1/servers`, seraMock.getVmInfo())
 router.post('/rest/vm/orders/:servertype', orderMock.postOrder())
 router.post('/rest/v1/bigip', orderMock.postOrder())
 router.post(`/rest/vm/operations/decommission`, orderMock.decommission())
@@ -48,11 +46,6 @@ router.get(`/rest/operation/serviceuser/credential/user`, credentialsMock.user()
 router.get(`/rest/orders/serviceuser/credential/existInAD`, credentialsMock.existInAD())
 router.get(`/rest/orders/serviceuser/credential/existInFasit`, credentialsMock.existInFasit())
 router.get('/rest/v1/bigip/virtualservers', virtualserversMock.getVirtualServers())
-
-// /rest/operation/serviceuser/credential/user?application=sera&environmentClass=u&zone=fss
-
-// /rest/orders/serviceuser/credential/existInAD?application=sera&environmentClass=u&zone=fss
-//
 
 // ERROR HANDLING
 app.use((err, req, res, next) => {

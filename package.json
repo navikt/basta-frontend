@@ -137,9 +137,7 @@
       "command": "parcel frontend/src/index.html --public-url /static|nodemon api/src/server.js",
       "env": {
         "NODE_ENV": "development",
-        "BASTA_BACKEND": "http://localhost:6996",
-        "SERA_API": "http://localhost:6996"
-
+        "BASTA_BACKEND": "http://localhost:6996"
       }
     },
     "dev-real-basta-backend": {
@@ -153,8 +151,7 @@
       "command": "parcel frontend/src/index.html --public-url /static|nodemon api/test/server.js",
       "env": {
         "NODE_ENV": "offline",
-        "BASTA_BACKEND": "http://localhost:6996",
-        "SERA_API": "http:/localhost:6996"
+        "BASTA_BACKEND": "http://localhost:6996"
       }
     },
     "dev-mockend": {

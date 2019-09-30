@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import OperateSeraNodeLookup from '../Operations/OperateSeraNodeLookup'
+import OperateNodeLookup from '../Operations/OperateNodeLookup'
 import { submitOperation } from '../../../containers/operate/operateActionCreators'
 import { connect } from 'react-redux'
 import OperationsButtons from '../formComponents/OperationsButtons'
@@ -43,7 +43,7 @@ export class NodeOperationsForm extends Component {
             <div className="orderFormDescription">Start, stop or delete</div>
           </div>
           <div className="orderFormItems">
-            <OperateSeraNodeLookup
+            <OperateNodeLookup
               key="hostnames"
               label=""
               placeholder={'Comma separated list of hosts'}

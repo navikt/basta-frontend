@@ -3,11 +3,6 @@ import { getUrl, postForm } from '../../common/utils'
 import history from '../../common/history'
 import { getLastQuery } from './operateSelectors'
 import {
-  VMLOOKUP_REQUEST,
-  VMLOOKUP_DUPLICATE_REQUEST_CANCELLED,
-  VMLOOKUP_FETCHING,
-  VMLOOKUP_REQUEST_FAILED,
-  VMLOOKUP_RECEIVED,
   SUBMIT_OPERATION,
   OPERATION_SUBMITTING,
   OPERATION_SUBMIT_SUCCESSFUL,
@@ -25,26 +20,6 @@ const createVmQuery = hostnames => {
     queryString += `hostname=${e}&`
   })
   return queryString
-}
-
-export function* fetchVmInfo(action) {
-  const lastQuery = yield select(getLastQuery)
-  const newQuery = `/api/v1/servers?${createVmQuery(action.hostnames)}`
-  if (newQuery === lastQuery) {
-    yield put({ type: VMLOOKUP_DUPLICATE_REQUEST_CANCELLED })
-  } else {
-    try {
-      yield put({ type: VMLOOKUP_FETCHING })
-      const vmInfo = yield call(getUrl, newQuery)
-      yield put({
-        type: VMLOOKUP_RECEIVED,
-        value: vmInfo,
-        query: newQuery
-      })
-    } catch (error) {
-      yield put({ type: VMLOOKUP_REQUEST_FAILED, error })
-    }
-  }
 }
 
 export function* credentialLookup(action) {
@@ -125,7 +100,6 @@ export function* submitOperation(action) {
 }
 
 export function* watchOperations() {
-  yield fork(takeLatest, VMLOOKUP_REQUEST, fetchVmInfo)
   yield fork(takeEvery, SUBMIT_OPERATION, submitOperation)
   yield fork(takeLatest, CREDENTIAL_LOOKUP_REQUEST, credentialLookup)
 }

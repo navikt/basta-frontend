@@ -2,7 +2,7 @@ import React from 'react'
 import sinon from 'sinon'
 import { shallow } from 'enzyme'
 import { NodeOperationsForm } from './NodeOperationsForm'
-import OperateSeraNodeLookup from './OperateSeraNodeLookup'
+import OperateNodeLookup from './OperateNodeLookup'
 import { ErrorPanel, OperationsButtons } from '../formComponents'
 
 const props = {
@@ -72,7 +72,7 @@ describe('(Component) CredentialsOperationForm rendering', () => {
     expect(wrapper.find(OperationsButtons)).toHaveLength(1)
   })
 
-  it('renders OperateSeraNodeLookup once', () => {
-    expect(wrapper.find(OperateSeraNodeLookup)).toHaveLength(1)
+  it('renders OperateNodeLookup once', () => {
+    expect(wrapper.find(OperateNodeLookup)).toHaveLength(1)
   })
 })

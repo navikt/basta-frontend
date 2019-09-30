@@ -1,8 +1,4 @@
-import { VMLOOKUP_REQUEST, SUBMIT_OPERATION, CREDENTIAL_LOOKUP_REQUEST } from './operateActionTypes'
-
-export const fetchVmInfo = hostnames => {
-  return { type: VMLOOKUP_REQUEST, hostnames }
-}
+import { SUBMIT_OPERATION, CREDENTIAL_LOOKUP_REQUEST } from './operateActionTypes'
 
 export const submitOperation = (key, form, operation) => {
   return { type: SUBMIT_OPERATION, key, form, operation }

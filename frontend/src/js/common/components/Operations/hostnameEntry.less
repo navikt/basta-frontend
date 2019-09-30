@@ -9,17 +9,18 @@
   grid-area: hostnameCard;
   display: grid;
   margin-top: 10px;
+  padding-left: 10px;
   border: 1px solid @border-color;
-  min-height: 55px;
+  min-height: 40px;
   max-width: 500px;
-  grid-template-columns: 70px auto 40px 40px;
-  grid-template-areas: 'image name powerstatus access';
-  text-decoration: none;
+  grid-template-columns: auto 40px;
+  grid-template-areas: 'name access';
+  //text-decoration: none;
   color: @font-color;
 }
 
 .accessDeniedMessage {
-  margin-top: 25px;
+  margin-top: 20px;
   grid-area: message;
 }
 
@@ -27,11 +28,7 @@
   margin-left: 10px;
   color: @font-color;
   font-size: 1.5em;
-  padding-top: 17px;
-}
-
-.powerstatus {
-  grid-area: powerstatus;
+  padding-top: 10px;
 }
 
 .access-denied {
@@ -51,39 +48,8 @@
   color: #eee;
 }
 
-.powered-off {
-  color: @error-font;
-}
-
-.powered-on {
-  color: @success-color;
-}
-
 .seraInfo {
-  line-height: 1.5em;
-  grid-area: name;
-  margin-top: 10px;
-}
-
-.seraInfoImage {
-  grid-area: image;
-  margin-top: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
-  width: 30px;
-  height: 30px;
-}
-
-.seraNodeImage {
-  position: relative;
-}
-
-.seraNodeImage > img {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
-  width: 30px;
-}
+    line-height: 1.5em;
+    grid-area: name;
+    margin-top: 10px;
+  }

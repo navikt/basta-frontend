@@ -1,41 +1,12 @@
 import { select, call } from 'redux-saga/effects'
 import { expectSaga } from 'redux-saga-test-plan'
-import { fetchVmInfo, credentialLookup, submitOperation } from './operateSagas'
+import { credentialLookup, submitOperation } from './operateSagas'
 import operateReducers from './operateReducers'
 import { getLastQuery } from './operateSelectors'
 import * as matchers from 'redux-saga-test-plan/matchers'
 import { throwError } from 'redux-saga-test-plan/providers'
 import { getUrl, postForm } from '../../common/utils'
 
-it('(Operate view sagas - fetchVmInfo) dispatches with hostnames, fetches data for borth servers if request is unique', () => {
-  const action = { type: 'VMLOOKUP_REQUEST', hostnames: ['a.a.a', 'b.b.b'] }
-  return expectSaga(fetchVmInfo, action)
-    .withReducer(operateReducers)
-    .provide([[select(getLastQuery), null], [matchers.call.fn(getUrl), vmInfo]])
-    .hasFinalState({
-      ...defaultOperationsState,
-      vmLookup: {
-        fetching: false,
-        error: null,
-        lastQuery: '/api/v1/servers?hostname=a.a.a&hostname=b.b.b&',
-        data: vmInfo
-      }
-    })
-    .run()
-})
-
-it('(Operate view sagas - fetchVmInfo) dispatches with hostnames, returns fetch error', () => {
-  const action = { type: 'VMLOOKUP_REQUEST', hostnames: ['a.a.a', 'b.b.b'] }
-  const error = Error('error')
-  return expectSaga(fetchVmInfo, action)
-    .withReducer(operateReducers)
-    .provide([[select(getLastQuery), null], [matchers.call.fn(getUrl), throwError(error)]])
-    .hasFinalState({
-      ...defaultOperationsState,
-      vmLookup: { fetching: false, error, data: [] }
-    })
-    .run()
-})
 
 it('(Operate view sagas - credentialLookup) disoatches with app, and sets all fields to false', () => {
   const action = {

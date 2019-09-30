@@ -2,9 +2,6 @@ import {
   OPERATION_SUBMITTING,
   OPERATION_SUBMIT_SUCCESSFUL,
   OPERATION_SUBMIT_FAILED,
-  VMLOOKUP_FETCHING,
-  VMLOOKUP_RECEIVED,
-  VMLOOKUP_REQUEST_FAILED,
   CREDENTIAL_LOOKUP_SUBMITTING,
   CREDENTIAL_LOOKUP_SUCCESSFUL,
   CREDENTIAL_LOOKUP_FAILED
@@ -16,12 +13,6 @@ export default (
       fetching: false,
       error: null,
       lastOrderId: null
-    },
-    vmLookup: {
-      fetching: false,
-      error: null,
-      lastQuery: null,
-      data: []
     },
     credentialLookup: {
       fetching: false,
@@ -61,34 +52,6 @@ export default (
           fetching: false,
           error: action.error,
           lastOrderId: null
-        }
-      }
-    case VMLOOKUP_FETCHING:
-      return {
-        ...state,
-        vmLookup: {
-          fetching: true,
-          error: null,
-          data: [...state.vmLookup.data]
-        }
-      }
-    case VMLOOKUP_RECEIVED:
-      return {
-        ...state,
-        vmLookup: {
-          fetching: false,
-          error: null,
-          lastQuery: action.query,
-          data: action.value
-        }
-      }
-    case VMLOOKUP_REQUEST_FAILED:
-      return {
-        ...state,
-        vmLookup: {
-          fetching: false,
-          error: action.error,
-          data: [...state.vmLookup.data]
         }
       }
     case CREDENTIAL_LOOKUP_SUBMITTING:

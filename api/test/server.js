@@ -28,8 +28,6 @@ const cors = function(req, res, next) {
 }
 
 app.use('/rest', proxy('/rest', { target: `${process.env.BASTA_BACKEND}` }))
-app.use('/api', proxy('/api', { target: `${process.env.SERA_API}` }))
-
 app.use(cors)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
