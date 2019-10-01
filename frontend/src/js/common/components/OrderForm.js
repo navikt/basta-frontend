@@ -9,6 +9,7 @@ import {
   ApplicationsDropDown,
   OrderDbTemplateDropDown
 } from './formComponents'
+import SubmitButton from '../../order/formComponents/SubmitButton'
 import orderTypes from '../../../configuration/'
 import OrderDropDown from './formComponents/OrderDropDown'
 import { submitForm } from '../../containers/order/actionCreators'
@@ -208,16 +209,10 @@ export class OrderForm extends Component {
               }
             })}
           </div>
-          {this.validOrder() ? (
-            <div
-              className="orderFormSubmitButton"
-              onClick={() => dispatch(submitForm(this.currentComponent, this.state))}
-            >
-              Submit
-            </div>
-          ) : (
-            <div className="orderFormSubmitButton disabled">Submit</div>
-          )}
+          <SubmitButton
+            disabled={!this.validOrder()}
+            onClick={() => dispatch(submitForm(this.currentComponent, this.state))}
+          />
         </div>
       </div>
     )
