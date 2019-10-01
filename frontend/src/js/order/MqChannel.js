@@ -17,9 +17,13 @@ const mqImage = require('../../img/orderTypes/mq.png')
 export class MqChannel extends Component {
   constructor(props) {
     super(props)
-    for (const key in orderFields) {
-      orderFields[key].valid = true
-      this.state = { ...this.state, [key]: orderFields[key].value }
+    this.state = {
+      environmentClass: 'u',
+      environmentName: '',
+      application: '',
+      queueManager: '', 
+      mqChannelName: '',
+      fasitAlias: ''
     }
   }
 
@@ -85,23 +89,27 @@ export class MqChannel extends Component {
           </div>
           <div className="orderFormItems">
             <OrderButtonGroup
-              label={orderFields.environmentClass.label}
+              label="Env. class"
               value={environmentClass}
               roles={user.userProfile.roles}
-              description={orderFields.environmentClass.description}
-              alternatives={orderFields.environmentClass.alternatives}
+              alternatives={[
+                { label: 'development', value: 'u' },
+                { label: 'test', value: 't' },
+                { label: 'PreProd', value: 'q' },
+                { label: 'Production', value: 'p' }
+              ]}
               onChange={v => this.handleChange('environmentClass', v)}
             />
             <EnvironmentsDropDown
               key={'environmentName'}
-              label={orderFields.environmentName.label}
+              label="Environment"
               onChange={v => this.handleChange('environmentName', v)}
               environmentClass={this.state.environmentClass}
               value={environmentName}
             />
             <ApplicationsDropDown
               key={'application'}
-              label={orderFields.application.label}
+              label="Application"
               onChange={v => this.handleChange('application', v)}
               value={application}
             />
@@ -109,7 +117,7 @@ export class MqChannel extends Component {
               <div className={'subcomponents'}>
                 <QueueManagerDropDown
                   key={'queueManager'}
-                  label={orderFields.queueManager.label}
+                  label="Queue manager"
                   onChange={v => this.handleChange('queueManager', v)}
                   envClass={environmentClass}
                   envName={environmentName}
@@ -118,22 +126,21 @@ export class MqChannel extends Component {
                 />
                 <OrderTextBox
                   key={'mqChannelName'}
-                  label={orderFields.mqChannelName.label}
+                  label="Channel name"
                   value={mqChannelName}
-                  placeholder={orderFields.mqChannelName.description}
                   onChange={v => this.handleChange('mqChannelName', v)}
                 />
                 <OrderTextBox
                   key={'fasitAlias'}
-                  label={orderFields.fasitAlias.label}
+                  label="Fasit alias"
                   value={fasitAlias}
                   onChange={v => this.handleChange('fasitAlias', v)}
                 />
                 <OrderCheckBox
                   key={'encrypted'}
-                  label={orderFields.encrypted.label}
+                  label="Encrypted connection"
                   value={encrypted}
-                  description={orderFields.encrypted.description}
+                  description="Adds TLS encryption on connection to MQ"
                   onChange={v => this.handleChange('encrypted', v)}
                 />
               </div>
@@ -149,55 +156,9 @@ export class MqChannel extends Component {
   }
 }
 
-const orderFields = {
-  environmentClass: {
-    label: 'Env. class',
-    description: '',
-    fieldType: 'buttonGroup',
-    alternatives: [
-      { label: 'development', value: 'u' },
-      { label: 'test', value: 't' },
-      { label: 'PreProd', value: 'q' },
-      { label: 'Production', value: 'p' }
-    ],
-    value: 'u'
-  },
-  environmentName: {
-    label: 'Environment',
-    description: '',
-    fieldType: 'environments',
-    value: ''
-  },
-  application: {
-    label: 'Application',
-    description: '',
-    fieldType: 'applications',
-    value: ''
-  },
-  queueManager: {
-    label: 'Queue manager',
-    value: ''
-  },
-  fasitAlias: {
-    label: 'Fasit alias',
-    fieldType: 'text',
-    value: ''
-  },
-  mqChannelName: {
-    label: 'Channel name',
-    fieldType: 'text',
-    value: ''
-  },
-  encrypted: {
-    label: 'Encrypted connection',
-    description: 'Adds TLS encryption on connection to MQ',
-    value: false
-  }
-}
 MqChannel.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
-  orderFields: PropTypes.object,
   onSubmit: PropTypes.func,
   dispatch: PropTypes.func
 }
