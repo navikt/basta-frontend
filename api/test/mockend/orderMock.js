@@ -85,7 +85,7 @@ exports.postOrderWithDelay = () => {
     try {
       setTimeout(() => {
         res.status(200).send('6969')
-      }, 8000)
+      }, 3000)
       // proper backend @ vm/orders/jboss
     } catch (err) {
       console.log(err)
