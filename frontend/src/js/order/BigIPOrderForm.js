@@ -13,6 +13,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import image from '../../img/orderTypes/big-ip.png'
 import { InfoStripe } from '../common/components/formComponents/AlertStripe'
+import SubmitButton from './formComponents/SubmitButton'
 
 export class BigIPOrderForm extends Component {
   resetState() {
@@ -167,17 +168,11 @@ export class BigIPOrderForm extends Component {
               message="Bruk denne matching typen dersom du har kontroll på DNS som er i bruk. Hvis du er usikker, spør Marcel eller noen i #aura på Slack"
               show={matchingTypes === 'hostname'}
             />
-          </div>
-          {this.validOrder() ? (
-            <div
-              className="orderFormSubmitButton"
+            <SubmitButton
+              disabled={!this.validOrder()}
               onClick={() => dispatch(submitForm('bigip', this.state))}
-            >
-              Submit
-            </div>
-          ) : (
-            <div className="orderFormSubmitButton disabled">Submit</div>
-          )}
+            />
+          </div>
         </div>
       </div>
     )

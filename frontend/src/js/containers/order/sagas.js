@@ -98,7 +98,6 @@ export function* submitForm(action) {
     yield put({ type: FORM_SUBMIT_SUCCESSFUL, value })
 
     const orderId = value.id ? value.id : value
-    console.log('got orderId' + orderId)
 
     yield history.push(`/orders/${orderId}`)
     yield put({ type: LATEST_ORDER_REQUEST })

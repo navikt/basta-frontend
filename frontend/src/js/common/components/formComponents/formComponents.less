@@ -17,7 +17,6 @@ label {
 .formComponentLabelDescription {
   visibility: hidden;
   margin-left: 10px;
-
   color: @font-color-secondary;
 }
 
@@ -182,4 +181,50 @@ input:checked + .formComponentCheckBox:before {
   color: @warning-color;
   font-size: 1.6em;
   padding-right: 10px;
+}
+
+.submitSpinner {
+    font-size: 20px;
+    color: #888;
+    display: inline-block;
+    padding-left: 10x;
+    margin-left: 50x;
+  }
+
+  .hidden {
+      visibility: hidden;
+  }
+  
+  .submitSpinner > p {
+      display: inline-block;
+      padding-left: 10px;
+      line-height: 40px;
+      text-align: center;
+  }
+
+.orderFormSubmitButton {
+  cursor: pointer;
+  line-height: 40px;
+  background-color: @default-button-color;
+  height: 40px;
+  margin-top: 20px;
+  width: 110px;
+  border: 2px solid @default-button-color;
+  border-radius: 2px;
+  color: @inverse-font-color;
+  text-align: center;
+  display: inline-block;
+}
+.orderFormSubmitButton.disabled {
+  background-color: @font-color-secondary;
+  color: @inverse-font-color;
+  cursor: not-allowed;
+}
+.orderFormSubmitButton.disabled:hover {
+  cursor: not-allowed;
+  background-color: @font-color-secondary !important;
+}
+.orderFormSubmitButton:hover {
+  color: #fff;
+  background-color: lighten(@default-button-color, 10%);
 }
