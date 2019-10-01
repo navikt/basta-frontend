@@ -9,15 +9,16 @@ import {
   QueueManagerDropDown,
   MqClusterCheckBox,
   ApplicationsDropDown
-} from '../../common/components/formComponents'
-import OrderDropDown from '../../common/components/formComponents/OrderDropDown'
-import { submitForm } from '../../containers/order/actionCreators'
-import { fetchMqClusters, clearMqClusters } from '../../common/actionCreators'
+} from '../common/components/formComponents'
+import OrderDropDown from '../common/components/formComponents/OrderDropDown'
+import { submitForm } from '../containers/order/actionCreators'
+import { fetchMqClusters, clearMqClusters } from '../common/actionCreators'
+import SubmitButton from './formComponents/SubmitButton'
 
-const mqImage = require('../../../img/orderTypes/mq.png')
+const mqImage = require('../../img/orderTypes/mq.png')
 
 export class MqQueue extends Component {
-  constructor(props) {  
+  constructor(props) {
     super(props)
     for (const key in orderFields) {
       orderFields[key].valid = true
@@ -80,13 +81,7 @@ export class MqQueue extends Component {
   }
 
   validOrder() {
-    const {
-      environmentName,
-      application,
-      queueManager,
-      mqQueueName,
-      fasitAlias
-    } = this.state
+    const { environmentName, application, queueManager, mqQueueName, fasitAlias } = this.state
 
     return (
       environmentName.length > 0 &&
@@ -230,17 +225,11 @@ export class MqQueue extends Component {
                 />
               </div>
             ) : null}
-          </div>
-          {this.validOrder() ? (
-            <div
-              className="orderFormSubmitButton"
+            <SubmitButton
+              disabled={!this.validOrder()}
               onClick={() => dispatch(submitForm('queue', this.state))}
-            >
-              Submit
-            </div>
-          ) : (
-            <div className="orderFormSubmitButton disabled">Submit</div>
-          )}
+            />
+          </div>
         </div>
       </div>
     )

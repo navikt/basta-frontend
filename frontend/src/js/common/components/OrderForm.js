@@ -208,11 +208,11 @@ export class OrderForm extends Component {
                   }
               }
             })}
+            <SubmitButton
+              disabled={!this.validOrder()}
+              onClick={() => dispatch(submitForm(this.currentComponent, this.state))}
+            />
           </div>
-          <SubmitButton
-            disabled={!this.validOrder()}
-            onClick={() => dispatch(submitForm(this.currentComponent, this.state))}
-          />
         </div>
       </div>
     )

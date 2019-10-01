@@ -7,11 +7,12 @@ import {
   EnvironmentsDropDown,
   QueueManagerDropDown,
   ApplicationsDropDown
-} from '../../common/components/formComponents'
+} from '../common/components/formComponents'
 import { connect } from 'react-redux'
-import { submitForm } from '../../containers/order/actionCreators'
+import { submitForm } from '../containers/order/actionCreators'
+import SubmitButton from './formComponents/SubmitButton'
 
-const mqImage = require('../../../img/orderTypes/mq.png')
+const mqImage = require('../../img/orderTypes/mq.png')
 
 export class MqChannel extends Component {
   constructor(props) {
@@ -137,17 +138,11 @@ export class MqChannel extends Component {
                 />
               </div>
             ) : null}
-          </div>
-          {this.validOrder() ? (
-            <div
-              className="orderFormSubmitButton"
+            <SubmitButton
+              disabled={!this.validOrder()}
               onClick={() => dispatch(submitForm('channel', this.state))}
-            >
-              Submit
-            </div>
-          ) : (
-            <div className="orderFormSubmitButton disabled">Submit</div>
-          )}
+            />
+          </div>
         </div>
       </div>
     )
