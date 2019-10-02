@@ -70,23 +70,21 @@ exports.decommission = () => {
 
 exports.postOrder = () => {
   return (req, res) => {
+    console.log('rpst', req.params.servertype)
+
+    if (req.params.servertype === 'containerlinux') {
+      res
+        .status(500)
+        .send(
+          'This order is hardcoded to fail. Do not be confused. See postOrder function in orderMock.js.'
+        )
+    }
     try {
       // proper backend @ vm/orders/jboss
       res.status(200).json(orderCreated)
     } catch (err) {
-      console.log(err)
       res.status(500).send(err)
     }
-  }
-}
-
-exports.postOrderAndFail = () => {
-  return (req, res) => {
-    res
-      .status(500)
-      .send(
-        'Something terrible has just happened. This order is hardcoded to fail. Do not be confused. See postOrderAndFail function in orderMock.js.'
-      )
   }
 }
 
@@ -98,7 +96,6 @@ exports.postOrderWithDelay = () => {
       }, 3000)
       // proper backend @ vm/orders/jboss
     } catch (err) {
-      console.log(err)
       res.status(500).send(err)
     }
   }
