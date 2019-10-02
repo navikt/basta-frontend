@@ -1,7 +1,3 @@
-// eslint-disable-next-line
-import React from 'react'
-const request = require('request-promise')
-
 const NO_CONTENT = 204
 
 export const resolveOrigin = () => {
@@ -40,14 +36,15 @@ export const postForm = (url, form) => {
     method: 'POST',
     mode: 'cors',
     body: JSON.stringify(form)
-  }).then(res => {
+  }).then(async res => {
     if (res.ok) {
       const json = res.json().then(json => {
         return json
       })
       return json
     } else {
-      throw `Error posting form ( ${res.status} ${res.statusText} )`
+      const errorMessage = await res.text()
+      throw `Error posting form ${errorMessage} ( ${res.status} ${res.statusText} )`
     }
   })
 }

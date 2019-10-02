@@ -2,6 +2,7 @@ import {
   FORM_SUBMITTING,
   FORM_SUBMIT_SUCCESSFUL,
   FORM_SUBMIT_FAILED,
+  RESET_FORM,
   STATUSLOG_FETCHING,
   STATUSLOG_RECEIVED,
   STATUSLOG_REQUEST_FAILED,
@@ -39,6 +40,15 @@ export default (
         form: {
           ...state.form,
           submitting: true,
+          id: null,
+          error: null
+        }
+      }
+    case RESET_FORM:
+      return {
+        ...state,
+        form: {
+          submitting: false,
           id: null,
           error: null
         }
