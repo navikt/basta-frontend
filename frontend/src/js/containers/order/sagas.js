@@ -57,7 +57,7 @@ export function* submitForm(action) {
         value = yield call(postForm, `/rest/vm/orders/liberty`, action.orders)
         break
       case 'redhat':
-        value = yield call(postForm, `rest/vm/orders/linux`, action.orders)
+        value = yield call(postForm, `/rest/vm/orders/linux`, action.orders)
         break
       case 'openamproxy':
         value = yield call(postForm, `/rest/vm/orders/openam/proxy`, action.orders)
