@@ -8,7 +8,6 @@ import { NotFound } from '../containers/notfound/NotFound'
 import OrderForm from './components/OrderForm'
 import OperationsForm from './components/OperationsForm'
 import OrderDetails from '../containers/order/OrderDetails'
-import Order from '../containers/order/Order'
 import MqQueue from '../order/MqQueue'
 import BigIPOrderForm from '../order/BigIPOrderForm'
 import MqChannel from '../order/MqChannel'
@@ -20,7 +19,6 @@ export const Routes = () => {
   return (
     <Switch>
       <Route exact path="/" component={History} />
-      <Route exact path="/order" component={Order} />
       <Route path="/orders/:orderId" component={OrderDetails} />
       <Route exact path="/operate" component={Operate} />
       <Route path="/operate/nodes" component={NodeOperationsForm} />
@@ -30,7 +28,6 @@ export const Routes = () => {
       <Route exact path="/create/bigip" component={BigIPOrderForm} />
       <Route exact path="/create/mqqueue" component={MqQueue} />
       <Route exact path="/create/mqchannel" component={MqChannel} />
-
       <Route path="/create/:orderType" component={OrderForm} />
       <Route path="*" component={NotFound} />
     </Switch>
