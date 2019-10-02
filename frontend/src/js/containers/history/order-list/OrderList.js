@@ -5,12 +5,11 @@ import Spinner from '../../../common/components/Spinner'
 
 const OrderList = props => {
   const { orderHistory } = props
-  if (orderHistory.length === 0)
+  if (orderHistory.length === 0){
     return (
-      <center>
         <Spinner />
-      </center>
     )
+}
   return <div className="orderListContainer">{renderList(orderHistory)}</div>
 }
 

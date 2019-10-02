@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AlertStripe, { ErrorStripe } from './formComponents/AlertStripe'
+import { ErrorStripe } from './formComponents/AlertStripe'
 
 class Spinner extends Component {
   constructor(props) {
@@ -24,16 +24,7 @@ class Spinner extends Component {
     return this.state.timeOut ? (
       <ErrorStripe show={true} message="API calls to basta backend timed out." />
     ) : (
-      <div className="spinner">
-        <div />
-        <div />
-        <div />
-        <div />
-        <div />
-        <div />
-        <div />
-        <div />
-      </div>
+      <i className="fa fa-spinner fa-spin fa-3x spinner" />
     )
   }
 }
