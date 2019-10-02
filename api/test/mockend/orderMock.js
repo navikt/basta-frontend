@@ -80,6 +80,16 @@ exports.postOrder = () => {
   }
 }
 
+exports.postOrderAndFail = () => {
+  return (req, res) => {
+    res
+      .status(500)
+      .send(
+        'Something terrible has just happened. This order is hardcoded to fail. Do not be confused. See postOrderAndFail function in orderMock.js.'
+      )
+  }
+}
+
 exports.postOrderWithDelay = () => {
   return (req, res) => {
     try {
