@@ -126,6 +126,27 @@
     "resultDetails": []
   },
   {
+    "id": 24297,
+    "created": 1533798842288,
+    "createdBy": "t130787",
+    "updated": 1533798842633,
+    "updatedBy": "t130787",
+    "updatedByDisplayName": "Håvard Tronhus",
+    "createdByDisplayName": "Håvard Tronhus",
+    "orderType": "BIGIP",
+    "results": ["lbConfig"],
+    "input": null,
+    "externalId": "N/A",
+    "uri": "https://basta.adeo.no/rest/orders/24297",
+    "status": "FAILURE",
+    "errorMessage": null,
+    "orderDescription": "BIG-IP Config",
+    "orderOperation": "CREATE",
+    "nextOrderId": null,
+    "previousOrderId": null,
+    "resultDetails": []
+  },
+  {
     "id": 24397,
     "created": 1534252950659,
     "createdBy": "t130787",
