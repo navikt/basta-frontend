@@ -45,6 +45,7 @@ const getOrderStatus = status => {
         </span>
       )
     case 'ERROR':
+    case 'FAILURE':
       return (
         <span className="badge error">
           {' '}

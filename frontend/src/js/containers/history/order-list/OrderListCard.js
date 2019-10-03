@@ -65,6 +65,7 @@ const orderListCardStatus = status => {
     case 'PROCESSING':
       return 'orderListCardStatus processing'
     case 'ERROR':
+    case 'FAILURE':
       return 'orderListCardStatus error'
   }
   return <span> {status}</span>
