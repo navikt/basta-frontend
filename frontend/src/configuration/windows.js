@@ -67,7 +67,7 @@ const orderFields = {
     fieldType: 'number',
     min: 2,
     max: 32,
-    value: 2
+    value: 4    
   },
   extraDisk: {
     label: 'Extra disk',
