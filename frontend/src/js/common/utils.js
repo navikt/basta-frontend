@@ -12,7 +12,7 @@ export const getUrl = url => {
     credentials: 'include',
     method: 'GET'
   }
-  return fetch(`${origin}${url}`, init).then(res => {
+  return fetch(`${origin}${url}`, init).then(async res => {
     if (res.status === NO_CONTENT) {
       return []
     }
@@ -23,7 +23,8 @@ export const getUrl = url => {
       })
       return json
     } else {
-      throw res.statusText
+      const errorMessage = await res.text()
+      throw `${errorMessage} ( ${res.status} )`
     }
   })
 }
