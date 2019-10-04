@@ -60,9 +60,9 @@ export default (
       data: []
     },
     virtualServers: {
-        fetching: false,
-        error: null,
-        data: []
+      fetching: false,
+      error: null,
+      data: []
     }
   },
   action
@@ -230,7 +230,7 @@ export default (
           data: []
         }
       }
-      case VIRTUALSERVERS_FETCHING:
+    case VIRTUALSERVERS_FETCHING:
       return {
         ...state,
         virtualServers: {

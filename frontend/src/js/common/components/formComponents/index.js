@@ -11,7 +11,6 @@ import OrderDbTemplateDropDown from './OrderDbTemplateDropDown'
 import OperationsButtons from './OperationsButtons'
 import ErrorPanel from './ErrorPanel'
 import InfoPanel from './InfoPanel'
-import VirtualServerDropDown from './VirtualServerDropDown'
 import AlertStripe from './AlertStripe'
 
 module.exports = {
@@ -28,6 +27,5 @@ module.exports = {
   OperationsButtons,
   ErrorPanel,
   InfoPanel,
-  VirtualServerDropDown,
   AlertStripe
 }

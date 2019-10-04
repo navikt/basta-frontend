@@ -116,8 +116,11 @@ export function* fetchVirtualServers(action) {
       `/rest/v1/bigip/virtualservers?application=${action.application}&environmentClass=${action.environmentClass}&environmentName=${action.environment}&zone=${action.zone}`
     )
     yield put({ type: VIRTUALSERVERS_RECEIVED, value: virtualServers })
-  } catch (err) {
-    yield put({ type: VIRTUALSERVERS_REQUEST_FAILED, err })
+  } catch (error) {
+    yield put({
+      type: VIRTUALSERVERS_REQUEST_FAILED,
+      error: `Failed fetching virtual server list. ${error} `
+    })
   }
 }
 

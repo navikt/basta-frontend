@@ -4,10 +4,9 @@ import {
   OrderTextBox,
   OrderButtonGroup,
   EnvironmentsDropDown,
-  ApplicationsDropDown,
-  VirtualServerDropDown
+  ApplicationsDropDown
 } from '../common/components/formComponents'
-
+import VirtualServerDropDown from './formComponents/VirtualServerDropDown'
 import { submitForm } from '../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'

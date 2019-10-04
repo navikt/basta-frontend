@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import ReactTooltip from 'react-tooltip'
 import Select from 'react-select'
-import { fetchVirtualServers } from '../../actionCreators'
+import VirtualServersError from './VirtualServersError'
+import { fetchVirtualServers } from '../../common/actionCreators'
 
 export class VirtualServerDropDown extends Component {
   constructor(props) {
@@ -34,30 +34,32 @@ export class VirtualServerDropDown extends Component {
       application.length > 0 &&
       zone.length > 0
     ) {
-
       dispatch(fetchVirtualServers(environmentClass, environment, application, zone))
     }
   }
 
   render() {
-    const { label, value, onChange, description, virtualServers } = this.props
+    const { label, value, onChange, virtualServers, virtualServersError } = this.props
+
+    console.log('vs', virtualServers)
 
     return (
-      <div className="formComponentGrid">
-        <div className="formComponentField">
-          <div className="formComponentDropdownField">
-            <label htmlFor="">{label}</label>
-            <Select
-              options={mapToOptions(virtualServers)}
-              value={value ? { label: value, value } : null}
-              onChange={e => onChange(e.value)}
-              isDisabled={virtualServers.length == 0}
-            />
-            <div className="formComponentDescription">{description}</div>
+      <React.Fragment>
+        <div className="formComponentGrid">
+          <div className="formComponentField">
+            <div className="formComponentDropdownField">
+              <label htmlFor="">{label}</label>
+              <Select
+                options={mapToOptions(virtualServers)}
+                value={value ? { label: value, value } : null}
+                onChange={e => onChange(e.value)}
+                isDisabled={virtualServers.length == 0}
+              />
+            </div>
           </div>
+          <VirtualServersError error={virtualServersError} />
         </div>
-        <ReactTooltip />
-      </div>
+      </React.Fragment>
     )
   }
 }
@@ -79,7 +81,8 @@ VirtualServerDropDown.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    virtualServers: state.orderFormData.virtualServers.data
+    virtualServers: state.orderFormData.virtualServers.data,
+    virtualServersError: state.orderFormData.virtualServers.error
   }
 }
 export default connect(mapStateToProps)(VirtualServerDropDown)
