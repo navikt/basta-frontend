@@ -3,7 +3,6 @@ import developertools from './developertools'
 import jbossnode from './jbossnode'
 import liberty from './liberty'
 import wildflynode from './wildflynode'
-import wschannel from './wschannel'
 import bpmnode from './bpmnode'
 import bpmdmgr from './bpmdmgr'
 import wasnode from './wasnode'
@@ -14,7 +13,6 @@ import openamserver from './openamserver'
 import openamproxy from './openamproxy'
 import redhat from './redhat'
 import containerlinux from './containerlinux'
-import oracle from './oracle'
 import windows from './windows'
 
 // Operate forms
@@ -27,7 +25,6 @@ module.exports = {
   developertools,
   jbossnode,
   liberty,
-  wschannel,
   wildflynode,
   bpmnode,
   bpmdmgr,
@@ -39,7 +36,6 @@ module.exports = {
   openamproxy,
   redhat,
   containerlinux,
-  oracle,
   windows,
 
   // Operate

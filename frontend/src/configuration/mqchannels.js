@@ -3,9 +3,7 @@ const description = 'Start, stop or delete'
 const image = require('../img/orderTypes/mq.png')
 const orderFields = {
   environmentClass: {
-    label: 'Environment class',
-    description: '',
-    fieldType: 'buttonGroup',
+    fieldType: 'environmentClass',
     alternatives: [
       { label: 'development', value: 'u' },
       { label: 'test', value: 't' },
@@ -14,7 +12,6 @@ const orderFields = {
     ],
     value: 'u'
   },
-  // Todo: Fetch from backend
   manager: {
     label: 'Queue manager',
     description: '',

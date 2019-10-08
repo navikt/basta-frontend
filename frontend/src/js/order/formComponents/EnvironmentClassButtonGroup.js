@@ -13,7 +13,7 @@ export class EnvironmentClassButtonGroup extends Component {
     return (
       <OrderButtonGroup
         key="environmentClass"
-        label="Environment class 69"
+        label="Environment class"
         value={value}
         alternatives={[
           { label: 'Development', value: 'u' },
