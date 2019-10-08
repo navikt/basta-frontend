@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
   OrderTextBox,
-  OrderButtonGroup,
   EnvironmentsDropDown,
   ApplicationsDropDown,
   OrderDbTemplateDropDown
@@ -12,6 +11,7 @@ import { submitForm } from '../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
+import ZoneButtonGroup from './formComponents/ZoneButtonGroup'
 
 const oracleImage = require('../../img/orderTypes/oracle.png')
 
@@ -96,32 +96,19 @@ export class OracleDbOrderForm extends Component {
               value={environmentClass}
               onChange={v => this.handleChange('environmentClass', v)}
             />
-            <OrderButtonGroup
-              key="zone"
-              label="Zone"
-              value={zone}
-              alternatives={[
-                { label: 'Fagsystemsone', value: 'fss' },
-                { label: 'Selvbetjeningssone', value: 'sbs' }
-              ]}
-              roles={this.props.user.userProfile.roles}
-              onChange={v => this.handleChange('zone', v)}
-            />
+            <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
             <EnvironmentsDropDown
-              key="environmentName"
               label="Environment"
               onChange={v => this.handleChange('environmentName', v)}
               environmentClass={environmentClass}
               value={environmentName}
             />
             <ApplicationsDropDown
-              key="applicationName"
               label="Application"
               onChange={v => this.handleChange('applicationName', v)}
               value={applicationName}
             />
             <OrderTextBox
-              key="databaseName"
               label="Database name"
               value={databaseName}
               onChange={v =>
@@ -132,13 +119,11 @@ export class OracleDbOrderForm extends Component {
               }
             />
             <OrderTextBox
-              key="fasitAlias"
               label="Fasit alias"
               value={fasitAlias}
               onChange={v => this.handleChange('fasitAlias', v)}
             />
             <OrderDbTemplateDropDown
-              key="templateUri"
               label="Database type"
               onChange={v => this.handleChange('templateUri', v)}
               value={templateUri}

@@ -7,14 +7,7 @@ const orderFields = {
     value: 'u'
   },
   zone: {
-    label: 'Zone',
-    description: '',
-    fieldType: 'buttonGroup',
-    alternatives: [
-      { label: 'Fagsystemsone', value: 'fss' },
-      { label: 'Selvbetjeningssone', value: 'sbs' },
-      { label: 'iApp', value: 'iapp' }
-    ],
+    fieldType: 'zone',
     value: 'fss'
   },
   osType: {

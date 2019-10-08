@@ -93,14 +93,12 @@ export class MqChannel extends Component {
               onChange={v => this.handleChange('environmentClass', v)}
             />
             <EnvironmentsDropDown
-              key={'environmentName'}
               label="Environment"
               onChange={v => this.handleChange('environmentName', v)}
               environmentClass={this.state.environmentClass}
               value={environmentName}
             />
             <ApplicationsDropDown
-              key={'application'}
               label="Application"
               onChange={v => this.handleChange('application', v)}
               value={application}
@@ -108,7 +106,6 @@ export class MqChannel extends Component {
             {environmentName && application ? (
               <div className={'subcomponents'}>
                 <QueueManagerDropDown
-                  key={'queueManager'}
                   label="Queue manager"
                   onChange={v => this.handleChange('queueManager', v)}
                   envClass={environmentClass}
@@ -117,19 +114,16 @@ export class MqChannel extends Component {
                   value={queueManager}
                 />
                 <OrderTextBox
-                  key={'mqChannelName'}
                   label="Channel name"
                   value={mqChannelName}
                   onChange={v => this.handleChange('mqChannelName', v)}
                 />
                 <OrderTextBox
-                  key={'fasitAlias'}
                   label="Fasit alias"
                   value={fasitAlias}
                   onChange={v => this.handleChange('fasitAlias', v)}
                 />
                 <OrderCheckBox
-                  key={'encrypted'}
                   label="Encrypted connection"
                   value={encrypted}
                   description="Adds TLS encryption on connection to MQ"

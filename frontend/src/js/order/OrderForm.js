@@ -15,6 +15,7 @@ import { submitForm } from '../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
+import ZoneButtonGroup from './formComponents/ZoneButtonGroup'
 
 export class OrderForm extends Component {
   constructor(props) {
@@ -101,10 +102,20 @@ export class OrderForm extends Component {
                 case 'environmentClass':
                   return (
                     <EnvironmentClassButtonGroup
+                      key={orderFieldKey}
                       value={this.state[orderFieldKey]}
                       onChange={v => this.handleChange(orderFieldKey, v)}
                     />
                   )
+                case 'zone': {
+                  return (
+                    <ZoneButtonGroup
+                      key={orderFieldKey}
+                      value={this.state[orderFieldKey]}
+                      onChange={v => this.handleChange(orderFieldKey, v)}
+                    />
+                  )
+                }
                 case 'buttonGroup':
                   return (
                     <OrderButtonGroup

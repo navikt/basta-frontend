@@ -41,8 +41,6 @@ export class VirtualServerDropDown extends Component {
   render() {
     const { label, value, onChange, virtualServers, virtualServersError } = this.props
 
-    console.log('vs', virtualServers)
-
     return (
       <React.Fragment>
         <div className="formComponentGrid">

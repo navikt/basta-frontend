@@ -14,6 +14,7 @@ import image from '../../img/orderTypes/big-ip.png'
 import { InfoStripe } from '../common/components/formComponents/AlertStripe'
 import SubmitButton from './formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
+import ZoneButtonGroup from './formComponents/ZoneButtonGroup'
 
 export class BigIPOrderForm extends Component {
   resetState() {
@@ -94,32 +95,19 @@ export class BigIPOrderForm extends Component {
               value={environmentClass}
               onChange={v => this.handleChange('environmentClass', v)}
             />
-            <OrderButtonGroup
-              key="zone"
-              label="Zone"
-              value={zone}
-              alternatives={[
-                { label: 'Fagsystemsone', value: 'fss' },
-                { label: 'Selvbetjeningssone', value: 'sbs' }
-              ]}
-              roles={this.props.user.userProfile.roles}
-              onChange={v => this.handleChange('zone', v)}
-            />
+            <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
             <EnvironmentsDropDown
-              key="environmentName"
               label="Environment"
               onChange={v => this.handleChange('environmentName', v)}
               environmentClass={environmentClass}
               value={environmentName}
             />
             <ApplicationsDropDown
-              key="application"
               label="Application"
               onChange={v => this.handleChange('application', v)}
               value={application}
             />
             <VirtualServerDropDown
-              key="virtualserver"
               label="Virtual server"
               environmentClass={environmentClass}
               environment={environmentName}
@@ -129,7 +117,6 @@ export class BigIPOrderForm extends Component {
               value={virtualserver}
             />
             <OrderButtonGroup
-              key="matchingTypes"
               label="Matching type"
               value={matchingTypes}
               alternatives={[
@@ -140,7 +127,6 @@ export class BigIPOrderForm extends Component {
               onChange={v => this.handleChange('matchingTypes', v)}
             />
             <OrderTextBox
-              key="contextroots"
               label="Context root(s)"
               value={contextroots}
               disabled={matchingTypes === 'hostname'}
@@ -148,7 +134,6 @@ export class BigIPOrderForm extends Component {
               onChange={v => this.handleChange('contextroots', v)}
             />
             <OrderTextBox
-              key="hostname"
               label="VS hostname / DNS"
               value={hostname}
               disabled={matchingTypes === 'context'}

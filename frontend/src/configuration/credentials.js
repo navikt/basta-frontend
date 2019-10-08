@@ -7,14 +7,7 @@ const orderFields = {
     value: 'u'
   },
   zone: {
-    label: 'Zone',
-    description: '',
-    fieldType: 'buttonGroup',
-    alternatives: [
-      { label: 'Fagsystemsone', value: 'fss' },
-      { label: 'iApp', value: 'iapp' },
-      { label: 'Selvbetjeningssone', value: 'sbs' }
-    ],
+    fieldType: 'zone',
     value: 'fss'
   },
   applicationMappingName: {

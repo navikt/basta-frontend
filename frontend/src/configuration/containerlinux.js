@@ -13,13 +13,8 @@ const orderFields = {
     value: 'u'
   },
   zone: {
-    label: 'Zone',
-    description: '',
     fieldType: 'buttonGroup',
-    alternatives: [
-      { label: 'Fagsystemsone', value: 'fss' },
-      { label: 'Selvbetjeningssone', value: 'sbs' }
-    ],
+    fieldType: 'zone',
     value: 'fss'
   },
   serverCount: {
