@@ -13,6 +13,7 @@ import { connect } from 'react-redux'
 import image from '../../img/orderTypes/big-ip.png'
 import { InfoStripe } from '../common/components/formComponents/AlertStripe'
 import SubmitButton from './formComponents/SubmitButton'
+import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
 
 export class BigIPOrderForm extends Component {
   resetState() {
@@ -89,17 +90,8 @@ export class BigIPOrderForm extends Component {
               }
               show={true}
             />
-            <OrderButtonGroup
-              key="environmentClass"
-              label="Environment class"
+            <EnvironmentClassButtonGroup
               value={environmentClass}
-              alternatives={[
-                { label: 'development', value: 'u' },
-                { label: 'test', value: 't' },
-                { label: 'PreProd', value: 'q' },
-                { label: 'Production', value: 'p', access: ['ROLE_PROD'] }
-              ]}
-              roles={this.props.user.userProfile.roles}
               onChange={v => this.handleChange('environmentClass', v)}
             />
             <OrderButtonGroup

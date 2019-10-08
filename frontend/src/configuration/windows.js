@@ -3,15 +3,7 @@ const description = 'Server'
 const image = require('../img/orderTypes/windows.png')
 const orderFields = {
   environmentClass: {
-    label: 'Environment class',
-    description: '',
-    fieldType: 'buttonGroup',
-    alternatives: [
-      { label: 'development', value: 'u' },
-      { label: 'test', value: 't' },
-      { label: 'PreProd', value: 'q' },
-      { label: 'Production', value: 'p', access: ['ROLE_PROD'] }
-    ],
+    fieldType: 'environmentClass',
     value: 'u'
   },
   zone: {
@@ -67,7 +59,7 @@ const orderFields = {
     fieldType: 'number',
     min: 2,
     max: 32,
-    value: 4    
+    value: 4
   },
   extraDisk: {
     label: 'Extra disk',

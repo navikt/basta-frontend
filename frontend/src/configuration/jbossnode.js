@@ -9,15 +9,7 @@ const orderFields = {
     value: { type: 'standard' }
   },
   environmentClass: {
-    label: 'Environment class',
-    description: '',
-    fieldType: 'buttonGroup',
-    alternatives: [
-      { label: 'Development', value: 'u' },
-      { label: 'Test', value: 't' },
-      { label: 'PreProd', value: 'q' },
-      { label: 'Production', value: 'p', access: ['ROLE_PROD'] }
-    ],
+    ffieldType: 'environmentClass',
     value: 'u'
   },
   zone: {

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {
   OrderCheckBox,
   OrderTextBox,
-  OrderButtonGroup,
   EnvironmentsDropDown,
   QueueManagerDropDown,
   ApplicationsDropDown
@@ -11,6 +10,7 @@ import {
 import { connect } from 'react-redux'
 import { submitForm } from '../containers/order/actionCreators'
 import SubmitButton from './formComponents/SubmitButton'
+import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
 
 const mqImage = require('../../img/orderTypes/mq.png')
 
@@ -21,7 +21,7 @@ export class MqChannel extends Component {
       environmentClass: 'u',
       environmentName: '',
       application: '',
-      queueManager: '', 
+      queueManager: '',
       mqChannelName: '',
       fasitAlias: ''
     }
@@ -88,16 +88,8 @@ export class MqChannel extends Component {
             <div className="orderFormDescription">Channel</div>
           </div>
           <div className="orderFormItems">
-            <OrderButtonGroup
-              label="Env. class"
+            <EnvironmentClassButtonGroup
               value={environmentClass}
-              roles={user.userProfile.roles}
-              alternatives={[
-                { label: 'development', value: 'u' },
-                { label: 'test', value: 't' },
-                { label: 'PreProd', value: 'q' },
-                { label: 'Production', value: 'p' }
-              ]}
               onChange={v => this.handleChange('environmentClass', v)}
             />
             <EnvironmentsDropDown

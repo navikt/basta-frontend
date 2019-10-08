@@ -3,15 +3,7 @@ const description = 'cleaning service user'
 const image = require('../img/orderTypes/security.png')
 const orderFields = {
   environmentClass: {
-    label: 'Environment Class',
-    description: '',
-    fieldType: 'buttonGroup',
-    alternatives: [
-      { label: 'Development', value: 'u' },
-      { label: 'Test', value: 't' },
-      { label: 'PreProd', value: 'q' },
-      { label: 'Production', value: 'p', access: ['ROLE_PROD_OPERATIONS'] }
-    ],
+    fieldType: 'environmentClass',
     value: 'u'
   },
   zone: {

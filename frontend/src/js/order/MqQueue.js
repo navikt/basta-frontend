@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import {
   OrderCheckBox,
   OrderTextBox,
-  OrderButtonGroup,
   EnvironmentsDropDown,
   QueueManagerDropDown,
   MqClusterCheckBox,
@@ -14,6 +13,7 @@ import OrderDropDown from '../common/components/formComponents/OrderDropDown'
 import { submitForm } from '../containers/order/actionCreators'
 import { fetchMqClusters, clearMqClusters } from '../common/actionCreators'
 import SubmitButton from './formComponents/SubmitButton'
+import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
 
 const mqImage = require('../../img/orderTypes/mq.png')
 
@@ -149,16 +149,8 @@ export class MqQueue extends Component {
             <div className="orderFormDescription">Queue</div>
           </div>
           <div className="orderFormItems">
-            <OrderButtonGroup
-              label="Env. class"
+            <EnvironmentClassButtonGroup
               value={environmentClass}
-              roles={user.userProfile.roles}
-              alternatives={[
-                { label: 'development', value: 'u' },
-                { label: 'test', value: 't' },
-                { label: 'PreProd', value: 'q' },
-                { label: 'Production', value: 'p' }
-              ]}
               onChange={v => this.handleChange('environmentClass', v)}
             />
             <EnvironmentsDropDown

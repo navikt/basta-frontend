@@ -6,15 +6,15 @@ import {
   OrderTextBox,
   OrderButtonGroup,
   EnvironmentsDropDown,
-  ApplicationsDropDown,
-  OrderDbTemplateDropDown
-} from './formComponents'
-import SubmitButton from '../../order/formComponents/SubmitButton'
-import orderTypes from '../../../configuration/'
-import OrderDropDown from './formComponents/OrderDropDown'
-import { submitForm } from '../../containers/order/actionCreators'
+  ApplicationsDropDown
+} from '../common/components/formComponents'
+import SubmitButton from './formComponents/SubmitButton'
+import orderTypes from '../../configuration'
+import OrderDropDown from '../common/components/formComponents/OrderDropDown'
+import { submitForm } from '../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
 
 export class OrderForm extends Component {
   constructor(props) {
@@ -45,40 +45,6 @@ export class OrderForm extends Component {
       if (!this.orderFields[key].valid) return false
     }
     return true
-  }
-
-  trimToLength(string, length) {
-    if (string.length <= length) {
-      return string
-    } else {
-      return string.slice(0, length)
-    }
-  }
-
-  removeIllegalCharacters(string) {
-    return string.replace(/[^A-Za-z0-9_]/g, '')
-  }
-
-  setSpecializedTexts(prevState) {
-    // Specialized rules for oracle db order form
-    if (
-      this.state.nodeType === 'DB_ORACLE' &&
-      (this.state.applicationName !== prevState.applicationName ||
-        this.state.environmentName !== prevState.environmentName) &&
-      (this.state.environmentName && this.state.applicationName)
-    ) {
-      const dbName = `${this.state.applicationName}_${this.state.environmentName}`
-      this.setState({
-        databaseName: this.trimToLength(this.removeIllegalCharacters(dbName.toUpperCase()), 28),
-        fasitAlias: `${this.state.applicationName}DB`
-      })
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state !== prevState) {
-      this.setSpecializedTexts(prevState)
-    }
   }
 
   render() {
@@ -121,22 +87,7 @@ export class OrderForm extends Component {
                       onChange={v => this.handleChange(orderFieldKey, v)}
                     />
                   )
-                //Field for oracle db with input formatting
-                case 'databaseName':
-                  return (
-                    <OrderTextBox
-                      key={orderFieldKey}
-                      label={orderField.label}
-                      value={this.state[orderFieldKey]}
-                      placeholder={orderField.description}
-                      onChange={v =>
-                        this.handleChange(
-                          orderFieldKey,
-                          this.trimToLength(this.removeIllegalCharacters(v.toUpperCase()), 28)
-                        )
-                      }
-                    />
-                  )
+
                 case 'checkBox':
                   return (
                     <OrderCheckBox
@@ -144,6 +95,13 @@ export class OrderForm extends Component {
                       label={orderField.label}
                       value={this.state[orderFieldKey]}
                       description={orderField.description}
+                      onChange={v => this.handleChange(orderFieldKey, v)}
+                    />
+                  )
+                case 'environmentClass':
+                  return (
+                    <EnvironmentClassButtonGroup
+                      value={this.state[orderFieldKey]}
                       onChange={v => this.handleChange(orderFieldKey, v)}
                     />
                   )
@@ -178,15 +136,7 @@ export class OrderForm extends Component {
                       value={this.state[orderFieldKey]}
                     />
                   )
-                case 'dbTemplates':
-                  return (
-                    <OrderDbTemplateDropDown
-                      key={orderFieldKey}
-                      label={orderField.label}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
-                      value={this.state[orderFieldKey]}
-                    />
-                  )
+
                 case 'dropDown':
                   return (
                     <OrderDropDown
