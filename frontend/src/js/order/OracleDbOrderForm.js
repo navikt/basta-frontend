@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import {
   OrderTextBox,
   EnvironmentsDropDown,
-  ApplicationsDropDown,
-  OrderDbTemplateDropDown
+  ApplicationsDropDown
 } from '../common/components/formComponents'
 import SubmitButton from './formComponents/SubmitButton'
 import { submitForm } from '../containers/order/actionCreators'
@@ -12,20 +11,39 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from './formComponents/ZoneButtonGroup'
+import OrderDbTemplateDropDown from './formComponents/OrderDbTemplateDropDown'
 
 const oracleImage = require('../../img/orderTypes/oracle.png')
+
+const initialState = {
+  zone: 'fss',
+  environmentName: '',
+  applicationName: '',
+  databaseName: '',
+  fasitAlias: '',
+  templateUri: ''
+}
 
 export class OracleDbOrderForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
       environmentClass: 'u',
-      zone: 'fss',
-      environmentName: '',
-      applicationName: '',
-      databaseName: '',
-      fasitAlias: '',
-      templateUri: ''
+      ...initialState
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { environmentClass } = this.state
+    if (prevState.environmentClass != environmentClass) {
+      this.setState(initialState)
+    }
+    if (
+      (this.state.applicationName !== prevState.applicationName ||
+        this.state.environmentName !== prevState.environmentName) &&
+      (this.state.environmentName && this.state.applicationName)
+    ) {
+      this.setSpecializedTexts()
     }
   }
 
@@ -34,7 +52,14 @@ export class OracleDbOrderForm extends Component {
   }
 
   validOrder() {
-    return false
+    const { environmentName, applicationName, databaseName, fasitAlias, templateUri } = this.state
+    return (
+      environmentName.length > 0 &&
+      applicationName.length > 0 &&
+      databaseName.length > 0 &&
+      fasitAlias.length > 0 &&
+      templateUri.length > 0
+    )
   }
 
   trimToLength(string, length) {
@@ -49,24 +74,12 @@ export class OracleDbOrderForm extends Component {
     return string.replace(/[^A-Za-z0-9_]/g, '')
   }
 
-  setSpecializedTexts(prevState) {
-    if (
-      (this.state.applicationName !== prevState.applicationName ||
-        this.state.environmentName !== prevState.environmentName) &&
-      (this.state.environmentName && this.state.applicationName)
-    ) {
-      const dbName = `${this.state.applicationName}_${this.state.environmentName}`
-      this.setState({
-        databaseName: this.trimToLength(this.removeIllegalCharacters(dbName.toUpperCase()), 28),
-        fasitAlias: `${this.state.applicationName}DB`
-      })
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state !== prevState) {
-      this.setSpecializedTexts(prevState)
-    }
+  setSpecializedTexts() {
+    const dbName = `${this.state.applicationName}_${this.state.environmentName}`
+    this.setState({
+      databaseName: this.trimToLength(this.removeIllegalCharacters(dbName.toUpperCase()), 28),
+      fasitAlias: `${this.state.applicationName}DB`
+    })
   }
 
   render() {
@@ -124,13 +137,15 @@ export class OracleDbOrderForm extends Component {
               onChange={v => this.handleChange('fasitAlias', v)}
             />
             <OrderDbTemplateDropDown
-              label="Database type"
+              label=""
               onChange={v => this.handleChange('templateUri', v)}
+              environmentClass={environmentClass}
+              zone={zone}
               value={templateUri}
             />
             <SubmitButton
               disabled={!this.validOrder()}
-              onClick={() => dispatch(submitForm(this.currentComponent, this.state))}
+              onClick={() => dispatch(submitForm('oracle', this.state))}
             />
           </div>
         </div>

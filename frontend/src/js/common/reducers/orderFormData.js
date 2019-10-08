@@ -222,6 +222,7 @@ export default (
         }
       }
     case DBTEMPLATES_REQUEST_FAILED:
+    
       return {
         ...state,
         dbTemplates: {

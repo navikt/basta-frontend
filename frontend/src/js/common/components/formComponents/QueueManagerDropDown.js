@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import ReactTooltip from 'react-tooltip'
 import Select from 'react-select'
-import { fetchResources, fetchScopedResources } from '../../actionCreators'
+import { fetchScopedResources } from '../../actionCreators'
 
 export class QueueManagerDropDown extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ export class QueueManagerDropDown extends Component {
     const { dispatch, envClass, envName, application } = this.props
     dispatch(fetchScopedResources(envClass, envName, application))
   }
-  componentDidUpdate(prevProps, prevState, ss) {
+  componentDidUpdate(prevProps, prevState) {
     const { dispatch, envName, envClass, application } = this.props
     if (
       prevProps.envName != envName ||
@@ -30,9 +30,6 @@ export class QueueManagerDropDown extends Component {
       value,
       onChange,
       description,
-      resources,
-      envClass,
-      envName,
       scopedresources
     } = this.props
     const options = mapToOptions(scopedresources)

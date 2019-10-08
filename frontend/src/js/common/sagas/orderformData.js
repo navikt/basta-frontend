@@ -104,7 +104,7 @@ export function* fetchDbTemplates(action) {
     )
     yield put({ type: DBTEMPLATES_RECEIVED, value: templates })
   } catch (err) {
-    yield put({ type: DBTEMPLATES_REQUEST_FAILED, err })
+    yield put({ type: DBTEMPLATES_REQUEST_FAILED, error: err })
   }
 }
 

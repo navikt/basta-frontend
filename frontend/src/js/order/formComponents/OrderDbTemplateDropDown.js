@@ -1,35 +1,43 @@
 import React, { Component } from 'react'
 import propTypes from 'prop-types'
 import { connect } from 'react-redux'
-import ReactTooltip from 'react-tooltip'
 import Select from 'react-select'
-import { fetchDbTemplates } from '../../actionCreators'
+import { fetchDbTemplates } from '../../common/actionCreators'
+import OracleDbTemplateError from './OracleDbTemplateError'
 
 export class OrderDbTemplateDropDown extends Component {
   constructor(props) {
     super(props)
   }
+
   componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(fetchDbTemplates('p', 'fss'))
+    const { dispatch, environmentClass, zone } = this.props
+    dispatch(fetchDbTemplates(environmentClass, zone))
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { dispatch, environmentClass, zone } = this.props
+
+    if (prevProps.environmentClass != environmentClass || prevProps.zone != zone) {
+      dispatch(fetchDbTemplates(environmentClass, zone))
+    }
   }
 
   render() {
-    const { label, value, onChange, description, dbTemplates } = this.props
+    const { value, onChange, dbTemplates, dbTemplatesFetchError } = this.props
     return (
       <div className="formComponentGrid">
         <div className="formComponentField">
           <div className="formComponentDropdownField">
-            <label htmlFor="">{label}</label>
+            <label htmlFor="">Database type</label>
             <Select
               options={mapToOptions(dbTemplates)}
               value={value ? { label: value, value } : null}
               onChange={e => onChange(e.value)}
             />
-            <div className="formComponentDescription">{description}</div>
           </div>
         </div>
-        <ReactTooltip />
+        <OracleDbTemplateError error={dbTemplatesFetchError} />
       </div>
     )
   }
@@ -43,7 +51,8 @@ OrderDbTemplateDropDown.propTypes = {}
 
 const mapStateToProps = state => {
   return {
-    dbTemplates: state.orderFormData.dbTemplates.data
+    dbTemplates: state.orderFormData.dbTemplates.data,
+    dbTemplatesFetchError: state.orderFormData.dbTemplates.error
   }
 }
 export default connect(mapStateToProps)(OrderDbTemplateDropDown)

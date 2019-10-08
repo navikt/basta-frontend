@@ -42,7 +42,6 @@ export class VirtualServerDropDown extends Component {
     const { label, value, onChange, virtualServers, virtualServersError } = this.props
 
     return (
-      <React.Fragment>
         <div className="formComponentGrid">
           <div className="formComponentField">
             <div className="formComponentDropdownField">
@@ -57,7 +56,6 @@ export class VirtualServerDropDown extends Component {
           </div>
           <VirtualServersError error={virtualServersError} />
         </div>
-      </React.Fragment>
     )
   }
 }
