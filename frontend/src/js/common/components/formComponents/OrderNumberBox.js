@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ReactTooltip from 'react-tooltip'
 
 export const OrderNumberBox = props => {
   const { label, min, max, description, onChange, value, valid } = props
@@ -24,7 +23,6 @@ export const OrderNumberBox = props => {
           </div>
         ) : null}
       </div>
-      <ReactTooltip />
     </div>
   )
 }

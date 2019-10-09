@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import ReactTooltip from 'react-tooltip'
 import Select from 'react-select'
 import { fetchScopedResources } from '../../actionCreators'
 
@@ -44,7 +43,6 @@ export class QueueManagerDropDown extends Component {
             <div className="formComponentDescription">{description}</div>
           </div>
         </div>
-        <ReactTooltip />
       </div>
     )
   }

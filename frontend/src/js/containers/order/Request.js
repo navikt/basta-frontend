@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import ReactTooltip from 'react-tooltip'
 import RequestOverview from './RequestOverview'
 import RequestForm from './RequestForm'
 

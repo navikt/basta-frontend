@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ReactTooltip from 'react-tooltip'
 import { isAvailable } from '../../utils'
 
 export const OrderButtonGroup = props => {
@@ -32,7 +31,6 @@ export const OrderButtonGroup = props => {
         </div>
         <div className="formComponentDescription">{description}</div>
       </div>
-      <ReactTooltip />
     </div>
   )
 }

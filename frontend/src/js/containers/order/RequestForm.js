@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import ReactTooltip from 'react-tooltip'
 import moment from 'moment'
 
 const RequestForm = props => {

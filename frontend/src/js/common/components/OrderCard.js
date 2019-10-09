@@ -26,7 +26,7 @@ export const OrderCard = props => {
         <div className="orderLabel">{label}</div>
         <div className="orderDescription">{description}</div>
       </div>
-    </div>
+    </div>  
   )
 }
 

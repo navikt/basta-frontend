@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ReactTooltip from 'react-tooltip'
 
 export const OrderCheckBox = props => {
   const { label, value, description, onChange } = props
@@ -15,7 +14,6 @@ export const OrderCheckBox = props => {
         </div>
         <div className="formComponentDescription">{description}</div>
       </div>
-      <ReactTooltip />
     </div>
   )
 }

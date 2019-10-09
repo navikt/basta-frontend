@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
-import ReactTooltip from 'react-tooltip'
 
 export const OrderDropDown = props => {
   const { label, description, value, alternatives, onChange } = props
@@ -19,7 +18,6 @@ export const OrderDropDown = props => {
           <div className="formComponentDescription">{description}</div>
         </div>
       </div>
-      <ReactTooltip />
     </div>
   )
 }
