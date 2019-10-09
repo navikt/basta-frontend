@@ -66,7 +66,13 @@ export function* submitForm(action) {
         value = yield call(postForm, `/rest/vm/orders/openam/server`, action.orders)
         break
       case 'oracle':
-        value = yield call(postForm, `/rest/v1/oracledb`, action.orders)
+      //dbTemplate is an object. We need to remove that from the payload and get the dbTemplate.value and set it as templateURI
+        const { dbTemplate, ...dbPayload } = action.orders
+        const dbOrderPayload = {
+          ...dbPayload,
+          templateURI: dbTemplate.value
+        }
+        value = yield call(postForm, `/rest/v1/oracledb`, dbOrderPayload)
         break
       case 'certificate':
         value = yield call(postForm, `/rest/orders/serviceuser/certificate`, action.orders)

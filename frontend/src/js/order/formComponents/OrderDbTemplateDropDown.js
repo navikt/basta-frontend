@@ -32,8 +32,9 @@ export class OrderDbTemplateDropDown extends Component {
             <label htmlFor="">Database type</label>
             <Select
               options={mapToOptions(dbTemplates)}
+              placeholder="Selct DB template"
               value={value ? { label: value, value } : null}
-              onChange={e => onChange(e.value)}
+              onChange={e => onChange({label: e.label, value: e.value})}
             />
           </div>
         </div>
@@ -44,7 +45,7 @@ export class OrderDbTemplateDropDown extends Component {
 }
 const mapToOptions = alternatives => {
   return alternatives.map(alt => {
-    return { label: alt.description, value: alt.name }
+    return { label: alt.description, value: alt.uri }
   })
 }
 OrderDbTemplateDropDown.propTypes = {}

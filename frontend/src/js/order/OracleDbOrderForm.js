@@ -12,6 +12,7 @@ import { connect } from 'react-redux'
 import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from './formComponents/ZoneButtonGroup'
 import OrderDbTemplateDropDown from './formComponents/OrderDbTemplateDropDown'
+import { timeout } from 'q'
 
 const oracleImage = require('../../img/orderTypes/oracle.png')
 
@@ -21,7 +22,7 @@ const initialState = {
   applicationName: '',
   databaseName: '',
   fasitAlias: '',
-  templateUri: ''
+  dbTemplate: {}
 }
 
 export class OracleDbOrderForm extends Component {
@@ -51,14 +52,18 @@ export class OracleDbOrderForm extends Component {
     this.setState({ [field]: value })
   }
 
+  setDbTemplate(template) {
+    this.setState({ dbTemplate: { label: template.label, value: template.value } })
+  }
+
   validOrder() {
-    const { environmentName, applicationName, databaseName, fasitAlias, templateUri } = this.state
+    const { environmentName, applicationName, databaseName, fasitAlias, dbTemplate } = this.state
     return (
       environmentName.length > 0 &&
       applicationName.length > 0 &&
       databaseName.length > 0 &&
       fasitAlias.length > 0 &&
-      templateUri.length > 0
+      dbTemplate.hasOwnProperty('value')
     )
   }
 
@@ -90,7 +95,7 @@ export class OracleDbOrderForm extends Component {
       applicationName,
       databaseName,
       fasitAlias,
-      templateUri
+      dbTemplate
     } = this.state
     const { dispatch } = this.props
 
@@ -137,11 +142,10 @@ export class OracleDbOrderForm extends Component {
               onChange={v => this.handleChange('fasitAlias', v)}
             />
             <OrderDbTemplateDropDown
-              label=""
-              onChange={v => this.handleChange('templateUri', v)}
+              onChange={template => this.setDbTemplate(template)}
               environmentClass={environmentClass}
               zone={zone}
-              value={templateUri}
+              value={dbTemplate.label}
             />
             <SubmitButton
               disabled={!this.validOrder()}
