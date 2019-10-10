@@ -19,7 +19,9 @@ import {
   DBTEMPLATES_FETCHING,
   VIRTUALSERVERS_REQUEST_FAILED,
   VIRTUALSERVERS_RECEIVED,
-  VIRTUALSERVERS_FETCHING
+  VIRTUALSERVERS_FETCHING,
+  CERTIFICATE_FASIT_REQUEST_FAILED,
+  CERTIFICATE_FASIT_RECEIVED
 } from '../actionTypes'
 
 export default (
@@ -63,6 +65,9 @@ export default (
       fetching: false,
       error: null,
       data: []
+    },
+    certificate: {
+      existsInFasit: false
     }
   },
   action
@@ -222,7 +227,6 @@ export default (
         }
       }
     case DBTEMPLATES_REQUEST_FAILED:
-    
       return {
         ...state,
         dbTemplates: {
@@ -256,6 +260,20 @@ export default (
           fetching: false,
           error: action.error,
           data: []
+        }
+      }
+    case CERTIFICATE_FASIT_RECEIVED:
+      return {
+        ...state,
+        certificate: {
+          existsInFasit: action.value
+        }
+      }
+    case CERTIFICATE_FASIT_REQUEST_FAILED:
+      return {
+        ...state,
+        certificate: {
+          existsInFasit: false
         }
       }
     default:

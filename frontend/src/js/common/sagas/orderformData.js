@@ -29,7 +29,10 @@ import {
   VIRTUALSERVERS_REQUEST,
   VIRTUALSERVERS_FETCHING,
   VIRTUALSERVERS_REQUEST_FAILED,
-  VIRTUALSERVERS_RECEIVED
+  VIRTUALSERVERS_RECEIVED,
+  CERTIFICATE_FASIT_RECEIVED,
+  CERTIFICATE_FASIT_REQUEST,
+  CERTIFICATE_FASIT_REQUEST_FAILED
 } from '../actionTypes'
 
 export function* fetchScopedResource(action) {
@@ -124,6 +127,18 @@ export function* fetchVirtualServers(action) {
   }
 }
 
+export function* certificateExistInFasit(action) {
+  try {
+    let certificateExists = yield call(
+      getUrl,
+      `/rest/orders/serviceuser/certificate/existInFasit?application=${action.application}&environmentClass=${action.environmentClass}&zone=${action.zone}`
+    )
+    yield put({ type: CERTIFICATE_FASIT_RECEIVED, value: certificateExists })
+  } catch (err) {
+    yield put({ type: CERTIFICATE_FASIT_REQUEST_FAILED, err })
+  }
+}
+
 export function* watchOrderData() {
   yield fork(takeEvery, ENVIRONMENTS_REQUEST, fetchEnvironments)
   yield fork(takeEvery, APPLICATIONS_REQUEST, fetchApplications)
@@ -132,4 +147,5 @@ export function* watchOrderData() {
   yield fork(takeEvery, MQCLUSTERS_REQUEST, fetchMqClusters)
   yield fork(takeEvery, DBTEMPLATES_REQUEST, fetchDbTemplates)
   yield fork(takeEvery, VIRTUALSERVERS_REQUEST, fetchVirtualServers)
+  yield fork(takeEvery, CERTIFICATE_FASIT_REQUEST, certificateExistInFasit)
 }

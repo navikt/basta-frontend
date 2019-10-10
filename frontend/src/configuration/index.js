@@ -8,7 +8,6 @@ import bpmdmgr from './bpmdmgr'
 import wasnode from './wasnode'
 import wasdmgr from './wasdmgr'
 import credential from './credential'
-import certificate from './certificate'
 import openamserver from './openamserver'
 import openamproxy from './openamproxy'
 import redhat from './redhat'
@@ -31,7 +30,6 @@ module.exports = {
   wasnode,
   wasdmgr,
   credential,
-  certificate,
   openamserver,
   openamproxy,
   redhat,

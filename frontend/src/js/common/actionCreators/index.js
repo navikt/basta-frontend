@@ -8,8 +8,9 @@ import {
   SCOPED_RESOURCE_REQUEST,
   MQCLUSTERS_REQUEST,
   MQCLUSTERS_RECEIVED,
-  DBTEMPLATES_REQUEST, 
-  VIRTUALSERVERS_REQUEST
+  DBTEMPLATES_REQUEST,
+  VIRTUALSERVERS_REQUEST,
+  CERTIFICATE_FASIT_REQUEST
 } from '../actionTypes'
 
 export const fetchUserProfile = () => {
@@ -52,5 +53,9 @@ export const fetchDbTemplates = (environmentClass, zone) => {
 }
 
 export const fetchVirtualServers = (environmentClass, environment, application, zone) => {
-    return {type: VIRTUALSERVERS_REQUEST, environmentClass, environment, application, zone}
+  return { type: VIRTUALSERVERS_REQUEST, environmentClass, environment, application, zone }
+}
+
+export const certificateExistInFasit = (environmentClass, zone, application) => {
+  return { type: CERTIFICATE_FASIT_REQUEST, environmentClass, zone, application }
 }
