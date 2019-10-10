@@ -26,8 +26,6 @@ const orderFields = {
     value: 'fss'
   },
   environmentName: {
-    label: 'Environment',
-    description: '',
     fieldType: 'environments',
     value: ''
   },

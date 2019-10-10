@@ -154,19 +154,15 @@ export class MqQueue extends Component {
               onChange={v => this.handleChange('environmentClass', v)}
             />
             <EnvironmentsDropDown
-              key={'environmentName'}
-              label="Environment"
               onChange={v => this.handleChange('environmentName', v)}
               environmentClass={environmentClass}
               value={this.state['environmentName']}
             />
             <ApplicationsDropDown
-              key={'application'}
               onChange={v => this.handleChange('application', v)}
               value={application}
             />
             <OrderTextBox
-              key={'name'}
               label="Queue name"
               value={this.state[name]}
               placeholder="Name of queue"
@@ -175,7 +171,6 @@ export class MqQueue extends Component {
             {environmentName && application && name ? (
               <div className={'subcomponents'}>
                 <QueueManagerDropDown
-                  key={'queueManager'}
                   label="Queue manager"
                   onChange={v => this.handleChange('queueManager', v)}
                   envClass={environmentClass}
@@ -184,19 +179,16 @@ export class MqQueue extends Component {
                   value={queueManager}
                 />
                 <OrderTextBox
-                  key={'fasitAlias'}
                   label="Fasit alias"
                   value={fasitAlias}
                   onChange={v => this.handleChange('fasitAlias', v)}
                 />
                 <OrderTextBox
-                  key={'mqQueueName'}
                   label={'MQ queue name'}
                   value={mqQueueName}
                   onChange={v => this.handleChange('mqQueueName', v)}
                 />
                 <OrderDropDown
-                  key={'maxMessageSize'}
                   label="Max size"
                   value={maxMessageSize}
                   alternatives={[
@@ -208,7 +200,6 @@ export class MqQueue extends Component {
                   onChange={v => this.handleChange('maxMessageSize', v)}
                 />
                 <OrderDropDown
-                  key={'queueDepth'}
                   label="Queue depth"
                   value={queueDepth}
                   alternatives={[
@@ -220,7 +211,6 @@ export class MqQueue extends Component {
                 />
 
                 <OrderCheckBox
-                  key={'createBackoutQueue'}
                   label="Backout queue"
                   value={createBackoutQueue}
                   description="A queue for nondeliverable messages"
@@ -231,7 +221,6 @@ export class MqQueue extends Component {
                   environmentClass={this.state.environmentClass}
                   clusterName={this.guessClusterName()}
                   environmentName={this.state.environmentName}
-                  key={'exposed'}
                   label="Expose to cluster"
                   value={exposed}
                   description="Will expose to all Queue Managers in cluster"

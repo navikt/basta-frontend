@@ -132,7 +132,6 @@ export class OrderForm extends Component {
                   return (
                     <EnvironmentsDropDown
                       key={orderFieldKey}
-                      label={orderField.label}
                       onChange={v => this.handleChange(orderFieldKey, v)}
                       environmentClass={this.state.environmentClass}
                       value={this.state[orderFieldKey]}

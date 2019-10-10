@@ -97,7 +97,6 @@ export class BigIPOrderForm extends Component {
             />
             <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
             <EnvironmentsDropDown
-              label="Environment"
               onChange={v => this.handleChange('environmentName', v)}
               environmentClass={environmentClass}
               value={environmentName}

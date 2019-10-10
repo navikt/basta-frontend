@@ -93,7 +93,6 @@ export class MqChannel extends Component {
               onChange={v => this.handleChange('environmentClass', v)}
             />
             <EnvironmentsDropDown
-              label="Environment"
               onChange={v => this.handleChange('environmentName', v)}
               environmentClass={this.state.environmentClass}
               value={environmentName}

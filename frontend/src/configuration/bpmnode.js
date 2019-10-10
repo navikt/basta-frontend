@@ -13,8 +13,6 @@ const orderFields = {
     value: 'u'
   },
   environmentName: {
-    label: 'Environment',
-    description: '',
     fieldType: 'environments',
     value: ''
   },

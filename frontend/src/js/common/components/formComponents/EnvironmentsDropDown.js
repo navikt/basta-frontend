@@ -35,18 +35,17 @@ export class EnvironmentsDropDown extends Component {
   }
 
   render() {
-    const { label, value, onChange, description } = this.props
+    const { value, onChange } = this.props
     return (
       <div className="formComponentGrid">
         <div className="formComponentField">
-          <label htmlFor="">{label}</label>
+          <label htmlFor="">Environment</label>
           <div className="formComponentDropdownField">
             <Select
               options={mapToOptions(this.state.filteredEnvironments)}
               value={value ? { label: value, value } : null}
               onChange={e => onChange(e.value)}
             />
-            <div className="formComponentDescription">{description}</div>
           </div>
         </div>
       </div>
