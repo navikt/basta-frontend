@@ -20,7 +20,6 @@ const orderFields = {
     value: ''
   },
   applicationMappingName: {
-    label: 'Application',
     description: '',
     fieldType: 'applications',
     value: ''

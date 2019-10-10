@@ -11,7 +11,6 @@ const orderFields = {
     value: 'fss'
   },
   application: {
-    label: 'Application',
     description: '',
     fieldType: 'applications',
     value: ''

@@ -18,7 +18,7 @@ export class ApplicationsDropDown extends Component {
     return (
       <div className="formComponentGrid">
         <div className="formComponentField">
-          <label htmlFor="">{label}</label>
+          <label htmlFor="">Application</label>
           <div className="formComponentDropdownField">
             <Select
               options={mapToOptions(applications)}

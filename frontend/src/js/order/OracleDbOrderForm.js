@@ -122,7 +122,6 @@ export class OracleDbOrderForm extends Component {
               value={environmentName}
             />
             <ApplicationsDropDown
-              label="Application"
               onChange={v => this.handleChange('applicationName', v)}
               value={applicationName}
             />

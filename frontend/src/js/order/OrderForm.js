@@ -142,7 +142,6 @@ export class OrderForm extends Component {
                   return (
                     <ApplicationsDropDown
                       key={orderFieldKey}
-                      label={orderField.label}
                       onChange={v => this.handleChange(orderFieldKey, v)}
                       value={this.state[orderFieldKey]}
                     />

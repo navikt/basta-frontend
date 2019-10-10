@@ -99,7 +99,6 @@ export class MqChannel extends Component {
               value={environmentName}
             />
             <ApplicationsDropDown
-              label="Application"
               onChange={v => this.handleChange('application', v)}
               value={application}
             />

@@ -111,7 +111,6 @@ export class CredentialsOperationForm extends Component {
             />
             <ApplicationsDropDown
               key="applicationMappingName"
-              label="Application"
               onChange={v => this.handleChange('applicationMappingName', v)}
               value={this.state.form.applicationMappingName}
             />

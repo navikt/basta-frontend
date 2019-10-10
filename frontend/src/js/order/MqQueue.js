@@ -162,7 +162,6 @@ export class MqQueue extends Component {
             />
             <ApplicationsDropDown
               key={'application'}
-              label="Application"
               onChange={v => this.handleChange('application', v)}
               value={application}
             />
