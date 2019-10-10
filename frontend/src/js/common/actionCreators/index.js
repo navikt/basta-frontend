@@ -10,7 +10,8 @@ import {
   MQCLUSTERS_RECEIVED,
   DBTEMPLATES_REQUEST,
   VIRTUALSERVERS_REQUEST,
-  CERTIFICATE_FASIT_REQUEST
+  CERTIFICATE_FASIT_REQUEST,
+  CERTIFICATE_FASIT_RESET
 } from '../actionTypes'
 
 export const fetchUserProfile = () => {
@@ -58,4 +59,8 @@ export const fetchVirtualServers = (environmentClass, environment, application, 
 
 export const certificateExistInFasit = (environmentClass, zone, application) => {
   return { type: CERTIFICATE_FASIT_REQUEST, environmentClass, zone, application }
+}
+
+export const clearExistingCertificateMessage = () => {
+  return { type: CERTIFICATE_FASIT_RESET }
 }

@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from './formComponents/ZoneButtonGroup'
-import { certificateExistInFasit } from '../common/actionCreators/'
+import { certificateExistInFasit, clearExistingCertificateMessage } from '../common/actionCreators/'
 import { InfoStripe } from '../common/components/formComponents/AlertStripe'
 
 const certificateImage = require('../../img/orderTypes/security.png')
@@ -38,6 +38,7 @@ export class CertificateOrderForm extends Component {
 
     if (prevEnvClass != environmentClass) {
       this.setState(initialState)
+      dispatch(clearExistingCertificateMessage())
     } else if (application !== '' && (zone !== prevZone || application !== prevApp)) {
       dispatch(certificateExistInFasit(environmentClass, zone, application))
     }

@@ -21,7 +21,8 @@ import {
   VIRTUALSERVERS_RECEIVED,
   VIRTUALSERVERS_FETCHING,
   CERTIFICATE_FASIT_REQUEST_FAILED,
-  CERTIFICATE_FASIT_RECEIVED
+  CERTIFICATE_FASIT_RECEIVED,
+  CERTIFICATE_FASIT_RESET
 } from '../actionTypes'
 
 export default (
@@ -269,7 +270,9 @@ export default (
           existsInFasit: action.value
         }
       }
+
     case CERTIFICATE_FASIT_REQUEST_FAILED:
+    case CERTIFICATE_FASIT_RESET:
       return {
         ...state,
         certificate: {
