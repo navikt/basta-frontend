@@ -87,10 +87,14 @@ export class CredentialOrderForm extends Component {
               onChange={v => this.handleChange('stsAccess', v)}
             />
             <InfoStripe
-              show={existInFasit && existInAD}
-              message="Service user already exists in fasit and AD for this application in this environment class. 
-              If you create this one the existing service user will be overwritten and a new password created. 
+              show={existInFasit}
+              message="Service user already exists in fasit for this application in this environment class.  
               Application using this service user needs to be redeployed."
+            />
+            <InfoStripe
+              show={existInAD}
+              message="Service user already exists in AD. 
+              If you create this one the existing service user will be overwritten and a new password created. "
             />
             <SubmitButton
               disabled={!this.validOrder()}
