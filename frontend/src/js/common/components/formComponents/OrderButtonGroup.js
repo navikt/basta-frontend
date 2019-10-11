@@ -7,13 +7,20 @@ export const OrderButtonGroup = props => {
   return (
     <div className="formComponentGrid">
       <div className="formComponentField">
-        <label htmlFor="">{label}</label>
+        <label htmlFor="">
+          <React.Fragment>
+            {label}
+            {description && description.length > 0 ? (
+              <p className="formComponentButtonGroupDescription">{description}</p>
+            ) : null}
+          </React.Fragment>
+        </label>
         <div className="formComponentButtonGroup">
-          {alternatives.map(alt => {
+          {alternatives.map((alt, idx) => {
             return isAvailable(alt.access, roles) ? (
               <button
                 className={alt.value === value ? 'active' : null}
-                key={alt.value}
+                key={idx}
                 onClick={() => onChange(alt.value)}
               >
                 {alt.label}
@@ -22,14 +29,13 @@ export const OrderButtonGroup = props => {
               <button
                 data-tip={'Requires permission: ' + alt.access}
                 className={'disabled'}
-                key={alt.value}
+                key={idx}
               >
                 {alt.label}
               </button>
             )
           })}
         </div>
-        <div className="formComponentDescription">{description}</div>
       </div>
     </div>
   )
