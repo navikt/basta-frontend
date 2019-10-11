@@ -40,7 +40,7 @@ it('(Operate view sagas - credentialLookup) dispatches with app, returns fetch e
       credentialLookup: {
         fetching: false,
         error: error,
-        data: { existInAD: true, existInFasit: true, user: {} }
+        data: { existInAD: false, existInFasit: false, user: {} }
       }
     })
     .run()
@@ -68,7 +68,7 @@ it('(Operate view sagas - submitOperation) disoatches with operation, returns or
     .run()
 })
 
-it('(Operate view sagas - submitOperation) disoatches with operation, returns fetch error and default values', () => {
+it('(Operate view sagas - submitOperation) dispatches with operation, returns fetch error and default values', () => {
   const action = {
     type: 'SUBMIT_OPERATION',
     key: 'credentials',
@@ -97,7 +97,7 @@ const defaultOperationsState = {
   credentialLookup: {
     fetching: false,
     error: null,
-    data: { existInAD: true, existInFasit: true, user: {} }
+    data: { existInAD: false, existInFasit: false, user: {} }
   }
 }
 
