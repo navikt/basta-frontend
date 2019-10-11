@@ -54,11 +54,7 @@ export function* submitForm(action) {
         value = yield call(postForm, `/rest/vm/orders/jboss`, action.orders)
         break
       case 'liberty':
-        value = yield call(
-          postForm,
-          `/rest/vm/orders/liberty`,
-          toClassificationObject(action.orders)
-        )
+        value = yield call(postForm, `/rest/vm/orders/liberty`, action.orders)
         break
       case 'redhat':
         value = yield call(postForm, `/rest/vm/orders/linux`, action.orders)
@@ -116,14 +112,14 @@ export function* submitForm(action) {
   }
 }
 
-function toClassificationObject(order) {
+/*function toClassificationObject(order) {
   const { classification, ...orderPayload } = order
 
   return {
     ...orderPayload,
     classification: { type: classification }
   }
-}
+}*/
 
 export function* getStatusLog(action) {
   try {
