@@ -26,7 +26,7 @@ it('(Operate view sagas - credentialLookup) disoatches with app, and sets all fi
     .run()
 })
 
-it('(Operate view sagas - credentialLookup) disoatches with app, returns fetch error and default values', () => {
+it('(Operate view sagas - credentialLookup) dispatches with app, returns fetch error and default values', () => {
   const action = {
     type: 'CREDENTIAL_LOOKUP_REQUEST',
     form: { environmentClass: 'u', zone: 'fss', applicationMappingName: 'sera' }

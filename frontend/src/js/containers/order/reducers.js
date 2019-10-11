@@ -9,7 +9,7 @@ import {
   ORDER_FETCHING,
   ORDER_RECEIVED,
   ORDER_REQUEST_FAILED
-} from './actionTypes'
+} from '../../actionTypes'
 
 export default (
   state = {

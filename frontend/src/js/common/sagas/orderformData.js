@@ -33,7 +33,7 @@ import {
   CERTIFICATE_FASIT_RECEIVED,
   CERTIFICATE_FASIT_REQUEST,
   CERTIFICATE_FASIT_REQUEST_FAILED
-} from '../actionTypes'
+} from '../../actionTypes'
 
 export function* fetchScopedResource(action) {
   yield put({ type: SCOPED_RESOURCE_FETCHING })

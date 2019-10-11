@@ -21,7 +21,7 @@ import {
   LATEST_ORDER_RECEIVED,
   LATEST_ORDER_FETCHING,
   LATEST_ORDER_REQUEST_FAILED
-} from './actionTypes'
+} from '../../actionTypes'
 
 const delay = millis => {
   const promise = new Promise(resolve => {

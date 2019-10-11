@@ -1,7 +1,6 @@
 import { takeEvery, takeLatest, put, fork, call, select } from 'redux-saga/effects'
 import { getUrl, postForm } from '../../common/utils'
 import history from '../../common/history'
-import { getLastQuery } from './operateSelectors'
 import {
   SUBMIT_OPERATION,
   OPERATION_SUBMITTING,
@@ -10,17 +9,9 @@ import {
   CREDENTIAL_LOOKUP_REQUEST,
   CREDENTIAL_LOOKUP_SUBMITTING,
   CREDENTIAL_LOOKUP_SUCCESSFUL,
-  CREDENTIAL_LOOKUP_FAILED
-} from './operateActionTypes'
-import { LATEST_ORDER_REQUEST } from '../history/actionTypes'
-
-const createVmQuery = hostnames => {
-  let queryString = ''
-  hostnames.forEach(e => {
-    queryString += `hostname=${e}&`
-  })
-  return queryString
-}
+  CREDENTIAL_LOOKUP_FAILED,
+  LATEST_ORDER_REQUEST
+} from '../../actionTypes'
 
 export function* credentialLookup(action) {
   let credentialInfo = {}
@@ -28,15 +19,15 @@ export function* credentialLookup(action) {
   try {
     credentialInfo.existInAD = yield call(
       getUrl,
-      `/rest/orders/serviceuser/credential/existInAD?application=${action.form.applicationMappingName}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
+      `/rest/orders/serviceuser/credential/existInAD?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
     )
     credentialInfo.existInFasit = yield call(
       getUrl,
-      `/rest/orders/serviceuser/credential/existInFasit?application=${action.form.applicationMappingName}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
+      `/rest/orders/serviceuser/credential/existInFasit?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
     )
     credentialInfo.user = yield call(
       getUrl,
-      `/rest/operation/serviceuser/credential/user?application=${action.form.applicationMappingName}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
+      `/rest/operation/serviceuser/credential/user?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
     )
     yield put({ type: CREDENTIAL_LOOKUP_SUCCESSFUL, credentialInfo })
   } catch (error) {

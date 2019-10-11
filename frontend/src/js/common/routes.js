@@ -15,6 +15,7 @@ import OracleDbOrderForm from '../order/OracleDbOrderForm'
 import MqChannel from '../order/MqChannel'
 import NodeOperationsForm from './components/Operations/NodeOperationsForm'
 import CredentialsOperationsForm from './components/Operations/CredentialsOperationForm'
+import CredentialOrderForm from '../order/CredentialOrderForm';
 
 // Routes
 export const Routes = () => {
@@ -29,6 +30,7 @@ export const Routes = () => {
       <Route exact path="/create" component={Create} />
       <Route exact path="/create/bigip" component={BigIPOrderForm} />
       <Route exact path="/create/certificate" component={CertificateOrderForm} />
+      <Route exact path="/create/credential" component={CredentialOrderForm} />
       <Route exact path="/create/mqqueue" component={MqQueue} />
       <Route exact path="/create/mqchannel" component={MqChannel} />
       <Route exact path="/create/oracle" component={OracleDbOrderForm} />

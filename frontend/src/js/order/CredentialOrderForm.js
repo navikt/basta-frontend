@@ -1,22 +1,24 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { ApplicationsDropDown } from '../common/components/formComponents'
+import { ApplicationsDropDown, OrderCheckBox } from '../common/components/formComponents'
 import SubmitButton from './formComponents/SubmitButton'
 import { submitForm } from '../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { submitCredentialLookup } from '../containers/operate/operateActionCreators'
 import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from './formComponents/ZoneButtonGroup'
-import { certificateExistInFasit, clearExistingCertificateMessage } from '../common/actionCreators/'
 import { InfoStripe } from '../common/components/formComponents/AlertStripe'
 
 const certificateImage = require('../../img/orderTypes/security.png')
 const initialState = {
   zone: 'fss',
-  application: ''
+  application: '',
+  abacAccess: false,
+  stsAccess: false
 }
 
-export class CertificateOrderForm extends Component {
+export class CredentialOrderForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -40,7 +42,7 @@ export class CertificateOrderForm extends Component {
       application !== '' &&
       (environmentClass !== prevEnvClass || zone !== prevZone || application !== prevApp)
     ) {
-      dispatch(certificateExistInFasit(environmentClass, zone, application))
+      dispatch(submitCredentialLookup(this.state))
     }
   }
 
@@ -49,8 +51,9 @@ export class CertificateOrderForm extends Component {
   }
 
   render() {
-    const { environmentClass, zone, application } = this.state
-    const { dispatch, certExistsInFasit } = this.props
+    const { environmentClass, zone, application, abacAccess, stsAccess } = this.state
+    const { dispatch, existInAD, existInFasit } = this.props
+
     return (
       <div>
         <div className="orderForm">
@@ -58,7 +61,7 @@ export class CertificateOrderForm extends Component {
             <img src={certificateImage} />
           </div>
           <div className="orderFormHeading">
-            <div className="orderFormTitle">Certificate</div>
+            <div className="orderFormTitle">Credential</div>
             <div className="orderFormDescription">for service user</div>
           </div>
           <div className="orderFormItems">
@@ -71,13 +74,27 @@ export class CertificateOrderForm extends Component {
               onChange={v => this.handleChange('application', v)}
               value={application}
             />
+            <OrderCheckBox
+              label="ABAC"
+              value={abacAccess}
+              description="Adds user to ABAC pdp group in AD"
+              onChange={v => this.handleChange('abacAccess', v)}
+            />
+            <OrderCheckBox
+              label="STS"
+              value={stsAccess}
+              description="Gives user access to read from STS"
+              onChange={v => this.handleChange('stsAccess', v)}
+            />
             <InfoStripe
-              show={certExistsInFasit}
-              message="Certificate already exists in fasit for this application in this environment class. If you create this one the existing certificate will be overwritten in Fasit."
+              show={existInFasit && existInAD}
+              message="Service user already exists in fasit and AD for this application in this environment class. 
+              If you create this one the existing service user will be overwritten and a new password created. 
+              Application using this service user needs to be redeployed."
             />
             <SubmitButton
               disabled={!this.validOrder()}
-              onClick={() => dispatch(submitForm('certificate', this.state))}
+              onClick={() => dispatch(submitForm('credential', this.state))}
             />
           </div>
         </div>
@@ -86,13 +103,14 @@ export class CertificateOrderForm extends Component {
   }
 }
 
-CertificateOrderForm.propTypes = {
+CredentialOrderForm.propTypes = {
   dispatch: PropTypes.func
 }
 const mapStateToProps = state => {
   return {
-    certExistsInFasit: state.orderFormData.certificate.existsInFasit
+    existInFasit: state.operationsForm.credentialLookup.data.existInFasit,
+    existInAD: state.operationsForm.credentialLookup.data.existInAD
   }
 }
 
-export default withRouter(connect(mapStateToProps)(CertificateOrderForm))
+export default withRouter(connect(mapStateToProps)(CredentialOrderForm))

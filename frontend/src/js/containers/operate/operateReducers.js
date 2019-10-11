@@ -5,7 +5,7 @@ import {
   CREDENTIAL_LOOKUP_SUBMITTING,
   CREDENTIAL_LOOKUP_SUCCESSFUL,
   CREDENTIAL_LOOKUP_FAILED
-} from './operateActionTypes'
+} from '../../actionTypes'
 
 export default (
   state = {
@@ -18,8 +18,8 @@ export default (
       fetching: false,
       error: null,
       data: {
-        existInAD: true,
-        existInFasit: true,
+        existInAD: false,
+        existInFasit: false,
         user: {}
       }
     }

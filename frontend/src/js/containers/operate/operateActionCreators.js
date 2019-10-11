@@ -1,4 +1,4 @@
-import { SUBMIT_OPERATION, CREDENTIAL_LOOKUP_REQUEST } from './operateActionTypes'
+import { SUBMIT_OPERATION, CREDENTIAL_LOOKUP_REQUEST } from '../../actionTypes'
 
 export const submitOperation = (key, form, operation) => {
   return { type: SUBMIT_OPERATION, key, form, operation }

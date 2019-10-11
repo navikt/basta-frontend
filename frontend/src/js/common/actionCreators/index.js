@@ -12,7 +12,7 @@ import {
   VIRTUALSERVERS_REQUEST,
   CERTIFICATE_FASIT_REQUEST,
   CERTIFICATE_FASIT_RESET
-} from '../actionTypes'
+} from '../../actionTypes'
 
 export const fetchUserProfile = () => {
   return { type: USER_PROFILE_REQUEST }

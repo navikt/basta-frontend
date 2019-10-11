@@ -2,9 +2,8 @@ import { put, fork, takeEvery, take } from 'redux-saga/effects'
 import {
   INITIALIZE_APPLICATION,
   APPLICATION_READY,
-  USER_PROFILE_REQUEST,
-  USER_PROFILE_REQUEST_FAILED
-} from '../actionTypes'
+  USER_PROFILE_REQUEST
+} from '../../actionTypes'
 
 export function* initializeApplication() {
   yield put({ type: USER_PROFILE_REQUEST })

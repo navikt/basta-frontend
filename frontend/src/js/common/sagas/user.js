@@ -7,7 +7,7 @@ import {
   USER_PROFILE_REQUEST_FAILED,
   USER_LOGOUT,
   USER_SESSION_EXPIRED
-} from '../actionTypes'
+} from '../../actionTypes'
 
 export function* fetchUserProfile() {
   let value = ''

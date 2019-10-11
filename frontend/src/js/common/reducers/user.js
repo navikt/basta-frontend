@@ -3,7 +3,7 @@ import {
   USER_PROFILE_RECEIVED,
   USER_PROFILE_REQUEST_FAILED,
   USER_SESSION_EXPIRED
-} from '../actionTypes'
+} from '../../actionTypes'
 
 export default (
   state = {

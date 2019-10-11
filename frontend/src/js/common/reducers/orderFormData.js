@@ -23,7 +23,7 @@ import {
   CERTIFICATE_FASIT_REQUEST_FAILED,
   CERTIFICATE_FASIT_RECEIVED,
   CERTIFICATE_FASIT_RESET
-} from '../actionTypes'
+} from '../../actionTypes'
 
 export default (
   state = {

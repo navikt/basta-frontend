@@ -1,7 +1,7 @@
 import {
     TOGGLE_NAVMENU,
     CLOSE_NAVMENU
-} from './actionTypes'
+} from '../../actionTypes'
 
 
 export default (state = {

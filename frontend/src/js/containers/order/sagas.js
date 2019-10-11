@@ -13,9 +13,9 @@ import {
   ORDER_REQUEST,
   ORDER_FETCHING,
   ORDER_RECEIVED,
-  ORDER_REQUEST_FAILED
-} from './actionTypes'
-import { LATEST_ORDER_REQUEST } from '../history/actionTypes'
+  ORDER_REQUEST_FAILED,
+  LATEST_ORDER_REQUEST
+} from '../../actionTypes'
 
 export function* submitForm(action) {
   let value = ''
@@ -66,7 +66,7 @@ export function* submitForm(action) {
         value = yield call(postForm, `/rest/vm/orders/openam/server`, action.orders)
         break
       case 'oracle':
-      //dbTemplate is an object. We need to remove that from the payload and get the dbTemplate.value and set it as templateURI
+        //dbTemplate is an object. We need to remove that from the payload and get the dbTemplate.value and set it as templateURI
         const { dbTemplate, ...dbPayload } = action.orders
         const dbOrderPayload = {
           ...dbPayload,

@@ -1,4 +1,4 @@
-import { APPLICATION_READY } from '../actionTypes'
+import { APPLICATION_READY } from '../../actionTypes'
 
 export default (
   state = {
