@@ -9,6 +9,7 @@ import { submitCredentialLookup } from '../containers/operate/operateActionCreat
 import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from './formComponents/ZoneButtonGroup'
 import { InfoStripe } from '../common/components/formComponents/AlertStripe'
+import { clearExistingCredentialMessage } from '../common/actionCreators/'
 
 const certificateImage = require('../../img/orderTypes/security.png')
 const initialState = {
@@ -44,6 +45,10 @@ export class CredentialOrderForm extends Component {
     ) {
       dispatch(submitCredentialLookup(this.state))
     }
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(clearExistingCredentialMessage())
   }
 
   validOrder() {

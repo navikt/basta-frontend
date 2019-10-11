@@ -11,7 +11,8 @@ import {
   DBTEMPLATES_REQUEST,
   VIRTUALSERVERS_REQUEST,
   CERTIFICATE_FASIT_REQUEST,
-  CERTIFICATE_FASIT_RESET
+  CERTIFICATE_FASIT_RESET, 
+  CREDENTIAL_LOOKUP_RESET
 } from '../../actionTypes'
 
 export const fetchUserProfile = () => {
@@ -64,3 +65,8 @@ export const certificateExistInFasit = (environmentClass, zone, application) => 
 export const clearExistingCertificateMessage = () => {
   return { type: CERTIFICATE_FASIT_RESET }
 }
+
+export const clearExistingCredentialMessage = () => {
+    return { type: CREDENTIAL_LOOKUP_RESET }
+  }
+

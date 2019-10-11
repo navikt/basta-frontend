@@ -44,6 +44,10 @@ export class CertificateOrderForm extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.dispatch(clearExistingCertificateMessage())
+  }
+
   validOrder() {
     return this.state.application !== ''
   }

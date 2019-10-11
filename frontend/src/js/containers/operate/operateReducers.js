@@ -4,7 +4,8 @@ import {
   OPERATION_SUBMIT_FAILED,
   CREDENTIAL_LOOKUP_SUBMITTING,
   CREDENTIAL_LOOKUP_SUCCESSFUL,
-  CREDENTIAL_LOOKUP_FAILED
+  CREDENTIAL_LOOKUP_FAILED,
+  CREDENTIAL_LOOKUP_RESET
 } from '../../actionTypes'
 
 export default (
@@ -52,6 +53,19 @@ export default (
           fetching: false,
           error: action.error,
           lastOrderId: null
+        }
+      }
+    case CREDENTIAL_LOOKUP_RESET:
+      return {
+        ...state,
+        credentialLookup: {
+          fetching: false,
+          error: null,
+          data: {
+            existInAD: false,
+            existInFasit: false,
+            user: {}
+          }
         }
       }
     case CREDENTIAL_LOOKUP_SUBMITTING:
