@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -7,17 +8,17 @@ import {
   OrderButtonGroup,
   EnvironmentsDropDown,
   ApplicationsDropDown
-} from '../common/components/formComponents'
-import SubmitButton from './formComponents/SubmitButton'
-import orderTypes from '../../configuration'
-import OrderDropDown from '../common/components/formComponents/OrderDropDown'
-import { submitForm } from '../containers/order/actionCreators'
+} from '../../common/components/formComponents'
+import SubmitButton from '../formComponents/SubmitButton'
+import orderTypes from '../../../configuration'
+import OrderDropDown from '../../common/components/formComponents/OrderDropDown'
+import { submitForm } from '../../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
-import ZoneButtonGroup from './formComponents/ZoneButtonGroup'
+import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
+import ZoneButtonGroup from '../formComponents/ZoneButtonGroup'
 
-export class OrderForm extends Component {
+export class ServerOrderForm extends Component {
   constructor(props) {
     super(props)
     this.currentComponent = props.match.params.orderType
@@ -178,7 +179,7 @@ export class OrderForm extends Component {
   }
 }
 
-OrderForm.propTypes = {
+ServerOrderForm.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
   orderFields: PropTypes.object,
@@ -191,4 +192,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(OrderForm))
+export default withRouter(connect(mapStateToProps)(ServerOrderForm))

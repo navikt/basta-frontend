@@ -5,7 +5,7 @@ import History from '../containers/history/History'
 import Operate from '../containers/operate/Operate'
 import Create from '../containers/create/Create'
 import { NotFound } from '../containers/notfound/NotFound'
-import OrderForm from '../order/OrderForm'
+import ServerOrderForm from '../order/create/ServerOrderForm'
 import OperationsForm from './components/OperationsForm'
 import OrderDetails from '../containers/order/OrderDetails'
 import MqQueue from '../order/create/MqQueue'
@@ -15,7 +15,7 @@ import OracleDbOrderForm from '../order/create/OracleDbOrderForm'
 import MqChannel from '../order/create/MqChannel'
 import NodeOperationsForm from './components/Operations/NodeOperationsForm'
 import CredentialsOperationsForm from './components/Operations/CredentialsOperationForm'
-import CredentialOrderForm from '../order/create/CredentialOrderForm';
+import CredentialOrderForm from '../order/create/CredentialOrderForm'
 
 // Routes
 export const Routes = () => {
@@ -34,7 +34,7 @@ export const Routes = () => {
       <Route exact path="/create/mqqueue" component={MqQueue} />
       <Route exact path="/create/mqchannel" component={MqChannel} />
       <Route exact path="/create/oracle" component={OracleDbOrderForm} />
-      <Route path="/create/:orderType" component={OrderForm} />
+      <Route path="/create/:orderType" component={ServerOrderForm} />
       <Route path="*" component={NotFound} />
     </Switch>
   )
