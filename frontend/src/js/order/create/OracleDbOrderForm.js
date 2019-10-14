@@ -4,15 +4,14 @@ import {
   OrderTextBox,
   EnvironmentsDropDown,
   ApplicationsDropDown
-} from '../common/components/formComponents'
-import SubmitButton from './formComponents/SubmitButton'
-import { submitForm } from '../containers/order/actionCreators'
+} from '../../common/components/formComponents'
+import SubmitButton from '../formComponents/SubmitButton'
+import { submitForm } from '../../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
-import ZoneButtonGroup from './formComponents/ZoneButtonGroup'
-import OrderDbTemplateDropDown from './formComponents/OrderDbTemplateDropDown'
-import { timeout } from 'q'
+import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
+import ZoneButtonGroup from '../formComponents/ZoneButtonGroup'
+import OrderDbTemplateDropDown from '../formComponents/OrderDbTemplateDropDown'
 
 const oracleImage = require('../../img/orderTypes/oracle.png')
 

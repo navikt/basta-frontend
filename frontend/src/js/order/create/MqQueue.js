@@ -8,12 +8,12 @@ import {
   QueueManagerDropDown,
   MqClusterCheckBox,
   ApplicationsDropDown
-} from '../common/components/formComponents'
-import OrderDropDown from '../common/components/formComponents/OrderDropDown'
-import { submitForm } from '../containers/order/actionCreators'
-import { fetchMqClusters, clearMqClusters } from '../common/actionCreators'
-import SubmitButton from './formComponents/SubmitButton'
-import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
+} from '../../common/components/formComponents'
+import OrderDropDown from '../../common/components/formComponents/OrderDropDown'
+import { submitForm } from '../../containers/order/actionCreators'
+import { fetchMqClusters, clearMqClusters } from '../../common/actionCreators'
+import SubmitButton from '../formComponents/SubmitButton'
+import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
 
 const mqImage = require('../../img/orderTypes/mq.png')
 

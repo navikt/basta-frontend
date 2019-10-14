@@ -8,14 +8,14 @@ import { NotFound } from '../containers/notfound/NotFound'
 import OrderForm from '../order/OrderForm'
 import OperationsForm from './components/OperationsForm'
 import OrderDetails from '../containers/order/OrderDetails'
-import MqQueue from '../order/MqQueue'
-import BigIPOrderForm from '../order/BigIPOrderForm'
-import CertificateOrderForm from '../order/CertificateOrderForm'
-import OracleDbOrderForm from '../order/OracleDbOrderForm'
-import MqChannel from '../order/MqChannel'
+import MqQueue from '../order/create/MqQueue'
+import BigIPOrderForm from '../order/create/BigIPOrderForm'
+import CertificateOrderForm from '../order/create/CertificateOrderForm'
+import OracleDbOrderForm from '../order/create/OracleDbOrderForm'
+import MqChannel from '../order/create/MqChannel'
 import NodeOperationsForm from './components/Operations/NodeOperationsForm'
 import CredentialsOperationsForm from './components/Operations/CredentialsOperationForm'
-import CredentialOrderForm from '../order/CredentialOrderForm';
+import CredentialOrderForm from '../order/create/CredentialOrderForm';
 
 // Routes
 export const Routes = () => {

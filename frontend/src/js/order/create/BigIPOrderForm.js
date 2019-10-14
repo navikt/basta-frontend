@@ -5,16 +5,16 @@ import {
   OrderButtonGroup,
   EnvironmentsDropDown,
   ApplicationsDropDown
-} from '../common/components/formComponents'
-import VirtualServerDropDown from './formComponents/VirtualServerDropDown'
-import { submitForm } from '../containers/order/actionCreators'
+} from '../../common/components/formComponents'
+import VirtualServerDropDown from '../formComponents/VirtualServerDropDown'
+import { submitForm } from '../../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import image from '../../img/orderTypes/big-ip.png'
-import { InfoStripe } from '../common/components/formComponents/AlertStripe'
-import SubmitButton from './formComponents/SubmitButton'
-import EnvironmentClassButtonGroup from './formComponents/EnvironmentClassButtonGroup'
-import ZoneButtonGroup from './formComponents/ZoneButtonGroup'
+import { InfoStripe } from '../../common/components/formComponents/AlertStripe'
+import SubmitButton from '../formComponents/SubmitButton'
+import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
+import ZoneButtonGroup from '../formComponents/ZoneButtonGroup'
 
 export class BigIPOrderForm extends Component {
   resetState() {
