@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { MqQueue } from './MqQueue'
+import { MqQueue } from './MqQueueOrderForm'
 
 describe('Order filter function', () => {
   const user = {

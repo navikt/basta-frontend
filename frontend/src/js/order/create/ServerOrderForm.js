@@ -8,10 +8,10 @@ import {
   OrderButtonGroup,
   EnvironmentsDropDown,
   ApplicationsDropDown
-} from '../../common/components/formComponents'
+} from '../formComponents'
 import SubmitButton from '../formComponents/SubmitButton'
 import orderTypes from '../../../configuration'
-import OrderDropDown from '../../common/components/formComponents/OrderDropDown'
+import OrderDropDown from '../formComponents/OrderDropDown'
 import { submitForm } from '../../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'

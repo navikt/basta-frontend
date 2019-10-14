@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { MqChannel } from './MqChannel'
+import { MqChannel } from './MqChannelOrderForm'
 
 describe('Order filter function', () => {
   const user = {

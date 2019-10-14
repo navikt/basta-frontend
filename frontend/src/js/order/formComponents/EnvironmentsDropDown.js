@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Select from 'react-select'
-import { fetchEnvironments } from '../../actionCreators'
+import { fetchEnvironments } from '../../common/actionCreators'
 
 export class EnvironmentsDropDown extends Component {
   constructor(props) {

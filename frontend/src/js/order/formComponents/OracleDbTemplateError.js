@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ErrorStripe } from '../../common/components/formComponents/AlertStripe'
+import { ErrorStripe } from './AlertStripe'
 
 const OracleDbTemplateError = props => {
   const { error } = props

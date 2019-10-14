@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { OrderButtonGroup } from '../../common/components/formComponents/OrderButtonGroup'
+import { OrderButtonGroup } from './OrderButtonGroup'
 
 const ZoneButtonGroup = props => {
   const { value, onChange } = props

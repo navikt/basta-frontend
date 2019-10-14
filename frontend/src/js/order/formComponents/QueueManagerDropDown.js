@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Select from 'react-select'
-import { fetchScopedResources } from '../../actionCreators'
+import { fetchScopedResources } from '../../common/actionCreators'
 
 export class QueueManagerDropDown extends Component {
   constructor(props) {

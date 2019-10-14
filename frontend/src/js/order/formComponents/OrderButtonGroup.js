@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { isAvailable } from '../../utils'
+import { isAvailable } from '../../common/utils'
 
 export const OrderButtonGroup = props => {
   const { label, value, description, alternatives, roles, onChange } = props

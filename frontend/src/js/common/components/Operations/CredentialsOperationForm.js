@@ -12,7 +12,7 @@ import {
   OrderButtonGroup,
   ApplicationsDropDown,
   OperationsButtons
-} from '../formComponents'
+} from '../../../order/formComponents'
 
 export class CredentialsOperationForm extends Component {
   constructor(props) {

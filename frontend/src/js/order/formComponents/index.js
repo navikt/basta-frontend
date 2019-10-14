@@ -7,9 +7,9 @@ import EnvironmentsDropDown from './EnvironmentsDropDown'
 import ApplicationsDropDown from './ApplicationsDropDown'
 import QueueManagerDropDown from './QueueManagerDropDown'
 import MqClusterCheckBox from './MqClusterCheckBox'
-import OperationsButtons from './OperationsButtons'
-import ErrorPanel from './ErrorPanel'
-import InfoPanel from './InfoPanel'
+import OperationsButtons from '../../common/components/formComponents/OperationsButtons'
+import ErrorPanel from '../../common/components/formComponents/ErrorPanel'
+import InfoPanel from '../../common/components/formComponents/InfoPanel'
 import AlertStripe from './AlertStripe'
 
 module.exports = {

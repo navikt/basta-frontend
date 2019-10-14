@@ -8,11 +8,11 @@ import { NotFound } from '../containers/notfound/NotFound'
 import ServerOrderForm from '../order/create/ServerOrderForm'
 import OperationsForm from './components/OperationsForm'
 import OrderDetails from '../containers/order/OrderDetails'
-import MqQueue from '../order/create/MqQueue'
+import MqQueueOrderForm from '../order/create/MqQueueOrderForm'
 import BigIPOrderForm from '../order/create/BigIPOrderForm'
 import CertificateOrderForm from '../order/create/CertificateOrderForm'
 import OracleDbOrderForm from '../order/create/OracleDbOrderForm'
-import MqChannel from '../order/create/MqChannel'
+import MqChannelOrderForm from '../order/create/MqChannelOrderForm'
 import NodeOperationsForm from './components/Operations/NodeOperationsForm'
 import CredentialsOperationsForm from './components/Operations/CredentialsOperationForm'
 import CredentialOrderForm from '../order/create/CredentialOrderForm'
@@ -31,8 +31,8 @@ export const Routes = () => {
       <Route exact path="/create/bigip" component={BigIPOrderForm} />
       <Route exact path="/create/certificate" component={CertificateOrderForm} />
       <Route exact path="/create/credential" component={CredentialOrderForm} />
-      <Route exact path="/create/mqqueue" component={MqQueue} />
-      <Route exact path="/create/mqchannel" component={MqChannel} />
+      <Route exact path="/create/mqqueue" component={MqQueueOrderForm} />
+      <Route exact path="/create/mqchannel" component={MqChannelOrderForm} />
       <Route exact path="/create/oracle" component={OracleDbOrderForm} />
       <Route path="/create/:orderType" component={ServerOrderForm} />
       <Route path="*" component={NotFound} />

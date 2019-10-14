@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { OrderButtonGroup } from '../../common/components/formComponents/OrderButtonGroup'
+import { OrderButtonGroup } from './OrderButtonGroup'
 
 export class EnvironmentClassButtonGroup extends Component {
   constructor(props) {

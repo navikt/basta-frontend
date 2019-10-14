@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import FormSubmitSpinner from './FormSubmitSpinner'
-import { ErrorStripe } from '../../common/components/formComponents/AlertStripe'
+import { ErrorStripe } from './AlertStripe'
 import { resetForm } from '../../containers/order/actionCreators'
 export class SubmitButton extends Component {
   constructor(props) {

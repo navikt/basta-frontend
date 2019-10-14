@@ -8,30 +8,34 @@ import {
   QueueManagerDropDown,
   MqClusterCheckBox,
   ApplicationsDropDown
-} from '../../common/components/formComponents'
-import OrderDropDown from '../../common/components/formComponents/OrderDropDown'
+} from '../formComponents'
+import OrderDropDown from '../formComponents/OrderDropDown'
 import { submitForm } from '../../containers/order/actionCreators'
 import { fetchMqClusters, clearMqClusters } from '../../common/actionCreators'
 import SubmitButton from '../formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
 
-const mqImage = require('../../img/orderTypes/mq.png')
+const mqImage = require('../../../img/orderTypes/mq.png')
 
-export class MqQueue extends Component {
+const initialState = {
+  environmentName: '',
+  application: '',
+  name: '',
+  queueManager: '',
+  mqQueueName: '',
+  fasitAlias: '',
+  maxMessageSize: '4',
+  queueDepth: '5000',
+  createBackoutQueue: false,
+  exposed: false
+}
+
+export class MqQueueOrderForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
       environmentClass: 'u',
-      environmentName: '',
-      application: '',
-      name: '',
-      queueManager: '',
-      mqQueueName: '',
-      fasitAlias: '',
-      maxMessageSize: '4',
-      queueDepth: '5000',
-      createBackoutQueue: false,
-      exposed: false
+      ...initialState
     }
   }
 
@@ -39,18 +43,7 @@ export class MqQueue extends Component {
     const { environmentClass, environmentName, name, application, queueManager } = this.state
     const { dispatch } = this.props
     if (prevState.environmentClass != environmentClass) {
-      this.setState({
-        environmentName: '',
-        application: '',
-        name: '',
-        queueManager: '',
-        mqQueueName: '',
-        fasitAlias: '',
-        maxMessageSize: '4',
-        queueDepth: '5000',
-        createBackoutQueue: false,
-        exposed: false
-      })
+      this.setState(initialState)
     }
     if (prevState.environmentName != environmentName) {
       this.setState({ application: '', queueManager: '' })
@@ -164,7 +157,7 @@ export class MqQueue extends Component {
             />
             <OrderTextBox
               label="Queue name"
-              value={this.state[name]}
+              value={name}
               placeholder="Name of queue"
               onChange={v => this.handleChange('name', v)}
             />
@@ -239,7 +232,7 @@ export class MqQueue extends Component {
   }
 }
 
-MqQueue.propTypes = {
+MqQueueOrderForm.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
   onSubmit: PropTypes.func,
@@ -251,4 +244,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(MqQueue)
+export default connect(mapStateToProps)(MqQueueOrderForm)

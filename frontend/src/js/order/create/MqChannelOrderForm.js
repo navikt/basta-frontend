@@ -6,37 +6,35 @@ import {
   EnvironmentsDropDown,
   QueueManagerDropDown,
   ApplicationsDropDown
-} from '../../common/components/formComponents'
+} from '../formComponents'
 import { connect } from 'react-redux'
 import { submitForm } from '../../containers/order/actionCreators'
 import SubmitButton from '../formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
 
-const mqImage = require('../../img/orderTypes/mq.png')
+const mqImage = require('../../../img/orderTypes/mq.png')
 
-export class MqChannel extends Component {
+const initialState = {
+  environmentName: '',
+  application: '',
+  queueManager: '',
+  mqChannelName: '',
+  fasitAlias: ''
+}
+
+export class MqChannelOrderForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
       environmentClass: 'u',
-      environmentName: '',
-      application: '',
-      queueManager: '',
-      mqChannelName: '',
-      fasitAlias: ''
+      ...initialState
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { environmentClass, environmentName, mqChannelName, application } = this.state
     if (prevState.environmentClass != environmentClass) {
-      this.setState({
-        environmentName: '',
-        application: '',
-        queueManager: '',
-        mqChannelName: '',
-        fasitAlias: ''
-      })
+      this.setState(initialState)
     }
     if (prevState.environmentName != environmentName) {
       this.setState({ application: '', queueManager: '' })
@@ -140,7 +138,7 @@ export class MqChannel extends Component {
   }
 }
 
-MqChannel.propTypes = {
+MqChannelOrderForm.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
   onSubmit: PropTypes.func,
@@ -152,4 +150,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(MqChannel)
+export default connect(mapStateToProps)(MqChannelOrderForm)

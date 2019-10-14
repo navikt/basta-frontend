@@ -5,47 +5,39 @@ import {
   OrderButtonGroup,
   EnvironmentsDropDown,
   ApplicationsDropDown
-} from '../../common/components/formComponents'
+} from '../formComponents'
 import VirtualServerDropDown from '../formComponents/VirtualServerDropDown'
 import { submitForm } from '../../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import image from '../../img/orderTypes/big-ip.png'
-import { InfoStripe } from '../../common/components/formComponents/AlertStripe'
+import image from '../../../img/orderTypes/big-ip.png'
+import { InfoStripe } from '../formComponents/AlertStripe'
 import SubmitButton from '../formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../formComponents/ZoneButtonGroup'
 
-export class BigIPOrderForm extends Component {
-  resetState() {
-    return {
-      zone: 'fss',
-      environmentName: '',
-      application: '',
-      virtualserver: '',
-      matchingTypes: 'context',
-      contextroots: '',
-      hostname: ''
-    }
-  }
+const initialState = {
+  zone: 'fss',
+  environmentName: '',
+  application: '',
+  virtualserver: '',
+  matchingTypes: 'context',
+  contextroots: '',
+  hostname: ''
+}
 
+export class BigIPOrderForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
       environmentClass: 'u',
-      zone: 'fss',
-      environmentName: '',
-      application: '',
-      virtualserver: '',
-      matchingTypes: 'context',
-      contextroots: '',
-      hostname: ''
+      ...initialState
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.environmentClass !== prevState.environmentClass) {
-      this.setState(this.resetState())
+      this.setState(initialState)
     }
   }
 

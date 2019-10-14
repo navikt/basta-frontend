@@ -4,7 +4,7 @@ import {
   OrderTextBox,
   EnvironmentsDropDown,
   ApplicationsDropDown
-} from '../../common/components/formComponents'
+} from '../formComponents'
 import SubmitButton from '../formComponents/SubmitButton'
 import { submitForm } from '../../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
@@ -13,7 +13,7 @@ import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButto
 import ZoneButtonGroup from '../formComponents/ZoneButtonGroup'
 import OrderDbTemplateDropDown from '../formComponents/OrderDbTemplateDropDown'
 
-const oracleImage = require('../../img/orderTypes/oracle.png')
+const oracleImage = require('../../../img/orderTypes/oracle.png')
 
 const initialState = {
   zone: 'fss',

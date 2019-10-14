@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { ApplicationsDropDown } from '../../common/components/formComponents'
+import { ApplicationsDropDown } from '../formComponents'
 import SubmitButton from '../formComponents/SubmitButton'
 import { submitForm } from '../../containers/order/actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../formComponents/ZoneButtonGroup'
-import { certificateExistInFasit, clearExistingCertificateMessage } from '../../common/actionCreators'
-import { InfoStripe } from '../../common/components/formComponents/AlertStripe'
+import {
+  certificateExistInFasit,
+  clearExistingCertificateMessage
+} from '../../common/actionCreators'
+import { InfoStripe } from '../formComponents/AlertStripe'
 
-const certificateImage = require('../../img/orderTypes/security.png')
+const certificateImage = require('../../../img/orderTypes/security.png')
 const initialState = {
   zone: 'fss',
   application: ''
