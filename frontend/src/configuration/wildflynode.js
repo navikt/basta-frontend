@@ -75,10 +75,11 @@ const orderFields = {
     value: 'OpenJDK11'
   },
   classification: {
-    label: 'Custom',
-    description: 'Classify this server as custom',
-    fieldType: 'checkBox',
-    value: false
+    label: 'Classification',
+    description: 'If you need to do manual config on the server choose custom',
+    fieldType: 'buttonGroup',
+    alternatives: [{ label: 'Standard', value: 'standard' }, { label: 'Custom', value: 'custom' }],
+    value: 'standard'
   }
 }
 module.exports = {

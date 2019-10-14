@@ -112,15 +112,6 @@ export function* submitForm(action) {
   }
 }
 
-/*function toClassificationObject(order) {
-  const { classification, ...orderPayload } = order
-
-  return {
-    ...orderPayload,
-    classification: { type: classification }
-  }
-}*/
-
 export function* getStatusLog(action) {
   try {
     yield put({ type: STATUSLOG_FETCHING })

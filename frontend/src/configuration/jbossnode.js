@@ -5,9 +5,6 @@ const orderFields = {
   nodeType: {
     value: 'JBOSS'
   },
-  classification: {
-    value: { type: 'standard' }
-  },
   environmentClass: {
     fieldType: 'environmentClass',
     value: 'u'
@@ -73,6 +70,13 @@ const orderFields = {
       { label: 'OpenJDK 8', value: 'OpenJDK8' }
     ],
     value: 'OpenJDK7'
+  },
+  classification: {
+    label: 'Classification',
+    description: 'If you need to do manual config on the server choose custom',
+    fieldType: 'buttonGroup',
+    alternatives: [{ label: 'Standard', value: 'standard' }, { label: 'Custom', value: 'custom' }],
+    value: 'standard'
   },
   description: {
     label: 'Description',
