@@ -70,7 +70,6 @@ export class ServerOrderForm extends Component {
                   return (
                     <OrderNumberBox
                       key={orderFieldKey}
-                      valid={orderField.valid}
                       label={orderField.label}
                       value={this.state[orderFieldKey]}
                       min={orderField.min}

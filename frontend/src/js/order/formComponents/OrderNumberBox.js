@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { isValidElement } from 'react'
 import PropTypes from 'prop-types'
 
 export const OrderNumberBox = props => {
-  const { label, min, max, description, onChange, value, valid } = props
+  const { label, min, max, description, onChange, value } = props
   return (
     <div className="formComponentGrid">
       <div className="formComponentField">
@@ -17,7 +17,7 @@ export const OrderNumberBox = props => {
           onChange={e => onChange(Number(e.target.value))}
         />
         <div className="formComponentDescription">{description}</div>
-        {!valid ? (
+        {!isValid(value, min, max) ? (
           <div className="formComponentError">
             Please enter a number between {min} and {max}
           </div>
@@ -26,6 +26,11 @@ export const OrderNumberBox = props => {
     </div>
   )
 }
+
+const isValid = (value, min, max) => {
+  return value >= min && value <= max
+}
+
 OrderNumberBox.propTypes = {
   label: PropTypes.string,
   description: PropTypes.string,

@@ -3,7 +3,7 @@ import sinon from 'sinon'
 import { shallow } from 'enzyme'
 import { NodeOperationsForm } from './NodeOperationsForm'
 import OperateNodeLookup from './OperateNodeLookup'
-import { ErrorPanel, OperationsButtons } from '../formComponents'
+import { ErrorPanel, OperationsButtons } from '../../../order/formComponents'
 
 const props = {
   user: {
