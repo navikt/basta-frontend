@@ -28,7 +28,7 @@ const orderFields = {
       { label: 'Application (ap)', value: 'windows_ap' },
       { label: 'Information server (is)', value: 'windows_is' }
     ],
-    value: 'ap'
+    value: 'windows_ap'
   },
   serverCount: {
     label: 'Servers',
