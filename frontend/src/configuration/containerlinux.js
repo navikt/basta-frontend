@@ -39,7 +39,7 @@ const orderFields = {
     fieldType: 'number',
     min: 2,
     max: 32,
-    value: 1
+    value: 2
   },
   extraDisk: {
     label: 'Disk til lagrings-node',
