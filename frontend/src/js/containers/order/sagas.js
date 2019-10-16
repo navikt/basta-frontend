@@ -84,7 +84,7 @@ export function* submitForm(action) {
         value = yield call(postForm, `/rest/vm/orders/was/dmgr`, action.orders)
         break
       case 'wasnode':
-        value = yield call(postForm, `/rest/vm/orders/wasnode`, action.orders)
+        value = yield call(postForm, `/rest/vm/orders/was/node`, action.orders)
         break
       case 'wildflynode':
         value = yield call(postForm, `/rest/vm/orders/wildfly`, action.orders)
