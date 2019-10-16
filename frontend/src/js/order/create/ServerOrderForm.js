@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -25,28 +24,60 @@ export class ServerOrderForm extends Component {
     this.configuration = orderTypes[this.currentComponent]
     this.orderFields = this.configuration.orderFields
 
+    this.state = this.initialState()
+  }
+
+  initialState() {
+    let newState = {}
+
     for (const key in this.orderFields) {
-      this.orderFields[key].valid = true
-      this.state = { ...this.state, [key]: this.orderFields[key].value }
+      newState[key] = this.orderFields[key].value
+    }
+
+    return newState
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.environmentClass !== prevState.environmentClass) {
+      this.setState(this.initialState(this.props))
     }
   }
 
   handleChange(field, value) {
-    const orderField = this.orderFields[field]
-    if (value < orderField.min || value > orderField.max) {
-      orderField.valid = false
-    } else {
-      orderField.valid = true
-    }
-    this.orderFields[field].value = value
     this.setState({ [field]: value })
   }
 
   validOrder() {
-    for (const key in this.orderFields) {
-      if (!this.orderFields[key].valid) return false
+    return Object.keys(this.orderFields)
+      .filter(orderFieldKey => this.unvalidatableField(orderFieldKey))
+      .map(orderFieldKey => this.isValidField(orderFieldKey))
+      .reduce((accumulator, currentValue) => accumulator && currentValue)
+  }
+
+  unvalidatableField(orderFieldKey) {
+    const fieldType = this.orderFields[orderFieldKey].fieldType
+    return (
+      fieldType !== undefined &&
+      fieldType !== 'environmentClass' &&
+      fieldType !== 'zone' &&
+      fieldType !== 'buttonGroup' &&
+      fieldType !== 'checkBox'
+    )
+  }
+
+  isValidField(orderFieldKey) {
+    const fieldType = this.orderFields[orderFieldKey].fieldType
+    switch (fieldType) {
+      case 'environments':
+      case 'applications':
+      case 'text':
+        return this.state[orderFieldKey] !== ''
+      case 'number':
+        return (
+          this.state[orderFieldKey] >= this.orderFields[orderFieldKey].min &&
+          this.state[orderFieldKey] <= this.orderFields[orderFieldKey].max
+        )
     }
-    return true
   }
 
   render() {
