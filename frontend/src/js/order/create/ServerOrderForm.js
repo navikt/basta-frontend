@@ -39,7 +39,8 @@ export class ServerOrderForm extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.environmentClass !== prevState.environmentClass) {
-      this.setState(this.initialState(this.props))
+      const { environmentClass, ...newState } = this.initialState()
+      this.setState(newState)
     }
   }
 
