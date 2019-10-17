@@ -11,7 +11,7 @@ import {
 import SubmitButton from '../formComponents/SubmitButton'
 import orderTypes from '../../../configuration'
 import OrderDropDown from '../formComponents/OrderDropDown'
-import { submitForm } from '../../containers/order/actionCreators'
+import { submitForm } from '../actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
@@ -202,7 +202,11 @@ export class ServerOrderForm extends Component {
             })}
             <SubmitButton
               disabled={!this.validOrder()}
-              onClick={() => dispatch(submitForm(this.currentComponent, this.state))}
+              onClick={() =>
+                dispatch(
+                  submitForm(this.currentComponent, this.state, this.configuration.orderApiPath)
+                )
+              }
             />
           </div>
         </div>

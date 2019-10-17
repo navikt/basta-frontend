@@ -4,7 +4,7 @@ import { watchInitialize } from './initialize'
 import { watcHistory } from '../../containers/history/sagas'
 import { watchOrderData } from './orderformData'
 import { watchOperations } from '../../containers/operate/operateSagas'
-import { watchOrder } from '../../containers/order/sagas'
+import { watchOrder } from '../../order/create/createOrderSagas'
 
 export default function*() {
   yield all([

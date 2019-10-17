@@ -1,6 +1,7 @@
 const description = 'Application Server'
 const title = 'Liberty '
 const image = require('../img/orderTypes/liberty.png')
+const orderApiPath = '/rest/vm/orders/liberty'
 const orderFields = {
   nodeType: {
     value: 'LIBERTY'
@@ -66,5 +67,6 @@ module.exports = {
   description,
   title,
   image,
+  orderApiPath,
   orderFields
 }

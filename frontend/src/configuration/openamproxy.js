@@ -1,6 +1,7 @@
 const title = 'OpenAM'
 const description = 'proxy'
 const image = require('../img/orderTypes/openam.png')
+const orderApiPath = '/rest/vm/orders/openam/proxy'
 const orderFields = {
   environmentClass: {
     fieldType: 'environmentClass',
@@ -23,5 +24,6 @@ module.exports = {
   description,
   title,
   image,
+  orderApiPath,
   orderFields
 }

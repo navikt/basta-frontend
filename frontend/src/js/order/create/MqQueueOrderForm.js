@@ -10,7 +10,7 @@ import {
   ApplicationsDropDown
 } from '../formComponents'
 import OrderDropDown from '../formComponents/OrderDropDown'
-import { submitForm } from '../../containers/order/actionCreators'
+import { submitForm } from '../actionCreators'
 import { fetchMqClusters, clearMqClusters } from '../../common/actionCreators'
 import SubmitButton from '../formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'

@@ -1,6 +1,7 @@
 const description = 'Node'
 const title = 'BPM'
 const image = require('../img/orderTypes/websphere.png')
+const orderApiPath = '/rest/vm/orders/bpm/node'
 const orderFields = {
   nodeType: {
     value: 'BPM_NODES'
@@ -48,5 +49,6 @@ module.exports = {
   description,
   title,
   image,
+  orderApiPath,
   orderFields
 }

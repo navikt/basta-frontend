@@ -7,7 +7,7 @@ import Spinner from '../../common/components/Spinner'
 import Request from './Request'
 import Results from './Results'
 import Log from './Log'
-import { getOrder, getStatusLog } from './actionCreators'
+import { getOrder, getStatusLog } from '../../order/actionCreators'
 
 export class OrderDetails extends Component {
   constructor(props) {

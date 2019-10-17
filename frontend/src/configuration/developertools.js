@@ -1,6 +1,7 @@
 const description = 'Order new Devillo server'
 const title = 'Developer tools available in Devillo'
 const image = require('../img/orderTypes/devtools.png')
+const orderApiPath = '/rest/vm/orders/devtools'
 const orderFields = {
   nodeType: {
     value: 'DEV_TOOLS'
@@ -57,5 +58,6 @@ module.exports = {
   description,
   title,
   image,
+  orderApiPath,
   orderFields
 }

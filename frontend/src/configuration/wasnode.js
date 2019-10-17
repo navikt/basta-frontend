@@ -1,6 +1,7 @@
 const description = 'Application Server'
 const title = 'Websphere'
 const image = require('../img/orderTypes/websphere.png')
+const orderApiPath = '/rest/vm/orders/was/node'
 const orderFields = {
   nodeType: {
     value: 'WAS_NODES'
@@ -79,5 +80,6 @@ module.exports = {
   description,
   title,
   image,
+  orderApiPath,
   orderFields
 }

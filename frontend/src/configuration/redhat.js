@@ -1,6 +1,7 @@
 const title = 'Red Hat'
 const description = 'Linux'
 const image = require('../img/orderTypes/redhat.png')
+const orderApiPath = '/rest/vm/orders/linux'
 const orderFields = {
   nodeType: {
     value: 'PLAIN_LINUX'
@@ -69,5 +70,6 @@ module.exports = {
   description,
   title,
   image,
+  orderApiPath,
   orderFields
 }

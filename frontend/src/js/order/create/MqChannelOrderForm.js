@@ -8,7 +8,7 @@ import {
   ApplicationsDropDown
 } from '../formComponents'
 import { connect } from 'react-redux'
-import { submitForm } from '../../containers/order/actionCreators'
+import { submitForm } from '../actionCreators'
 import SubmitButton from '../formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
 

@@ -1,10 +1,10 @@
 import { call } from 'redux-saga/effects'
 import { expectSaga } from 'redux-saga-test-plan'
-import { submitForm, getStatusLog, getOrderDetails } from './sagas'
-import orderReducer from './reducers'
+import { submitForm, getStatusLog, getOrderDetails } from './create/createOrderSagas'
+import orderReducer from '../containers/order/reducers'
 import * as matchers from 'redux-saga-test-plan/matchers'
 import { throwError } from 'redux-saga-test-plan/providers'
-import { getUrl, postForm } from '../../common/utils'
+import { getUrl, postForm } from '../common/utils'
 
 it('(Order view sagas - submitForm) POSTs form and stores response in store', () => {
   const action = {

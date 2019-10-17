@@ -7,7 +7,7 @@ import {
   ApplicationsDropDown
 } from '../formComponents'
 import VirtualServerDropDown from '../formComponents/VirtualServerDropDown'
-import { submitForm } from '../../containers/order/actionCreators'
+import { submitForm } from '../actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import image from '../../../img/orderTypes/big-ip.png'

@@ -1,6 +1,7 @@
 const title = 'OpenAM'
 const description = 'Server'
 const image = require('../img/orderTypes/openam.png')
+const orderApiPath = '/rest/vm/orders/openam/server'
 const orderFields = {
   zone: {
     value: 'sbs'
@@ -26,5 +27,6 @@ module.exports = {
   description,
   title,
   image,
+  orderApiPath,
   orderFields
 }

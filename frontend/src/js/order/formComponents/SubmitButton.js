@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import FormSubmitSpinner from './FormSubmitSpinner'
 import { ErrorStripe } from './AlertStripe'
-import { resetForm } from '../../containers/order/actionCreators'
+import { resetForm } from '../actionCreators'
 export class SubmitButton extends Component {
   constructor(props) {
     super(props)

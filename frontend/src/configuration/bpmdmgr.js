@@ -1,6 +1,8 @@
 const description = 'Deployment Manager'
 const title = 'BPM'
 const image = require('../img/orderTypes/websphere.png')
+const orderApiPath = '/rest/vm/orders/bpm/dmgr'
+
 const orderFields = {
   nodeType: {
     value: 'BPM_DEPLOYMENT_MANAGER'
@@ -33,5 +35,6 @@ module.exports = {
   description,
   title,
   image,
+  orderApiPath,
   orderFields
 }

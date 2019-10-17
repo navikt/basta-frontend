@@ -6,7 +6,7 @@ import {
   ApplicationsDropDown
 } from '../formComponents'
 import SubmitButton from '../formComponents/SubmitButton'
-import { submitForm } from '../../containers/order/actionCreators'
+import { submitForm } from '../actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
