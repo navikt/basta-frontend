@@ -6,7 +6,7 @@ import {
   ApplicationsDropDown,
   OrderCheckBox
 } from '../../order/formComponents'
-import orderTypes from '../../../configuration/'
+import orderTypes from '../../order/create/configuration'
 import OrderDropDown from '../../order/formComponents/OrderDropDown'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'

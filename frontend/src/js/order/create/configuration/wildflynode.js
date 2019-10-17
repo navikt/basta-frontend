@@ -1,10 +1,10 @@
 const description = 'Application Server'
-const title = 'Jboss'
-const image = require('../img/orderTypes/jboss.png')
-const orderApiPath = '/rest/vm/orders/jboss'
+const title = 'Wildfly'
+const image = require('../../../../img/orderTypes/wildfly.png')
+const orderApiPath = '/rest/vm/orders/wildfly'
 const orderFields = {
   nodeType: {
-    value: 'JBOSS'
+    value: 'WILDFLY'
   },
   environmentClass: {
     fieldType: 'environmentClass',
@@ -55,22 +55,25 @@ const orderFields = {
     max: 100,
     value: 0
   },
-  eapVersion: {
-    label: 'EAP version',
+  wildflyVersion: {
+    label: 'Wildfly version',
     description: '',
     fieldType: 'buttonGroup',
-    alternatives: [{ label: 'EAP 6', value: 'EAP6' }, { label: 'EAP 7', value: 'EAP7' }],
-    value: 'EAP6'
+    alternatives: [
+      { label: 'Wildfly 11', value: 'wildfly11' },
+      { label: 'Wildfly 17', value: 'wildfly17' }
+    ],
+    value: 'wildfly17'
   },
   javaVersion: {
     label: 'Java version',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [
-      { label: 'OpenJDK 7', value: 'OpenJDK7' },
-      { label: 'OpenJDK 8', value: 'OpenJDK8' }
+      { label: 'OpenJDK 8', value: 'OpenJDK8' },
+      { label: 'OpenJDK 11', value: 'OpenJDK11' }
     ],
-    value: 'OpenJDK7'
+    value: 'OpenJDK11'
   },
   classification: {
     label: 'Classification',
@@ -78,12 +81,6 @@ const orderFields = {
     fieldType: 'buttonGroup',
     alternatives: [{ label: 'Standard', value: 'standard' }, { label: 'Custom', value: 'custom' }],
     value: 'standard'
-  },
-  description: {
-    label: 'Description',
-    description: 'What is this server used for?',
-    fieldType: 'text',
-    value: ''
   }
 }
 module.exports = {

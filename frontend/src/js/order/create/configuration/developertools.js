@@ -1,35 +1,19 @@
-const title = 'Windows'
-const description = 'Server'
-const image = require('../img/orderTypes/windows.png')
-const orderApiPath = '/rest/vm/orders/windows'
+const description = 'Order new Devillo server'
+const title = 'Developer tools available in Devillo'
+const image = require('../../../../img/orderTypes/devtools.png')
+const orderApiPath = '/rest/vm/orders/devtools'
 const orderFields = {
+  nodeType: {
+    value: 'DEV_TOOLS'
+  },
   environmentClass: {
-    fieldType: 'environmentClass',
     value: 'u'
   },
   zone: {
-    fieldType: 'zone',
     value: 'fss'
   },
   osType: {
-    label: 'Operating system',
-    description: '',
-    fieldType: 'buttonGroup',
-    alternatives: [
-      { label: 'Windows Server 2012', value: 'win2012' },
-      { label: 'Windows Server 2019', value: 'win2019' }
-    ],
-    value: 'win2019'
-  },
-  middleWareType: {
-    label: 'Server type',
-    description: '',
-    fieldType: 'buttonGroup',
-    alternatives: [
-      { label: 'Application (ap)', value: 'windows_ap' },
-      { label: 'Information server (is)', value: 'windows_is' }
-    ],
-    value: 'windows_ap'
+    value: 'rhel70'
   },
   serverCount: {
     label: 'Servers',
@@ -53,9 +37,9 @@ const orderFields = {
     fieldType: 'number',
     min: 2,
     max: 32,
-    value: 4
+    value: 2
   },
-  extraDisk: {
+  Extradisk: {
     label: 'Extra disk',
     description: 'GB',
     fieldType: 'number',

@@ -12,6 +12,7 @@ import {
   clearExistingCertificateMessage
 } from '../../common/actionCreators'
 import { InfoStripe } from '../formComponents/AlertStripe'
+import { orderApiPath } from './configuration/certificate'
 
 const certificateImage = require('../../../img/orderTypes/security.png')
 const initialState = {
@@ -84,7 +85,7 @@ export class CertificateOrderForm extends Component {
             />
             <SubmitButton
               disabled={!this.validOrder()}
-              onClick={() => dispatch(submitForm('certificate', this.state))}
+              onClick={() => dispatch(submitForm('certificate', this.state, orderApiPath))}
             />
           </div>
         </div>

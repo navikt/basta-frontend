@@ -1,11 +1,8 @@
-const title = 'Red Hat'
-const description = 'Linux'
-const image = require('../img/orderTypes/redhat.png')
-const orderApiPath = '/rest/vm/orders/linux'
+const title = 'Windows'
+const description = 'Server'
+const image = require('../../../../img/orderTypes/windows.png')
+const orderApiPath = '/rest/vm/orders/windows'
 const orderFields = {
-  nodeType: {
-    value: 'PLAIN_LINUX'
-  },
   environmentClass: {
     fieldType: 'environmentClass',
     value: 'u'
@@ -15,11 +12,24 @@ const orderFields = {
     value: 'fss'
   },
   osType: {
-    label: 'OS version',
+    label: 'Operating system',
     description: '',
     fieldType: 'buttonGroup',
-    alternatives: [{ label: 'RHEL 6.0', value: 'rhel60' }, { label: 'RHEL 7.0', value: 'rhel70' }],
-    value: 'rhel70'
+    alternatives: [
+      { label: 'Windows Server 2012', value: 'win2012' },
+      { label: 'Windows Server 2019', value: 'win2019' }
+    ],
+    value: 'win2019'
+  },
+  middleWareType: {
+    label: 'Server type',
+    description: '',
+    fieldType: 'buttonGroup',
+    alternatives: [
+      { label: 'Application (ap)', value: 'windows_ap' },
+      { label: 'Information server (is)', value: 'windows_is' }
+    ],
+    value: 'windows_ap'
   },
   serverCount: {
     label: 'Servers',
@@ -43,7 +53,7 @@ const orderFields = {
     fieldType: 'number',
     min: 2,
     max: 32,
-    value: 2
+    value: 4
   },
   extraDisk: {
     label: 'Extra disk',
@@ -58,12 +68,6 @@ const orderFields = {
     description: 'What is this server used for?',
     fieldType: 'text',
     value: ''
-  },
-  ibmSw: {
-    label: 'IBM',
-    description: 'Will install ILMT agent',
-    fieldType: 'checkBox',
-    value: false
   }
 }
 module.exports = {

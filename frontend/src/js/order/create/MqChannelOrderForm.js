@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 import { submitForm } from '../actionCreators'
 import SubmitButton from '../formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
+import { orderApiPath } from './configuration/channel'
 
 const mqImage = require('../../../img/orderTypes/mq.png')
 
@@ -129,7 +130,7 @@ export class MqChannelOrderForm extends Component {
             ) : null}
             <SubmitButton
               disabled={!this.validOrder()}
-              onClick={() => dispatch(submitForm('channel', this.state))}
+              onClick={() => dispatch(submitForm('channel', this.state, orderApiPath))}
             />
           </div>
         </div>

@@ -1,6 +1,6 @@
 const title = 'OpenAM'
 const description = 'proxy'
-const image = require('../img/orderTypes/openam.png')
+const image = require('../../../../img/orderTypes/openam.png')
 const orderApiPath = '/rest/vm/orders/openam/proxy'
 const orderFields = {
   environmentClass: {

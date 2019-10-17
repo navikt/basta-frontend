@@ -1,6 +1,6 @@
 const title = 'MQ queue operations'
 const description = 'Start, stop or delete'
-const image = require('../img/orderTypes/mq.png')
+const image = require('../../../../img/orderTypes/mq.png')
 const orderFields = {
   environmentClass: {
     label: 'Environment class',

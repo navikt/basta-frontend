@@ -1,6 +1,6 @@
 const title = 'Container Linux'
 const description = 'CoreOS'
-const image = require('../img/orderTypes/containerlinux.png')
+const image = require('../../../../img/orderTypes/containerlinux.png')
 const orderApiPath = '/rest/vm/orders/containerlinux'
 
 const orderFields = {

@@ -26,42 +26,7 @@ export function* submitForm(action) {
   const apiPath = action.apiPath
 
   try {
-    if (apiPath) {
-      value = yield call(postForm, apiPath, action.orders)
-    } else {
-      switch (action.key) {
-        case 'bigip':
-          const bigIpPayload = {
-            ...action.orders,
-            useHostnameMatching: action.orders.matchingTypes === 'hostname' ? 'true' : 'false'
-          }
-          value = yield call(postForm, `/rest/v1/bigip`, bigIpPayload)
-          break
-        case 'oracle':
-          //dbTemplate is an object. We need to remove that from the payload and get the dbTemplate.value and set it as templateURI
-          const { dbTemplate, ...dbPayload } = action.orders
-          const dbOrderPayload = {
-            ...dbPayload,
-            templateURI: dbTemplate.value
-          }
-          value = yield call(postForm, `/rest/v1/oracledb`, dbOrderPayload)
-          break
-        case 'certificate':
-          value = yield call(postForm, `/rest/orders/serviceuser/certificate`, action.orders)
-          break
-        case 'credential':
-          value = yield call(postForm, `/rest/orders/serviceuser/credential`, action.orders)
-          break
-        case 'channel':
-          value = yield call(postForm, '/rest/v1/mq/order/channel', action.orders)
-          break
-        case 'queue':
-          // Remove fields name and exposed from orders as this is not needed by basta api
-          const { name, exposed, ...payload } = action.orders
-          value = yield call(postForm, '/rest/v1/mq/order/queue', payload)
-          break
-      }
-    }
+    value = yield call(postForm, apiPath, action.orders)
     yield put({ type: FORM_SUBMIT_SUCCESSFUL, value })
 
     const orderId = value.id ? value.id : value

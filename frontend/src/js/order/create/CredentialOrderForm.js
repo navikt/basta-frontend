@@ -10,6 +10,7 @@ import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButto
 import ZoneButtonGroup from '../formComponents/ZoneButtonGroup'
 import { InfoStripe } from '../formComponents/AlertStripe'
 import { clearExistingCredentialMessage } from '../../common/actionCreators'
+import { orderApiPath } from './configuration/credentials'
 
 const certificateImage = require('../../../img/orderTypes/security.png')
 const initialState = {
@@ -103,7 +104,7 @@ export class CredentialOrderForm extends Component {
             />
             <SubmitButton
               disabled={!this.validOrder()}
-              onClick={() => dispatch(submitForm('credential', this.state))}
+              onClick={() => dispatch(submitForm('credential', this.state, orderApiPath))}
             />
           </div>
         </div>

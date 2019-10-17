@@ -1,10 +1,10 @@
 const description = 'Application Server'
-const title = 'Wildfly'
-const image = require('../img/orderTypes/wildfly.png')
-const orderApiPath = '/rest/vm/orders/wildfly'
+const title = 'Liberty '
+const image = require('../../../../img/orderTypes/liberty.png')
+const orderApiPath = '/rest/vm/orders/liberty'
 const orderFields = {
   nodeType: {
-    value: 'WILDFLY'
+    value: 'LIBERTY'
   },
   environmentClass: {
     fieldType: 'environmentClass',
@@ -54,26 +54,6 @@ const orderFields = {
     min: 0,
     max: 100,
     value: 0
-  },
-  wildflyVersion: {
-    label: 'Wildfly version',
-    description: '',
-    fieldType: 'buttonGroup',
-    alternatives: [
-      { label: 'Wildfly 11', value: 'wildfly11' },
-      { label: 'Wildfly 17', value: 'wildfly17' }
-    ],
-    value: 'wildfly17'
-  },
-  javaVersion: {
-    label: 'Java version',
-    description: '',
-    fieldType: 'buttonGroup',
-    alternatives: [
-      { label: 'OpenJDK 8', value: 'OpenJDK8' },
-      { label: 'OpenJDK 11', value: 'OpenJDK11' }
-    ],
-    value: 'OpenJDK11'
   },
   classification: {
     label: 'Classification',

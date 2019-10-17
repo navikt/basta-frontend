@@ -1,6 +1,6 @@
 const title = 'MQ channel operations'
 const description = 'Start, stop or delete'
-const image = require('../img/orderTypes/mq.png')
+const image = require('../../../../img/orderTypes/mq.png')
 const orderFields = {
   environmentClass: {
     fieldType: 'environmentClass',

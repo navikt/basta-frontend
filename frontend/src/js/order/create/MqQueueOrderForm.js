@@ -14,6 +14,7 @@ import { submitForm } from '../actionCreators'
 import { fetchMqClusters, clearMqClusters } from '../../common/actionCreators'
 import SubmitButton from '../formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
+import { orderApiPath } from './configuration/queue'
 
 const mqImage = require('../../../img/orderTypes/mq.png')
 
@@ -92,6 +93,12 @@ export class MqQueueOrderForm extends Component {
     )
   }
 
+  dispatchSubmit() {
+    // Remove fields name and exposed from orders as this is not needed by basta api
+    const { name, exposed, ...payload } = this.state
+    this.props.dispatch(submitForm('queue', payload, orderApiPath))
+  }
+
   guessClusterName() {
     const { environmentClass, environmentName } = this.state
     if (environmentClass === 'u') {
@@ -116,7 +123,6 @@ export class MqQueueOrderForm extends Component {
   }
 
   render() {
-    const { user, dispatch } = this.props
     const {
       environmentName,
       application,
@@ -221,10 +227,7 @@ export class MqQueueOrderForm extends Component {
                 />
               </div>
             ) : null}
-            <SubmitButton
-              disabled={!this.validOrder()}
-              onClick={() => dispatch(submitForm('queue', this.state))}
-            />
+            <SubmitButton disabled={!this.validOrder()} onClick={() => this.dispatchSubmit()} />
           </div>
         </div>
       </div>
@@ -238,10 +241,5 @@ MqQueueOrderForm.propTypes = {
   onSubmit: PropTypes.func,
   dispatch: PropTypes.func
 }
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  }
-}
 
-export default connect(mapStateToProps)(MqQueueOrderForm)
+export default connect()(MqQueueOrderForm)

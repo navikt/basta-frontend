@@ -1,14 +1,10 @@
 const description = 'Deployment Manager'
-const title = 'BPM'
-const image = require('../img/orderTypes/websphere.png')
-const orderApiPath = '/rest/vm/orders/bpm/dmgr'
-
+const title = 'Websphere'
+const image = require('../../../../img/orderTypes/websphere.png')
+const orderApiPath = '/rest/vm/orders/was/dmgr'
 const orderFields = {
   nodeType: {
-    value: 'BPM_DEPLOYMENT_MANAGER'
-  },
-  zone: {
-    value: 'fss'
+    value: 'WAS_DEPLOYMENT_MANAGER'
   },
   serverCount: {
     value: 1
@@ -26,9 +22,20 @@ const orderFields = {
     fieldType: 'environmentClass',
     value: 'u'
   },
+  zone: {
+    fieldType: 'zone',
+    value: 'fss'
+  },
   environmentName: {
     fieldType: 'environments',
     value: ''
+  },
+  wasVersion: {
+    label: 'WAS version',
+    description: '',
+    fieldType: 'buttonGroup',
+    alternatives: [{ label: 'WAS 8', value: 'WAS8' }, { label: 'WAS 9', value: 'WAS9' }],
+    value: 'WAS9'
   }
 }
 module.exports = {

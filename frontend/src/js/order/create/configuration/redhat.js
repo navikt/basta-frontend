@@ -1,18 +1,24 @@
-const description = 'Order new Devillo server'
-const title = 'Developer tools available in Devillo'
-const image = require('../img/orderTypes/devtools.png')
-const orderApiPath = '/rest/vm/orders/devtools'
+const title = 'Red Hat'
+const description = 'Linux'
+const image = require('../../../../img/orderTypes/redhat.png')
+const orderApiPath = '/rest/vm/orders/linux'
 const orderFields = {
   nodeType: {
-    value: 'DEV_TOOLS'
+    value: 'PLAIN_LINUX'
   },
   environmentClass: {
+    fieldType: 'environmentClass',
     value: 'u'
   },
   zone: {
+    fieldType: 'zone',
     value: 'fss'
   },
   osType: {
+    label: 'OS version',
+    description: '',
+    fieldType: 'buttonGroup',
+    alternatives: [{ label: 'RHEL 6.0', value: 'rhel60' }, { label: 'RHEL 7.0', value: 'rhel70' }],
     value: 'rhel70'
   },
   serverCount: {
@@ -39,7 +45,7 @@ const orderFields = {
     max: 32,
     value: 2
   },
-  Extradisk: {
+  extraDisk: {
     label: 'Extra disk',
     description: 'GB',
     fieldType: 'number',
@@ -52,6 +58,12 @@ const orderFields = {
     description: 'What is this server used for?',
     fieldType: 'text',
     value: ''
+  },
+  ibmSw: {
+    label: 'IBM',
+    description: 'Will install ILMT agent',
+    fieldType: 'checkBox',
+    value: false
   }
 }
 module.exports = {

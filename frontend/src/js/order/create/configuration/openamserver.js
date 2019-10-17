@@ -1,6 +1,6 @@
 const title = 'OpenAM'
 const description = 'Server'
-const image = require('../img/orderTypes/openam.png')
+const image = require('../../../../img/orderTypes/openam.png')
 const orderApiPath = '/rest/vm/orders/openam/server'
 const orderFields = {
   zone: {

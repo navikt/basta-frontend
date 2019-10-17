@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  OrderTextBox,
-  EnvironmentsDropDown,
-  ApplicationsDropDown
-} from '../formComponents'
+import { OrderTextBox, EnvironmentsDropDown, ApplicationsDropDown } from '../formComponents'
 import SubmitButton from '../formComponents/SubmitButton'
 import { submitForm } from '../actionCreators'
 import { withRouter } from 'react-router-dom'
@@ -12,6 +8,7 @@ import { connect } from 'react-redux'
 import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../formComponents/ZoneButtonGroup'
 import OrderDbTemplateDropDown from '../formComponents/OrderDbTemplateDropDown'
+import { orderApiPath } from './configuration/oracle'
 
 const oracleImage = require('../../../img/orderTypes/oracle.png')
 
@@ -66,6 +63,17 @@ export class OracleDbOrderForm extends Component {
     )
   }
 
+  dispatchSubmit() {
+    //dbTemplate is an object. We need to remove that from the payload and get the dbTemplate.value and set it as templateURI
+    const { dbTemplate, ...formData } = this.state
+    const dbOrderPayload = {
+      ...formData,
+      templateURI: dbTemplate.value
+    }
+
+    this.props.dispatch(submitForm('oracle', dbOrderPayload, orderApiPath))
+  }
+
   trimToLength(string, length) {
     if (string.length <= length) {
       return string
@@ -96,7 +104,6 @@ export class OracleDbOrderForm extends Component {
       fasitAlias,
       dbTemplate
     } = this.state
-    const { dispatch } = this.props
 
     return (
       <div>
@@ -144,10 +151,7 @@ export class OracleDbOrderForm extends Component {
               zone={zone}
               value={dbTemplate.label}
             />
-            <SubmitButton
-              disabled={!this.validOrder()}
-              onClick={() => dispatch(submitForm('oracle', this.state))}
-            />
+            <SubmitButton disabled={!this.validOrder()} onClick={() => this.dispatchSubmit()} />
           </div>
         </div>
       </div>

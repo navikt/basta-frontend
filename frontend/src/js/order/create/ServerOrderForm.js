@@ -9,7 +9,7 @@ import {
   ApplicationsDropDown
 } from '../formComponents'
 import SubmitButton from '../formComponents/SubmitButton'
-import orderTypes from '../../../configuration'
+import orderTypes from './configuration'
 import OrderDropDown from '../formComponents/OrderDropDown'
 import { submitForm } from '../actionCreators'
 import { withRouter } from 'react-router-dom'

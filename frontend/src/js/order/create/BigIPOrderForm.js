@@ -15,6 +15,7 @@ import { InfoStripe } from '../formComponents/AlertStripe'
 import SubmitButton from '../formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../formComponents/ZoneButtonGroup'
+import { orderApiPath } from './configuration/bigip'
 
 const initialState = {
   zone: 'fss',
@@ -54,6 +55,18 @@ export class BigIPOrderForm extends Component {
     )
   }
 
+  dispatchSubmit() {
+    // We need to transform local state to a format basta api accepts. Matching types field is only a conveinience when dealing with local state
+    // it allows use the buttongroup component directly
+    const { matchingTypes, ...formData } = this.state
+    const payload = {
+      ...formData,
+      useHostnameMatching: matchingTypes === 'hostname' ? 'true' : 'false'
+    }
+
+    this.props.dispatch(submitForm('bigip', payload, orderApiPath))
+  }
+
   render() {
     const {
       environmentClass,
@@ -65,7 +78,6 @@ export class BigIPOrderForm extends Component {
       contextroots,
       hostname
     } = this.state
-    const { dispatch } = this.props
     return (
       <div>
         <div className="orderForm">
@@ -131,13 +143,10 @@ export class BigIPOrderForm extends Component {
               onChange={v => this.handleChange('hostname', v)}
             />
             <InfoStripe
-              message="Bruk denne matching typen dersom du har kontroll på DNS som er i bruk. Hvis du er usikker, spør Marcel eller noen i #aura på Slack"
+              message="Use hostname matching only if you have control over this DNS entry. If you are unsure what this means, ask Marcel or #aura on Slack"
               show={matchingTypes === 'hostname'}
             />
-            <SubmitButton
-              disabled={!this.validOrder()}
-              onClick={() => dispatch(submitForm('bigip', this.state))}
-            />
+            <SubmitButton disabled={!this.validOrder()} onClick={() => this.dispatchSubmit()} />
           </div>
         </div>
       </div>
