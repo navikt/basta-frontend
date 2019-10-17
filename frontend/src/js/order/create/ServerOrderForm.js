@@ -83,6 +83,7 @@ export class ServerOrderForm extends Component {
   render() {
     const orderFields = this.orderFields
     const { dispatch } = this.props
+
     return (
       <div>
         <div className="orderForm">

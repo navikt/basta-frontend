@@ -43,12 +43,7 @@ export function* submitForm(action) {
         value = yield call(postForm, `/rest/vm/orders/iapptools`, action.orders)
         break
       case 'developertools':
-        const orderPayload = {
-          ...action.orders,
-          environmentClass: 'u',
-          zone: 'fss'
-        }
-        value = yield call(postForm, `/rest/vm/orders/devtools`, orderPayload)
+        value = yield call(postForm, `/rest/vm/orders/devtools`, action.orders)
         break
       case 'jbossnode':
         value = yield call(postForm, `/rest/vm/orders/jboss`, action.orders)

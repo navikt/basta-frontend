@@ -12,6 +12,9 @@ const orderFields = {
     fieldType: 'environmentClass',
     value: 'u'
   },
+  zone: {
+    value: 'fss'
+  },
   environmentName: {
     fieldType: 'environments',
     value: ''

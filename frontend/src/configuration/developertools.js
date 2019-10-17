@@ -5,6 +5,12 @@ const orderFields = {
   nodeType: {
     value: 'DEV_TOOLS'
   },
+  environmentClass: {
+    value: 'u'
+  },
+  zone: {
+    value: 'fss'
+  },
   osType: {
     value: 'rhel70'
   },
