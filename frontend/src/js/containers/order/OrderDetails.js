@@ -48,6 +48,7 @@ export class OrderDetails extends Component {
 
   render() {
     const { details, statuslog } = this.props.order
+
     return details.data ? (
       <div>
         <PageHeading
@@ -60,7 +61,7 @@ export class OrderDetails extends Component {
             ' | ' +
             details.data.orderDescription +
             ' | ' +
-            moment(details.created).fromNow()
+            moment(details.data.created).fromNow()
           }
         />
         <div className="orderDetails">

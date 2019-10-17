@@ -14,7 +14,7 @@ const RequestOverview = props => {
       </div>
       <div>
         <i className="fa fa-calendar rightpad" />
-        {moment(data.created).format('YYYY-MM-DD HH:mm:ss')}
+        {moment(data.created).format('DD-MMM YYYY HH:mm:ss')}
       </div>
       <ExternalId extId={data.externalId} />
     </div>
