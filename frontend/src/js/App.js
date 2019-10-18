@@ -10,7 +10,7 @@ import { closeNavMenu, toggleNavMenu } from './commonUi/menus/actionCreators'
 import { getOrderHistory } from './containers/history/actionCreators'
 import NavMenu from './commonUi/menus/NavMenu'
 import NavUserMenu from './commonUi/menus/NavUserMenu'
-import Login from './containers/login/Login'
+import Login from './commonUi/login/Login'
 import moment from 'moment'
 import Services from './common/components/Services'
 
