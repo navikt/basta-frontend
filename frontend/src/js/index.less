@@ -26,7 +26,8 @@
 @default-button-color: #305a82;
 @active-button-color: #00bc8c;
 @font-color-error: #ed6038;
-@highlight-color: #6acae3;
+@highlight-color: #53c4e0;
+@nav-menu-highlight-color: #41c1e0;
 @success-color: #4cb944;
 @success-background: #dff0d8;
 @warning-color: #eda42d;
@@ -39,6 +40,7 @@
 @navOransjeLighten80:mix(@navOransje,#fff,20%);
 @navRod:#C30000;
 @navRodLighten80:mix(@navRod,#fff,20%);
+@bastaGreen: #3bb15d;
 
 html,
 body {
@@ -57,16 +59,18 @@ a:link {
   display: grid;
   height: 100vh;
   min-width: 375px;
-  grid-template-areas: 'header header header' 'navLeft navigation navRight' 'left main right';
-  grid-template-rows: 55px 50px 1fr;
-  grid-template-columns: 3% auto 3%;
+  grid-template-areas: 
+    'header  header header' 
+    '.  main .';
+  grid-template-rows: 55px 1fr;
+  grid-template-columns: 3%  auto 3%;
 }
 
 @media all and (max-width: 1012px) {
   .wrapper {
-    grid-template-areas: 'header' 'navigation' 'main';
+    grid-template-areas: 'header' 'main';
     grid-template-columns: 100%;
-    grid-template-rows: 55px 50px 1fr;
+    grid-template-rows: 55px 1fr;
   }
 }
 
@@ -86,30 +90,12 @@ a:link {
   }
 }
 
+
+
 header {
   background: @header-color;
   grid-area: header;
-  display: inline-block;
-}
-
-.navLeft,
-.navRight {
-  background-color: @menu-color;
-  margin-bottom: -1px;
-  border-bottom: 1px solid @border-color;
-}
-
-.navLeft {
-  grid-area: navLeft;
-}
-
-.navLeft {
-  grid-area: navRight;
-}
-
-nav {
-  grid-area: navigation;
-  background: @menu-color;
+  display: inline-block
 }
 
 .navButton {
@@ -126,7 +112,6 @@ nav {
 
 main {
   grid-area: main;
-  border-top: 1px solid @border-color;
   margin-bottom: 10px;
 }
 
@@ -139,7 +124,7 @@ main {
 .navLogo {
   padding-right: 20px;
   color: lighten(@header-color, 15%);
-  color: #3bb15d;
+  color: @bastaGreen;
 }
 
 .fa-cubes {
@@ -149,7 +134,6 @@ main {
 .navName {
   display: table-cell;
   font-size: 1.5em;
-  vertical-align: middle;
 }
 
 .navBasta {

@@ -60,13 +60,14 @@ class App extends Component {
                 <div className="navName">basta</div>
               </div>
             </div>
+
+            <NavMenu />
             <div className="navMenuRight">
               <NavUserMenu user={user} userLogout={userLogout} dispatch={dispatch} />
             </div>
           </header>
-          <div className="navLeft" />
+
           <nav>
-            <NavMenu className="navTabs" />
             <div className="mobileMenu">
               <NavUserMenu user={user} userLogout={userLogout} dispatch={dispatch} />
               <div className="navButton" onClick={() => this.props.dispatch(toggleNavMenu())}>
