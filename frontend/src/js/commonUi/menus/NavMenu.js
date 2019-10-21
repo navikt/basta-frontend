@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { isAvailable } from '../../common/utils'
 
 export class NavMenu extends Component {
   isActive(context) {
@@ -35,9 +36,26 @@ export class NavMenu extends Component {
               &nbsp;&nbsp;Operate
             </Link>
           </li>
+          {this.renderNotificationsItem()}
         </ul>
       </div>
     )
+  }
+
+  renderNotificationsItem() {
+    const requiredRole = ['ROLE_SUPERUSER']
+    if (isAvailable(requiredRole, this.props.user.userProfile.roles)) {
+      return (
+        <li className={this.isActive('notifications')}>
+          <Link to="/notifications">
+            <i className="fa fa-bell" />
+            &nbsp;&nbsp;Notifications
+          </Link>
+        </li>
+      )
+    } else {
+      return null
+    }
   }
 }
 
@@ -47,7 +65,8 @@ NavMenu.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  location: state.routing.locationBeforeTransitions
+  location: state.routing.locationBeforeTransitions,
+  user: state.user
 })
 
 export default connect(mapStateToProps)(NavMenu)
