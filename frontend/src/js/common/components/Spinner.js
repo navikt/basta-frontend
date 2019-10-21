@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ErrorStripe } from '../../order/formComponents/AlertStripe'
+import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
 
 class Spinner extends Component {
   constructor(props) {

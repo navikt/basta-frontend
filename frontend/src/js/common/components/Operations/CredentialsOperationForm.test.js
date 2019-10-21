@@ -8,7 +8,7 @@ import {
   OrderButtonGroup,
   ApplicationsDropDown,
   OperationsButtons
-} from '../../../order/formComponents'
+} from '../../../commonUi/formComponents'
 
 const props = {
   user: {

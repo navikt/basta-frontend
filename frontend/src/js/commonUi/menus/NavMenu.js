@@ -46,8 +46,8 @@ export class NavMenu extends Component {
     const requiredRole = ['ROLE_SUPERUSER']
     if (isAvailable(requiredRole, this.props.user.userProfile.roles)) {
       return (
-        <li className={this.isActive('notifications')}>
-          <Link to="/notifications">
+        <li className={this.isActive('notifiy')}>
+          <Link to="/notify">
             <i className="fa fa-bell" />
             &nbsp;&nbsp;Notifications
           </Link>

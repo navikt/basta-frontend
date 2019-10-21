@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { OrderTextBox, EnvironmentsDropDown, ApplicationsDropDown } from '../formComponents'
-import SubmitButton from '../formComponents/SubmitButton'
+import {
+  OrderTextBox,
+  EnvironmentsDropDown,
+  ApplicationsDropDown
+} from '../../commonUi/formComponents'
+import SubmitButton from '../../commonUi/formComponents/SubmitButton'
 import { submitForm } from '../actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
-import ZoneButtonGroup from '../formComponents/ZoneButtonGroup'
-import OrderDbTemplateDropDown from '../formComponents/OrderDbTemplateDropDown'
+import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
+import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
+import OrderDbTemplateDropDown from '../../commonUi/formComponents/OrderDbTemplateDropDown'
 import { orderApiPath } from './configuration/oracle'
 
 const oracleImage = require('../../../img/orderTypes/oracle.png')

@@ -5,16 +5,16 @@ import {
   OrderButtonGroup,
   EnvironmentsDropDown,
   ApplicationsDropDown
-} from '../formComponents'
-import VirtualServerDropDown from '../formComponents/VirtualServerDropDown'
+} from '../../commonUi/formComponents'
+import VirtualServerDropDown from '../../commonUi/formComponents/VirtualServerDropDown'
 import { submitForm } from '../actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import image from '../../../img/orderTypes/big-ip.png'
-import { InfoStripe } from '../formComponents/AlertStripe'
-import SubmitButton from '../formComponents/SubmitButton'
-import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
-import ZoneButtonGroup from '../formComponents/ZoneButtonGroup'
+import { InfoStripe } from '../../commonUi/formComponents/AlertStripe'
+import SubmitButton from '../../commonUi/formComponents/SubmitButton'
+import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
+import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import { orderApiPath } from './configuration/bigip'
 
 const initialState = {

@@ -5,9 +5,9 @@ import {
   OrderButtonGroup,
   ApplicationsDropDown,
   OrderCheckBox
-} from '../../order/formComponents'
+} from '../../commonUi/formComponents'
 import orderTypes from '../../order/create/configuration'
-import OrderDropDown from '../../order/formComponents/OrderDropDown'
+import OrderDropDown from '../../commonUi/formComponents/OrderDropDown'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { submitOperation } from '../../containers/operate/operateActionCreators'

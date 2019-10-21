@@ -7,15 +7,15 @@ import {
   OrderButtonGroup,
   EnvironmentsDropDown,
   ApplicationsDropDown
-} from '../formComponents'
-import SubmitButton from '../formComponents/SubmitButton'
+} from '../../commonUi/formComponents'
+import SubmitButton from '../../commonUi/formComponents/SubmitButton'
 import orderTypes from './configuration'
-import OrderDropDown from '../formComponents/OrderDropDown'
+import OrderDropDown from '../../commonUi/formComponents/OrderDropDown'
 import { submitForm } from '../actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
-import ZoneButtonGroup from '../formComponents/ZoneButtonGroup'
+import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
+import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 
 export class ServerOrderForm extends Component {
   constructor(props) {

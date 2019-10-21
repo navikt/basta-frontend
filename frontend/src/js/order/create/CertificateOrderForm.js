@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { ApplicationsDropDown } from '../formComponents'
-import SubmitButton from '../formComponents/SubmitButton'
+import { ApplicationsDropDown } from '../../commonUi/formComponents'
+import SubmitButton from '../../commonUi/formComponents/SubmitButton'
 import { submitForm } from '../actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
-import ZoneButtonGroup from '../formComponents/ZoneButtonGroup'
+import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
+import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import {
   certificateExistInFasit,
   clearExistingCertificateMessage
 } from '../../common/actionCreators'
-import { InfoStripe } from '../formComponents/AlertStripe'
+import { InfoStripe } from '../../commonUi/formComponents/AlertStripe'
 import { orderApiPath } from './configuration/certificate'
 
 const certificateImage = require('../../../img/orderTypes/security.png')

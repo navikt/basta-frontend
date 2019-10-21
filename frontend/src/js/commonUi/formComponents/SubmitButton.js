@@ -4,14 +4,14 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import FormSubmitSpinner from './FormSubmitSpinner'
 import { ErrorStripe } from './AlertStripe'
-import { resetForm } from '../actionCreators'
+import { resetForm } from '../../order/actionCreators'
 export class SubmitButton extends Component {
   constructor(props) {
     super(props)
   }
 
   componentWillUnmount() {
-    const {dispatch} = this.props
+    const { dispatch } = this.props
     dispatch(resetForm())
   }
 

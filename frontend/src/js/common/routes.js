@@ -7,6 +7,7 @@ import Create from '../containers/create/Create'
 import { NotFound } from '../containers/notfound/NotFound'
 import ServerOrderForm from '../order/create/ServerOrderForm'
 import OperationsForm from './components/OperationsForm'
+import NotificationsManagement from '../notifications/NotificationsManagement'
 import OrderDetails from '../containers/order/OrderDetails'
 import MqQueueOrderForm from '../order/create/MqQueueOrderForm'
 import BigIPOrderForm from '../order/create/BigIPOrderForm'
@@ -24,6 +25,7 @@ export const Routes = () => {
       <Route exact path="/" component={History} />
       <Route path="/orders/:orderId" component={OrderDetails} />
       <Route exact path="/operate" component={Operate} />
+      <Route exact path="/notify" component={NotificationsManagement} />
       <Route path="/operate/nodes" component={NodeOperationsForm} />
       <Route path="/operate/credentials" component={CredentialsOperationsForm} />
       <Route path="/operate/:orderType" component={OperationsForm} />

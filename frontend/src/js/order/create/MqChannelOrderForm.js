@@ -6,11 +6,11 @@ import {
   EnvironmentsDropDown,
   QueueManagerDropDown,
   ApplicationsDropDown
-} from '../formComponents'
+} from '../../commonUi/formComponents'
 import { connect } from 'react-redux'
 import { submitForm } from '../actionCreators'
-import SubmitButton from '../formComponents/SubmitButton'
-import EnvironmentClassButtonGroup from '../formComponents/EnvironmentClassButtonGroup'
+import SubmitButton from '../../commonUi/formComponents/SubmitButton'
+import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import { orderApiPath } from './configuration/channel'
 
 const mqImage = require('../../../img/orderTypes/mq.png')
