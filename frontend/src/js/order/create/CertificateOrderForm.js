@@ -58,7 +58,7 @@ export class CertificateOrderForm extends Component {
 
   render() {
     const { environmentClass, zone, application } = this.state
-    const { dispatch, certExistsInFasit } = this.props
+    const { dispatch, certExistsInFasit, formError, formSubmitting } = this.props
     return (
       <div>
         <div className="orderForm">
@@ -85,6 +85,8 @@ export class CertificateOrderForm extends Component {
             />
             <SubmitButton
               disabled={!this.validOrder()}
+              error={formError}
+              submitting={formSubmitting}
               onClick={() => dispatch(submitForm('certificate', this.state, orderApiPath))}
             />
           </div>
@@ -99,7 +101,9 @@ CertificateOrderForm.propTypes = {
 }
 const mapStateToProps = state => {
   return {
-    certExistsInFasit: state.orderFormData.certificate.existsInFasit
+    certExistsInFasit: state.orderFormData.certificate.existsInFasit,
+    formSubmitting: state.order.form.submitting,
+    formError: state.order.form.error
   }
 }
 

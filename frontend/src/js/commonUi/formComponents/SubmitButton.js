@@ -12,17 +12,19 @@ export class SubmitButton extends Component {
 
   componentWillUnmount() {
     const { dispatch } = this.props
+    // do we need this??
     dispatch(resetForm())
   }
 
   render() {
-    const { formSubmitting, formError, disabled, onClick } = this.props
+    const { submitting, error, disabled, onClick } = this.props
     const disabledClass = disabled ? 'disabled' : ''
     const handleClick = !disabled ? onClick : null
 
-    if (formSubmitting) {
+    if (submitting) {
       return <FormSubmitSpinner message="Submitting order..." />
     }
+
     return (
       <React.Fragment>
         <div className="formComponentGrid formComponentField">
@@ -31,7 +33,7 @@ export class SubmitButton extends Component {
           </div>
         </div>
         <div className="formComponentGrid formComponentField">
-          <ErrorStripe show={formError !== null} message={formError} />
+          <ErrorStripe show={error !== null} message={error} />
         </div>
       </React.Fragment>
     )
@@ -40,14 +42,9 @@ export class SubmitButton extends Component {
 
 SubmitButton.propTypes = {
   onClick: PropTypes.func,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  error: PropTypes.string,
+  submitting: PropTypes.bool
 }
 
-const mapStateToProps = state => {
-  return {
-    formSubmitting: state.order.form.submitting,
-    formError: state.order.form.error
-  }
-}
-
-export default withRouter(connect(mapStateToProps)(SubmitButton))
+export default withRouter(connect()(SubmitButton))

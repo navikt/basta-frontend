@@ -99,6 +99,7 @@ export class OracleDbOrderForm extends Component {
   }
 
   render() {
+    const { formError, formSubmitting } = this.props
     const {
       environmentClass,
       zone,
@@ -155,7 +156,12 @@ export class OracleDbOrderForm extends Component {
               zone={zone}
               value={dbTemplate.label}
             />
-            <SubmitButton disabled={!this.validOrder()} onClick={() => this.dispatchSubmit()} />
+            <SubmitButton
+              error={formError}
+              submitting={formSubmitting}
+              disabled={!this.validOrder()}
+              onClick={() => this.dispatchSubmit()}
+            />
           </div>
         </div>
       </div>
@@ -168,7 +174,8 @@ OracleDbOrderForm.propTypes = {
 }
 const mapStateToProps = state => {
   return {
-    user: state.user
+    formSubmitting: state.order.form.submitting,
+    formError: state.order.form.error
   }
 }
 

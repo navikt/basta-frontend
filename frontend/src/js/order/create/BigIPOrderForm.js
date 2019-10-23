@@ -78,6 +78,8 @@ export class BigIPOrderForm extends Component {
       contextroots,
       hostname
     } = this.state
+    const { formError, formSubmitting } = this.props
+
     return (
       <div>
         <div className="orderForm">
@@ -146,7 +148,12 @@ export class BigIPOrderForm extends Component {
               message="Use hostname matching only if you have control over this DNS entry. If you are unsure what this means, ask Marcel or #aura on Slack"
               show={matchingTypes === 'hostname'}
             />
-            <SubmitButton disabled={!this.validOrder()} onClick={() => this.dispatchSubmit()} />
+            <SubmitButton
+              error={formError}
+              submitting={formSubmitting}
+              disabled={!this.validOrder()}
+              onClick={() => this.dispatchSubmit()}
+            />
           </div>
         </div>
       </div>
@@ -160,7 +167,9 @@ BigIPOrderForm.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    formSubmitting: state.order.form.submitting,
+    formError: state.order.form.error
   }
 }
 

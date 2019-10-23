@@ -123,6 +123,7 @@ export class MqQueueOrderForm extends Component {
   }
 
   render() {
+    const { formError, formSubmitting } = this.props
     const {
       environmentName,
       application,
@@ -227,11 +228,23 @@ export class MqQueueOrderForm extends Component {
                 />
               </div>
             ) : null}
-            <SubmitButton disabled={!this.validOrder()} onClick={() => this.dispatchSubmit()} />
+            <SubmitButton
+              error={formError}
+              submitting={formSubmitting}
+              disabled={!this.validOrder()}
+              onClick={() => this.dispatchSubmit()}
+            />
           </div>
         </div>
       </div>
     )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    formSubmitting: state.order.form.submitting,
+    formError: state.order.form.error
   }
 }
 
@@ -242,4 +255,4 @@ MqQueueOrderForm.propTypes = {
   dispatch: PropTypes.func
 }
 
-export default connect()(MqQueueOrderForm)
+export default connect(mapStateToProps)(MqQueueOrderForm)

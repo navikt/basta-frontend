@@ -66,7 +66,7 @@ export class MqChannelOrderForm extends Component {
   }
 
   render() {
-    const { user, dispatch } = this.props
+    const { dispatch, formError, formSubmitting } = this.props
     const {
       environmentName,
       environmentClass,
@@ -129,6 +129,8 @@ export class MqChannelOrderForm extends Component {
               </div>
             ) : null}
             <SubmitButton
+              error={formError}
+              submitting={formSubmitting}
               disabled={!this.validOrder()}
               onClick={() => dispatch(submitForm('channel', this.state, orderApiPath))}
             />
@@ -145,9 +147,11 @@ MqChannelOrderForm.propTypes = {
   onSubmit: PropTypes.func,
   dispatch: PropTypes.func
 }
+
 const mapStateToProps = state => {
   return {
-    user: state.user
+    formSubmitting: state.order.form.submitting,
+    formError: state.order.form.error
   }
 }
 

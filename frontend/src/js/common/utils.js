@@ -29,8 +29,8 @@ export const getUrl = url => {
   })
 }
 
-export const postForm = (url, form) => {
-  let headers = { 'Content-Type': 'application/json' }
+export const postForm = (url, form, contentType = 'application/json') => {
+  let headers = { 'Content-Type': contentType }
   return fetch(url, {
     headers,
     credentials: 'include',

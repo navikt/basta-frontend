@@ -83,7 +83,7 @@ export class ServerOrderForm extends Component {
 
   render() {
     const orderFields = this.orderFields
-    const { dispatch } = this.props
+    const { dispatch, formError, formSubmitting } = this.props
 
     return (
       <div>
@@ -201,6 +201,8 @@ export class ServerOrderForm extends Component {
               }
             })}
             <SubmitButton
+              error={formError}
+              submitting={formSubmitting}
               disabled={!this.validOrder()}
               onClick={() =>
                 dispatch(
@@ -224,7 +226,9 @@ ServerOrderForm.propTypes = {
 }
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    formSubmitting: state.order.form.submitting,
+    formError: state.order.form.error
   }
 }
 

@@ -58,7 +58,7 @@ export class CredentialOrderForm extends Component {
 
   render() {
     const { environmentClass, zone, application, abacAccess, stsAccess } = this.state
-    const { dispatch, existInAD, existInFasit } = this.props
+    const { dispatch, existInAD, existInFasit, formError, formSubmitting } = this.props
 
     return (
       <div>
@@ -103,6 +103,8 @@ export class CredentialOrderForm extends Component {
               If you create this one the existing service user will be overwritten and a new password created. "
             />
             <SubmitButton
+              error={formError}
+              submitting={formSubmitting}
               disabled={!this.validOrder()}
               onClick={() => dispatch(submitForm('credential', this.state, orderApiPath))}
             />
@@ -118,6 +120,8 @@ CredentialOrderForm.propTypes = {
 }
 const mapStateToProps = state => {
   return {
+    formSubmitting: state.order.form.submitting,
+    formError: state.order.form.error,
     existInFasit: state.operationsForm.credentialLookup.data.existInFasit,
     existInAD: state.operationsForm.credentialLookup.data.existInAD
   }
