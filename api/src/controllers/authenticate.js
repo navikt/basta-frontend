@@ -46,7 +46,6 @@ exports.ensureAuthenticated = () => {
     console.log('auth:  ', req.isAuthenticated())
     if (req.isAuthenticated()) {
       resource = process.env['BASTAAZURECONFIG_CLIENTID']
-
       return next()
     }
     res.redirect('/login')

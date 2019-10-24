@@ -29,8 +29,9 @@ export const getUrl = url => {
   })
 }
 
-export const postForm = (url, form, contentType = 'application/json') => {
-  let headers = { 'Content-Type': contentType }
+export const postForm = (url, form) => {
+  let headers = { 'Content-Type': 'application/json' }
+
   return fetch(url, {
     headers,
     credentials: 'include',
@@ -39,10 +40,15 @@ export const postForm = (url, form, contentType = 'application/json') => {
     body: JSON.stringify(form)
   }).then(async res => {
     if (res.ok) {
-      const json = res.json().then(json => {
+      const contentLength = res.headers.get('content-length')
+
+      if (contentLength > 0) {
+        const json = res.json().then(json => {
+          return json
+        })
         return json
-      })
-      return json
+      }
+      return ''
     } else {
       const errorMessage = await res.text()
       throw `Error posting form ${errorMessage} ( ${res.status} ${res.statusText} )`

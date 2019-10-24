@@ -7,6 +7,7 @@ const orderMock = require('./orderMock')
 const fasitMock = require('./fasitMock')
 const mqMock = require('./mqMock')
 const dbMock = require('./dbTemplateMock')
+const notificationsMock = require('./notificationsMock')
 const credentialsMock = require('./credentialsMock')
 const virtualserversMock = require('./virtualServersMock')
 const app = express()
@@ -51,10 +52,13 @@ router.get(`/rest/operation/serviceuser/credential/user`, credentialsMock.user()
 router.get(`/rest/orders/serviceuser/credential/existInAD`, credentialsMock.existInAD())
 router.get(`/rest/orders/serviceuser/credential/existInFasit`, credentialsMock.existInFasit())
 router.get('/rest/v1/bigip/virtualservers', virtualserversMock.getVirtualServers())
+router.post('/rest/system/notifications/create', notificationsMock.postNotification())
 
 // ERROR HANDLING
 app.use((err, req, res, next) => {
   res.locals.message = err.message
+  console.log(err)
+
   res.locals.error = req.app.get('env') === 'development' ? err : {}
   res.status(err.status || 500).send(err)
   next()

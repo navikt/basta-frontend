@@ -11,7 +11,7 @@ export function* postNotification(action) {
   yield put({ type: POST_NOTIFICATION_SUBMITTING })
 
   try {
-    yield call(postForm, '/rest/system/notifications/create/info', action.message, 'Text/plain')
+    yield call(postForm, '/rest/system/notifications/create', action.messagePayload)
     yield put({ type: POST_NOTIFICATION_SUCCESSFUL })
   } catch (error) {
     yield put({ type: POST_NOTIFICATION_FAILED, error })

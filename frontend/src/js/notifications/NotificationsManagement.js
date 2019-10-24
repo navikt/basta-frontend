@@ -52,7 +52,7 @@ export class ServerOrderForm extends Component {
               submitting={submitting}
               error={error}
               disabled={!this.isValid()}
-              onClick={() => dispatch(postNotification(this.state.message))}
+              onClick={() => dispatch(postNotification(this.state))}
             />
           </div>
         </div>
@@ -68,6 +68,7 @@ ServerOrderForm.propTypes = {
   onSubmit: PropTypes.func,
   dispatch: PropTypes.func
 }
+
 const mapStateToProps = state => {
   return {
     error: state.notificationsForm.form.error,
