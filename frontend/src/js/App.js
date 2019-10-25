@@ -13,6 +13,7 @@ import NavUserMenu from './commonUi/menus/NavUserMenu'
 import Login from './commonUi/login/Login'
 import moment from 'moment'
 import Services from './common/components/Services'
+import ActiveNotificationsList from './notifications/ActiveNotificationsList'
 
 class App extends Component {
   navigate(location) {
@@ -79,6 +80,7 @@ class App extends Component {
           <main onClick={() => this.props.dispatch(closeNavMenu())}>
             <Services />
             <NavMenuSmall />
+            <ActiveNotificationsList className="matsbanan" />
             <Routes />
           </main>
         </div>

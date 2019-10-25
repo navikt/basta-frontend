@@ -52,7 +52,10 @@ export class ServerOrderForm extends Component {
               submitting={submitting}
               error={error}
               disabled={!this.isValid()}
-              onClick={() => dispatch(postNotification(this.state))}
+              onClick={() => {
+                this.setState(initialState)
+                dispatch(postNotification(this.state))
+              }}
             />
           </div>
         </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const AlertStripe = props => {
-  const { message, show, type } = props
+  const { message, show, type, className } = props
 
   if (!show) {
     return null
@@ -19,14 +19,15 @@ const AlertStripe = props => {
     iconClass = 'infoIcon'
     stripeClass = 'infoStripe'
   }
+  const parentClassName = className ? `${className}`: "formComponentGrid"
 
   return (
-    <div className="formComponentGrid">
+    <div className={parentClassName}>
       <div className={`alertStripe ${stripeClass}`}>
         <span className={`alertStripeIcon ${iconClass}`}>
           <i className={`fa ${icon} fa-2x`} />
         </span>
-        <p className="alertStripeText">{message}</p>
+        {props.children ? props.children : <p className="alertStripeText">{message}</p>}
       </div>
     </div>
   )

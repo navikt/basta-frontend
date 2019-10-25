@@ -1,3 +1,26 @@
 .notificationsLogo {
     color: @warning-color;
 }
+
+.notificationItem {
+    padding-top: 10px;
+    margin: 0 auto;
+    width: 650px; 
+}
+
+.notificationMessage {
+    display: grid;
+    width: 100%;
+    grid-template-columns: auto 150px;
+    grid-template-areas: 'message createdBy';
+}
+
+.notificationMessage {
+    grid-area: message;
+}
+
+.updatedBy {
+    grid-area: createdBy;
+    float: right
+}
+ 
