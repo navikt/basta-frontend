@@ -52,6 +52,7 @@ router.get(`/rest/operation/serviceuser/credential/user`, credentialsMock.user()
 router.get(`/rest/orders/serviceuser/credential/existInAD`, credentialsMock.existInAD())
 router.get(`/rest/orders/serviceuser/credential/existInFasit`, credentialsMock.existInFasit())
 router.get('/rest/v1/bigip/virtualservers', virtualserversMock.getVirtualServers())
+router.get('/rest/system/notifications/active', notificationsMock.getActiveNotifications())
 router.post('/rest/system/notifications/create', notificationsMock.postNotification())
 
 // ERROR HANDLING
