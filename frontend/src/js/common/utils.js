@@ -30,12 +30,20 @@ export const getUrl = url => {
 }
 
 export const postForm = (url, form) => {
+  return submitForm(url, 'POST', form)
+}
+
+export const putForm = (url, form) => {
+  return submitForm(url, 'PUT', form)
+}
+
+const submitForm = (url, method, form) => {
   let headers = { 'Content-Type': 'application/json' }
 
   return fetch(url, {
     headers,
     credentials: 'include',
-    method: 'POST',
+    method: `${method}`,
     mode: 'cors',
     body: JSON.stringify(form)
   }).then(async res => {

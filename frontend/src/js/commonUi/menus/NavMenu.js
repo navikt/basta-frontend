@@ -7,6 +7,7 @@ import { isAvailable } from '../../common/utils'
 export class NavMenu extends Component {
   isActive(context) {
     let { location } = this.props
+
     if (!location) {
       return context === '' ? 'active' : null
     }
@@ -46,7 +47,7 @@ export class NavMenu extends Component {
     const requiredRole = ['ROLE_SUPERUSER']
     if (isAvailable(requiredRole, this.props.user.userProfile.roles)) {
       return (
-        <li className={this.isActive('notifiy')}>
+        <li className={this.isActive('notify')}>
           <Link to="/notify">
             <i className="fa fa-bell" />
             &nbsp;&nbsp;Notifications

@@ -1,5 +1,5 @@
 import { takeEvery, put, fork, call } from 'redux-saga/effects'
-import { postForm, getUrl } from '../common/utils'
+import { postForm, getUrl, putForm } from '../common/utils'
 import {
   POST_NOTIFICATION,
   POST_NOTIFICATION_SUBMITTING,
@@ -8,6 +8,8 @@ import {
   NOTIFICATIONS_REQUEST,
   ACTIVE_NOTIFICATIONS_RECEIVED,
   NOTIFICATIONS_REQUEST_FAILED,
+  REMOVE_NOTIFICATION,
+  REMOVE_NOTIFICATION_FAILED
 } from '../actionTypes'
 
 export function* postNotification(action) {
@@ -36,7 +38,19 @@ export function* fetchActiveNotifications() {
   }
 }
 
+export function* removeNotification(action) {
+  try {
+    yield call(putForm, `/rest/system/notifications/${action.id}/inactive`)
+    yield put({
+      type: NOTIFICATIONS_REQUEST
+    })
+  } catch (err) {
+    yield put({ type: REMOVE_NOTIFICATION_FAILED, err })
+  }
+}
+
 export function* watchNotification() {
   yield fork(takeEvery, POST_NOTIFICATION, postNotification)
   yield fork(takeEvery, NOTIFICATIONS_REQUEST, fetchActiveNotifications)
+  yield fork(takeEvery, REMOVE_NOTIFICATION, removeNotification)
 }
