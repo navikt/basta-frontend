@@ -67,6 +67,10 @@ export class ServerOrderForm extends Component {
   renderActiveNotifications() {
     const { activeNotifications, dispatch } = this.props
 
+    if (activeNotifications.length === 0) {
+      return <p>No active notifications</p>
+    }
+
     return activeNotifications.map((notification, idx) => {
       return (
         <React.Fragment key={idx}>
