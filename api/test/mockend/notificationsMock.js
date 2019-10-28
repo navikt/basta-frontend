@@ -5,7 +5,7 @@ exports.postNotification = () => {
     const message = req.body.message
 
     const notification = {
-      id: 69,
+      id: `${activeNotifications.length + 1}`,
       created: 1571988153642,
       createdBy: 'x123456',
       updated: 1571988153642,
@@ -24,5 +24,13 @@ exports.postNotification = () => {
 exports.getActiveNotifications = () => {
   return (req, res) => {
     res.status(200).json(activeNotifications)
+  }
+}
+
+exports.removeNotification = () => {
+  return (req, res) => {
+    const id = req.params.id
+    activeNotifications = activeNotifications.filter(notification => notification.id !== id)
+    res.status(200).send()
   }
 }

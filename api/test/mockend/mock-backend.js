@@ -54,6 +54,7 @@ router.get(`/rest/orders/serviceuser/credential/existInFasit`, credentialsMock.e
 router.get('/rest/v1/bigip/virtualservers', virtualserversMock.getVirtualServers())
 router.get('/rest/system/notifications/active', notificationsMock.getActiveNotifications())
 router.post('/rest/system/notifications/create', notificationsMock.postNotification())
+router.put('/rest/system/notifications/:id/inactive', notificationsMock.removeNotification())
 
 // ERROR HANDLING
 app.use((err, req, res, next) => {
