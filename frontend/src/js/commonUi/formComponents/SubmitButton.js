@@ -18,8 +18,6 @@ export class SubmitButton extends Component {
 
   render() {
     const { submitting, error, disabled, onClick } = this.props
-    const disabledClass = disabled ? 'disabled' : ''
-    const handleClick = !disabled ? onClick : null
 
     if (submitting) {
       return <FormSubmitSpinner message="Submitting order..." />
@@ -28,9 +26,13 @@ export class SubmitButton extends Component {
     return (
       <React.Fragment>
         <div className="formComponentGrid formComponentField">
-          <div className={`orderFormSubmitButton ${disabledClass}`} onClick={() => handleClick()}>
-            Submit
-          </div>
+          {disabled ? (
+            <div className={`orderFormSubmitButton disabled`}>Submit</div>
+          ) : (
+            <div className={`orderFormSubmitButton`} onClick={() => onClick()}>
+              Submit
+            </div>
+          )}
         </div>
         <div className="formComponentGrid formComponentField">
           <ErrorStripe show={error !== null} message={error} />
