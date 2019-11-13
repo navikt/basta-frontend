@@ -99,6 +99,13 @@ export const orderTypes = [
     url: '/create/credential'
   },
   {
+    title: 'Custom credentials',
+    description: 'free text service users not in Fasit',
+    image: securityImage,
+    tags: ['service', 'user', 'credential', 'ad'],
+    url: '/create/customcredential'
+  },
+  {
     title: 'Liberty',
     description: 'Application server',
     image: libertyImage,
