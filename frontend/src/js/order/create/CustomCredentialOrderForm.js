@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { submitCredentialLookup } from '../../containers/operate/operateActionCreators'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
-import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
+import { ErrorStripe, InfoStripe } from '../../commonUi/formComponents/AlertStripe'
 import { clearExistingCredentialMessage } from '../../common/actionCreators'
 import { orderApiPath } from './configuration/customCredential'
 
@@ -81,6 +81,10 @@ export class CustomCredentialOrderForm extends Component {
               value={username}
               placeholder={'Username starting with srv'}
               onChange={v => this.handleChange('username', v)}
+            />
+            <InfoStripe
+              show={true}
+              message="Password for this user will be saved to Vault when the user is created under the serviceuser path. Nothing will be saved to fasit"
             />
             <OrderCheckBox
               label="ABAC"
