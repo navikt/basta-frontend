@@ -3,8 +3,9 @@ const orders = require('../mockdata/orders.json')
 //const orders = require('../mockdata/large_order_list_for_pagination_test.json')
 
 // Uncomment line below to use certificate order details instead of vm order details
-const order = require('../mockdata/certificate_order_mock.json')
-//const order = require('../mockdata/vm_order_mocks.json')
+//const order = require('../mockdata/certificate_order_mock.json')
+//const order = require('../mockdata/custom_credential_order_mock.json')
+const order = require('../mockdata/vm_order_mock.json')
 const statusLog = require('../mockdata/statuslog.json')
 const orderCreated = require('../mockdata/orderCreated.json')
 

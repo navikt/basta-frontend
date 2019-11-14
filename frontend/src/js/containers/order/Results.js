@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import OrderHistory from './OrderHistory'
-import history from '../../common/history'
+//import history from '../../common/history'
 
 function buildResultBody(data) {
   return (
@@ -9,10 +9,9 @@ function buildResultBody(data) {
       {data.map(result => {
         return (
           <div className="resultLine" key={'resultline_' + result.id}>
-            <div className="result">{result.resultName}</div>
+            <div className="result">{createResultLine(result)}</div>
             <OrderHistory data={result.history} />
-
-            <div className="operations">
+            {/*<div className="operations">
               {' '}
               <button
                 disabled={true}
@@ -21,11 +20,54 @@ function buildResultBody(data) {
               >
                 <i className="fa fa-wrench rightpad" />
               </button>
-            </div>
+        </div>*/}
           </div>
         )
       })}
     </div>
+  )
+}
+
+function vaultUrl(vaultPath) {
+  const baseUrl = 'https://vault.adeo.no/ui/vault/secrets/'
+  const replaced = vaultPath.replace(/^([\w-]+)\/data\/(.*)$/, '$1/show/$2')
+
+  return baseUrl + replaced
+}
+
+function fasitUrl(resultName) {
+  return `https://fasit.adeo.no/search?q=${resultName}`
+}
+
+function createResultLine(result) {
+  if (result.details.vaultpath && result.details.vaultpath.length > 0) {
+    return (
+      <React.Fragment>
+        <div className="result-info">
+          <div>Name: </div>
+          <div>{result.resultName}</div>
+        </div>
+        <div className="result-info">
+          <div>Vaultpath:</div>
+          <div>
+            <a href={vaultUrl(result.details.vaultpath)} target="new">
+              {result.details.vaultpath}
+            </a>
+          </div>
+        </div>
+      </React.Fragment>
+    )
+  }
+
+  return (
+    <React.Fragment>
+      <div className="result-info">
+        <div>Name: </div>
+        <div>
+          <a href={fasitUrl(result.resultName)}>{result.resultName}</a>
+        </div>
+      </div>
+    </React.Fragment>
   )
 }
 
