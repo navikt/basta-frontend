@@ -7,6 +7,7 @@ import {
   OPERATION_SUBMIT_SUCCESSFUL,
   OPERATION_SUBMIT_FAILED,
   CREDENTIAL_LOOKUP_REQUEST,
+  CUSTOM_CREDENTIAL_LOOKUP_REQUEST,
   CREDENTIAL_LOOKUP_SUBMITTING,
   CREDENTIAL_LOOKUP_SUCCESSFUL,
   CREDENTIAL_LOOKUP_FAILED,
@@ -28,6 +29,20 @@ export function* credentialLookup(action) {
     credentialInfo.user = yield call(
       getUrl,
       `/rest/operation/serviceuser/credential/user?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
+    )
+    yield put({ type: CREDENTIAL_LOOKUP_SUCCESSFUL, credentialInfo })
+  } catch (error) {
+    yield put({ type: CREDENTIAL_LOOKUP_FAILED, error })
+  }
+}
+
+export function* customCredentialLookup(action) {
+  let credentialInfo = {}
+  yield put({ type: CREDENTIAL_LOOKUP_SUBMITTING })
+  try {
+    credentialInfo.existInAD = yield call(
+      getUrl,
+      `/rest/orders/serviceuser/customcredential/existInAD?username=${action.form.username}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
     )
     yield put({ type: CREDENTIAL_LOOKUP_SUCCESSFUL, credentialInfo })
   } catch (error) {
@@ -93,4 +108,5 @@ export function* submitOperation(action) {
 export function* watchOperations() {
   yield fork(takeEvery, SUBMIT_OPERATION, submitOperation)
   yield fork(takeLatest, CREDENTIAL_LOOKUP_REQUEST, credentialLookup)
+  yield fork(takeLatest, CUSTOM_CREDENTIAL_LOOKUP_REQUEST, customCredentialLookup)
 }

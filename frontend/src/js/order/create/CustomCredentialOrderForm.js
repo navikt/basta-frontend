@@ -5,7 +5,7 @@ import SubmitButton from '../../commonUi/formComponents/SubmitButton'
 import { submitForm } from '../actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { submitCredentialLookup } from '../../containers/operate/operateActionCreators'
+import { submitCustomCredentialLookup } from '../../containers/operate/operateActionCreators'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import { ErrorStripe, InfoStripe } from '../../commonUi/formComponents/AlertStripe'
@@ -44,7 +44,7 @@ export class CustomCredentialOrderForm extends Component {
       username !== '' &&
       (environmentClass !== prevEnvClass || zone !== prevZone || username !== prevUsername)
     ) {
-      dispatch(submitCredentialLookup(this.state))
+      dispatch(submitCustomCredentialLookup(this.state))
     }
   }
 
