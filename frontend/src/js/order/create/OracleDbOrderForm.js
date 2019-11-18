@@ -75,7 +75,7 @@ export class OracleDbOrderForm extends Component {
       templateURI: dbTemplate.value
     }
 
-    this.props.dispatch(submitForm('oracle', dbOrderPayload, orderApiPath))
+    this.props.dispatch(submitForm(dbOrderPayload, orderApiPath))
   }
 
   trimToLength(string, length) {

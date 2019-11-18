@@ -87,7 +87,7 @@ export class CertificateOrderForm extends Component {
               disabled={!this.validOrder()}
               error={formError}
               submitting={formSubmitting}
-              onClick={() => dispatch(submitForm('certificate', this.state, orderApiPath))}
+              onClick={() => dispatch(submitForm(this.state, orderApiPath))}
             />
           </div>
         </div>

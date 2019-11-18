@@ -96,7 +96,7 @@ export class MqQueueOrderForm extends Component {
   dispatchSubmit() {
     // Remove fields name and exposed from orders as this is not needed by basta api
     const { name, exposed, ...payload } = this.state
-    this.props.dispatch(submitForm('queue', payload, orderApiPath))
+    this.props.dispatch(submitForm(payload, orderApiPath))
   }
 
   guessClusterName() {

@@ -64,7 +64,7 @@ export class BigIPOrderForm extends Component {
       useHostnameMatching: matchingTypes === 'hostname' ? 'true' : 'false'
     }
 
-    this.props.dispatch(submitForm('bigip', payload, orderApiPath))
+    this.props.dispatch(submitForm(payload, orderApiPath))
   }
 
   render() {

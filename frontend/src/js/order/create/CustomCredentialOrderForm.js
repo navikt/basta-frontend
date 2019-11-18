@@ -108,7 +108,7 @@ export class CustomCredentialOrderForm extends Component {
               error={formError}
               submitting={formSubmitting}
               disabled={!this.validOrder()}
-              onClick={() => dispatch(submitForm('customcredential', this.state, orderApiPath))}
+              onClick={() => dispatch(submitForm(this.state, orderApiPath))}
             />
           </div>
         </div>

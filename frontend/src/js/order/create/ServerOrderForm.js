@@ -204,11 +204,7 @@ export class ServerOrderForm extends Component {
               error={formError}
               submitting={formSubmitting}
               disabled={!this.validOrder()}
-              onClick={() =>
-                dispatch(
-                  submitForm(this.currentComponent, this.state, this.configuration.orderApiPath)
-                )
-              }
+              onClick={() => dispatch(submitForm(this.state, this.configuration.orderApiPath))}
             />
           </div>
         </div>
