@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const ExternalId = props => {
   const { extId } = props
 
-  if (external && extId !== 'N/A') {
+  if (extId && extId !== 'N/A') {
     return (
       <div className="externalId">
         <i className="fa fa-external-link rightpad" />
