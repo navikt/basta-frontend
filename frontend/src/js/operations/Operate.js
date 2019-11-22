@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import PageHeading from '../../common/components/PageHeading'
+import PageHeading from '../common/components/PageHeading'
 import { connect } from 'react-redux'
-import OrderGrid from '../../common/components/OrderGrid'
-import OrderCard from '../../common/components/OrderCard'
-import OrderFilter from '../../common/components/OrderFilter'
-import { isAvailable } from '../../common/utils'
+import OrderGrid from '../common/components/OrderGrid'
+import OrderCard from '../common/components/OrderCard'
+import OrderFilter from '../common/components/OrderFilter'
+import { isAvailable } from '../common/utils'
 
-const securityImage = require('../../../img/orderTypes/security.png')
-const redhatImage = require('../../../img/orderTypes/redhat.png')
-const mqImage = require('../../../img/orderTypes/mq.png')
+const securityImage = require('../../img/orderTypes/security.png')
+const redhatImage = require('../../img/orderTypes/redhat.png')
+const mqImage = require('../../img/orderTypes/mq.png')
 
 export class Operate extends Component {
   constructor(props) {

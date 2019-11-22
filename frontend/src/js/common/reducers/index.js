@@ -6,7 +6,7 @@ import navMenu from '../../commonUi/menus/reducer'
 import orderHistory from '../../containers/history/reducers'
 import order from '../../containers/order/reducers'
 import orderFormData from './orderFormData'
-import operationsForm from '../../containers/operate/operateReducers'
+import operationsForm from '../../operations/operateReducers'
 import notificationsForm from '../../notifications/notificationsReducer'
 
 const rootReducer = combineReducers({

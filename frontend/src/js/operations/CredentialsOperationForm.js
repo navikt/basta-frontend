@@ -3,16 +3,16 @@ import PropTypes from 'prop-types'
 import {
   submitOperation,
   submitCredentialLookup
-} from '../../../containers/operate/operateActionCreators'
+} from './operateActionCreators'
 import { connect } from 'react-redux'
-import image from '../../../../img/orderTypes/redhat.png'
+import image from '../../img/orderTypes/redhat.png'
 import {
   ErrorPanel,
   InfoPanel,
   OrderButtonGroup,
   ApplicationsDropDown,
   OperationsButtons
-} from '../../../commonUi/formComponents'
+} from '../commonUi/formComponents'
 
 export class CredentialsOperationForm extends Component {
   constructor(props) {

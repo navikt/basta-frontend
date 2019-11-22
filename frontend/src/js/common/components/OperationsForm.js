@@ -10,7 +10,7 @@ import orderTypes from '../../order/create/configuration'
 import OrderDropDown from '../../commonUi/formComponents/OrderDropDown'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { submitOperation } from '../../containers/operate/operateActionCreators'
+import { submitOperation } from '../../operations/operateActionCreators'
 import OperationsButtons from './formComponents/OperationsButtons'
 
 export class OperationsForm extends Component {

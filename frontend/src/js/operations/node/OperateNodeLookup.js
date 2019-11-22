@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { HostEntries } from './HostEntries'
+import HostEntry from './HostEntry'
 
 export class OperateNodeLookup extends Component {
   constructor(props) {
@@ -27,20 +27,43 @@ export class OperateNodeLookup extends Component {
   }
 
   resolveHostnames(hostnames) {
-    const THREE_WORDS_SEPARATED_BY_DOTS = /^\w+\.\w+\.\w+$/
+    const MINIMUM_HOSTNAME_LENGTH = 10
 
     const hosts = hostnames
       .split(',')
-      .filter(maybeHostname => maybeHostname.trim().match(THREE_WORDS_SEPARATED_BY_DOTS))
+      .filter(maybeHostname => maybeHostname.trim().length >= MINIMUM_HOSTNAME_LENGTH)
       .map(hostname => hostname.trim())
       .map(hostname => {
         return {
           hostname,
-          requiredRole: this.requiredRoleFor(hostname),
-          hasAccess: this.hasUserAccessToHost(hostname)
+          validation: this.validate(hostname)
         }
       })
     this.setState({ resolvedHosts: hosts })
+  }
+
+  validate(hostname) {
+    if (!this.hasValidPrefix(hostname)) {
+      return {
+        valid: false,
+        reason: 'Invalid hostname format'
+      }
+    } else if (!this.hasUserAccessToHost(hostname)) {
+      const requiredRoles = this.requiredRoleFor(hostname)
+      return {
+        valid: false,
+        reason: `${requiredRoles} or ROLE_SUPERUSER is required`
+      }
+    } else {
+      return { valid: true }
+    }
+  }
+
+  hasValidPrefix(hostname) {
+    const validPrefix = ['a01', 'a30', 'b27', 'b31', 'd26', 'd32', 'a34', 'e34']
+    const prefix = hostname.substring(0, 3).toLowerCase()
+
+    return validPrefix.includes(prefix)
   }
 
   hasUserAccessToHost(hostname) {
@@ -64,7 +87,7 @@ export class OperateNodeLookup extends Component {
   }
 
   render() {
-    const { placeholder, vmInfoArr } = this.props
+    const { placeholder } = this.props
     const { resolvedHosts } = this.state
     return (
       <div className="formComponentGrid">
@@ -77,9 +100,7 @@ export class OperateNodeLookup extends Component {
             value={this.state.input}
             onChange={e => this.handleChange(e)}
           />
-          <div className="operationsServerList">
-            <HostEntries hosts={resolvedHosts} vmInfoArr={vmInfoArr} />
-          </div>
+          <HostEntries hosts={resolvedHosts} />
         </div>
       </div>
     )
@@ -93,4 +114,15 @@ const mapStateToProps = state => {
     user: state.user
   }
 }
+
+const HostEntries = props => {
+  return (
+    <div className="operationsServerList">
+      {props.hosts.map((host, idx) => (
+        <HostEntry key={idx} hostInfo={host} />
+      ))}
+    </div>
+  )
+}
+
 export default connect(mapStateToProps)(OperateNodeLookup)

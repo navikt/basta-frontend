@@ -2,7 +2,7 @@ import React from 'react'
 import sinon from 'sinon'
 import { shallow } from 'enzyme'
 import { NodeOperationsForm } from './NodeOperationsForm'
-import OperateNodeLookup from './OperateNodeLookup'
+import OperateNodeLookup from '../OperateNodeLookup'
 import { ErrorPanel, OperationsButtons } from '../../../commonUi/formComponents'
 
 const props = {

@@ -6,7 +6,7 @@ import {
   CREDENTIAL_LOOKUP_SUCCESSFUL,
   CREDENTIAL_LOOKUP_FAILED,
   CREDENTIAL_LOOKUP_RESET
-} from '../../actionTypes'
+} from '../actionTypes'
 
 export default (
   state = {

@@ -5,7 +5,7 @@ import operateReducers from './operateReducers'
 import { getLastQuery } from './operateSelectors'
 import * as matchers from 'redux-saga-test-plan/matchers'
 import { throwError } from 'redux-saga-test-plan/providers'
-import { getUrl, postForm } from '../../common/utils'
+import { getUrl, postForm } from '../common/utils'
 
 it('(Operate view sagas - credentialLookup) disoatches with app, and sets all fields to false', () => {
   const action = {

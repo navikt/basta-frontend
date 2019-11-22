@@ -3,7 +3,7 @@ import { watchUser } from './user'
 import { watchInitialize } from './initialize'
 import { watcHistory } from '../../containers/history/sagas'
 import { watchOrderData } from './orderformData'
-import { watchOperations } from '../../containers/operate/operateSagas'
+import { watchOperations } from '../../operations/operateSagas'
 import { watchOrder } from '../../order/create/createOrderSagas'
 import { watchNotification } from '../../notifications/notificationsSaga'
 

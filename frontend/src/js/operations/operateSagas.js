@@ -1,6 +1,6 @@
 import { takeEvery, takeLatest, put, fork, call, select } from 'redux-saga/effects'
-import { getUrl, postForm } from '../../common/utils'
-import history from '../../common/history'
+import { getUrl, postForm } from '../common/utils'
+import history from '../common/history'
 import {
   SUBMIT_OPERATION,
   OPERATION_SUBMITTING,
@@ -12,7 +12,7 @@ import {
   CREDENTIAL_LOOKUP_SUCCESSFUL,
   CREDENTIAL_LOOKUP_FAILED,
   LATEST_ORDER_REQUEST
-} from '../../actionTypes'
+} from '../actionTypes'
 
 export function* credentialLookup(action) {
   let credentialInfo = {}
