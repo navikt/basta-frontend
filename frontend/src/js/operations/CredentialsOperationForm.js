@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  submitOperation,
-  submitCredentialLookup
-} from './operateActionCreators'
+import { submitOperation, submitCredentialLookup } from './operateActionCreators'
 import { connect } from 'react-redux'
 import image from '../../img/orderTypes/redhat.png'
+import ErrorPanel from '../common/components/formComponents/ErrorPanel'
+import InfoPanel from '../common/components/formComponents/InfoPanel'
 import {
-  ErrorPanel,
-  InfoPanel,
   OrderButtonGroup,
   ApplicationsDropDown,
   OperationsButtons

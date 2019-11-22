@@ -2,8 +2,9 @@ import React from 'react'
 import sinon from 'sinon'
 import { shallow } from 'enzyme'
 import { NodeOperationsForm } from './NodeOperationsForm'
-import OperateNodeLookup from '../OperateNodeLookup'
-import { ErrorPanel, OperationsButtons } from '../../../commonUi/formComponents'
+import OperateNodeLookup from '../node/OperateNodeLookup'
+import { OperationsButtons } from '../../commonUi/formComponents'
+import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
 
 const props = {
   user: {
@@ -17,10 +18,16 @@ describe('(Component) NodeOperationsForm logic', () => {
   let dispatch
   let wrapper
   const valueHasAccess = {
-    resolvedHosts: [{ hostname: 'host1', hasAccess: true }, { hostname: 'host2', hasAccess: true }]
+    resolvedHosts: [
+      { hostname: 'host1', validation: { valid: true } },
+      { hostname: 'host2', validation: { valid: true } }
+    ]
   }
   const valueHasNotAccess = {
-    resolvedHosts: [{ hostname: 'host1', hasAccess: true }, { hostname: 'host2', hasAccess: false }]
+    resolvedHosts: [
+      { hostname: 'host1', validation: { valid: true } },
+      { hostname: 'host2', validation: { valid: false } }
+    ]
   }
 
   beforeEach(() => {
@@ -65,7 +72,7 @@ describe('(Component) CredentialsOperationForm rendering', () => {
   })
 
   it('renders ErrorPanel once', () => {
-    expect(wrapper.find(ErrorPanel)).toHaveLength(1)
+    expect(wrapper.find(ErrorStripe)).toHaveLength(1)
   })
 
   it('renders OperationsButtons once', () => {
