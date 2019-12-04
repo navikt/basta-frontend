@@ -82,10 +82,17 @@ export class CustomCredentialOrderForm extends Component {
               placeholder={'Username starting with srv'}
               onChange={v => this.handleChange('username', v)}
             />
-            <InfoStripe
-              show={true}
-              message="Password for this user will be saved to Vault when the user is created under the serviceuser path. Nothing will be saved to fasit"
-            />
+            <InfoStripe show={true}>
+              <div className="alertStripeText">
+                Password for this user will be saved to Vault when the user is created under the
+                serviceuser path.{' '}
+                <strong className="errorIcon">Nothing will be saved to fasit.</strong>
+                <div>
+                  If you need a serviceuser registered in fasit use the{' '}
+                  <a href="/create/credential">credential order form</a>
+                </div>
+              </div>
+            </InfoStripe>
             <OrderCheckBox
               label="ABAC"
               value={abacAccess}

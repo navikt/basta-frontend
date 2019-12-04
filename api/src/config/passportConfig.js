@@ -22,8 +22,8 @@ exports.nonceLifetime = 36000
 
 if (process.env['NODE_ENV'] === 'production') {
   exports.allowHttpForRedirectUrl = false
-  exports.loggingLevel = 'debug'
+  exports.loggingLevel = 'error'
 } else if (process.env['NODE_ENV'] === 'development') {
   exports.allowHttpForRedirectUrl = true
-  exports.loggingLevel = 'error'
+  exports.loggingLevel = 'debug'
 }
