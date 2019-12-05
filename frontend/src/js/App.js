@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Routes } from './common/routes'
+import { Routes } from './routes'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import NavMenuSmall from './commonUi/menus/NavMenuSmall'
