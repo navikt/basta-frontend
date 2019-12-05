@@ -1,30 +1,30 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { submitOperation, submitCredentialLookup } from './operateActionCreators'
+import { submitOperation, submitCredentialLookup } from '../operateActionCreators'
 import { connect } from 'react-redux'
-import image from '../../img/orderTypes/redhat.png'
-import ErrorPanel from '../common/components/formComponents/ErrorPanel'
-import InfoPanel from '../common/components/formComponents/InfoPanel'
-import {
-  OrderButtonGroup,
-  ApplicationsDropDown,
-  OperationsButtons
-} from '../commonUi/formComponents'
+import image from '../../../img/orderTypes/redhat.png'
+import ErrorPanel from '../../common/components/formComponents/ErrorPanel'
+import InfoPanel from '../../common/components/formComponents/InfoPanel'
+import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
+import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
+import { ApplicationsDropDown, OperationsButtons } from '../../commonUi/formComponents'
+
+const initialState = {
+  zone: 'fss',
+  application: ''
+}
 
 export class CredentialsOperationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      form: { environmentClass: 'u', zone: 'fss', applicationMappingName: null },
-      hasAccess: false,
-      messages: []
+      environmentClass: 'u',
+      ...initialState
     }
   }
 
   handleChange(field, value) {
-    this.setState({
-      form: { ...this.state.form, [field]: value }
-    })
+    this.setState({ [field]: value })
   }
 
   submitHandler(operationsType) {
@@ -68,6 +68,7 @@ export class CredentialsOperationForm extends Component {
 
   render() {
     const messages = this.state.messages
+    const { environmentClass, zone, application } = this.state
     return (
       <div>
         <div className="orderForm">
@@ -76,40 +77,17 @@ export class CredentialsOperationForm extends Component {
           </div>
           <div className="orderFormHeading">
             <div className="orderFormTitle">AD serviceuser</div>
-            <div className="orderFormDescription">Cleaning service user</div>
+            <div className="orderFormDescription">Delete serviceuser from AD, Fasit and Vault</div>
           </div>
           <div className="orderFormItems">
-            <OrderButtonGroup
-              key="environmentClass"
-              label="Environment Class"
-              value={this.state.form.environmentClass}
-              description=""
-              alternatives={[
-                { label: 'Development', value: 'u' },
-                { label: 'Test', value: 't' },
-                { label: 'PreProd', value: 'q' },
-                { label: 'Production', value: 'p', access: ['ROLE_PROD_OPERATIONS'] }
-              ]}
-              roles={this.props.user.userProfile.roles}
+            <EnvironmentClassButtonGroup
+              value={environmentClass}
               onChange={v => this.handleChange('environmentClass', v)}
             />
-            <OrderButtonGroup
-              key="zone"
-              label="Zone"
-              value={this.state.form.zone}
-              description=""
-              alternatives={[
-                { label: 'Fagsystemsone', value: 'fss' },
-                { label: 'iApp', value: 'iapp' },
-                { label: 'Selvbetjeningssone', value: 'sbs' }
-              ]}
-              roles={this.props.user.userProfile.roles}
-              onChange={v => this.handleChange('zone', v)}
-            />
+            <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
             <ApplicationsDropDown
-              key="applicationMappingName"
-              onChange={v => this.handleChange('applicationMappingName', v)}
-              value={this.state.form.applicationMappingName}
+              onChange={v => this.handleChange('application', v)}
+              value={application}
             />
           </div>
           <ErrorPanel
@@ -117,10 +95,12 @@ export class CredentialsOperationForm extends Component {
             message={this.props.submitError}
             show={this.props.submitError}
           />
-          <InfoPanel messages={messages} show={messages.length > 0} />
+          {/*<InfoPanel messages={messages} show={messages.length > 0} />*/}
           <OperationsButtons
             hasAccess={this.state.hasAccess}
             onClick={this.submitHandler.bind(this)}
+            hideStopButton={true}
+            hideStartButton={true}
           />
         </div>
       </div>
