@@ -70,10 +70,6 @@ export class CredentialsOperationForm extends Component {
     const { existInAD, existInFasit, submitting, submitError } = this.props
     const { environmentClass, zone, application } = this.state
 
-    console.log('submiterror', submitError)
-
-    console.log('AD', existInAD, 'fasit', existInFasit)
-
     return (
       <div>
         <div className="orderForm">
