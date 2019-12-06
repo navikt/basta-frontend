@@ -17,6 +17,7 @@ export default (
     },
     credentialLookup: {
       fetching: false,
+      lookupComplete: false,
       error: null,
       data: {
         existInAD: false,
@@ -60,6 +61,7 @@ export default (
         ...state,
         credentialLookup: {
           fetching: false,
+          lookupComplete: false,
           error: null,
           data: {
             existInAD: false,
@@ -73,6 +75,7 @@ export default (
         ...state,
         credentialLookup: {
           fetching: true,
+          lookupComplete: false,
           error: null,
           data: state.credentialLookup.data
         }
@@ -82,6 +85,7 @@ export default (
         ...state,
         credentialLookup: {
           fetching: false,
+          lookupComplete: true,
           error: null,
           data: action.credentialInfo
         }
@@ -91,6 +95,7 @@ export default (
         ...state,
         credentialLookup: {
           fetching: false,
+          lookupComplete: false,
           error: action.error,
           data: state.credentialLookup.data
         }

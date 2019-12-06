@@ -50,56 +50,46 @@ export function* customCredentialLookup(action) {
   }
 }
 
+function* submitNodeOperations(action) {
+  const hostnames = Array.from(action.form)
+  let value
+
+  switch (action.operation) {
+    case 'start':
+      value = yield call(postForm, `/rest/vm/operations/start`, hostnames)
+      break
+    case 'stop':
+      value = yield call(postForm, `/rest/vm/operations/stop`, hostnames)
+      break
+    case 'delete':
+      value = yield call(postForm, `/rest/vm/operations/decommission`, hostnames)
+      break
+  }
+  return value
+}
+
+function* submitDeleteCredentialOperation(action) {
+  let value
+  value = yield call(postForm, `/rest/operation/serviceuser/credential/delete`, action.form)
+  return value
+}
+
 export function* submitOperation(action) {
   let value
-  let redirectUrl
   yield put({ type: OPERATION_SUBMITTING, value: action })
   try {
     switch (action.key) {
       case 'nodes':
-        const hostnames = Array.from(action.form)
-        switch (action.operation) {
-          case 'start':
-            value = yield call(postForm, `/rest/vm/operations/start`, hostnames)
-            break
-          case 'stop':
-            value = yield call(postForm, `/rest/vm/operations/stop`, hostnames)
-            break
-          case 'delete':
-            value = yield call(postForm, `/rest/vm/operations/decommission`, hostnames)
-            break
-        }
-        yield put({ type: OPERATION_SUBMIT_SUCCESSFUL, value })
-        yield put({ type: LATEST_ORDER_REQUEST })
-        redirectUrl = value.orderId ? `/orders/${value.orderId}` : '/'
-        yield history.push(redirectUrl)
+        value = yield call(submitNodeOperations, action)
         break
       case 'credentials':
-        switch (action.operation) {
-          case 'start':
-            value = yield call(
-              postForm,
-              `/rest/operation/serviceuser/credential/start`,
-              action.form
-            )
-            break
-          case 'stop':
-            value = yield call(postForm, `/rest/operation/serviceuser/credential/stop`, action.form)
-            break
-          case 'delete':
-            value = yield call(
-              postForm,
-              `/rest/operation/serviceuser/credential/delete`,
-              action.form
-            )
-            break
-        }
-        yield put({ type: OPERATION_SUBMIT_SUCCESSFUL, value })
-        yield put({ type: LATEST_ORDER_REQUEST })
-        redirectUrl = value.orderId ? `/orders/${value.orderId}` : '/'
-        yield history.push(redirectUrl)
+        value = yield call(submitDeleteCredentialOperation, action)
         break
     }
+    yield put({ type: OPERATION_SUBMIT_SUCCESSFUL, value })
+    yield put({ type: LATEST_ORDER_REQUEST })
+    const redirectUrl = value.orderId ? `/orders/${value.orderId}` : '/'
+    yield history.push(redirectUrl)
   } catch (error) {
     yield put({ type: OPERATION_SUBMIT_FAILED, error })
   }

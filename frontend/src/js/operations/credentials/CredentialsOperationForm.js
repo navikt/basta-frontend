@@ -3,10 +3,9 @@ import PropTypes from 'prop-types'
 import { submitOperation, submitCredentialLookup } from '../operateActionCreators'
 import { connect } from 'react-redux'
 import image from '../../../img/orderTypes/redhat.png'
-import ErrorPanel from '../../common/components/formComponents/ErrorPanel'
-import InfoPanel from '../../common/components/formComponents/InfoPanel'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
+import { InfoStripe, ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
 import { ApplicationsDropDown, OperationsButtons } from '../../commonUi/formComponents'
 
 const initialState = {
@@ -28,47 +27,53 @@ export class CredentialsOperationForm extends Component {
   }
 
   submitHandler(operationsType) {
-    this.props.dispatch(submitOperation('credentials', this.state.form, operationsType))
+    this.props.dispatch(submitOperation('credentials', this.state.form))
   }
 
-  validateForm(form) {
-    return form.environmentClass && form.zone && form.applicationMappingName
+  userNotFound() {
+    const { lookupComplete, existInAD, existInFasit } = this.props
+    if (!lookupComplete) {
+      return false
+    }
+    const userFound = existInAD || existInFasit
+
+    return !userFound
+  }
+
+  validForm() {
+    const requiredFields = this.state.application !== ''
+    const userFound = !this.userNotFound()
+
+    return requiredFields && userFound
   }
 
   credentialLookup(form) {
     this.props.dispatch(submitCredentialLookup(form))
   }
 
-  verifySchema() {
-    const { existInAD, existInFasit } = this.props.credentialsInfo
-    let hasAccess
-    let messages = []
-    if (!(existInAD || existInFasit)) {
-      messages.push('Service user not found either in AD or Fasit.')
-      hasAccess = false
-    } else {
-      if (!existInAD && existInFasit) {
-        messages.push('Service user not found in AD.')
-      } else if (existInAD && !existInFasit) {
-        messages.push('Service user not found in Fasit.')
-      }
-      hasAccess = true
-    }
-    this.setState({ messages, hasAccess })
-  }
-
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.form !== this.state.form && this.state.form.applicationMappingName) {
-      this.credentialLookup(this.state.form)
-    }
-    if (prevProps.credentialsInfo !== this.props.credentialsInfo) {
-      this.verifySchema()
+    const { environmentClass, zone, application } = this.state
+    const prevEnvClass = prevState.environmentClass
+    const prevZone = prevState.zone
+    const prevApp = prevState.application
+    const { dispatch } = this.props
+
+    if (
+      application !== '' &&
+      (environmentClass !== prevEnvClass || zone !== prevZone || application !== prevApp)
+    ) {
+      dispatch(submitCredentialLookup(this.state))
     }
   }
 
   render() {
-    const messages = this.state.messages
+    const { existInAD, existInFasit, submitting, submitError } = this.props
     const { environmentClass, zone, application } = this.state
+
+    console.log('submiterror', submitError)
+
+    console.log('AD', existInAD, 'fasit', existInFasit)
+
     return (
       <div>
         <div className="orderForm">
@@ -89,19 +94,27 @@ export class CredentialsOperationForm extends Component {
               onChange={v => this.handleChange('application', v)}
               value={application}
             />
+            <InfoStripe
+              show={!existInFasit && existInAD}
+              message={`Service user for ${application} does not exist in fasit for this in this environment class and zone. Service user will only be deleted from AD.`}
+            />
+            <InfoStripe
+              show={!existInAD && existInFasit}
+              message={`Service user for ${application} does not exist in AD for this in this environment class and zone. Service user will only be deleted from Fasit.`}
+            />
+            <ErrorStripe
+              show={this.userNotFound()}
+              message={`Service user for ${application} does not exist in either AD or Fasit. There is nothing to delete here.`}
+            />
+            <ErrorStripe show={this.validForm() && submitError} message={submitError} />
+            <OperationsButtons
+              hasAccess={this.validForm()}
+              onClick={this.submitHandler.bind(this)}
+              submitting={submitting}
+              hideStopButton={true}
+              hideStartButton={true}
+            />
           </div>
-          <ErrorPanel
-            heading="Service user operation failed"
-            message={this.props.submitError}
-            show={this.props.submitError}
-          />
-          {/*<InfoPanel messages={messages} show={messages.length > 0} />*/}
-          <OperationsButtons
-            hasAccess={this.state.hasAccess}
-            onClick={this.submitHandler.bind(this)}
-            hideStopButton={true}
-            hideStartButton={true}
-          />
         </div>
       </div>
     )
@@ -121,6 +134,11 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     credentialsInfo: state.operationsForm.credentialLookup.data,
+    submitError: state.operationsForm.operations.error,
+    lookupComplete: state.operationsForm.credentialLookup.lookupComplete,
+    existInFasit: state.operationsForm.credentialLookup.data.existInFasit,
+    existInAD: state.operationsForm.credentialLookup.data.existInAD,
+    submitting: state.operationsForm.operations.fetching,
     submitError: state.operationsForm.operations.error
   }
 }
