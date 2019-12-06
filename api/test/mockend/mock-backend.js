@@ -49,6 +49,7 @@ router.get('/rest/orders/serviceuser/certificate/existInFasit', credentialsMock.
 router.post('/rest/orders/serviceuser/credential', orderMock.postOrder())
 router.post('/rest/orders/serviceuser/customcredential', orderMock.postOrder())
 router.post(`/rest/vm/operations/decommission`, orderMock.decommission())
+router.post(`/rest/operation/serviceuser/credential/delete`, orderMock.decommission())
 router.get(`/rest/operation/serviceuser/credential/user`, credentialsMock.user())
 router.get(`/rest/orders/serviceuser/credential/existInAD`, credentialsMock.existInAD())
 router.get(`/rest/orders/serviceuser/credential/existInFasit`, credentialsMock.existInFasit())
