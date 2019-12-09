@@ -77,6 +77,7 @@ function* submitDeleteCredentialOperation(action) {
 export function* submitOperation(action) {
   let value
   yield put({ type: OPERATION_SUBMITTING, value: action })
+
   try {
     switch (action.key) {
       case 'nodes':

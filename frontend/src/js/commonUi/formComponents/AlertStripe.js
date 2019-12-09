@@ -19,7 +19,7 @@ const AlertStripe = props => {
     iconClass = 'infoIcon'
     stripeClass = 'infoStripe'
   }
-  const parentClassName = className ? `${className}`: "formComponentGrid"
+  const parentClassName = className ? `${className}` : 'formComponentGrid'
 
   return (
     <div className={parentClassName}>

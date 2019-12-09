@@ -26,8 +26,8 @@ export class CredentialsOperationForm extends Component {
     this.setState({ [field]: value })
   }
 
-  submitHandler(operationsType) {
-    this.props.dispatch(submitOperation('credentials', this.state.form))
+  submitHandler() {
+    this.props.dispatch(submitOperation('credentials', this.state))
   }
 
   userNotFound() {
@@ -123,13 +123,13 @@ CredentialsOperationForm.propTypes = {
   orderFields: PropTypes.object,
   onSubmit: PropTypes.func,
   dispatch: PropTypes.func,
-  credentialsInfo: PropTypes.object
+  existInFasit: PropTypes.bool,
+  existInAD: PropTypes.bool
 }
 
 const mapStateToProps = state => {
   return {
     user: state.user,
-    credentialsInfo: state.operationsForm.credentialLookup.data,
     submitError: state.operationsForm.operations.error,
     lookupComplete: state.operationsForm.credentialLookup.lookupComplete,
     existInFasit: state.operationsForm.credentialLookup.data.existInFasit,

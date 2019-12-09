@@ -10,7 +10,7 @@ import { getUrl, postForm } from '../common/utils'
 it('(Operate view sagas - credentialLookup) disoatches with app, and sets all fields to false', () => {
   const action = {
     type: 'CREDENTIAL_LOOKUP_REQUEST',
-    form: { environmentClass: 'u', zone: 'fss', applicationMappingName: 'sera' }
+    form: { environmentClass: 'u', zone: 'fss', application: 'sera' }
   }
   return expectSaga(credentialLookup, action)
     .withReducer(operateReducers)
@@ -19,6 +19,7 @@ it('(Operate view sagas - credentialLookup) disoatches with app, and sets all fi
       ...defaultOperationsState,
       credentialLookup: {
         fetching: false,
+        lookupComplete: true,
         error: null,
         data: { existInAD: false, existInFasit: false, user: false }
       }
@@ -29,7 +30,7 @@ it('(Operate view sagas - credentialLookup) disoatches with app, and sets all fi
 it('(Operate view sagas - credentialLookup) dispatches with app, returns fetch error and default values', () => {
   const action = {
     type: 'CREDENTIAL_LOOKUP_REQUEST',
-    form: { environmentClass: 'u', zone: 'fss', applicationMappingName: 'sera' }
+    form: { environmentClass: 'u', zone: 'fss', application: 'sera' }
   }
   const error = Error('error')
   return expectSaga(credentialLookup, action)
@@ -39,6 +40,7 @@ it('(Operate view sagas - credentialLookup) dispatches with app, returns fetch e
       ...defaultOperationsState,
       credentialLookup: {
         fetching: false,
+        lookupComplete: false,
         error: error,
         data: { existInAD: false, existInFasit: false, user: {} }
       }
@@ -46,23 +48,32 @@ it('(Operate view sagas - credentialLookup) dispatches with app, returns fetch e
     .run()
 })
 
-it('(Operate view sagas - submitOperation) disoatches with operation, returns orderId', () => {
+it('(Operate view sagas - submitOperation) dispatches with operation, returns orderId', () => {
   const action = {
     type: 'SUBMIT_OPERATION',
-    key: 'credentials',
+    key: 'nodes',
     operation: 'start',
-    form: { environmentClass: 'u', zone: 'fss', applicationMappingName: 'sera' }
+    form: ['host1', 'host2.fqdn.com']
   }
   const res = { orderId: '6969' }
   return expectSaga(submitOperation, action)
     .withReducer(operateReducers)
     .provide([[matchers.call.fn(postForm), res]])
     .hasFinalState({
-      ...defaultOperationsState,
       operations: {
         fetching: false,
         error: null,
         lastOrderId: res.orderId
+      },
+      credentialLookup: {
+        fetching: false,
+        lookupComplete: false,
+        error: null,
+        data: {
+          existInAD: false,
+          existInFasit: false,
+          user: {}
+        }
       }
     })
     .run()
@@ -72,8 +83,7 @@ it('(Operate view sagas - submitOperation) dispatches with operation, returns fe
   const action = {
     type: 'SUBMIT_OPERATION',
     key: 'credentials',
-    operation: 'start',
-    form: { environmentClass: 'u', zone: 'fss', applicationMappingName: 'sera' }
+    form: { environmentClass: 'u', zone: 'fss', application: 'sera' }
   }
   const error = Error('error')
   return expectSaga(submitOperation, action)
@@ -97,53 +107,7 @@ const defaultOperationsState = {
   credentialLookup: {
     fetching: false,
     error: null,
+    lookupComplete: false,
     data: { existInAD: false, existInFasit: false, user: {} }
   }
 }
-
-const vmInfo = [
-  {
-    hostname: 'a.a.a',
-    os: 'Red Hat Enterprise Linux 6 (64-bit)',
-    uuid: 'VMware-42 0f b9 9f 91 41 5f ef-ff 33 ff 30 6b 55 92 a7',
-    environmentClass: 'q',
-    type: 'jboss',
-    site: 'so8',
-    memory: 2,
-    cpu: 1,
-    disk: 76,
-    status: 'poweredOff',
-    custom: false,
-    owner: 'b123034',
-    application: 'signering',
-    environment: 'q2',
-    created: '2018-01-08T09:36:22.468Z',
-    environmentName: 'n/a',
-    rpm_time: '2018-01-08T09:45:29Z',
-    rpm_version: '7.0.4.2-1',
-    rpm_rpm: 'jboss-eap7',
-    unit: 'kes'
-  },
-  {
-    hostname: 'b.b.b',
-    os: 'Red Hat Enterprise Linux 6 (64-bit)',
-    uuid: 'VMware-42 0f b9 9f 91 41 5f ef-ff 33 ff 30 6b 55 92 a7',
-    environmentClass: 'q',
-    type: 'jboss',
-    site: 'so8',
-    memory: 2,
-    cpu: 1,
-    disk: 76,
-    status: 'poweredOff',
-    custom: false,
-    owner: 'b123034',
-    application: 'signering',
-    environment: 'q2',
-    created: '2018-01-08T09:36:22.468Z',
-    environmentName: 'n/a',
-    rpm_time: '2018-01-08T09:45:29Z',
-    rpm_version: '7.0.4.2-1',
-    rpm_rpm: 'jboss-eap7',
-    unit: 'kes'
-  }
-]

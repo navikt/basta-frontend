@@ -2,13 +2,8 @@ import React from 'react'
 import sinon from 'sinon'
 import { shallow } from 'enzyme'
 import { CredentialsOperationForm } from './CredentialsOperationForm'
-import {
-  ErrorPanel,
-  InfoPanel,
-  OrderButtonGroup,
-  ApplicationsDropDown,
-  OperationsButtons
-} from '../../commonUi/formComponents'
+import { ApplicationsDropDown, OperationsButtons } from '../../commonUi/formComponents'
+import { InfoStripe, ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
 
 const props = {
   user: {
@@ -16,16 +11,14 @@ const props = {
       roles: ['ROLE_USER', 'ROLE_SUPERUSER', 'ROLE_PROD_OPERATIONS', 'ROLE_OPERATIONS']
     }
   },
-  credentialsInfo: {
-    existInAD: true,
-    existInFasit: false
-  }
+  existInAD: true,
+  existInFasit: false
 }
 
 const form = {
   environmentClass: 'env',
   zone: 'zone',
-  applicationMappingName: 'app'
+  application: 'app'
 }
 
 describe('(Component) CredentialsOperationForm logic', () => {
@@ -39,20 +32,21 @@ describe('(Component) CredentialsOperationForm logic', () => {
 
   it('(handleChange) sets state with args', () => {
     wrapper.instance().handleChange('zone', 'party')
-    expect(wrapper.state().form.zone).toBe('party')
+    expect(wrapper.state().zone).toBe('party')
   })
 
   it('(submitHandler) dispatches right action with args', () => {
-    wrapper.setState({ form: 'form' })
-    wrapper.instance().submitHandler('fish')
-    expect(dispatch.args[0][0].type).toBe('SUBMIT_OPERATION')
-    expect(dispatch.args[0][0].key).toBe('credentials')
-    expect(dispatch.args[0][0].form).toBe('form')
-    expect(dispatch.args[0][0].operation).toBe('fish')
-  })
+    wrapper.setState({ application: 'app' })
+    wrapper.instance().submitHandler()
 
-  it('(validateForm) returns !undefined if form is valid', () => {
-    expect(wrapper.instance().validateForm(form)).toEqual('app')
+    expect(dispatch.args[0][0].type).toBe('CREDENTIAL_LOOKUP_REQUEST')
+    expect(dispatch.args[1][0].type).toBe('SUBMIT_OPERATION')
+    expect(dispatch.args[1][0].key).toBe('credentials')
+    expect(dispatch.args[1][0].form).toEqual({
+      environmentClass: 'u',
+      zone: 'fss',
+      application: 'app'
+    })
   })
 
   it('(credentialLookup) dispatches right action with args', () => {
@@ -61,24 +55,52 @@ describe('(Component) CredentialsOperationForm logic', () => {
     expect(dispatch.args[0][0].form).toBe(form)
   })
 
-  it('(verifySchema) sets correct state', () => {
-    wrapper.instance().verifySchema()
-    expect(wrapper.state().messages[0]).toBe('Service user not found in Fasit.')
-    expect(wrapper.state().hasAccess).toEqual(true)
-  })
-
-  it('(componentDidUpdate) dispatches right action with args', () => {
-    wrapper.setState({ form })
+  it('(componentDidUpdate) credential lookup action is fired when local state changes', () => {
+    wrapper.setState({ ...form })
     wrapper
       .instance()
       .componentDidUpdate(
-        { ...props, credentialsInfo: { existInAD: true, existInFasit: false } },
+        { ...props, existInAD: true, existInFasit: false },
         { ...form, zone: 'party' }
       )
+
     expect(dispatch.args[0][0].type).toBe('CREDENTIAL_LOOKUP_REQUEST')
-    expect(dispatch.args[0][0].form).toBe(form)
-    expect(wrapper.state().messages[0]).toBe('Service user not found in Fasit.')
-    expect(wrapper.state().hasAccess).toEqual(true)
+    expect(dispatch.args[0][0].form).toEqual(form)
+  })
+
+  it('correct info message is shown of user is missing from fasit', () => {
+    wrapper.setState({ ...form })
+    wrapper.setProps({ existInAD: true, existInFasit: false })
+    expect(
+      wrapper
+        .find(InfoStripe)
+        .findWhere(n => n.prop('show') === true)
+        .prop('message')
+    ).toEqual(
+      'Service user for app does not exist in fasit for this in this environment class and zone. Service user will only be deleted from AD.'
+    )
+  })
+
+  it('correct info message is shown of user is missing from AD', () => {
+    wrapper.setState({ ...form })
+    wrapper.setProps({ existInAD: false, existInFasit: true })
+
+    expect(
+      wrapper
+        .find(InfoStripe)
+        .findWhere(n => n.prop('show') === true)
+        .prop('message')
+    ).toEqual(
+      'Service user for app does not exist in AD for this in this environment class and zone. Service user will only be deleted from Fasit.'
+    )
+  })
+
+  it('Error message is shown and delete button is disabled if user is missing from both fasit and AD', () => {
+    wrapper.setState({ ...form })
+    wrapper.setProps({ lookupComplete: true, existInAD: false, existInFasit: false })
+
+    expect(wrapper.find(ErrorStripe).findWhere(n => n.prop('show') === true).length).toBe(1)
+    expect(wrapper.find(OperationsButtons).prop('hasAccess')).toBe(false)
   })
 })
 
@@ -93,20 +115,8 @@ describe('(Component) CredentialsOperationForm rendering', () => {
     expect(wrapper.length).toBe(1)
   })
 
-  it('renders OrderButtonGroup twice', () => {
-    expect(wrapper.find(OrderButtonGroup)).toHaveLength(2)
-  })
-
   it('renders ApplicationsDropDown once', () => {
     expect(wrapper.find(ApplicationsDropDown)).toHaveLength(1)
-  })
-
-  it('renders InfoPanel once', () => {
-    expect(wrapper.find(InfoPanel)).toHaveLength(1)
-  })
-
-  it('renders ErrorPanel once', () => {
-    expect(wrapper.find(ErrorPanel)).toHaveLength(1)
   })
 
   it('renders OperationsButtons once', () => {
