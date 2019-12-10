@@ -3,8 +3,7 @@ dist
 node_modules/
 .cache/
 frontend/src/.DS_Store
-frontend/src/fonts/
-frontend/resources/fonts
+frontend/fonts/
 .vscode/
 .env
 dockerbuild.sh
