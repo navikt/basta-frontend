@@ -37,6 +37,5 @@ For eksterne kontakt en av følgende:
 
 - Frode Sundby (frode.sundby@nav.no)
 - Mats Byfuglien (mats.byfuglien@nav.no)
-- Even Haasted (even.haasted@nav.no)
 
 For NAV-ansatte kan henvendelser sendes via slack i kanalen #aura

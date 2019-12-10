@@ -1,0 +1,196 @@
+@import '../../node_modules/font-awesome/less/font-awesome';
+@import 'commonUi/menus/navMenu.less';
+@import 'commonUi/formComponents/formComponents.less';
+@import 'common/components/spinner.less';
+@import 'common/components/orderCard.less';
+@import 'common/components/orderGrid.less';
+@import 'order/create/serverOrderForm.less';
+@import 'common/components/orderFilter.less';
+@import 'common/components/pageHeading.less';
+@import 'common/styles/badge.less';
+@import 'common/styles/panel.less';
+@import 'containers/history/order-list/orderList.less';
+@import 'containers/history/history.less';
+@import 'commonUi/login/login.less';
+@import 'containers/order/orderDetails.less';
+@import 'commonUi/menus/navUserMenu.less';
+@import 'operations/node/hostnameEntry.less';
+@import 'notifications/notifications.less';
+
+@navigation-font: #333;
+@header-color: #333;
+@menu-color: #fafbfc;
+@inverse-font-color: #fff;
+@font-color: #333;
+@font-color-secondary: #aaa;
+@button-color: #ccc;
+@default-button-color: #305a82;
+@active-button-color: #00bc8c;
+@font-color-error: #ed6038;
+@highlight-color: #53c4e0;
+@nav-menu-highlight-color: #41c1e0;
+@success-color: #4cb944;
+@success-background: #dff0d8;
+@warning-color: #eda42d;
+@warning-background: #fcf8e3;
+@border-color: #e7e7e7;
+@error-background: #f2dede;
+@error-border: #ebccd1;
+@error-font: #a94442;
+@navOransje: #ff9100;
+@navOransjeLighten80: mix(@navOransje, #fff, 20%);
+@navRod: #c30000;
+@navRodLighten80: mix(@navRod, #fff, 20%);
+@bastaGreen: #3bb15d;
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.wrapper {
+  display: grid;
+  height: 100vh;
+  min-width: 375px;
+  grid-template-areas:
+    'header  header header'
+    '.  main .';
+  grid-template-rows: 55px 1fr;
+  grid-template-columns: 3% auto 3%;
+}
+
+@media all and (max-width: 1012px) {
+  .wrapper {
+    grid-template-areas: 'header' 'main';
+    grid-template-columns: 100%;
+    grid-template-rows: 55px 1fr;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .wrapper {
+    grid-template-areas: 'header navigation' 'main main';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 55px 1fr !important;
+  }
+
+  nav {
+    background-color: @header-color !important;
+  }
+
+  .navButton {
+    display: inline-block !important;
+  }
+}
+
+header {
+  background: @header-color;
+  grid-area: header;
+  display: inline-block;
+}
+
+.navButton {
+  display: none;
+  color: @inverse-font-color;
+  float: right;
+  margin-top: 10px;
+  margin-right: 15px;
+}
+
+.navSmallButton:hover {
+  color: @highlight-color;
+}
+
+main {
+  grid-area: main;
+  margin-bottom: 10px;
+}
+
+.navBrand {
+  display: table;
+  color: #eee;
+  cursor: pointer;
+}
+
+.navLogo {
+  padding-right: 20px;
+  color: lighten(@header-color, 15%);
+  color: @bastaGreen;
+}
+
+.fa-cubes {
+  color: #eee;
+}
+
+.navName {
+  display: table-cell;
+  font-size: 1.5em;
+}
+
+.navBasta {
+  display: inline-block;
+}
+
+.alertStripe {
+  display: flex;
+  max-width: 600px;
+  align-content: center;
+  border-radius: 0.15rem;
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+.infoStripe {
+  border: 1px solid @navOransje;
+  background-color: @navOransjeLighten80;
+}
+
+.errorStripe {
+  border: 1px solid @navRod;
+  background-color: @navRodLighten80;
+}
+
+.alertStripeIcon {
+  margin-right: 0.75rem;
+  display: flex;
+  top: 1rem;
+}
+
+.infoIcon {
+  color: @navOransje;
+}
+
+.errorIcon {
+  color: @navRod;
+}
+
+.alertStripeText {
+  margin: auto 0;
+  max-width: 37.5rem;
+  display: block;
+  color: #3e3832;
+}
+
+.infobox {
+  display: flex;
+  align-items: center;
+}
+.infobox > .icon {
+  width: 10vw;
+  font-size: 10vw;
+}
+
+.infobox > .content {
+  padding-left: 20px;
+}
+
+.rightpad {
+  padding-right: 5px;
+}

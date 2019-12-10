@@ -120,19 +120,19 @@
       "command": "better-npm-run mkdir && better-npm-run copy-fonts"
     },
     "dev-frontend": {
-      "command": "parcel frontend/src/index.html --public-url /static",
+      "command": "parcel frontend/index.html --public-url /static",
       "env": {
         "NODE_ENV": "development"
       }
     },
     "mkdir": {
-      "command": "mkdirp frontend/src/fonts"
+      "command": "mkdirp frontend/fonts"
     },
     "copy-fonts": {
-      "command": "ncp node_modules/font-awesome/fonts/ frontend/src/fonts"
+      "command": "ncp node_modules/font-awesome/fonts/ frontend/fonts"
     },
     "dev-api": {
-      "command": "parcel frontend/src/index.html --public-url /static |nodemon api/src/server.js",
+      "command": "parcel frontend/index.html --public-url /static |nodemon api/src/server.js",
       "env": {
         "NODE_ENV": "development",
         "BASTA_BACKEND": "http://localhost:6996"
@@ -146,7 +146,7 @@
       }
     },
     "dev-offline": {
-      "command": "parcel frontend/src/index.html --public-url /static|nodemon api/test/server.js",
+      "command": "parcel frontend/index.html --public-url /static|nodemon api/test/server.js",
       "env": {
         "NODE_ENV": "offline",
         "BASTA_BACKEND": "http://localhost:6996"
@@ -159,7 +159,7 @@
       }
     },
     "build": {
-      "command": "rimraf dist/ &&  parcel build frontend/src/index.html --public-url /static",
+      "command": "rimraf dist/ &&  parcel build frontend/index.html --public-url /static",
       "env": {
         "NODE_ENV": "production"
       }

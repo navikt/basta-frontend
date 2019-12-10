@@ -1,0 +1,48 @@
+.resultLine {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  grid-template-areas: 'result history operations';
+}
+.resultLine > .result {
+  grid-area: result;
+  line-height: 25px;
+}
+
+.result-info > div {
+  display: inline-block;
+}
+
+.result > div > :first-child {
+  width: 75px;
+  font-weight: bold;
+}
+
+.resultLine > .history {
+  grid-area: history;
+  padding-left: 10px;
+  min-width: 220px;
+  max-width: inherit;
+}
+
+.resultLine > .operations {
+  grid-area: operations;
+  line-height: 25px;
+  margin-left: 20px;
+}
+
+.resultLine > .operations > i:hover {
+  color: @highlight-color;
+  cursor: pointer;
+}
+
+@media all and (max-width: 500px) {
+  .resultLine {
+    display: grid;
+    padding: 5px 5px 5px 10px;
+    border: 1px solid @border-color;
+    border-radius: 3px;
+    background-color: @menu-color;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 'result operations' 'history history';
+  }
+}

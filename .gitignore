@@ -4,6 +4,7 @@ node_modules/
 .cache/
 frontend/src/.DS_Store
 frontend/src/fonts/
+frontend/resources/fonts
 .vscode/
 .env
 dockerbuild.sh
