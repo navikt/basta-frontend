@@ -46,7 +46,6 @@ export default function imageType(orderDescription) {
     case 'windows internet server':
     case 'windows applicationserver':
       return windowsImage
-    case 'topic':
     case 'queue':
     case 'channel':
       return mqImage
