@@ -32,7 +32,7 @@ const orderFields = {
     description: 'Virtual sockets',
     fieldType: 'number',
     min: 1,
-    max: 4,
+    max: 8,
     value: 1
   },
   memory: {
@@ -40,7 +40,7 @@ const orderFields = {
     description: 'GB',
     fieldType: 'number',
     min: 2,
-    max: 32,
+    max: 64,
     value: 2
   },
   extraDisk: {
