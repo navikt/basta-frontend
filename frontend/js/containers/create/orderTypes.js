@@ -71,20 +71,6 @@ export const orderTypes = [
     url: '/create/redhat'
   },
   {
-    title: 'OpenAM',
-    description: 'proxy',
-    image: openamImage,
-    tags: ['openam', 'server', 'security', 'proxy'],
-    url: '/create/openamproxy'
-  },
-  {
-    title: 'OpenAM',
-    description: 'server',
-    image: openamImage,
-    tags: ['openam', 'server', 'security'],
-    url: '/create/openamserver'
-  },
-  {
     title: 'Certificate',
     description: 'for Service user',
     image: securityImage,

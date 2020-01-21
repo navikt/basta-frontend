@@ -7,8 +7,6 @@ import bpmnode from './bpmnode'
 import bpmdmgr from './bpmdmgr'
 import wasnode from './wasnode'
 import wasdmgr from './wasdmgr'
-import openamserver from './openamserver'
-import openamproxy from './openamproxy'
 import redhat from './redhat'
 import containerlinux from './containerlinux'
 import windows from './windows'
@@ -28,8 +26,6 @@ module.exports = {
   bpmdmgr,
   wasnode,
   wasdmgr,
-  openamserver,
-  openamproxy,
   redhat,
   containerlinux,
   windows,
