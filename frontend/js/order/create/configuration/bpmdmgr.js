@@ -5,7 +5,7 @@ const orderApiPath = '/rest/vm/orders/bpm/dmgr'
 
 const orderFields = {
   nodeType: {
-    value: 'BPM_DEPLOYMENT_MANAGER'
+    value: 'BPM86_DEPLOYMENT_MANAGER'
   },
   zone: {
     value: 'fss'

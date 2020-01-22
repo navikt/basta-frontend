@@ -4,7 +4,7 @@ const image = require('../../../../img/orderTypes/websphere.png')
 const orderApiPath = '/rest/vm/orders/bpm/node'
 const orderFields = {
   nodeType: {
-    value: 'BPM_NODES'
+    value: 'BPM86_NODES'
   },
   extraDisk: {
     value: 10
