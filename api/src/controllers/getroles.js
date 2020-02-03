@@ -13,6 +13,8 @@ function getAccessGroups(groupString) {
 exports.matchRoles = groups => {
   let arrRoles = ['ROLE_USER']
   groups = JSON.parse(groups)
+  console.log('Got groups: ', groups)
+
   groups.forEach(group => {
     Object.keys(roles).forEach(role => {
       if (roles[role].includes(group) && !arrRoles.includes(role)) {
@@ -20,6 +22,8 @@ exports.matchRoles = groups => {
       }
     })
   })
+  console.log('Resulted in ', arrRoles)
+
   return arrRoles
 }
 
