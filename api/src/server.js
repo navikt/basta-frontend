@@ -33,7 +33,8 @@ app.use(helmet())
 
 // CORS
 const cors = function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', host)
+  //res.setHeader('Access-Control-Allow-Origin', host)
+  res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Credentials', 'true')
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
   res.setHeader(
