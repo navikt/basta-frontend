@@ -89,8 +89,8 @@ module.exports = passport => {
               return done(null, newUser)
             }
 
-            console.log('User is found using for' + user.upn + 'user obj', arrRoles)
-            console.log('Perhaps we should use session roles', req.session.roles)
+            console.log('User is found using for ' + user.upn + ' user obj ', arrRoles)
+            console.log('Perhaps we should use session roles ', req.session.roles)
             console.log('or user roles', user.roles)
 
             req.session.userid = user.oid
@@ -98,7 +98,7 @@ module.exports = passport => {
             req.session.firstName = user.firstName
             req.session.lastName = user.lastName
             req.session.displayName = user.displayName
-            req.session.roles = arrRoles
+            req.session.roles = user.roles
             req.session.refreshToken = refreshToken
             return done(null, user)
           })
