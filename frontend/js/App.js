@@ -58,7 +58,6 @@ class App extends Component {
                   <i className="fa fa-circle fa-stack-2x" />
                   <i className="fa fa-cubes fa-stack-1x fa-inverse" />
                 </span>
-                <div className="navName">basta</div>
               </div>
             </div>
 

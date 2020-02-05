@@ -63,7 +63,7 @@ a:link {
   grid-template-areas:
     'header  header header'
     '.  main .';
-  grid-template-rows: 55px 1fr;
+  grid-template-rows: 50px 1fr;
   grid-template-columns: 3% auto 3%;
 }
 
@@ -71,7 +71,7 @@ a:link {
   .wrapper {
     grid-template-areas: 'header' 'main';
     grid-template-columns: 100%;
-    grid-template-rows: 55px 1fr;
+    grid-template-rows: 50px 1fr;
   }
 }
 
@@ -79,7 +79,7 @@ a:link {
   .wrapper {
     grid-template-areas: 'header navigation' 'main main';
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 55px 1fr !important;
+    grid-template-rows: 50px 1fr !important;
   }
 
   nav {
@@ -121,6 +121,7 @@ main {
 }
 
 .navLogo {
+  font-size: 25px;
   padding-right: 20px;
   color: lighten(@header-color, 15%);
   color: @bastaGreen;
@@ -131,6 +132,7 @@ main {
 }
 
 .navName {
+  margin-bottom: 0px;
   display: table-cell;
   font-size: 1.5em;
 }
