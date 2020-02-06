@@ -53,7 +53,9 @@ export class OracleDbOrderForm extends Component {
   }
 
   setDbTemplate(template) {
-    this.setState({ dbTemplate: { label: template.label, value: template.value } })
+    this.setState({
+      dbTemplate: template
+    })
   }
 
   validOrder() {
@@ -63,16 +65,17 @@ export class OracleDbOrderForm extends Component {
       applicationName.length > 0 &&
       databaseName.length > 0 &&
       fasitAlias.length > 0 &&
-      dbTemplate.hasOwnProperty('value')
+      dbTemplate.hasOwnProperty('uri')
     )
   }
 
   dispatchSubmit() {
-    //dbTemplate is an object. We need to remove that from the payload and get the dbTemplate.value and set it as templateURI
-    const { dbTemplate, ...formData } = this.state
+    //dbTemplate is an object. We need to remove that from the payload and set the fields that we care about in the payload
+    const { dbTemplate, zone, ...formData } = this.state
     const dbOrderPayload = {
       ...formData,
-      templateURI: dbTemplate.value
+      templateURI: dbTemplate.uri,
+      zoneURI: dbTemplate.zoneuri
     }
 
     this.props.dispatch(submitForm(dbOrderPayload, orderApiPath))
@@ -154,7 +157,7 @@ export class OracleDbOrderForm extends Component {
               onChange={template => this.setDbTemplate(template)}
               environmentClass={environmentClass}
               zone={zone}
-              value={dbTemplate.label}
+              value={dbTemplate.description}
             />
             <SubmitButton
               error={formError}

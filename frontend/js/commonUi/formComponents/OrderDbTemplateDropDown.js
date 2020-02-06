@@ -25,6 +25,7 @@ export class OrderDbTemplateDropDown extends Component {
 
   render() {
     const { value, onChange, dbTemplates, dbTemplatesFetchError } = this.props
+
     return (
       <div className="formComponentGrid">
         <div className="formComponentField">
@@ -33,8 +34,8 @@ export class OrderDbTemplateDropDown extends Component {
             <Select
               options={mapToOptions(dbTemplates)}
               placeholder="Selct DB template"
-              value={value ? { label: value, value } : null}
-              onChange={e => onChange({ label: e.label, value: e.value })}
+              value={value ? { label: value } : null}
+              onChange={e => onChange(e.value)}
             />
           </div>
         </div>
@@ -45,7 +46,7 @@ export class OrderDbTemplateDropDown extends Component {
 }
 const mapToOptions = alternatives => {
   return alternatives.map(alt => {
-    return { label: alt.description, value: alt.uri }
+    return { label: alt.description, value: alt }
   })
 }
 OrderDbTemplateDropDown.propTypes = {}
