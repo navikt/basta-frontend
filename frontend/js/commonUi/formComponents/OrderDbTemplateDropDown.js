@@ -44,10 +44,27 @@ export class OrderDbTemplateDropDown extends Component {
     )
   }
 }
+
+/*
+ * We do a weired sort here beacuse we want all the templates that have the
+ * word deprecated in its description to show up at the bottom of the list
+ */
 const mapToOptions = alternatives => {
-  return alternatives.map(alt => {
-    return { label: alt.description, value: alt }
-  })
+  return alternatives
+    .map(alt => {
+      return { label: alt.description, value: alt }
+    })
+    .sort((a, b) => {
+      if (a.label.toLowerCase().includes('deprecated')) {
+        return 1
+      }
+
+      if (b.label.toLowerCase().includes('deprecated')) {
+        return -1
+      }
+
+      return a.label.localeCompare(b.label)
+    })
 }
 OrderDbTemplateDropDown.propTypes = {}
 
