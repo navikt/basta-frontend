@@ -67,8 +67,6 @@ module.exports = passport => {
             }
             if (!user) {
               arrRoles = getroles.matchRoles(profile._json.groups)
-              console.log('NO user found' + profile.upn + 'creating...', arrRoles)
-
               let newUser = {}
               newUser.oid = profile.oid
               newUser.upn = profile.upn
@@ -88,10 +86,6 @@ module.exports = passport => {
               req.session.refreshToken = refreshToken
               return done(null, newUser)
             }
-
-            console.log('User is found using for ' + user.upn + ' user obj ', arrRoles)
-            console.log('Perhaps we should use session roles ', req.session.roles)
-            console.log('or user roles', user.roles)
 
             req.session.userid = user.oid
             req.session.upn = user.upn
