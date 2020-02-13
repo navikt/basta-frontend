@@ -4,6 +4,7 @@ import {
   HISTORY_COMPLETE,
   HISTORY_REQUEST_FAILED,
   HISTORY_APPLY_FILTER_COMPLETE,
+  HISTORY_APPLY_FILTER_PROCESSING,
   LATEST_ORDER_FETCHING,
   LATEST_ORDER_RECEIVED,
   LATEST_ORDER_REQUEST_FAILED
@@ -13,6 +14,7 @@ export default (
   state = {
     orderHistory: [],
     filteredOrderHistory: [],
+    filterApplied: false,
     fromDate: 0,
     toDate: 0,
     totalOrders: 0,
@@ -67,7 +69,13 @@ export default (
     case HISTORY_APPLY_FILTER_COMPLETE:
       return {
         ...state,
+        filterApplied: true,
         filteredOrderHistory: action.orders
+      }
+    case HISTORY_APPLY_FILTER_PROCESSING:
+      return {
+        ...state,
+        filterApplied: false
       }
     case LATEST_ORDER_FETCHING:
       return {

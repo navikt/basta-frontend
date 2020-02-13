@@ -1,11 +1,11 @@
 import { select } from 'redux-saga/effects'
 import { expectSaga } from 'redux-saga-test-plan'
-import { applyOrderHistoryFilter, getOrderHistory } from './sagas'
-import historyReducer from './reducers'
+import { applyOrderHistoryFilter, getOrderHistory } from './historySagas'
+import historyReducer from './historyReducers'
 import { getOrders, getPageId } from './selectors'
 import * as matchers from 'redux-saga-test-plan/matchers'
 import { throwError } from 'redux-saga-test-plan/providers'
-import { getUrl } from '../../common/utils'
+import { getUrl } from '../common/utils'
 import moment from 'moment'
 
 it('(History view sagas - applyOrderHistoryFilter) dispatches with filter, selects all orders from history, formats them, and returns order matching filter', () => {

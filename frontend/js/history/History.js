@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { applyOrderHistoryFilter, getOrderHistory } from './actionCreators'
 import PageHeading from '../common/components/PageHeading'
-import BottomScrollListener from '../common/components/BottomScrollListener'
+import BottomScrollListener from './BottomScrollListener'
 import propTypes from 'prop-types'
 import { connect } from 'react-redux'
-import HistoryFilter from '../common/components/HistoryFilter'
+import HistoryFilter from './HistoryFilter'
 import OrderList from './order-list/OrderList'
 import HistoryCounter from './history-counter/HistoryCounter'
+import { InfoStripe } from '../commonUi/formComponents/AlertStripe'
 
 export class History extends Component {
   constructor(props) {
@@ -47,7 +48,7 @@ export class History extends Component {
   }
 
   render() {
-    const { dispatch, filteredOrderHistory, totalOrders, maxOrders } = this.props
+    const { dispatch, filteredOrderHistory, totalOrders, maxOrders, filterApplied } = this.props
     const { maxResults } = this.state
 
     return (
@@ -67,7 +68,17 @@ export class History extends Component {
           handleSubmit={event => this.handleSubmit(event)}
           handleChange={event => this.handleChange(event)}
         />
-        <OrderList orderHistory={filteredOrderHistory.slice(0, maxResults)} />
+        {filterApplied && filteredOrderHistory.length === 0 ? (
+          <InfoStripe
+            show={true}
+            message={`No orders matching current filter criteria. NOTE: We only apply the filter on the ${totalOrders} orders currently fetched. Try fetching more orders by clicking the + sign next to the total order counter.`}
+          />
+        ) : (
+          <OrderList
+            filterApplied={filterApplied}
+            orderHistory={filteredOrderHistory.slice(0, maxResults)}
+          />
+        )}
       </div>
     )
   }
@@ -76,6 +87,7 @@ export class History extends Component {
 History.propTypes = {
   dispatch: propTypes.func,
   filteredOrderHistory: propTypes.array,
+  filterApplied: propTypes.bool,
   totalOrders: propTypes.number,
   maxOrders: propTypes.number
 }
@@ -83,6 +95,7 @@ History.propTypes = {
 const mapStateToProps = state => {
   return {
     filteredOrderHistory: state.orderHistory.filteredOrderHistory,
+    filterApplied: state.orderHistory.filterApplied,
     totalOrders: state.orderHistory.totalOrders,
     maxOrders: state.orderHistory.maxOrders
   }

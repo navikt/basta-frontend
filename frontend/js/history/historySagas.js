@@ -17,6 +17,7 @@ import {
   HISTORY_REQUEST_FAILED,
   HISTORY_APPLY_FILTER,
   HISTORY_APPLY_FILTER_COMPLETE,
+  HISTORY_APPLY_FILTER_PROCESSING,
   LATEST_ORDER_REQUEST,
   LATEST_ORDER_RECEIVED,
   LATEST_ORDER_FETCHING,
@@ -68,7 +69,10 @@ export function* getOrderHistory(action) {
 }
 
 export function* applyOrderHistoryFilter(action) {
+  yield put({ type: HISTORY_APPLY_FILTER_PROCESSING })
   let orders = yield select(getOrders)
+  console.log('orders', orders)
+
   if (orders.length > 0) {
     orders = yield call(formatOrders, orders)
     orders = yield call(filterOrders, orders, action.filter)
