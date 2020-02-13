@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { applyOrderHistoryFilter, getOrderHistory } from './actionCreators'
-import PageHeading from '../../common/components/PageHeading'
-import BottomScrollListener from '../../common/components/BottomScrollListener'
+import PageHeading from '../common/components/PageHeading'
+import BottomScrollListener from '../common/components/BottomScrollListener'
 import propTypes from 'prop-types'
 import { connect } from 'react-redux'
-import HistoryFilter from '../../common/components/HistoryFilter'
+import HistoryFilter from '../common/components/HistoryFilter'
 import OrderList from './order-list/OrderList'
 import HistoryCounter from './history-counter/HistoryCounter'
 

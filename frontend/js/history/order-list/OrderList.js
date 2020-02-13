@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import OrderListCard from './OrderListCard'
-import Spinner from '../../../common/components/Spinner'
+import Spinner from '../../common/components/Spinner'
 
 const OrderList = props => {
   const { orderHistory } = props

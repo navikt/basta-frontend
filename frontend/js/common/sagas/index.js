@@ -1,7 +1,7 @@
 import { all, call } from 'redux-saga/effects'
 import { watchUser } from './user'
 import { watchInitialize } from './initialize'
-import { watcHistory } from '../../containers/history/sagas'
+import { watcHistory } from '../../history/historySagas'
 import { watchOrderData } from './orderformData'
 import { watchOperations } from '../../operations/operateSagas'
 import { watchOrder } from '../../order/create/createOrderSagas'
