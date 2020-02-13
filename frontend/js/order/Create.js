@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import PageHeading from '../../common/components/PageHeading'
+import PageHeading from '../common/components/PageHeading'
 import PropTypes from 'prop-types'
 import { orderTypes } from './orderTypes'
 import { connect } from 'react-redux'
-import OrderGrid from '../../common/components/OrderGrid'
-import OrderCard from '../../common/components/OrderCard'
-import OrderFilter from '../../common/components/OrderFilter'
-import { isAvailable } from '../../common/utils'
+import OrderGrid from './OrderGrid'
+import OrderCard from './OrderCard'
+import OrderFilter from './OrderFilter'
+import { isAvailable } from '../common/utils'
 
 export class Create extends Component {
   constructor(props) {

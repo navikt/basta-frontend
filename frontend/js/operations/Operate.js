@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PageHeading from '../common/components/PageHeading'
 import { connect } from 'react-redux'
-import OrderGrid from '../common/components/OrderGrid'
-import OrderCard from '../common/components/OrderCard'
-import OrderFilter from '../common/components/OrderFilter'
+import OrderGrid from '../order/OrderGrid'
+import OrderCard from '../order/OrderCard'
+import OrderFilter from '../order/OrderFilter'
 import { isAvailable } from '../common/utils'
 
 const securityImage = require('../../img/orderTypes/security.png')

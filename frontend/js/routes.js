@@ -3,7 +3,7 @@ import { Route, Switch, Layout } from 'react-router'
 
 import History from './history/History'
 import Operate from './operations/Operate'
-import Create from './containers/create/Create'
+import Create from './order/Create'
 import { NotFound } from './containers/notfound/NotFound'
 import ServerOrderForm from './order/create/ServerOrderForm'
 import OperationsForm from './common/components/OperationsForm'
