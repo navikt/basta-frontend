@@ -5,44 +5,26 @@ import { orderTypes } from './orderTypes'
 import { connect } from 'react-redux'
 import OrderGrid from './OrderGrid'
 import OrderCard from './OrderCard'
-import OrderFilter from './OrderFilter'
 import { isAvailable } from '../common/utils'
 
 export class Create extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      orderTypes,
-      filteredOrders: orderTypes
-    }
-  }
-
-  filterString(filter) {
-    const filteredOrders = this.state.orderTypes.filter(orderType => {
-      return (
-        orderType.tags.filter(tag => {
-          return tag.match(filter)
-        }).length > 0
-      )
-    })
-    this.setState({ filteredOrders })
   }
 
   render() {
     return (
       <div>
         <PageHeading icon="fa-plus" heading="Create new order" description="" />
-        <OrderFilter onChange={e => this.filterString(e)} />
         <OrderGrid>
-          {this.state.filteredOrders.map((orderType, i) => {
-            const { title, description, image, tags, url, access } = orderType
+          {orderTypes.map((orderType, i) => {
+            const { title, description, image, url, access } = orderType
             return (
               <OrderCard
                 key={i}
                 label={title}
                 description={description}
                 image={image}
-                tags={tags}
                 url={url}
                 access={access}
                 enabled={isAvailable(access, this.props.user.userProfile.roles)}

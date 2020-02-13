@@ -34,7 +34,6 @@ OrderCard.propTypes = {
   label: PropTypes.string,
   description: PropTypes.string,
   image: PropTypes.string,
-  tags: PropTypes.array,
   url: PropTypes.string,
   access: PropTypes.array,
   enabled: PropTypes.bool
