@@ -11,11 +11,13 @@ import moment from 'moment'
 it('(History view sagas - applyOrderHistoryFilter) dispatches with filter, selects all orders from history, formats them, and returns order matching filter', () => {
   const action = { filter: 'JBOSS' }
   const delay = () => {}
+
   return expectSaga(applyOrderHistoryFilter, action)
     .withReducer(historyReducer)
     .provide([[select(getOrders), plainOrders]])
     .hasFinalState({
       orderHistory: [],
+      filterApplied: true,
       filteredOrderHistory: [
         {
           id: 24402,
@@ -101,6 +103,7 @@ it('(History view sagas - getOrderHistory) fetches orders from backend with corr
       fromDate: 2,
       pageId: 1,
       orderHistory: plainOrders,
+      filterApplied: false,
       filteredOrderHistory: [],
       totalOrders: 2,
       orderHistoryCompleted: true,
@@ -134,6 +137,7 @@ it('(History view sagas - getOrderHistory) handles errors', () => {
       fromDate: 2,
       pageId: 0,
       orderHistory: [],
+      filterApplied: false,
       filteredOrderHistory: [],
       totalOrders: 0,
       orderHistoryCompleted: false,
