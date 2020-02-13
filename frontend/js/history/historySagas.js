@@ -71,7 +71,6 @@ export function* getOrderHistory(action) {
 export function* applyOrderHistoryFilter(action) {
   yield put({ type: HISTORY_APPLY_FILTER_PROCESSING })
   let orders = yield select(getOrders)
-  console.log('orders', orders)
 
   if (orders.length > 0) {
     orders = yield call(formatOrders, orders)
