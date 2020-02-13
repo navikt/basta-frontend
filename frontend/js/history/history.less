@@ -28,6 +28,42 @@
   cursor: pointer;
 }
 
+.orderFilterWrapper {
+  width: 100%;
+  margin-right: 20px;
+  overflow: auto;
+  display: inline-block;
+}
+.orderFilterField {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  font-size: 1em;
+}
+
+.orderFilterSubmitBtn {
+  cursor: pointer;
+  margin-left: 5px;
+  background-color: @default-button-color;
+  padding: 10px 10px;
+  border: 2px solid @default-button-color;
+  border-radius: 2px;
+  color: @inverse-font-color;
+  text-align: center;
+  display: inline-block;
+}
+
+.orderFilterSubmitBtn:hover {
+  color: #fff;
+  background-color: lighten(@default-button-color, 10%);
+}
+
+@media all and (max-width: 1012px) {
+  .orderFilterWrapper {
+    padding-left: 20px;
+  }
+}
+
 // .history-counter-incrementer:hover {
 
 // }
