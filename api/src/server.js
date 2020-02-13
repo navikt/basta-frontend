@@ -56,7 +56,8 @@ app.use(
     name: 'basta',
     keys: [`${process.env['BASTACOOKIE_KEY1']}`, `${process.env['BASTACOOKIE_KEY2']}`],
     maxAge: 24 * 60 * 60 * 1000, // 24 timer
-    domain: cookieDomain
+    domain: cookieDomain,
+    sameSite: 'lax'
   })
 )
 app.use(passport.initialize())
