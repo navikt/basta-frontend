@@ -5,7 +5,7 @@ const orderApiPath = '/rest/vm/orders/flatcarlinux'
 
 const orderFields = {
   nodeType: {
-    value: 'FLATCAR_LINUX'
+    value: 'LIGHTWEIGHT_LINUX'
   },
   osType: {
     value: 'flatcar'
