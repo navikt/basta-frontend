@@ -58,7 +58,7 @@ export const orderTypes = [
     url: '/create/containerlinux'
   },
   {
-    title: 'Container Linux',
+    title: 'Flatcar Linux',
     description: 'Flatcar',
     image: flatcarlinuxImage,
     url: '/create/flatcarlinux'
