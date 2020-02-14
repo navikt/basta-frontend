@@ -14,7 +14,7 @@ const coreosImage = require('../../img/orderTypes/containerlinux.png')
 const flatcarImage = require('../../img/orderTypes/flatcarlinux.png')
 const unknown = require('../../img/basta.png')
 
-export default function imageType(orderDescription, osType) {
+export default function imageType(orderDescription) {
   if (!orderDescription) {
     return unknown
   }
