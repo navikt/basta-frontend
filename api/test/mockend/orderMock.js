@@ -5,9 +5,9 @@ const orders = require('../mockdata/orders.json')
 // Uncomment line below to use certificate order details instead of vm order details
 //const order = require('../mockdata/certificate_order_mock.json')
 //const order = require('../mockdata/custom_credential_order_mock.json')
-const order = require('../mockdata/vm_order_mock.json')
+//const order = require('../mockdata/vm_order_mock.json')
 const statusLog = require('../mockdata/statuslog.json')
-const orderCreated = require('../mockdata/orderCreated.json')
+const orderMock = require('../mockdata/orderCreated.json')
 
 const paginate = (pageId, pageSize, data) => {
   if (pageSize > 1000) throw 'Page size out of bounds (1000 Max value)'
@@ -44,7 +44,11 @@ exports.getOrders = () => {
 exports.getOrder = () => {
   return (req, res) => {
     try {
-      res.status(200).json(order)
+      if (req.params.id === '6666') {
+        res.status(200).json(orderMock[1])
+      } else {
+        res.status(200).json(orderMock[0])
+      }
     } catch (err) {
       console.log(err)
       res.status(500).send(err)
@@ -82,7 +86,7 @@ exports.postOrder = () => {
     }
     try {
       // proper backend @ vm/orders/jboss
-      res.status(200).json(orderCreated)
+      res.status(200).json(orderMock[0])
     } catch (err) {
       res.status(500).send(err)
     }

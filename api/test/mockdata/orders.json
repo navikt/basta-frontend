@@ -1,5 +1,26 @@
 [
   {
+    "id": 6666,
+    "created": 1581665294604,
+    "createdBy": "Aune Amundsen@nav.no",
+    "updated": 1581665294604,
+    "updatedBy": "Aune Amundsen@nav.no",
+    "updatedByDisplayName": "Aune Amundsen@nav.no",
+    "createdByDisplayName": "Aune Amundsen@nav.no",
+    "orderType": "ServiceUser",
+    "results": ["srvuser@bananakake.com"],
+    "input": null,
+    "externalId": "N/A",
+    "uri": "https://basta.prod-fss-pub.nais.io/rest/orders/6666",
+    "status": "SUCCESS",
+    "errorMessage": null,
+    "orderDescription": "credential",
+    "orderOperation": "CREATE",
+    "nextOrderId": null,
+    "previousOrderId": null,
+    "resultDetails": []
+  },
+  {
     "id": 24403,
     "created": 1534318234218,
     "createdBy": "b696969",
