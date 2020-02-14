@@ -84,9 +84,12 @@ export class CustomCredentialOrderForm extends Component {
             />
             <InfoStripe show={true}>
               <div className="alertStripeText">
-                Password for this user will be saved to Vault when the user is created under the
-                serviceuser path.{' '}
-                <strong className="errorIcon">Nothing will be saved to fasit.</strong>
+                Password for this user will be saved in Vault. To get access to this user in vault,
+                please read the{' '}
+                <a href="https://github.com/navikt/vault-iac/blob/master/doc/service-users.md">
+                  vault-iac documentation
+                </a>
+                <br /> <strong className="errorIcon">Nothing will be saved to fasit.</strong>
                 <div>
                   If you need a serviceuser registered in fasit use the{' '}
                   <a href="/create/credential">credential order form</a>

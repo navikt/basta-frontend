@@ -55,6 +55,18 @@ function createResultLine(result) {
             </a>
           </div>
         </div>
+        <div className="result-info">
+          <div></div>
+          <div>
+            To get access to this user in vault, please read the{' '}
+            <a
+              target="new"
+              href="https://github.com/navikt/vault-iac/blob/master/doc/service-users.md"
+            >
+              vault-iac documentation
+            </a>
+          </div>
+        </div>
       </React.Fragment>
     )
   }
