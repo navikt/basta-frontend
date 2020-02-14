@@ -11,6 +11,7 @@ const bigipImage = require('../../img/orderTypes/big-ip.png')
 const mqImage = require('../../img/orderTypes/mq.png')
 const developertoolsImage = require('../../img/orderTypes/devtools.png')
 const coreosImage = require('../../img/orderTypes/containerlinux.png')
+const flatcarImage = require('../../img/orderTypes/flatcarlinux.svg')
 const unknown = require('../../img/basta.png')
 
 export default function imageType(orderDescription) {
@@ -53,6 +54,8 @@ export default function imageType(orderDescription) {
       return securityImage
     case 'lightweight linux':
       return coreosImage
+    case 'flatcar linux':
+      return flatcarImage
     default:
       return unknown
   }

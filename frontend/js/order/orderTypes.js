@@ -6,6 +6,7 @@ const securityImage = require('../../img/orderTypes/security.png')
 const openamImage = require('../../img/orderTypes/openam.png')
 const redhatImage = require('../../img/orderTypes/redhat.png')
 const containerlinuxImage = require('../../img/orderTypes/containerlinux.png')
+const flatcarlinuxImage = require('../../img/orderTypes/flatcarlinux.svg')
 const dbImage = require('../../img/orderTypes/oracle.png')
 const windowsImage = require('../../img/orderTypes/windows.png')
 const bigipImage = require('../../img/orderTypes/big-ip.png')
@@ -55,6 +56,12 @@ export const orderTypes = [
     description: 'CoreOS',
     image: containerlinuxImage,
     url: '/create/containerlinux'
+  },
+  {
+    title: 'Container Linux',
+    description: 'Flatcar',
+    image: flatcarlinuxImage,
+    url: '/create/flatcarlinux'
   },
   {
     title: 'Red Hat',
