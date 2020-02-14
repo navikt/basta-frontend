@@ -1,6 +1,6 @@
 const title = 'Container Linux'
 const description = 'Flatcar'
-const image = require('../../../../img/orderTypes/flatcarlinux.svg')
+const image = require('../../../../img/orderTypes/flatcarlinux.png')
 const orderApiPath = '/rest/vm/orders/flatcarlinux'
 
 const orderFields = {
