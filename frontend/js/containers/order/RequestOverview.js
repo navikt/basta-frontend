@@ -10,7 +10,7 @@ const RequestOverview = props => {
       <div>{getOrderStatus(data.status)}</div>
       <div>
         <i className="fa fa-user rightpad" />
-        {`${data.createdByDisplayName} (${data.createdBy})`}
+        {`${data.createdByDisplayName.split('@')[0]}`}
       </div>
       <div>
         <i className="fa fa-calendar rightpad" />
