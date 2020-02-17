@@ -23,12 +23,7 @@ const app = express()
 app.use(
   logger('dev', {
     skip: function(req, res) {
-      return (
-        req.url.toLowerCase() === '/isalive' ||
-        req.url === '/user/session' ||
-        req.url.toLowerCase() === '/login' ||
-        req.url.toLowerCase() === '/rest/users/current'
-      )
+      return res.statusCode < 400
     }
   })
 )
