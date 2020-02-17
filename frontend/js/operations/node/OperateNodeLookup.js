@@ -16,7 +16,10 @@ export class OperateNodeLookup extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { resolvedHosts } = this.state
 
-    if (prevState.resolvedHosts.length !== resolvedHosts.length && resolvedHosts.length > 0) {
+    const prevStateHostnames = prevState.resolvedHosts.map(host => host.hostname)
+    const hostnames = resolvedHosts.map(host => host.hostname)
+
+    if (JSON.stringify(prevStateHostnames) !== JSON.stringify(hostnames)) {
       this.props.onChange({ resolvedHosts })
     }
   }
