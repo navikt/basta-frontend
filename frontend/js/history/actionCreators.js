@@ -1,7 +1,7 @@
 import { HISTORY_REQUEST, HISTORY_APPLY_FILTER } from '../actionTypes'
 
-export const getOrderHistory = (pageSize, fromDate, toDate, maxOrders) => {
-  return { type: HISTORY_REQUEST, pageSize, toDate, fromDate, maxOrders }
+export const getOrderHistory = (pageSize, maxOrders) => {
+  return { type: HISTORY_REQUEST, pageSize, maxOrders }
 }
 
 export const applyOrderHistoryFilter = (filter, nMaxResults) => {

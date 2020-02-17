@@ -11,7 +11,6 @@ import { getOrderHistory } from './history/actionCreators'
 import NavMenu from './commonUi/menus/NavMenu'
 import NavUserMenu from './commonUi/menus/NavUserMenu'
 import Login from './commonUi/login/Login'
-import moment from 'moment'
 import Services from './common/components/Services'
 import ActiveNotificationsList from './notifications/ActiveNotificationsList'
 
@@ -24,23 +23,12 @@ class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(initializeApplication())
-    moment.locale('no-nb')
   }
 
   componentDidUpdate(prevProps, prevState, ss) {
     const { dispatch, user } = this.props
     if (prevProps.user.isUserAuthenticated !== user.isUserAuthenticated && user.isUserAuthenticated)
-      dispatch(
-        getOrderHistory(
-          500,
-          moment('2013-01-01').valueOf(),
-          moment()
-            .add(1, 'days')
-            .startOf('day')
-            .valueOf(),
-          5000
-        )
-      )
+      dispatch(getOrderHistory(500, 5000))
   }
 
   render() {

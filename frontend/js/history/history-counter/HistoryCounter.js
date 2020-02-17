@@ -10,9 +10,7 @@ export const HistoryCounter = props => {
           {`${displayingOrders}/${totalOrders}/${maxOrders}`}{' '}
           <a
             className="history-counter-incrementer"
-            onClick={() =>
-              dispatch(getOrderHistory(null, null, null, incrementValueBy(maxOrders, 1000)))
-            }
+            onClick={() => dispatch(getOrderHistory(null, incrementValueBy(maxOrders, 5000)))}
           >
             +
           </a>

@@ -51,8 +51,7 @@ it('(History view sagas - applyOrderHistoryFilter) dispatches with filter, selec
           ]
         }
       ],
-      fromDate: 0,
-      toDate: 0,
+
       totalOrders: 0,
       maxOrders: 0,
       pageId: 0,
@@ -66,7 +65,7 @@ it('(History view sagas - applyOrderHistoryFilter) dispatches with filter, selec
 
 it('(History view sagas - getOrderHistory) fetches orders from backend with correct pagination', () => {
   const noOrders = []
-  const action = { maxOrders: 1, toDate: 1, fromDate: 2, pageSize: 2 }
+  const action = { maxOrders: 1, pageSize: 2 }
   let pageId = 0
   return expectSaga(getOrderHistory, action)
     .withReducer(historyReducer)
@@ -86,8 +85,6 @@ it('(History view sagas - getOrderHistory) fetches orders from backend with corr
     .put({
       type: 'HISTORY_FETCHING',
       maxOrders: 1,
-      toDate: 1,
-      fromDate: 2,
       pageSize: 2
     })
     .put({
@@ -99,8 +96,6 @@ it('(History view sagas - getOrderHistory) fetches orders from backend with corr
     .hasFinalState({
       pageSize: 2,
       maxOrders: 1,
-      toDate: 1,
-      fromDate: 2,
       pageId: 1,
       orderHistory: plainOrders,
       filterApplied: false,
@@ -114,7 +109,7 @@ it('(History view sagas - getOrderHistory) fetches orders from backend with corr
 })
 
 it('(History view sagas - getOrderHistory) handles errors', () => {
-  const action = { maxOrders: 4, toDate: 1, fromDate: 2, pageSize: 2 }
+  const action = { maxOrders: 4, pageSize: 2 }
   const err = Error('error')
   return expectSaga(getOrderHistory, action)
     .withReducer(historyReducer)
@@ -122,8 +117,6 @@ it('(History view sagas - getOrderHistory) handles errors', () => {
     .put({
       type: 'HISTORY_FETCHING',
       maxOrders: 4,
-      toDate: 1,
-      fromDate: 2,
       pageSize: 2
     })
     .put({
@@ -133,8 +126,6 @@ it('(History view sagas - getOrderHistory) handles errors', () => {
     .hasFinalState({
       pageSize: 2,
       maxOrders: 4,
-      toDate: 1,
-      fromDate: 2,
       pageId: 0,
       orderHistory: [],
       filterApplied: false,

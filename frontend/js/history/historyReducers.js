@@ -15,8 +15,6 @@ export default (
     orderHistory: [],
     filteredOrderHistory: [],
     filterApplied: false,
-    fromDate: 0,
-    toDate: 0,
     totalOrders: 0,
     maxOrders: 0,
     pageId: 0,
@@ -34,8 +32,6 @@ export default (
       return {
         ...state,
         maxOrders: action.maxOrders,
-        toDate: action.toDate,
-        fromDate: action.fromDate,
         pageSize: action.pageSize,
         orderHistoryCompleted: false,
         requestFailed: false,

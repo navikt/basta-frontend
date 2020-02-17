@@ -1,12 +1,5 @@
 import { takeEvery, put, fork, call, select, take, takeLatest } from 'redux-saga/effects'
-import {
-  getOrders,
-  getTotalOrders,
-  getPageId,
-  getToDate,
-  getFromDate,
-  getPageSize
-} from './selectors'
+import { getOrders, getTotalOrders, getPageId, getPageSize } from './selectors'
 import { filterOrders, formatOrders } from './filters'
 import { getUrl } from '../common/utils'
 import {
@@ -33,10 +26,7 @@ const delay = millis => {
 
 export function* getPartialHistory(action, pageId) {
   let value = ''
-  value = yield call(
-    getUrl,
-    `/rest/orders/page/${pageId}/${action.pageSize}/${action.fromDate}/${action.toDate}`
-  )
+  value = yield call(getUrl, `/rest/orders/page/${pageId}/${action.pageSize}`)
   const totalOrders = yield select(getTotalOrders)
   if (value.length > 0 && !(totalOrders >= action.maxOrders - action.pageSize)) {
     pageId++
@@ -52,13 +42,9 @@ export function* getOrderHistory(action) {
   let pageId = yield select(getPageId)
   if (!pageId) pageId = 0
   if (!action.pageSize) action.pageSize = yield select(getPageSize)
-  if (!action.toDate) action.toDate = yield select(getToDate)
-  if (!action.fromDate) action.fromDate = yield select(getFromDate)
   yield put({
     type: HISTORY_FETCHING,
     maxOrders: action.maxOrders,
-    toDate: action.toDate,
-    fromDate: action.fromDate,
     pageSize: action.pageSize
   })
   try {
@@ -88,9 +74,7 @@ export function* applyOrderHistoryFilter(action) {
 export function* getLatestOrder() {
   yield put({ type: LATEST_ORDER_FETCHING })
   try {
-    const fromDate = yield select(getFromDate)
-    const toDate = yield select(getToDate)
-    let order = yield call(getUrl, `/rest/orders/page/0/1/${fromDate}/${toDate}`)
+    let order = yield call(getUrl, `/rest/orders/page/0/1`)
     order = yield call(formatOrders, order)
     yield put({
       type: LATEST_ORDER_RECEIVED,
