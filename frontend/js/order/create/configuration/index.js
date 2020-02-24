@@ -8,7 +8,6 @@ import bpmdmgr from './bpmdmgr'
 import wasnode from './wasnode'
 import wasdmgr from './wasdmgr'
 import redhat from './redhat'
-import containerlinux from './containerlinux'
 import flatcarlinux from './flatcarlinux'
 import windows from './windows'
 
@@ -28,7 +27,6 @@ module.exports = {
   wasnode,
   wasdmgr,
   redhat,
-  containerlinux,
   flatcarlinux,
   windows,
 
