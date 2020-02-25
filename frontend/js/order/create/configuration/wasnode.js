@@ -3,9 +3,6 @@ const title = 'Websphere'
 const image = require('../../../../img/orderTypes/websphere.png')
 const orderApiPath = '/rest/vm/orders/was/node'
 const orderFields = {
-  nodeType: {
-    value: 'WAS_NODES'
-  },
   environmentClass: {
     fieldType: 'environmentClass',
     value: 'u'
@@ -55,11 +52,14 @@ const orderFields = {
     max: 100,
     value: 0
   },
-  wasVersion: {
+  softwareVersion: {
     label: 'WAS version',
     description: '',
     fieldType: 'buttonGroup',
-    alternatives: [{ label: 'WAS 8', value: 'WAS8' }, { label: 'WAS 9', value: 'WAS9' }],
+    alternatives: [
+      { label: 'WAS 8', value: 'WAS8' },
+      { label: 'WAS 9', value: 'WAS9' }
+    ],
     value: 'WAS9'
   },
   description: {
@@ -72,7 +72,10 @@ const orderFields = {
     label: 'Classification',
     description: 'If you need to do manual config on the server choose custom',
     fieldType: 'buttonGroup',
-    alternatives: [{ label: 'Standard', value: 'standard' }, { label: 'Custom', value: 'custom' }],
+    alternatives: [
+      { label: 'Standard', value: 'standard' },
+      { label: 'Custom', value: 'custom' }
+    ],
     value: 'standard'
   }
 }
