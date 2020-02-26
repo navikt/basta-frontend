@@ -5,7 +5,6 @@ const libertyImage = require('../../img/orderTypes/liberty.png')
 const securityImage = require('../../img/orderTypes/security.png')
 const openamImage = require('../../img/orderTypes/openam.png')
 const redhatImage = require('../../img/orderTypes/redhat.png')
-const containerlinuxImage = require('../../img/orderTypes/containerlinux.png')
 const flatcarlinuxImage = require('../../img/orderTypes/flatcarlinux.png')
 const dbImage = require('../../img/orderTypes/oracle.png')
 const windowsImage = require('../../img/orderTypes/windows.png')
@@ -32,7 +31,6 @@ export const orderTypes = [
     image: developertoolsImage,
     url: '/create/developertools'
   },
-
   {
     title: 'BIG-IP',
     description: 'Load Balancer Config',
@@ -50,12 +48,6 @@ export const orderTypes = [
     description: 'database',
     image: dbImage,
     url: '/create/oracle'
-  },
-  {
-    title: 'Container Linux',
-    description: 'CoreOS',
-    image: containerlinuxImage,
-    url: '/create/containerlinux'
   },
   {
     title: 'Flatcar Linux',

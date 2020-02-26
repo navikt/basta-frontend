@@ -3,9 +3,6 @@ const title = 'Websphere'
 const image = require('../../../../img/orderTypes/websphere.png')
 const orderApiPath = '/rest/vm/orders/was/dmgr'
 const orderFields = {
-  nodeType: {
-    value: 'WAS_DEPLOYMENT_MANAGER'
-  },
   serverCount: {
     value: 1
   },
@@ -30,11 +27,14 @@ const orderFields = {
     fieldType: 'environments',
     value: ''
   },
-  wasVersion: {
+  softwareVersion: {
     label: 'WAS version',
     description: '',
     fieldType: 'buttonGroup',
-    alternatives: [{ label: 'WAS 8', value: 'WAS8' }, { label: 'WAS 9', value: 'WAS9' }],
+    alternatives: [
+      { label: 'WAS 8', value: 'WAS8' },
+      { label: 'WAS 9', value: 'WAS9' }
+    ],
     value: 'WAS9'
   }
 }
