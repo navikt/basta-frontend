@@ -1,6 +1,6 @@
-const orders = require('../mockdata/orders.json')
+//const orders = require('../mockdata/orders.json')
 // Uncomment line below if you need to test with a large list of orders (20000). Note: This will probably make the dev experience slow
-//const orders = require('../mockdata/large_order_list_for_pagination_test.json')
+const orders = require('../mockdata/large_order_list_for_pagination_test.json')
 
 // Uncomment line below to use certificate order details instead of vm order details
 //const order = require('../mockdata/certificate_order_mock.json')
@@ -22,6 +22,23 @@ exports.getAllOrders = () => {
   }
 }
 
+exports.search = () => {
+  return (req, res) => {
+    const query = req.query.q.toLowerCase()
+    const filteredOrders = orders.filter(order => {
+      return (
+        (order.createdByDisplayName && order.createdByDisplayName.toLowerCase().includes(query)) ||
+        order.orderDescription.toLowerCase().includes(query) ||
+        (order.results[0] && order.results[0].toLowerCase().includes(query))
+      )
+    })
+    res
+      .set('Total_count', filteredOrders.length)
+      .status(200)
+      .json(filteredOrders)
+  }
+}
+
 exports.getOrders = () => {
   return async (req, res) => {
     let requestedData
@@ -37,7 +54,10 @@ exports.getOrders = () => {
       res.status(500).send(err)
       return null
     }
-    res.status(200).json(requestedData)
+    res
+      .set('Total_count', orders.length)
+      .status(200)
+      .json(requestedData)
   }
 }
 
@@ -75,8 +95,6 @@ exports.decommission = () => {
 
 exports.postOrder = () => {
   return (req, res) => {
-    console.log('rpst', req.params.servertype)
-
     if (req.params.servertype === 'containerlinux') {
       res
         .status(500)

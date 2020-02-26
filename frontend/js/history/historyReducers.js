@@ -1,96 +1,91 @@
 import {
   HISTORY_FETCHING,
   HISTORY_RECEIVED,
-  HISTORY_COMPLETE,
   HISTORY_REQUEST_FAILED,
-  HISTORY_APPLY_FILTER_COMPLETE,
-  HISTORY_APPLY_FILTER_PROCESSING,
   LATEST_ORDER_FETCHING,
   LATEST_ORDER_RECEIVED,
-  LATEST_ORDER_REQUEST_FAILED
+  LATEST_ORDER_REQUEST_FAILED,
+  SEARCH_FETCHING,
+  SEARCH_RESULTS_RECEIVED,
+  SEARCH_FAILED
 } from '../actionTypes'
 
 export default (
   state = {
     orderHistory: [],
-    filteredOrderHistory: [],
-    filterApplied: false,
+    orderHistoryReceived: false,
     totalOrders: 0,
-    maxOrders: 0,
-    pageId: 0,
-    pageSize: 1000,
-    orderHistoryCompleted: false,
     requestFailed: false,
-    requestStatus: ''
+    searchProcessing: false,
+    filterApplied: false,
+    errorMessage: ''
   },
   action
 ) => {
   switch (action.type) {
-    // HISTORY
-
     case HISTORY_FETCHING:
       return {
         ...state,
-        maxOrders: action.maxOrders,
-        pageSize: action.pageSize,
-        orderHistoryCompleted: false,
-        requestFailed: false,
-        requestStatus: 'Fetching history log'
+        orderHistoryReceived: false,
+        requestFailed: false
       }
     case HISTORY_RECEIVED:
       return {
         ...state,
-        orderHistory: state.orderHistory.concat(action.value),
-        totalOrders: state.orderHistory.length,
-        pageId: action.pageId,
+        orderHistory: action.orders,
+        totalOrders: action.orders.length,
+        filterApplied: false,
         requestFailed: false,
-        requestStatus: 'Order history partially complete'
-      }
-    case HISTORY_COMPLETE:
-      return {
-        ...state,
-        orderHistoryCompleted: true,
-        totalOrders: state.orderHistory.length,
-        requestFailed: false,
-        requestStatus: 'Order history request complete'
+        orderHistoryReceived: true
       }
     case HISTORY_REQUEST_FAILED:
       return {
         ...state,
-        orderHistoryCompleted: false,
+        orderHistory: [],
         totalOrders: 0,
         requestFailed: true,
-        requestStatus: action.err
+        orderHistoryReceived: false,
+        errorMessage: action.err
       }
-    case HISTORY_APPLY_FILTER_COMPLETE:
+    case SEARCH_RESULTS_RECEIVED:
       return {
         ...state,
         filterApplied: true,
-        filteredOrderHistory: action.orders
+        searchProcessing: false,
+        orderHistory: action.searchResults,
+        totalOrders: action.searchResults.length
       }
-    case HISTORY_APPLY_FILTER_PROCESSING:
+    case SEARCH_FETCHING:
       return {
         ...state,
+        searchProcessing: true,
         filterApplied: false
       }
+    case SEARCH_FAILED:
+      return {
+        ...state,
+        filterApplied: false,
+        searchProcessing: false,
+        requestFailed: true,
+        errorMassage: action.err
+      }
+
     case LATEST_ORDER_FETCHING:
       return {
         ...state,
-        requestFailed: false,
-        requestStatus: 'Fetching latest order'
+        requestFailed: false
       }
     case LATEST_ORDER_RECEIVED:
       return {
         ...state,
         orderHistory: state.filteredOrderHistory.unshift(action.value[0]),
-        requestFailed: false,
-        requestStatus: 'Fetching latest order complete'
+        requestFailed: false
       }
     case LATEST_ORDER_REQUEST_FAILED:
       return {
         ...state,
         requestFailed: true,
-        requestStatus: action.err
+        errorMessage: action.err
       }
     default:
       return state

@@ -2,15 +2,16 @@ import React from 'react'
 import sinon from 'sinon'
 import { shallow } from 'enzyme'
 import { History } from './History'
-import PageHeading from '../common/components/PageHeading'
 import BottomScrollListener from './BottomScrollListener'
 import HistoryFilter from './HistoryFilter'
 import OrderList from './order-list/OrderList'
-import HistoryCounter from './history-counter/HistoryCounter'
 
 const props = {
+  filterApplied: false,
+  searchProcessing: false,
+  orderHistoryReceived: true,
   totalOrders: 10,
-  filteredOrderHistory: [
+  orderHistory: [
     {
       id: 24403,
       created: 1534318234218,
@@ -243,21 +244,11 @@ describe('(Component) History container rendering', () => {
     expect(wrapper.find(BottomScrollListener)).toHaveLength(1)
   })
 
-  it('renders PageHeading once', () => {
-    expect(wrapper.find(PageHeading)).toHaveLength(1)
-  })
-
-  it('renders HistoryCounter once with props', () => {
-    expect(wrapper.find(HistoryCounter)).toHaveLength(1)
-    expect(wrapper.find(HistoryCounter).props().totalOrders).toBe(10)
-    wrapper.setState({ maxResults: 10 })
-    expect(wrapper.find(HistoryCounter).props().displayingOrders).toBe(10)
-  })
-
   it('renders HistoryFilter once with props', () => {
     expect(wrapper.find(HistoryFilter)).toHaveLength(1)
     expect(wrapper.find(HistoryFilter).props().handleSubmit).toBeDefined()
     expect(wrapper.find(HistoryFilter).props().handleChange).toBeDefined()
+    expect(wrapper.find(HistoryFilter).props().handleClear).toBeDefined()
   })
 
   it('renders OrderList once', () => {
@@ -272,26 +263,33 @@ describe('(Component) History container logic', () => {
   const wrapper = shallow(<History {...props} dispatch={dispatch} />)
 
   it('(handleSubmit) dispatches right action with args', () => {
-    wrapper.setState({ filter: 'fiiiilter' })
+    wrapper.setState({ searchQuery: 'seeaaarchiiing seek and destroy' })
     wrapper.instance().handleSubmit({ preventDefault: () => {} })
-    expect(dispatch.args[1][0].type).toBe('HISTORY_APPLY_FILTER')
-    expect(dispatch.args[1][0].filter).toBe('fiiiilter')
+    expect(dispatch.args[0][0].type).toBe('SEARCH_ORDERS_REQUEST')
+    expect(dispatch.args[0][0].searchQuery).toBe('seeaaarchiiing seek and destroy')
+  })
+
+  it('(handleSubmit) fetches order history if searchQuery is empty', () => {
+    wrapper.setState({ searchQuery: '' })
+    wrapper.instance().handleSubmit({ preventDefault: () => {} })
+    expect(dispatch.args[1][0].type).toBe('HISTORY_REQUEST')
+    expect(dispatch.args[1][0].maxOrders).toBe(100)
+  })
+
+  it('(handleClear) fetches order history if onClear function is triggered', () => {
+    wrapper.instance().handleSubmit({ preventDefault: () => {} })
+    expect(wrapper.state().searchQuery).toBe('')
+    expect(dispatch.args[2][0].type).toBe('HISTORY_REQUEST')
+    expect(dispatch.args[2][0].maxOrders).toBe(100)
   })
 
   it('(handleChange) sets state with args', () => {
     wrapper.instance().handleChange({ target: { value: 'new filter' } })
-    expect(wrapper.state().filter).toBe('new filter')
+    expect(wrapper.state().searchQuery).toBe('new filter')
   })
 
   it('(onBottom) increments state', () => {
     wrapper.instance().onBottom()
     expect(wrapper.state().maxResults).toBe(10)
-  })
-
-  it('(componentDidMount) dispatches right action with args', () => {
-    wrapper.setState({ filter: 'initial filter' })
-    wrapper.instance().componentDidMount()
-    expect(dispatch.args[2][0].type).toBe('HISTORY_APPLY_FILTER')
-    expect(dispatch.args[2][0].filter).toBe('initial filter')
   })
 })

@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import imageType from '../../containers/imageType'
+import moment from 'moment'
 
-const OrderCard = props => {
+const OrderListCard = props => {
   const { order } = props
-  if (!order) return null
   const image = imageType(order.orderDescription)
   return (
     <Link to={`/orders/${order.id}`}>
@@ -21,16 +21,33 @@ const OrderCard = props => {
         </div>
         <div className="orderListCardResults"> {orderResults(order.results)}</div>
         <div className="orderListCardCreated">
-          <div>{order.created}</div>
+          <div>{formatTimestamp(order.created)}</div>
         </div>
       </div>
     </Link>
   )
 }
 
+const formatTimestamp = number => {
+  if (number) {
+    return moment(number).format('DD MMM YYYY HH:mm')
+  }
+}
+
+const formatString = string => {
+  if (string) {
+    return string
+      .toLowerCase()
+      .replace('_', ' ')
+      .replace(/\b\w/g, firstLetter => {
+        return firstLetter.toUpperCase()
+      })
+  }
+}
+
 const formatDisplayName = (displayName, userId) => {
   if (displayName.includes('@')) {
-    return displayName.substring(0, displayName.indexOf('@')).replace(new RegExp('\\.', 'g'), ' ')
+    return displayName.split('@')[0].replace(new RegExp('\\.', 'g'), ' ')
   }
   return `${displayName} ( ${userId} )`
 }
@@ -42,8 +59,8 @@ const orderOperation = order => {
 }
 
 const orderType = order => {
-  const { orderType, orderDescription, id } = order
-  return <span>{`${orderType} | ${orderDescription}`}</span>
+  const { orderType, orderDescription } = order
+  return <span>{`${formatString(orderType)} | ${formatString(orderDescription)}`}</span>
 }
 
 const orderResults = results => {
@@ -71,8 +88,8 @@ const orderListCardStatus = status => {
   return <span> {status}</span>
 }
 
-OrderCard.propTypes = {
+OrderListCard.propTypes = {
   order: PropTypes.object
 }
 
-export default OrderCard
+export default OrderListCard

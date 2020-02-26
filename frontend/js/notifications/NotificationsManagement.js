@@ -90,7 +90,7 @@ export class ServerOrderForm extends Component {
             </div>
             <div>
               <div>{notification.createdByDisplayName}</div>
-              <div>{moment(notification.created).format('DD-MMM YYYY HH:mm')}</div>
+              <div>{moment(notification.created).format('DD MMM YYYY HH:mm')}</div>
             </div>
           </div>
         </React.Fragment>

@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
-import { applyOrderHistoryFilter, getOrderHistory } from './actionCreators'
-import PageHeading from '../common/components/PageHeading'
+import { searchOrders, getOrderHistory } from './actionCreators'
 import BottomScrollListener from './BottomScrollListener'
 import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import HistoryFilter from './HistoryFilter'
 import OrderList from './order-list/OrderList'
-import HistoryCounter from './history-counter/HistoryCounter'
-import { InfoStripe } from '../commonUi/formComponents/AlertStripe'
 
 export class History extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      filter: '',
+      searchQuery: '',
       maxResults: 20
     }
     this.handleChange = this.handleChange.bind(this)
@@ -22,12 +19,23 @@ export class History extends Component {
 
   handleSubmit(event) {
     const { dispatch } = this.props
+    const { searchQuery } = this.state
     event.preventDefault()
-    dispatch(applyOrderHistoryFilter(this.state.filter))
+    if (searchQuery !== '') {
+      dispatch(searchOrders(this.state.searchQuery))
+    } else {
+      dispatch(getOrderHistory(100))
+    }
+  }
+
+  handleClear() {
+    const { dispatch } = this.props
+    this.setState({ searchQuery: '' })
+    dispatch(getOrderHistory(100))
   }
 
   handleChange(event) {
-    this.setState({ filter: event.target.value })
+    this.setState({ searchQuery: event.target.value })
   }
 
   onBottom() {
@@ -41,63 +49,51 @@ export class History extends Component {
     }
   }
 
-  componentDidMount() {
-    const { dispatch } = this.props
-    const { filter } = this.state
-    dispatch(applyOrderHistoryFilter(filter))
-  }
-
   render() {
-    const { dispatch, filteredOrderHistory, totalOrders, maxOrders, filterApplied } = this.props
-    const { maxResults } = this.state
+    const {
+      orderHistory,
+      orderHistoryReceived,
+      searchProcessing,
+      totalOrders,
+      filterApplied
+    } = this.props
+    const { maxResults, searchQuery } = this.state
 
     return (
       <div>
         <BottomScrollListener onBottom={() => this.onBottom()} />
-        <div className="history-header">
-          <PageHeading icon="fa-history" heading="Order history" description="" />
-          <HistoryCounter
-            totalOrders={totalOrders}
-            displayingOrders={maxResults}
-            maxOrders={maxOrders}
-            getOrderHistory={getOrderHistory}
-            dispatch={dispatch}
-          />
-        </div>
         <HistoryFilter
+          searchQuery={searchQuery}
+          searchProcessing={searchProcessing}
           handleSubmit={event => this.handleSubmit(event)}
           handleChange={event => this.handleChange(event)}
+          handleClear={event => this.handleClear(event)}
         />
-        {filterApplied && filteredOrderHistory.length === 0 ? (
-          <InfoStripe
-            show={true}
-            message={`No orders matching current filter criteria. NOTE: We only apply the filter on the ${totalOrders} orders currently fetched. Try fetching more orders by clicking the + sign next to the total order counter.`}
-          />
-        ) : (
-          <OrderList
-            filterApplied={filterApplied}
-            orderHistory={filteredOrderHistory.slice(0, maxResults)}
-          />
+        {filterApplied && (
+          <div className="searchResultCounter">
+            {`Showing ${maxResults} of ${totalOrders} matches`}
+          </div>
         )}
+        <OrderList
+          orderHistoryReceived={orderHistoryReceived}
+          orderHistory={orderHistory.slice(0, maxResults)}
+        />
       </div>
     )
   }
 }
 
 History.propTypes = {
-  dispatch: propTypes.func,
-  filteredOrderHistory: propTypes.array,
-  filterApplied: propTypes.bool,
-  totalOrders: propTypes.number,
-  maxOrders: propTypes.number
+  dispatch: propTypes.func
 }
 
 const mapStateToProps = state => {
   return {
-    filteredOrderHistory: state.orderHistory.filteredOrderHistory,
-    filterApplied: state.orderHistory.filterApplied,
+    orderHistory: state.orderHistory.orderHistory,
+    orderHistoryReceived: state.orderHistory.orderHistoryReceived,
     totalOrders: state.orderHistory.totalOrders,
-    maxOrders: state.orderHistory.maxOrders
+    searchProcessing: state.orderHistory.searchProcessing,
+    filterApplied: state.orderHistory.filterApplied
   }
 }
 

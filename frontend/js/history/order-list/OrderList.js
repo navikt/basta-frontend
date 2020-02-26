@@ -4,13 +4,13 @@ import OrderListCard from './OrderListCard'
 import Spinner from '../../common/components/Spinner'
 
 const OrderList = props => {
-  const { orderHistory } = props
+  const { orderHistory, orderHistoryReceived } = props
 
-  if (orderHistory.length === 0) {
+  if (orderHistoryReceived) {
+    return <div className="orderListContainer">{renderList(orderHistory)}</div>
+  } else {
     return <Spinner />
   }
-
-  return <div className="orderListContainer">{renderList(orderHistory)}</div>
 }
 
 const renderList = orders => {

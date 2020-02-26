@@ -13,6 +13,7 @@ import NavUserMenu from './commonUi/menus/NavUserMenu'
 import Login from './commonUi/login/Login'
 import Services from './common/components/Services'
 import ActiveNotificationsList from './notifications/ActiveNotificationsList'
+import moment from 'moment'
 
 class App extends Component {
   navigate(location) {
@@ -22,13 +23,14 @@ class App extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props
+    moment.locale('no-nb')
     dispatch(initializeApplication())
   }
 
   componentDidUpdate(prevProps, prevState, ss) {
     const { dispatch, user } = this.props
     if (prevProps.user.isUserAuthenticated !== user.isUserAuthenticated && user.isUserAuthenticated)
-      dispatch(getOrderHistory(500, 5000))
+      dispatch(getOrderHistory(100))
   }
 
   render() {
@@ -67,7 +69,7 @@ class App extends Component {
           <main onClick={() => this.props.dispatch(closeNavMenu())}>
             <Services />
             <NavMenuSmall />
-            <ActiveNotificationsList className="matsbanan" />
+            <ActiveNotificationsList />
             <Routes />
           </main>
         </div>
