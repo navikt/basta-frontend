@@ -6,7 +6,7 @@ import { throwError } from 'redux-saga-test-plan/providers'
 import { getUrl } from '../common/utils'
 
 it('(History view sagas - getOrderHistory) fetches orders from backend', () => {
-  const action = { maxOrders: 2 }
+  const action = {}
   return expectSaga(getOrderHistory, action)
     .withReducer(historyReducer)
     .provide({
@@ -37,7 +37,7 @@ it('(History view sagas - getOrderHistory) fetches orders from backend', () => {
 })
 
 it('(History view sagas - getOrderHistory) handles errors', () => {
-  const action = { maxOrders: 4 }
+  const action = {}
   const err = Error('error')
   return expectSaga(getOrderHistory, action)
     .withReducer(historyReducer)

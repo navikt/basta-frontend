@@ -273,14 +273,12 @@ describe('(Component) History container logic', () => {
     wrapper.setState({ searchQuery: '' })
     wrapper.instance().handleSubmit({ preventDefault: () => {} })
     expect(dispatch.args[1][0].type).toBe('HISTORY_REQUEST')
-    expect(dispatch.args[1][0].maxOrders).toBe(100)
   })
 
   it('(handleClear) fetches order history if onClear function is triggered', () => {
     wrapper.instance().handleSubmit({ preventDefault: () => {} })
     expect(wrapper.state().searchQuery).toBe('')
     expect(dispatch.args[2][0].type).toBe('HISTORY_REQUEST')
-    expect(dispatch.args[2][0].maxOrders).toBe(100)
   })
 
   it('(handleChange) sets state with args', () => {

@@ -1,7 +1,7 @@
 import { HISTORY_REQUEST, SEARCH_ORDERS_REQUEST } from '../actionTypes'
 
-export const getOrderHistory = maxOrders => {
-  return { type: HISTORY_REQUEST, maxOrders }
+export const getOrderHistory = () => {
+  return { type: HISTORY_REQUEST }
 }
 
 export const searchOrders = searchQuery => {

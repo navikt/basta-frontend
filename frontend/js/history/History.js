@@ -24,14 +24,14 @@ export class History extends Component {
     if (searchQuery !== '') {
       dispatch(searchOrders(this.state.searchQuery))
     } else {
-      dispatch(getOrderHistory(100))
+      dispatch(getOrderHistory())
     }
   }
 
   handleClear() {
     const { dispatch } = this.props
     this.setState({ searchQuery: '' })
-    dispatch(getOrderHistory(100))
+    dispatch(getOrderHistory())
   }
 
   handleChange(event) {
@@ -50,6 +50,7 @@ export class History extends Component {
   }
 
   render() {
+    console.log('state', this.state)
     const {
       orderHistory,
       orderHistoryReceived,

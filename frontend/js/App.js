@@ -30,7 +30,7 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState, ss) {
     const { dispatch, user } = this.props
     if (prevProps.user.isUserAuthenticated !== user.isUserAuthenticated && user.isUserAuthenticated)
-      dispatch(getOrderHistory(100))
+      dispatch(getOrderHistory())
   }
 
   render() {

@@ -14,7 +14,7 @@ import {
   ORDER_FETCHING,
   ORDER_RECEIVED,
   ORDER_REQUEST_FAILED,
-  LATEST_ORDER_REQUEST
+  HISTORY_REQUEST
 } from '../../actionTypes'
 
 export function* submitServerOrderForm(action) {}
@@ -32,7 +32,7 @@ export function* submitForm(action) {
     const orderId = value.id ? value.id : value
 
     yield history.push(`/orders/${orderId}`)
-    yield put({ type: LATEST_ORDER_REQUEST })
+    yield put({ type: HISTORY_REQUEST })
   } catch (error) {
     yield put({ type: FORM_SUBMIT_FAILED, error })
   }
