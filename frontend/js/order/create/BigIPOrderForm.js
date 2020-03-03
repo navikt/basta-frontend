@@ -51,7 +51,8 @@ export class BigIPOrderForm extends Component {
       this.state.environmentName.length > 0 &&
       this.state.application.length > 0 &&
       this.state.virtualserver.length > 0 &&
-      (this.state.contextroots.length > 0 || this.state.hostname.length > 0)
+      this.state.contextroots.length > 0 &&
+      this.state.hostname.length > 0
     )
   }
 
@@ -133,14 +134,12 @@ export class BigIPOrderForm extends Component {
             <OrderTextBox
               label="Context root(s)"
               value={contextroots}
-              disabled={matchingTypes === 'hostname'}
               placeholder="Add context roots"
               onChange={v => this.handleChange('contextroots', v)}
             />
             <OrderTextBox
               label="VS hostname / DNS"
               value={hostname}
-              disabled={matchingTypes === 'context'}
               placeholder="Hostname of the virutal server"
               onChange={v => this.handleChange('hostname', v)}
             />
