@@ -55,11 +55,24 @@ const orderFields = {
     max: 100,
     value: 0
   },
+  osType: {
+    label: 'OS version',
+    description: '',
+    fieldType: 'buttonGroup',
+    alternatives: [
+      { label: 'RHEL 7', value: 'rhel70' },
+      { label: 'RHEL 8', value: 'rhel8' }
+    ],
+    value: 'rhel70'
+  },
   classification: {
     label: 'Classification',
     description: 'If you need to do manual config on the server choose custom',
     fieldType: 'buttonGroup',
-    alternatives: [{ label: 'Standard', value: 'standard' }, { label: 'Custom', value: 'custom' }],
+    alternatives: [
+      { label: 'Standard', value: 'standard' },
+      { label: 'Custom', value: 'custom' }
+    ],
     value: 'standard'
   }
 }

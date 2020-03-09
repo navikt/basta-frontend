@@ -18,7 +18,10 @@ const orderFields = {
     label: 'OS version',
     description: '',
     fieldType: 'buttonGroup',
-    alternatives: [{ label: 'RHEL 6.0', value: 'rhel60' }, { label: 'RHEL 7.0', value: 'rhel70' }],
+    alternatives: [
+      { label: 'RHEL 7', value: 'rhel70' },
+      { label: 'RHEL 8', value: 'rhel8' }
+    ],
     value: 'rhel70'
   },
   serverCount: {
