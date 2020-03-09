@@ -43,6 +43,16 @@ const orderFields = {
     min: 2,
     max: 32,
     value: 16
+  },
+  osType: {
+    label: 'OS version',
+    description: '',
+    fieldType: 'buttonGroup',
+    alternatives: [
+      { label: 'RHEL 7', value: 'rhel70' },
+      { label: 'RHEL 8', value: 'rhel8' }
+    ],
+    value: 'rhel70'
   }
 }
 module.exports = {

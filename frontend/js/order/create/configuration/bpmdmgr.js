@@ -29,6 +29,16 @@ const orderFields = {
   environmentName: {
     fieldType: 'environments',
     value: ''
+  },
+  osType: {
+    label: 'OS version',
+    description: '',
+    fieldType: 'buttonGroup',
+    alternatives: [
+      { label: 'RHEL 7', value: 'rhel70' },
+      { label: 'RHEL 8', value: 'rhel8' }
+    ],
+    value: 'rhel70'
   }
 }
 module.exports = {
