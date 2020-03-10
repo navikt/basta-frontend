@@ -36,7 +36,7 @@ const orderFields = {
     fieldType: 'buttonGroup',
     alternatives: [
       { label: 'RHEL 7', value: 'rhel70' },
-      { label: 'RHEL 8', value: 'rhel8' }
+      { label: 'RHEL 8', value: 'rhel80' }
     ],
     value: 'rhel70'
   }
