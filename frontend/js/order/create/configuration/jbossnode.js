@@ -55,28 +55,24 @@ const orderFields = {
     max: 100,
     value: 0
   },
-  eapVersion: {
-    label: 'EAP version',
-    description: '',
-    fieldType: 'buttonGroup',
-    alternatives: [{ label: 'EAP 6', value: 'EAP6' }, { label: 'EAP 7', value: 'EAP7' }],
-    value: 'EAP6'
-  },
-  javaVersion: {
-    label: 'Java version',
+  osType: {
+    label: 'OS version',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [
-      { label: 'OpenJDK 7', value: 'OpenJDK7' },
-      { label: 'OpenJDK 8', value: 'OpenJDK8' }
+      { label: 'RHEL 7', value: 'rhel70' },
+      { label: 'RHEL 8', value: 'rhel80' }
     ],
-    value: 'OpenJDK7'
+    value: 'rhel70'
   },
   classification: {
     label: 'Classification',
     description: 'If you need to do manual config on the server choose custom',
     fieldType: 'buttonGroup',
-    alternatives: [{ label: 'Standard', value: 'standard' }, { label: 'Custom', value: 'custom' }],
+    alternatives: [
+      { label: 'Standard', value: 'standard' },
+      { label: 'Custom', value: 'custom' }
+    ],
     value: 'standard'
   },
   description: {
