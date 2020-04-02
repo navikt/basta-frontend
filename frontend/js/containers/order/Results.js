@@ -51,7 +51,7 @@ function createResultLine(result) {
           <div>Vaultpath:</div>
           <div>
             <a href={vaultUrl(result.details.vaultpath)} target="new">
-              {result.details.vaultpath}
+              {`/${result.details.vaultpath}`.replace('//', '/')}
             </a>
           </div>
         </div>
