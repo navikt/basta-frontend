@@ -100,16 +100,14 @@ export class MqChannelOrderForm extends Component {
               onChange={v => this.handleChange('application', v)}
               value={application}
             />
+            <QueueManagerDropDown
+              onChange={v => this.handleChange('queueManager', v)}
+              envClass={environmentClass}
+              envName={environmentName}
+              value={queueManager}
+            />
             {environmentName && application ? (
               <div className={'subcomponents'}>
-                <QueueManagerDropDown
-                  label="Queue manager"
-                  onChange={v => this.handleChange('queueManager', v)}
-                  envClass={environmentClass}
-                  envName={environmentName}
-                  application={application}
-                  value={queueManager}
-                />
                 <OrderTextBox
                   label="Channel name"
                   value={mqChannelName}

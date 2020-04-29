@@ -1,19 +1,18 @@
-import { takeEvery, takeLatest, put, fork, call, select } from 'redux-saga/effects'
+import { takeEvery, put, fork, call } from 'redux-saga/effects'
 import { getUrl } from '../utils'
-import { getLastQuery } from './selectors'
+import { groupQueueManagersByName } from '../mqUtils'
 import {
   MQCLUSTERS_REQUEST,
   MQCLUSTERS_FETCHING,
+  MQQUEUES_REQUEST_FAILED,
+  MQQUEUES_RECEIVED,
   MQCLUSTERS_REQUEST_FAILED,
   MQCLUSTERS_RECEIVED,
-  SCOPED_RESOURCE_REQUEST,
-  SCOPED_RESOURCE_FETCHING,
-  SCOPED_RESOURCE_REQUEST_FAILED,
-  SCOPED_RESOURCE_RECEIVED,
-  RESOURCES_REQUEST,
-  RESOURCES_FETCHING,
-  RESOURCES_REQUEST_FAILED,
-  RESOURCES_RECEIVED,
+  MQQUEUES_FETCHING,
+  MQ_QUEUE_MANAGERS_REQUEST,
+  MQ_QUEUE_MANAGERS_FETCHING,
+  MQ_QUEUE_MANAGERS_REQUEST_FAILED,
+  MQ_QUEUE_MANAGERS_RECEIVED,
   ENVIRONMENTS_REQUEST,
   ENVIRONMENTS_FETCHING,
   ENVIRONMENTS_REQUEST_FAILED,
@@ -32,34 +31,28 @@ import {
   VIRTUALSERVERS_RECEIVED,
   CERTIFICATE_FASIT_RECEIVED,
   CERTIFICATE_FASIT_REQUEST,
-  CERTIFICATE_FASIT_REQUEST_FAILED
+  CERTIFICATE_FASIT_REQUEST_FAILED,
+  MQQUEUES_REQUEST
 } from '../../actionTypes'
 
-export function* fetchScopedResource(action) {
-  yield put({ type: SCOPED_RESOURCE_FETCHING })
+export function* fetchQueueManagers(action) {
+  yield put({ type: MQ_QUEUE_MANAGERS_FETCHING })
   try {
-    let resources = yield call(
+    let queueManagers = yield call(
       getUrl,
-      `/rest/v1/fasit/resources?application=${action.application}&envClass=${action.envClass}&environment=${action.environment}&type=QueueManager&bestmatch=true`
+      `/rest/v2/fasit/resources?environmentclass=${action.envClass}&type=QueueManager`
     )
-    yield put({ type: SCOPED_RESOURCE_RECEIVED, value: resources })
+    const distinctQueueManagers = yield call(
+      groupQueueManagersByName,
+      queueManagers,
+      action.envName
+    )
+    yield put({ type: MQ_QUEUE_MANAGERS_RECEIVED, value: distinctQueueManagers })
   } catch (err) {
-    yield put({ type: SCOPED_RESOURCE_REQUEST_FAILED, err })
+    yield put({ type: MQ_QUEUE_MANAGERS_REQUEST_FAILED, error: err })
   }
 }
-//https://basta.adeo.no/rest/v1/fasit/resources?type=QueueManager&envClass=u&usage=true
-export function* fetchResources(action) {
-  yield put({ type: RESOURCES_FETCHING })
-  try {
-    let resources = yield call(
-      getUrl,
-      `/rest/v1/fasit/resources?envClass=${action.envClass}&type=QueueManager&usage=true`
-    )
-    yield put({ type: RESOURCES_RECEIVED, value: resources, envClass: action.envClass })
-  } catch (err) {
-    yield put({ type: RESOURCES_REQUEST_FAILED, err })
-  }
-}
+
 // https://basta.adeo.no/rest/v1/mq/clusters?environmentClass=p&queueManager=mq:%2F%2Fd26apvl126.test.local:1412%2FMTLCLIENT01
 export function* fetchMqClusters(action) {
   yield put({ type: MQCLUSTERS_FETCHING })
@@ -75,6 +68,23 @@ export function* fetchMqClusters(action) {
     yield put({ type: MQCLUSTERS_REQUEST_FAILED, err })
   }
 }
+
+// https://basta-api.adeo.no/rest/v1/mq/queuenames?environmentClass=t&queueManager=mq://qmgrsHostname:qmgrPort/qmgrName
+export function* fetchMqQueues(action) {
+  yield put({ type: MQQUEUES_FETCHING })
+  try {
+    let resources = yield call(
+      getUrl,
+      `/rest/v1/mq/queueNames?environmentClass=${
+        action.environmentClass
+      }&queueManager=${encodeURIComponent(action.queueManager)}`
+    )
+    yield put({ type: MQQUEUES_RECEIVED, value: resources })
+  } catch (err) {
+    yield put({ type: MQQUEUES_REQUEST_FAILED, err })
+  }
+}
+
 export function* fetchApplications() {
   yield put({ type: APPLICATIONS_FETCHING })
   try {
@@ -142,9 +152,9 @@ export function* certificateExistInFasit(action) {
 export function* watchOrderData() {
   yield fork(takeEvery, ENVIRONMENTS_REQUEST, fetchEnvironments)
   yield fork(takeEvery, APPLICATIONS_REQUEST, fetchApplications)
-  yield fork(takeEvery, RESOURCES_REQUEST, fetchResources)
-  yield fork(takeEvery, SCOPED_RESOURCE_REQUEST, fetchScopedResource)
+  yield fork(takeEvery, MQ_QUEUE_MANAGERS_REQUEST, fetchQueueManagers)
   yield fork(takeEvery, MQCLUSTERS_REQUEST, fetchMqClusters)
+  yield fork(takeEvery, MQQUEUES_REQUEST, fetchMqQueues)
   yield fork(takeEvery, DBTEMPLATES_REQUEST, fetchDbTemplates)
   yield fork(takeEvery, VIRTUALSERVERS_REQUEST, fetchVirtualServers)
   yield fork(takeEvery, CERTIFICATE_FASIT_REQUEST, certificateExistInFasit)

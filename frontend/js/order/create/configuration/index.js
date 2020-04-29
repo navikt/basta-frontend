@@ -13,8 +13,8 @@ import windows from './windows'
 
 // Operate forms
 import credentials from './credentials'
-import mqchannels from './mqchannels'
-import mqqueues from './mqqueues'
+//import mqchannels from './mqchannels'
+//import mqqueues from './mqqueues'
 
 module.exports = {
   // Create
@@ -31,7 +31,7 @@ module.exports = {
   windows,
 
   // Operate
-  credentials,
-  mqchannels,
-  mqqueues
+  credentials
+  //mqchannels,
+  //mqqueues
 }

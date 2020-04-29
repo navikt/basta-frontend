@@ -2,15 +2,18 @@ import {
   SCOPED_RESOURCE_REQUEST_FAILED,
   SCOPED_RESOURCE_RECEIVED,
   SCOPED_RESOURCE_FETCHING,
-  RESOURCES_REQUEST_FAILED,
-  RESOURCES_RECEIVED,
-  RESOURCES_FETCHING,
+  MQ_QUEUE_MANAGERS_REQUEST_FAILED,
+  MQ_QUEUE_MANAGERS_RECEIVED,
+  MQ_QUEUE_MANAGERS_FETCHING,
   APPLICATIONS_REQUEST_FAILED,
   APPLICATIONS_RECEIVED,
   APPLICATIONS_FETCHING,
   MQCLUSTERS_REQUEST_FAILED,
   MQCLUSTERS_RECEIVED,
   MQCLUSTERS_FETCHING,
+  MQQUEUES_REQUEST_FAILED,
+  MQQUEUES_RECEIVED,
+  MQQUEUES_FETCHING,
   ENVIRONMENTS_REQUEST_FAILED,
   ENVIRONMENTS_RECEIVED,
   ENVIRONMENTS_FETCHING,
@@ -40,19 +43,14 @@ export default (
     resources: {
       fetching: false,
       error: null,
-      data: {
-        u: [],
-        t: [],
-        q: [],
-        p: []
-      }
+      data: []
     },
     clusters: {
       fetching: false,
       error: null,
       data: []
     },
-    scopedresources: {
+    queue: {
       fetching: false,
       error: null,
       data: []
@@ -101,31 +99,31 @@ export default (
           data: []
         }
       }
-    case RESOURCES_FETCHING:
+    case MQ_QUEUE_MANAGERS_FETCHING:
       return {
         ...state,
         resources: {
           fetching: true,
           error: null,
-          data: state.resources.data
+          data: []
         }
       }
-    case RESOURCES_RECEIVED:
+    case MQ_QUEUE_MANAGERS_RECEIVED:
       return {
         ...state,
         resources: {
           fetching: false,
           error: null,
-          data: { ...state.resources.data, [action.envClass]: action.value }
+          data: action.value
         }
       }
-    case RESOURCES_REQUEST_FAILED:
+    case MQ_QUEUE_MANAGERS_REQUEST_FAILED:
       return {
         ...state,
         resources: {
           fetching: false,
           error: action.error,
-          data: state.resources.data
+          data: []
         }
       }
     case SCOPED_RESOURCE_FETCHING:
@@ -155,6 +153,35 @@ export default (
           data: []
         }
       }
+
+    case MQQUEUES_FETCHING:
+      return {
+        ...state,
+        queues: {
+          fetching: true,
+          error: null,
+          data: []
+        }
+      }
+    case MQQUEUES_RECEIVED:
+      return {
+        ...state,
+        queues: {
+          fetching: false,
+          error: null,
+          data: action.value
+        }
+      }
+    case MQQUEUES_REQUEST_FAILED:
+      return {
+        ...state,
+        queues: {
+          fetching: false,
+          error: null,
+          data: []
+        }
+      }
+
     case MQCLUSTERS_FETCHING:
       return {
         ...state,
@@ -176,7 +203,7 @@ export default (
     case MQCLUSTERS_REQUEST_FAILED:
       return {
         ...state,
-        environments: {
+        clusters: {
           fetching: false,
           error: null,
           data: []

@@ -162,6 +162,13 @@ export class MqQueueOrderForm extends Component {
               onChange={v => this.handleChange('application', v)}
               value={application}
             />
+            <QueueManagerDropDown
+              onChange={v => this.handleChange('queueManager', v)}
+              envClass={environmentClass}
+              envName={environmentName}
+              application={application}
+              value={queueManager}
+            />
             <OrderTextBox
               label="Queue name"
               value={name}
@@ -170,14 +177,6 @@ export class MqQueueOrderForm extends Component {
             />
             {environmentName && application && name ? (
               <div className={'subcomponents'}>
-                <QueueManagerDropDown
-                  label="Queue manager"
-                  onChange={v => this.handleChange('queueManager', v)}
-                  envClass={environmentClass}
-                  envName={environmentName}
-                  application={application}
-                  value={queueManager}
-                />
                 <OrderTextBox
                   label="Fasit alias"
                   value={fasitAlias}

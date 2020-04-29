@@ -18,6 +18,7 @@ import NodeOperationsForm from './operations/node/NodeOperationsForm'
 import CredentialsOperationsForm from './operations/credentials/CredentialsOperationForm'
 import CredentialOrderForm from './order/create/CredentialOrderForm'
 import CustomCredentialOrderForm from './order/create/CustomCredentialOrderForm'
+import mqOperationsForm from './operations/mq/mqOperationsForm'
 
 // Routes
 export const Routes = () => {
@@ -29,6 +30,7 @@ export const Routes = () => {
       <Route exact path="/notify" component={NotificationsManagement} />
       <Route path="/operate/nodes" component={NodeOperationsForm} />
       <Route path="/operate/credentials" component={CredentialsOperationsForm} />
+      <Route path="/operate/mqqueues" component={mqOperationsForm} />
       <Route path="/operate/:orderType" component={OperationsForm} />
       <Route exact path="/create" component={Create} />
       <Route exact path="/create/bigip" component={BigIPOrderForm} />

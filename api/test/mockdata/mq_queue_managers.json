@@ -1,0 +1,583 @@
+[
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss"
+    },
+    "properties": {
+      "hostname": "d26apvl126.test.local",
+      "port": "1412",
+      "name": "MTLCLIENT01"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "1708"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "application": "personkort"
+    },
+    "properties": {
+      "hostname": "d26apvl257.test.local",
+      "port": "1412",
+      "name": "MTXLSC01"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "340674"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway02",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t0"
+    },
+    "properties": {
+      "hostname": "d26apvl252.test.local",
+      "port": "1412",
+      "name": "MT0LSC02"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "507148"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway04",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t0"
+    },
+    "properties": {
+      "hostname": "d26apvl254.test.local",
+      "port": "1412",
+      "name": "MT0LSC04"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "507152"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway03",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t1"
+    },
+    "properties": {
+      "hostname": "d26apvl250.test.local",
+      "port": "1412",
+      "name": "MT1LSC03"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "507112"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway02",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss"
+    },
+    "properties": {
+      "hostname": "d26apvl258.test.local",
+      "port": "1412",
+      "name": "MTXLSC02"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "507128"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway02",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t1"
+    },
+    "properties": {
+      "hostname": "d26apvl255.test.local",
+      "port": "1412",
+      "name": "MT1LSC02"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "507110"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway04",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t1"
+    },
+    "properties": {
+      "hostname": "d26apvl256.test.local",
+      "port": "1412",
+      "name": "MT1LSC04"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "507114"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway04",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss"
+    },
+    "properties": {
+      "hostname": "d26apvl258.test.local",
+      "port": "1412",
+      "name": "MTXLSC02"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "507144"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway01",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t0"
+    },
+    "properties": {
+      "hostname": "d26apvl251.test.local",
+      "port": "1412",
+      "name": "MT0LSC01"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "507146"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway03",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t0"
+    },
+    "properties": {
+      "hostname": "d26apvl253.test.local",
+      "port": "1412",
+      "name": "MT0LSC03"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "1493612"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway01",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t1"
+    },
+    "properties": {
+      "hostname": "d26apvl249.test.local",
+      "port": "1412",
+      "name": "MT1LSC01"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "507108"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway01",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss"
+    },
+    "properties": {
+      "hostname": "d26apvl257.test.local",
+      "port": "1412",
+      "name": "MTXLSC01"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "507124"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway03",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss"
+    },
+    "properties": {
+      "hostname": "d26apvl257.test.local",
+      "port": "1412",
+      "name": "MTXLSC01"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "507126"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGatewayPortal",
+    "scope": {
+      "environmentclass": "t"
+    },
+    "properties": {
+      "hostname": "d32apvl006.oera-t.local",
+      "port": "1412",
+      "name": "MT1LI3"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "683335"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t1",
+      "application": "personkort"
+    },
+    "properties": {
+      "hostname": "d26apvl249.test.local",
+      "port": "1412",
+      "name": "MT1LSC01"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "838275"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "APP_MQMANAGER",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t4",
+      "application": "predator"
+    },
+    "properties": {
+      "hostname": "d26apvw100.test.local",
+      "port": "1412",
+      "name": "MT4W03"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "950522"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "APP_MQMANAGER",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t10",
+      "application": "predator"
+    },
+    "properties": {
+      "hostname": "d26apvw115.test.local",
+      "port": "1412",
+      "name": "MT10W03"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "1103110"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "APP_MQMANAGER",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t4",
+      "application": "elin"
+    },
+    "properties": {
+      "hostname": "d26apvw099.test.local",
+      "port": "1412",
+      "name": "MT4W05"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "933859"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "APP_MQMANAGER",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t1",
+      "application": "elin"
+    },
+    "properties": {
+      "hostname": "d26apvw058.test.local",
+      "port": "1412",
+      "name": "MTW06"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "1240570"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "APP_MQMANAGER",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t5",
+      "application": "predator"
+    },
+    "properties": {
+      "hostname": "d26apvw092.test.local",
+      "port": "1412",
+      "name": "MT5W03"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "965701"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "APP_MQMANAGER",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t5",
+      "application": "elin"
+    },
+    "properties": {
+      "hostname": "D26APVW105.test.local",
+      "port": "1412",
+      "name": "MT5W05"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "965703"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "APP_MQMANAGER",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t0",
+      "application": "predator"
+    },
+    "properties": {
+      "hostname": "d26apvw089.test.local",
+      "port": "1412",
+      "name": "MT0W03"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "1462929"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t0",
+      "application": "personkort"
+    },
+    "properties": {
+      "hostname": "d26apvl251.test.local",
+      "port": "1412",
+      "name": "MT0LSC01"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "836810"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "APP_MQMANAGER",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t8",
+      "application": "elin"
+    },
+    "properties": {
+      "hostname": "D26APVW105.test.local",
+      "port": "1412",
+      "name": "MT5W05"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "2236854"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway05",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss"
+    },
+    "properties": {
+      "hostname": "d26apvl293.test.local",
+      "port": "1412",
+      "name": "MTXLSC05"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "2070721"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "APP_MQMANAGER",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t0",
+      "application": "elin"
+    },
+    "properties": {
+      "hostname": "d26apvw085.test.local",
+      "port": "1412",
+      "name": "MT0W05"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "1813749"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "zosQueueManager2",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss"
+    },
+    "properties": {
+      "hostname": "155.55.1.82",
+      "port": "1415",
+      "name": "MRT2"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "4090481"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "APP_MQMANAGER",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t6",
+      "application": "elin"
+    },
+    "properties": {
+      "hostname": "D26APVW099.test.local",
+      "port": "1412",
+      "name": "MT4W05"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "2061507"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "APP_MQMANAGER",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t1",
+      "application": "predator"
+    },
+    "properties": {
+      "hostname": "d26apvw005.test.local",
+      "port": "1412",
+      "name": "MTW03"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "1463079"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "zosQueueManager1",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss"
+    },
+    "properties": {
+      "hostname": "155.55.1.82",
+      "port": "1412",
+      "name": "MRT1"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "2940750"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "APP_MQMANAGER",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "environment": "t6",
+      "application": "predator"
+    },
+    "properties": {
+      "hostname": "d26apvw171.test.local",
+      "port": "1412",
+      "name": "MTXW03"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "3745985"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGatewaySbs",
+    "scope": {
+      "environmentclass": "t",
+      "application": "sikkerhetslytter-gw"
+    },
+    "properties": {
+      "hostname": "d26apvl127.test.local",
+      "port": "21413",
+      "name": "MTLGW03"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "5558626"
+  },
+  {
+    "type": "queuemanager",
+    "alias": "mqGateway",
+    "scope": {
+      "environmentclass": "t",
+      "zone": "fss",
+      "application": "tps-forvalteren"
+    },
+    "properties": {
+      "hostname": "d26apvl126.test.local",
+      "port": "1412",
+      "name": "MTLCLIENT01"
+    },
+    "secrets": {},
+    "files": {},
+    "id": "4483002"
+  }
+]

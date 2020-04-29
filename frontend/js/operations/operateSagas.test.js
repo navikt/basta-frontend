@@ -1,8 +1,6 @@
-import { select, call } from 'redux-saga/effects'
 import { expectSaga } from 'redux-saga-test-plan'
 import { credentialLookup, submitOperation } from './operateSagas'
 import operateReducers from './operateReducers'
-import { getLastQuery } from './operateSelectors'
 import * as matchers from 'redux-saga-test-plan/matchers'
 import { throwError } from 'redux-saga-test-plan/providers'
 import { getUrl, postForm } from '../common/utils'

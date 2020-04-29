@@ -50,7 +50,7 @@ const orderTypes = [
     description: 'Service user in AD',
     image: securityImage,
     url: '/operate/credentials'
-  },
+  } /*,
   {
     title: 'MQ',
     description: 'channel',
@@ -62,7 +62,7 @@ const orderTypes = [
     description: 'Queue',
     image: mqImage,
     url: '/operate/mqqueues'
-  }
+  }*/
 ]
 Operate.propTypes = {}
 

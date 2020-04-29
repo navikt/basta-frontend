@@ -3,11 +3,11 @@ import {
   INITIALIZE_APPLICATION,
   USER_LOGOUT,
   ENVIRONMENTS_REQUEST,
-  RESOURCES_REQUEST,
+  MQ_QUEUE_MANAGERS_REQUEST,
   APPLICATIONS_REQUEST,
-  SCOPED_RESOURCE_REQUEST,
   MQCLUSTERS_REQUEST,
   MQCLUSTERS_RECEIVED,
+  MQQUEUES_REQUEST,
   DBTEMPLATES_REQUEST,
   VIRTUALSERVERS_REQUEST,
   CERTIFICATE_FASIT_REQUEST,
@@ -34,16 +34,16 @@ export const fetchApplications = () => {
   return { type: APPLICATIONS_REQUEST }
 }
 
-export const fetchResources = envClass => {
-  return { type: RESOURCES_REQUEST, envClass }
-}
-
-export const fetchScopedResources = (envClass, environment, application) => {
-  return { type: SCOPED_RESOURCE_REQUEST, envClass, environment, application }
+export const fetchMQQueueManagers = (envClass, envName) => {
+  return { type: MQ_QUEUE_MANAGERS_REQUEST, envClass, envName }
 }
 
 export const fetchMqClusters = (environmentClass, queueManager) => {
   return { type: MQCLUSTERS_REQUEST, environmentClass, queueManager }
+}
+
+export const fetchMqQueues = (environmentClass, queueManager) => {
+  return { type: MQQUEUES_REQUEST, environmentClass, queueManager }
 }
 
 export const clearMqClusters = () => {
