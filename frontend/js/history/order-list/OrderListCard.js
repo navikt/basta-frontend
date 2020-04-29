@@ -46,7 +46,7 @@ const formatString = string => {
 }
 
 const formatDisplayName = (displayName, userId) => {
-  if (displayName.includes('@')) {
+  if (displayName && displayName.includes('@')) {
     return displayName.split('@')[0].replace(new RegExp('\\.', 'g'), ' ')
   }
   return `${displayName} ( ${userId} )`
