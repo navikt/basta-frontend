@@ -50,7 +50,6 @@ export class History extends Component {
   }
 
   render() {
-    console.log('state', this.state)
     const {
       orderHistory,
       orderHistoryReceived,
