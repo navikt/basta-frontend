@@ -40,7 +40,7 @@ export function* fetchQueueManagers(action) {
   try {
     let queueManagers = yield call(
       getUrl,
-      `/rest/v2/fasit/resources?environmentclass=${action.envClass}&type=QueueManager`
+      `/rest/v2/fasit/resources?environmentclass=${action.envClass}&type=queuemanager`
     )
     const distinctQueueManagers = yield call(
       groupQueueManagersByName,
