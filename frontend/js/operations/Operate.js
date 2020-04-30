@@ -56,13 +56,13 @@ const orderTypes = [
     description: 'channel',
     image: mqImage,
     url: '/operate/mqchannels'
-  },
+  },*/,
   {
     title: 'MQ',
     description: 'Queue',
     image: mqImage,
     url: '/operate/mqqueues'
-  }*/
+  }
 ]
 Operate.propTypes = {}
 

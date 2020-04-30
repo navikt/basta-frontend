@@ -50,7 +50,7 @@ export default (
       error: null,
       data: []
     },
-    queue: {
+    queues: {
       fetching: false,
       error: null,
       data: []

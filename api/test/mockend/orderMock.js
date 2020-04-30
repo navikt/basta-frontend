@@ -8,6 +8,7 @@ const orders = require('../mockdata/large_order_list_for_pagination_test.json')
 //const order = require('../mockdata/vm_order_mock.json')
 const statusLog = require('../mockdata/statuslog.json')
 const orderMock = require('../mockdata/orderCreated.json')
+const removedQueueOrderMock = require('../mockdata/removeQueueOrder.json')
 
 const paginate = (pageId, pageSize, data) => {
   if (pageSize > 1000) throw 'Page size out of bounds (1000 Max value)'
@@ -19,6 +20,12 @@ const paginate = (pageId, pageSize, data) => {
 exports.getAllOrders = () => {
   return (req, res) => {
     res.status(200).json(orders)
+  }
+}
+
+exports.removeMqQueue = () => {
+  return (req, res) => {
+    res.status(200).json({ orderId: 1412 })
   }
 }
 
@@ -66,6 +73,8 @@ exports.getOrder = () => {
     try {
       if (req.params.id === '6666') {
         res.status(200).json(orderMock[1])
+      } else if (req.params.id === '1412') {
+        res.status(200).json(removedQueueOrderMock)
       } else {
         res.status(200).json(orderMock[0])
       }

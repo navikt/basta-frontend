@@ -2,9 +2,6 @@ import {
   HISTORY_FETCHING,
   HISTORY_RECEIVED,
   HISTORY_REQUEST_FAILED,
-  LATEST_ORDER_FETCHING,
-  LATEST_ORDER_RECEIVED,
-  LATEST_ORDER_REQUEST_FAILED,
   SEARCH_FETCHING,
   SEARCH_RESULTS_RECEIVED,
   SEARCH_FAILED
@@ -68,24 +65,6 @@ export default (
         searchProcessing: false,
         requestFailed: true,
         errorMassage: action.err
-      }
-
-    case LATEST_ORDER_FETCHING:
-      return {
-        ...state,
-        requestFailed: false
-      }
-    case LATEST_ORDER_RECEIVED:
-      return {
-        ...state,
-        orderHistory: state.filteredOrderHistory.unshift(action.value[0]),
-        requestFailed: false
-      }
-    case LATEST_ORDER_REQUEST_FAILED:
-      return {
-        ...state,
-        requestFailed: true,
-        errorMessage: action.err
       }
     default:
       return state

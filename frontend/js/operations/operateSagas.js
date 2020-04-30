@@ -1,5 +1,5 @@
 import { takeEvery, takeLatest, put, fork, call, select } from 'redux-saga/effects'
-import { getUrl, postForm } from '../common/utils'
+import { getUrl, postForm, putForm } from '../common/utils'
 import history from '../common/history'
 import {
   SUBMIT_OPERATION,
@@ -10,8 +10,7 @@ import {
   CUSTOM_CREDENTIAL_LOOKUP_REQUEST,
   CREDENTIAL_LOOKUP_SUBMITTING,
   CREDENTIAL_LOOKUP_SUCCESSFUL,
-  CREDENTIAL_LOOKUP_FAILED,
-  LATEST_ORDER_REQUEST
+  CREDENTIAL_LOOKUP_FAILED
 } from '../actionTypes'
 
 export function* credentialLookup(action) {
@@ -69,13 +68,18 @@ function* submitNodeOperations(action) {
 }
 
 function* submitDeleteCredentialOperation(action) {
-  let value
-  value = yield call(postForm, `/rest/operation/serviceuser/credential/delete`, action.form)
+  let value = yield call(postForm, `/rest/operation/serviceuser/credential/delete`, action.form)
+  return value
+}
+
+function* submitDeleteQueueOperation(action) {
+  let value = yield call(putForm, `/rest/v1/mq/order/queue/remove`, action.form)
   return value
 }
 
 export function* submitOperation(action) {
   let value
+
   yield put({ type: OPERATION_SUBMITTING, value: action })
 
   try {
@@ -86,9 +90,12 @@ export function* submitOperation(action) {
       case 'credentials':
         value = yield call(submitDeleteCredentialOperation, action)
         break
+      case 'mqqueue':
+        value = yield call(submitDeleteQueueOperation, action)
+
+        break
     }
     yield put({ type: OPERATION_SUBMIT_SUCCESSFUL, value })
-    yield put({ type: LATEST_ORDER_REQUEST })
     const redirectUrl = value.orderId ? `/orders/${value.orderId}` : '/'
     yield history.push(redirectUrl)
   } catch (error) {
