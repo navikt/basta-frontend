@@ -75,7 +75,7 @@ export function* fetchMqQueues(action) {
   try {
     let resources = yield call(
       getUrl,
-      `/rest/v1/mq/queueNames?environmentClass=${
+      `/rest/v1/mq/queuenames?environmentClass=${
         action.environmentClass
       }&queueManager=${encodeURIComponent(action.queueManager)}`
     )
