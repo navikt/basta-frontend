@@ -10,7 +10,8 @@ import {
   CUSTOM_CREDENTIAL_LOOKUP_REQUEST,
   CREDENTIAL_LOOKUP_SUBMITTING,
   CREDENTIAL_LOOKUP_SUCCESSFUL,
-  CREDENTIAL_LOOKUP_FAILED
+  CREDENTIAL_LOOKUP_FAILED,
+  HISTORY_REQUEST
 } from '../actionTypes'
 
 export function* credentialLookup(action) {
@@ -98,6 +99,7 @@ export function* submitOperation(action) {
     yield put({ type: OPERATION_SUBMIT_SUCCESSFUL, value })
     const redirectUrl = value.orderId ? `/orders/${value.orderId}` : '/'
     yield history.push(redirectUrl)
+    yield put({ type: HISTORY_REQUEST })
   } catch (error) {
     yield put({ type: OPERATION_SUBMIT_FAILED, error })
   }
