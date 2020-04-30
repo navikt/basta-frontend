@@ -4,6 +4,7 @@ import {
   USER_LOGOUT,
   ENVIRONMENTS_REQUEST,
   MQ_QUEUE_MANAGERS_REQUEST,
+  MQ_QUEUE_MANAGERS_RECEIVED,
   APPLICATIONS_REQUEST,
   MQCLUSTERS_REQUEST,
   MQCLUSTERS_RECEIVED,
@@ -36,6 +37,10 @@ export const fetchApplications = () => {
 
 export const fetchMQQueueManagers = (envClass, envName) => {
   return { type: MQ_QUEUE_MANAGERS_REQUEST, envClass, envName }
+}
+
+export const clearMqQueueManagers = () => {
+  return { type: MQ_QUEUE_MANAGERS_RECEIVED, value: [] }
 }
 
 export const fetchMqClusters = (environmentClass, queueManager) => {

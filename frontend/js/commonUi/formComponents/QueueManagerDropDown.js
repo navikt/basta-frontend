@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Select from 'react-select'
-import { fetchMQQueueManagers } from '../../common/actionCreators'
+import { fetchMQQueueManagers, clearMqQueueManagers } from '../../common/actionCreators'
 
 export class QueueManagerDropDown extends Component {
   constructor(props) {
@@ -11,6 +11,10 @@ export class QueueManagerDropDown extends Component {
 
   componentDidUpdate(prevProps) {
     const { dispatch, envName, envClass } = this.props
+
+    if (envClass != prevProps.envClass) {
+      dispatch(clearMqQueueManagers())
+    }
 
     if (envName != '' && prevProps.envName != envName) {
       dispatch(fetchMQQueueManagers(envClass, envName))
