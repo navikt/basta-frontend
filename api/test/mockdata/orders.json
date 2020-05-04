@@ -16,8 +16,6 @@
     "errorMessage": null,
     "orderDescription": "credential",
     "orderOperation": "CREATE",
-    "nextOrderId": null,
-    "previousOrderId": null,
     "resultDetails": []
   },
   {
@@ -37,8 +35,6 @@
     "errorMessage": null,
     "orderDescription": "WILDFLY",
     "orderOperation": "CREATE",
-    "nextOrderId": null,
-    "previousOrderId": null,
     "resultDetails": []
   },
   {
@@ -58,8 +54,6 @@
     "errorMessage": null,
     "orderDescription": "UNKNOWN",
     "orderOperation": "DELETE",
-    "nextOrderId": null,
-    "previousOrderId": null,
     "resultDetails": []
   },
   {
@@ -79,8 +73,6 @@
     "errorMessage": null,
     "orderDescription": "JBOSS",
     "orderOperation": "STOP",
-    "nextOrderId": null,
-    "previousOrderId": null,
     "resultDetails": []
   },
   {

@@ -28,8 +28,6 @@
   "errorMessage": null,
   "orderDescription": "WILDFLY",
   "orderOperation": "CREATE",
-  "nextOrderId": 24543,
-  "previousOrderId": 24541,
   "resultDetails": [
     {
       "resultName": "d26jbsl01558.test.local",
