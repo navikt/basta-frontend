@@ -8,7 +8,7 @@ import {
   OperationsButtons
 } from '../../commonUi/formComponents'
 import { submitOperation } from '../operateActionCreators'
-import { fetchMqQueues, clearMqQueueManagers } from '../../common/actionCreators'
+import { fetchMqQueues, clearMqQueueManagers, clearMqQueues } from '../../common/actionCreators'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
 
@@ -34,7 +34,7 @@ export class MqQueueOperationsForm extends Component {
     const { dispatch } = this.props
     if (prevState.environmentClass != environmentClass) {
       this.setState(initialState)
-      dispatch(clearMqQueueManagers())
+      dispatch(clearMqQueues())
     }
 
     if (queueManager && prevState.queueManager != queueManager && queueManager != '') {
@@ -44,7 +44,7 @@ export class MqQueueOperationsForm extends Component {
 
   componentWillUnmount() {
     const { dispatch } = this.props
-    dispatch(clearMqQueueManagers())
+    dispatch(clearMqQueues())
   }
 
   handleChange(field, value) {
@@ -65,6 +65,8 @@ export class MqQueueOperationsForm extends Component {
   render() {
     const { environmentName, environmentClass, queueManager, mqQueueName } = this.state
     const { queues, submitting, submitError } = this.props
+
+    console.log('ts', this.state)
 
     return (
       <div>

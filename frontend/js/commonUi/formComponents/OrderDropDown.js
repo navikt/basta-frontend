@@ -29,7 +29,10 @@ const mapToOptions = alternatives => {
       })
 }
 const findOption = (options, value) => {
-  return options.find(o => o.value === value)
+  if (value !== '') {
+    return options.find(o => o.value === value)
+  }
+  return value
 }
 
 OrderDropDown.propTypes = {
