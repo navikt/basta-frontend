@@ -1,7 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import OrderHistory from './OrderHistory'
-//import history from '../../common/history'
 
 function buildResultBody(data) {
   return (
@@ -10,17 +8,6 @@ function buildResultBody(data) {
         return (
           <div className="resultLine" key={'resultline_' + result.id}>
             <div className="result">{createResultLine(result)}</div>
-            <OrderHistory data={result.history} />
-            {/*<div className="operations">
-              {' '}
-              <button
-                disabled={true}
-                className="button disabled"
-                onClick={() => history.push(`/operations/node/${result.resultName}`)}
-              >
-                <i className="fa fa-wrench rightpad" />
-              </button>
-        </div>*/}
           </div>
         )
       })}

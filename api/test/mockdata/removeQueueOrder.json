@@ -31,50 +31,6 @@
         "fasitUrl": "https://fasit.adeo.no/search/9847913",
         "type": "queue"
       },
-      "history": [
-        {
-          "id": 35048,
-          "created": 1588092921855,
-          "createdBy": "x123456",
-          "updated": 1588092922999,
-          "updatedBy": "x123456",
-          "updatedByDisplayName": "Tom Stang Sjåfør",
-          "createdByDisplayName": "Tom Stang Sjåfør",
-          "orderType": "MQ",
-          "results": ["jboss-testapp_banan"],
-          "input": null,
-          "externalId": "N/A",
-          "uri": "https://basta.prod-fss-pub.nais.io/rest/orders/35048",
-          "status": "SUCCESS",
-          "errorMessage": null,
-          "orderDescription": "queue",
-          "orderOperation": "DELETE",
-          "nextOrderId": null,
-          "previousOrderId": null,
-          "resultDetails": []
-        },
-        {
-          "id": 35047,
-          "created": 1588092870145,
-          "createdBy": "Tom.Stang.Sjåfør@banan.com",
-          "updated": 1588092870630,
-          "updatedBy": "Tom.Stang.Sjåfør@banan.com",
-          "updatedByDisplayName": "Tom.Stang.Sjåfør@banan.com",
-          "createdByDisplayName": "Tom.Stang.Sjåfør@banan.com",
-          "orderType": "MQ",
-          "results": ["jboss-testapp_banan"],
-          "input": null,
-          "externalId": "N/A",
-          "uri": "https://basta.prod-fss-pub.nais.io/rest/orders/35047",
-          "status": "SUCCESS",
-          "errorMessage": null,
-          "orderDescription": "queue",
-          "orderOperation": "CREATE",
-          "nextOrderId": null,
-          "previousOrderId": null,
-          "resultDetails": []
-        }
-      ],
       "description": null
     }
   ]
