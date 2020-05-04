@@ -8,7 +8,7 @@ import {
   OperationsButtons
 } from '../../commonUi/formComponents'
 import { submitOperation } from '../operateActionCreators'
-import { fetchMqQueues, clearMqQueues } from '../../common/actionCreators'
+import { fetchMqChannels, clearMqChannels } from '../../common/actionCreators'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
 
@@ -17,10 +17,10 @@ const mqImage = require('../../../img/orderTypes/mq.png')
 const initialState = {
   environmentName: '',
   queueManager: '',
-  mqQueueName: ''
+  mqChannelName: ''
 }
 
-export class MqQueueOperationsForm extends Component {
+export class MqChannelOperationsForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -34,17 +34,17 @@ export class MqQueueOperationsForm extends Component {
     const { dispatch } = this.props
     if (prevState.environmentClass != environmentClass) {
       this.setState(initialState)
-      dispatch(clearMqQueues())
+      dispatch(clearMqChannels())
     }
 
     if (queueManager && prevState.queueManager != queueManager && queueManager != '') {
-      dispatch(fetchMqQueues(environmentClass, queueManager))
+      dispatch(fetchMqChannels(environmentClass, queueManager))
     }
   }
 
   componentWillUnmount() {
     const { dispatch } = this.props
-    dispatch(clearMqQueues())
+    dispatch(clearMqChannels())
   }
 
   handleChange(field, value) {
@@ -52,19 +52,19 @@ export class MqQueueOperationsForm extends Component {
   }
 
   validForm() {
-    const { environmentName, queueManager, mqQueueName } = this.state
-    return environmentName.length > 0 && queueManager.length > 0 && mqQueueName.length > 0
+    const { environmentName, queueManager, mqChannelName } = this.state
+    return environmentName.length > 0 && queueManager.length > 0 && mqChannelName.length > 0
   }
 
   submitHandler() {
     // Remove field environmentName from payload as this is not needed by basta api
     const { environmentName, ...payload } = this.state
-    this.props.dispatch(submitOperation('mqqueue', payload))
+    this.props.dispatch(submitOperation('mqchannel', payload))
   }
 
   render() {
-    const { environmentName, environmentClass, queueManager, mqQueueName } = this.state
-    const { queues, submitting, submitError } = this.props
+    const { environmentName, environmentClass, queueManager, mqChannelName } = this.state
+    const { channels, submitting, submitError } = this.props
 
     return (
       <div>
@@ -73,7 +73,7 @@ export class MqQueueOperationsForm extends Component {
             <img src={mqImage} />
           </div>
           <div className="orderFormHeading">
-            <div className="orderFormTitle">WebSphere MQ Queue operations</div>
+            <div className="orderFormTitle">WebSphere MQ Channel operations</div>
             <div className="orderFormDescription">Delete</div>
           </div>
           <div className="orderFormItems">
@@ -93,10 +93,10 @@ export class MqQueueOperationsForm extends Component {
               value={queueManager}
             />
             <OrderDropDown
-              label="MQ queue name"
-              value={mqQueueName}
-              alternatives={queues}
-              onChange={v => this.handleChange('mqQueueName', v)}
+              label="MQ channel name"
+              value={mqChannelName}
+              alternatives={channels}
+              onChange={v => this.handleChange('mqChannelName', v)}
             />
             <OperationsButtons
               hasAccess={this.validForm()}
@@ -119,15 +119,15 @@ const mapStateToProps = state => {
   return {
     submitting: state.operationsForm.operations.fetching,
     submitError: state.operationsForm.operations.error,
-    queues: state.orderFormData.queues.data
+    channels: state.orderFormData.channels.data
   }
 }
 
-MqQueueOperationsForm.propTypes = {
+MqChannelOperationsForm.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
   onSubmit: PropTypes.func,
   dispatch: PropTypes.func
 }
 
-export default connect(mapStateToProps)(MqQueueOperationsForm)
+export default connect(mapStateToProps)(MqChannelOperationsForm)

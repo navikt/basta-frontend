@@ -20,8 +20,6 @@
   "errorMessage": null,
   "orderDescription": "queue",
   "orderOperation": "DELETE",
-  "nextOrderId": 35049,
-  "previousOrderId": 35047,
   "resultDetails": [
     {
       "resultName": "jboss-testapp_banan",

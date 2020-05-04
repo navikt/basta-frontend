@@ -78,6 +78,11 @@ function* submitDeleteQueueOperation(action) {
   return value
 }
 
+function* submitDeleteChannelOperation(action) {
+  let value = yield call(putForm, `/rest/v1/mq/order/channel/remove`, action.form)
+  return value
+}
+
 export function* submitOperation(action) {
   let value
 
@@ -93,6 +98,8 @@ export function* submitOperation(action) {
         break
       case 'mqqueue':
         value = yield call(submitDeleteQueueOperation, action)
+      case 'mqchannel':
+        value = yield call(submitDeleteChannelOperation, action)
 
         break
     }
