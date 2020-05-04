@@ -56,7 +56,7 @@
     "uri": "https://basta.adeo.no/rest/orders/24402",
     "status": "ERROR",
     "errorMessage": null,
-    "orderDescription": "JBOSS",
+    "orderDescription": "UNKNOWN",
     "orderOperation": "DELETE",
     "nextOrderId": null,
     "previousOrderId": null,
