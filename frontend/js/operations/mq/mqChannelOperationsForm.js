@@ -57,9 +57,7 @@ export class MqChannelOperationsForm extends Component {
   }
 
   submitHandler() {
-    // Remove field environmentName from payload as this is not needed by basta api
-    const { environmentName, ...payload } = this.state
-    this.props.dispatch(submitOperation('mqchannel', payload))
+    this.props.dispatch(submitOperation('mqchannel', this.state))
   }
 
   render() {

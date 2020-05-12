@@ -98,9 +98,9 @@ export function* submitOperation(action) {
         break
       case 'mqqueue':
         value = yield call(submitDeleteQueueOperation, action)
+        break
       case 'mqchannel':
         value = yield call(submitDeleteChannelOperation, action)
-
         break
     }
     yield put({ type: OPERATION_SUBMIT_SUCCESSFUL, value })
