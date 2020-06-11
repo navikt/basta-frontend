@@ -1,3 +1,4 @@
+![Build and deploy basta-frontend](https://github.com/navikt/basta-frontend/workflows/Build%20and%20deploy%20basta-frontend/badge.svg)
 
 # Basta frontend
 
