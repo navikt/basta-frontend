@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/navikt/basta-frontend.svg?style=svg)](https://circleci.com/gh/navikt/basta-frontend)
+![Build and deploy basta-frontend](https://github.com/navikt/basta-frontend/workflows/Build%20and%20deploy%20basta-frontend/badge.svg)
 
 # Basta frontend
 
