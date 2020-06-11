@@ -3,7 +3,7 @@ name: Build and deploy basta-frontend
 on: push
 
 env:
-  IMAGE: docker.pkg.github.com/${{ github.repository }}/basta-frontend
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/basta-frontend:${{ github.sha }}
 
 jobs:
   build:
