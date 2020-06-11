@@ -40,8 +40,8 @@ export class MqChannelOrderForm extends Component {
     if (prevState.environmentName != environmentName) {
       this.setState({ application: '', queueManager: '' })
     }
-    if (prevState.mqChannelName != mqChannelName || prevState.application != application) {
-      const normalizedAppName = application.replace('-', '_').toUpperCase()
+    if (prevState.application != application) {
+      const normalizedAppName = application.replace(new RegExp('-', 'g'), '_').toUpperCase()
       this.setState({
         mqChannelName: `${environmentName.toUpperCase()}_${normalizedAppName}`,
         fasitAlias: `${application}_channel`
