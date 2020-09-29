@@ -19,6 +19,7 @@ import CredentialsOperationsForm from './operations/credentials/CredentialsOpera
 import CredentialOrderForm from './order/create/CredentialOrderForm'
 import CustomCredentialOrderForm from './order/create/CustomCredentialOrderForm'
 import MqQueueOperationsForm from './operations/mq/mqQueueOperationsForm'
+import MqChannelOperationsForm from './operations/mq/mqChannelOperationsForm'
 
 // Routes
 export const Routes = () => {
@@ -31,7 +32,7 @@ export const Routes = () => {
       <Route path="/operate/nodes" component={NodeOperationsForm} />
       <Route path="/operate/credentials" component={CredentialsOperationsForm} />
       <Route path="/operate/mqqueues" component={MqQueueOperationsForm} />
-      <Route path="/operate/:orderType" component={OperationsForm} />
+      <Route path="/operate/mqchannels" component={MqChannelOperationsForm} />
       <Route exact path="/create" component={Create} />
       <Route exact path="/create/bigip" component={BigIPOrderForm} />
       <Route exact path="/create/certificate" component={CertificateOrderForm} />

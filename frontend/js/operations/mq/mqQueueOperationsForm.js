@@ -8,7 +8,7 @@ import {
   OperationsButtons
 } from '../../commonUi/formComponents'
 import { submitOperation } from '../operateActionCreators'
-import { fetchMqQueues, clearMqQueueManagers } from '../../common/actionCreators'
+import { fetchMqQueues, clearMqQueues } from '../../common/actionCreators'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
 
@@ -34,7 +34,7 @@ export class MqQueueOperationsForm extends Component {
     const { dispatch } = this.props
     if (prevState.environmentClass != environmentClass) {
       this.setState(initialState)
-      dispatch(clearMqQueueManagers())
+      dispatch(clearMqQueues())
     }
 
     if (queueManager && prevState.queueManager != queueManager && queueManager != '') {
@@ -44,7 +44,7 @@ export class MqQueueOperationsForm extends Component {
 
   componentWillUnmount() {
     const { dispatch } = this.props
-    dispatch(clearMqQueueManagers())
+    dispatch(clearMqQueues())
   }
 
   handleChange(field, value) {
@@ -74,7 +74,7 @@ export class MqQueueOperationsForm extends Component {
           </div>
           <div className="orderFormHeading">
             <div className="orderFormTitle">WebSphere MQ Queue operations</div>
-            <div className="orderFormDescription">Start, stop and delete</div>
+            <div className="orderFormDescription">Delete</div>
           </div>
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup

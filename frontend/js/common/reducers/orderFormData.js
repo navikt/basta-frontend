@@ -14,6 +14,9 @@ import {
   MQQUEUES_REQUEST_FAILED,
   MQQUEUES_RECEIVED,
   MQQUEUES_FETCHING,
+  MQCHANNELS_REQUEST_FAILED,
+  MQCHANNELS_RECEIVED,
+  MQCHANNELS_FETCHING,
   ENVIRONMENTS_REQUEST_FAILED,
   ENVIRONMENTS_RECEIVED,
   ENVIRONMENTS_FETCHING,
@@ -51,6 +54,11 @@ export default (
       data: []
     },
     queues: {
+      fetching: false,
+      error: null,
+      data: []
+    },
+    channels: {
       fetching: false,
       error: null,
       data: []
@@ -176,6 +184,34 @@ export default (
       return {
         ...state,
         queues: {
+          fetching: false,
+          error: null,
+          data: []
+        }
+      }
+
+    case MQCHANNELS_FETCHING:
+      return {
+        ...state,
+        channels: {
+          fetching: true,
+          error: null,
+          data: []
+        }
+      }
+    case MQCHANNELS_RECEIVED:
+      return {
+        ...state,
+        channels: {
+          fetching: false,
+          error: null,
+          data: action.value
+        }
+      }
+    case MQCHANNELS_REQUEST_FAILED:
+      return {
+        ...state,
+        channels: {
           fetching: false,
           error: null,
           data: []

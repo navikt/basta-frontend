@@ -21,6 +21,11 @@ export class QueueManagerDropDown extends Component {
     }
   }
 
+  componentWillUnmount() {
+    const { dispatch } = this.props
+    dispatch(clearMqQueueManagers())
+  }
+
   render() {
     const { value, onChange, description, resources } = this.props
     const options = mapToOptions(resources)

@@ -27,7 +27,7 @@ class App extends Component {
     dispatch(initializeApplication())
   }
 
-  componentDidUpdate(prevProps, prevState, ss) {
+  componentDidUpdate(prevProps, prevState) {
     const { dispatch, user } = this.props
     if (prevProps.user.isUserAuthenticated !== user.isUserAuthenticated && user.isUserAuthenticated)
       dispatch(getOrderHistory())

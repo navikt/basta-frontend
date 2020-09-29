@@ -60,7 +60,9 @@ const orderOperation = order => {
 
 const orderType = order => {
   const { orderType, orderDescription } = order
-  return <span>{`${formatString(orderType)} | ${formatString(orderDescription)}`}</span>
+  const description =
+    orderDescription.toLowerCase() !== 'unknown' ? `| ${formatString(orderDescription)}` : ''
+  return <span>{`${formatString(orderType)} ${description}`}</span>
 }
 
 const orderResults = results => {

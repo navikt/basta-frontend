@@ -5,10 +5,13 @@ import {
   ENVIRONMENTS_REQUEST,
   MQ_QUEUE_MANAGERS_REQUEST,
   MQ_QUEUE_MANAGERS_RECEIVED,
+  MQQUEUES_RECEIVED,
+  MQCHANNELS_RECEIVED,
   APPLICATIONS_REQUEST,
   MQCLUSTERS_REQUEST,
   MQCLUSTERS_RECEIVED,
   MQQUEUES_REQUEST,
+  MQCHANNELS_REQUEST,
   DBTEMPLATES_REQUEST,
   VIRTUALSERVERS_REQUEST,
   CERTIFICATE_FASIT_REQUEST,
@@ -43,12 +46,24 @@ export const clearMqQueueManagers = () => {
   return { type: MQ_QUEUE_MANAGERS_RECEIVED, value: [] }
 }
 
+export const clearMqQueues = () => {
+  return { type: MQQUEUES_RECEIVED, value: [] }
+}
+
 export const fetchMqClusters = (environmentClass, queueManager) => {
   return { type: MQCLUSTERS_REQUEST, environmentClass, queueManager }
 }
 
 export const fetchMqQueues = (environmentClass, queueManager) => {
   return { type: MQQUEUES_REQUEST, environmentClass, queueManager }
+}
+
+export const fetchMqChannels = (environmentClass, queueManager) => {
+  return { type: MQCHANNELS_REQUEST, environmentClass, queueManager }
+}
+
+export const clearMqChannels = () => {
+  return { type: MQCHANNELS_RECEIVED, value: [] }
 }
 
 export const clearMqClusters = () => {

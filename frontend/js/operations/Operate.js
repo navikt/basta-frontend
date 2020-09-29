@@ -50,15 +50,16 @@ const orderTypes = [
     description: 'Service user in AD',
     image: securityImage,
     url: '/operate/credentials'
-  } /*,
+  },
   {
-    title: 'MQ',
+    title: 'WebSphere MQ',
     description: 'channel',
     image: mqImage,
     url: '/operate/mqchannels'
-  },*/,
+  },
+  ,
   {
-    title: 'MQ',
+    title: 'WebSphere MQ',
     description: 'Queue',
     image: mqImage,
     url: '/operate/mqqueues'

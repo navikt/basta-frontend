@@ -50,7 +50,7 @@ export class MqQueueOrderForm extends Component {
       this.setState({ application: '', queueManager: '' })
     }
     if (prevState.name != name || prevState.application != application) {
-      const normalizedAppName = application.replace('-', '_').toUpperCase()
+      const normalizedAppName = application.replace(new RegExp('-', 'g'), '_').toUpperCase()
       this.setState({
         mqQueueName: `${environmentName.toUpperCase()}_${normalizedAppName}.${name.toUpperCase()}`,
         fasitAlias: `${application}_${name}`

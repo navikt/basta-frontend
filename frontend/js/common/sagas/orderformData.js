@@ -9,6 +9,10 @@ import {
   MQCLUSTERS_REQUEST_FAILED,
   MQCLUSTERS_RECEIVED,
   MQQUEUES_FETCHING,
+  MQCHANNELS_FETCHING,
+  MQCHANNELS_RECEIVED,
+  MQCHANNELS_REQUEST_FAILED,
+  MQCHANNELS_REQUEST,
   MQ_QUEUE_MANAGERS_REQUEST,
   MQ_QUEUE_MANAGERS_FETCHING,
   MQ_QUEUE_MANAGERS_REQUEST_FAILED,
@@ -85,6 +89,22 @@ export function* fetchMqQueues(action) {
   }
 }
 
+// https://basta-api.adeo.no/rest/v1/mq/channels?environmentClass=t&queueManager=mq://qmgrsHostname:qmgrPort/qmgrName
+export function* fetchMqChannels(action) {
+  yield put({ type: MQCHANNELS_FETCHING })
+  try {
+    let resources = yield call(
+      getUrl,
+      `/rest/v1/mq/channels?environmentClass=${
+        action.environmentClass
+      }&queueManager=${encodeURIComponent(action.queueManager)}`
+    )
+    yield put({ type: MQCHANNELS_RECEIVED, value: resources })
+  } catch (err) {
+    yield put({ type: MQCHANNELS_REQUEST_FAILED, err })
+  }
+}
+
 export function* fetchApplications() {
   yield put({ type: APPLICATIONS_FETCHING })
   try {
@@ -155,6 +175,7 @@ export function* watchOrderData() {
   yield fork(takeEvery, MQ_QUEUE_MANAGERS_REQUEST, fetchQueueManagers)
   yield fork(takeEvery, MQCLUSTERS_REQUEST, fetchMqClusters)
   yield fork(takeEvery, MQQUEUES_REQUEST, fetchMqQueues)
+  yield fork(takeEvery, MQCHANNELS_REQUEST, fetchMqChannels)
   yield fork(takeEvery, DBTEMPLATES_REQUEST, fetchDbTemplates)
   yield fork(takeEvery, VIRTUALSERVERS_REQUEST, fetchVirtualServers)
   yield fork(takeEvery, CERTIFICATE_FASIT_REQUEST, certificateExistInFasit)

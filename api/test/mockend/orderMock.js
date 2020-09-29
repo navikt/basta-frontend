@@ -23,7 +23,7 @@ exports.getAllOrders = () => {
   }
 }
 
-exports.removeMqQueue = () => {
+exports.removeMq = () => {
   return (req, res) => {
     res.status(200).json({ orderId: 1412 })
   }
