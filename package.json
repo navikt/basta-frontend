@@ -108,7 +108,8 @@
     "mockend": "better-npm-run dev-mockend",
     "auth": "better-npm-run auth",
     "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "prepare": "npm run snyk-protect",
+    "prepublish": "npm run snyk-protect"
   },
   "betterScripts": {
     "start": {
