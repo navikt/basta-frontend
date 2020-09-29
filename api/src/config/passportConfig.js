@@ -1,7 +1,7 @@
 exports.clientID = process.env['BASTAAZURECONFIG_CLIENTID']
 exports.clientSecret = process.env['BASTAAZURECONFIG_CLIENTSECRET']
 exports.responseType = 'code'
-exports.responseMode = 'form_post'
+exports.responseMode = 'query'
 exports.redirectUrl = process.env['BASTAAZURECONFIG_CALLBACKURI']
 exports.identityMetadata = process.env['AZURE_OPENID_CONNECT_CONFIGURATION']
 exports.tokenURI = process.env['AZURE_TOKEN_URI']
@@ -22,8 +22,8 @@ exports.nonceLifetime = 36000
 
 if (process.env['NODE_ENV'] === 'production') {
   exports.allowHttpForRedirectUrl = false
-  exports.loggingLevel = 'debug'
+  exports.loggingLevel = 'error'
 } else if (process.env['NODE_ENV'] === 'development') {
   exports.allowHttpForRedirectUrl = true
-  exports.loggingLevel = 'error'
+  exports.loggingLevel = 'debug'
 }

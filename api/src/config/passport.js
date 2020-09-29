@@ -67,7 +67,6 @@ module.exports = passport => {
             }
             if (!user) {
               arrRoles = getroles.matchRoles(profile._json.groups)
-
               let newUser = {}
               newUser.oid = profile.oid
               newUser.upn = profile.upn
@@ -93,7 +92,7 @@ module.exports = passport => {
             req.session.firstName = user.firstName
             req.session.lastName = user.lastName
             req.session.displayName = user.displayName
-            req.session.roles = arrRoles
+            req.session.roles = user.roles
             req.session.refreshToken = refreshToken
             return done(null, user)
           })

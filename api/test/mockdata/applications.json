@@ -4324,12 +4324,6 @@
     "portOffset": 1
   },
   {
-    "name": "veilarbinnhold",
-    "appConfigGroupId": "veilarbinnhold",
-    "appConfigArtifactId": "veilarbinnhold",
-    "portOffset": 0
-  },
-  {
     "name": "dokarkivsed",
     "appConfigGroupId": "nais",
     "appConfigArtifactId": "dokarkivsed",

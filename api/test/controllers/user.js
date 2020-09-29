@@ -7,7 +7,7 @@ exports.getUserProfile = () => {
       firstName: 'Mock',
       lastName: 'User',
       displayName: 'mockuser@nmockdomain.com',
-      roles: ['ROLE_PROD', 'ROLE_SUPERUSER']
+      roles: ['ROLE_PROD_OPERATIONS', 'ROLE_SUPERUSER']
     }
     res.status(200).send(user)
   }

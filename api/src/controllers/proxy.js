@@ -14,8 +14,6 @@ exports.doProxy = () => {
   })
 }
 
-
-
 const restream = (proxyReq, req, res, options) => {
   if (req.body) {
     let bodyData = JSON.stringify(req.body)

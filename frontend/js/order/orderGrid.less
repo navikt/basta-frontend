@@ -1,0 +1,27 @@
+.orderGrid {
+  display: grid;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 100px;
+}
+@media all and (max-width: 1012px) {
+  .orderGrid {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 20px 0 20px;
+  }
+}
+@media all and (max-width: 800px) {
+  .orderGrid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 20px 0 20px;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .orderGrid {
+    grid-template-columns: 100%;
+    padding: 0 20px 0 20px;
+    grid-row-gap: 10px;
+  }
+}
