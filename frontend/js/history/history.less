@@ -1,0 +1,66 @@
+.searchclear {
+  position: absolute;
+  left: 60%;
+  top: 15px;
+  margin: auto;
+  height: 1.5rem;
+  line-height: 0.45rem;
+  margin: auto;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: lighten(@header-color, 10%);
+}
+
+.orderFilterWrapper {
+  position: relative;
+  height: 70px;
+  text-align: center;
+  margin-top: 40px;
+}
+.orderFilterField {
+  width: 30%;
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: darken(@border-color, 20%);
+  padding: 8px 8px;
+  font-size: 1em;
+  outline: none;
+}
+
+.orderFilterSubmitBtn {
+  cursor: pointer;
+  margin-left: 5px;
+  height: 16px;
+
+  background-color: @default-button-color;
+  padding-top: 9px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  border: 2px solid @default-button-color;
+  color: @inverse-font-color;
+  text-align: center;
+  display: inline-block;
+  width: 80px;
+}
+
+.searchResultCounter {
+  width: 100%;
+  //display: inline-block;
+  text-align: right;
+  font-weight: bold;
+  //padding-right: 300px;
+  //background-color: pink;
+}
+
+.orderFilterSubmitBtn:hover {
+  color: #fff;
+  background-color: lighten(@default-button-color, 10%);
+}
+
+@media all and (max-width: 1012px) {
+  .orderFilterWrapper {
+    padding-left: 20px;
+    position: relative;
+  }
+}

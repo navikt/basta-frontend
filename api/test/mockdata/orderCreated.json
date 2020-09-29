@@ -1,31 +1,83 @@
-{
-  "id": 6969,
-  "created": 1536049879788,
-  "createdBy": "mockuser",
-  "updated": 1536049879788,
-  "updatedBy": "mockuser",
-  "updatedByDisplayName": "Mock User",
-  "createddByDisplayName": "Mock User",
-  "orderType": "VM",
-  "results": [],
-  "input": {
-    "nodeType": "JBOSS",
-    "classification": { "type": "standard" },
-    "environmentClass": "utvikling",
-    "zone": "fss",
-    "environmentName": "",
-    "applicationMappingName": "",
-    "serverCount": 1,
-    "cpuCount": 1,
-    "memory": 2,
-    "extraDisk": 0,
-    "eapVersion": "EAP6",
-    "javaVersion": "OpenJDK7",
-    "description": ""
+[
+  {
+    "id": 24542,
+    "created": 1582204959237,
+    "createdBy": "b123034",
+    "updated": 1534846265670,
+    "updatedBy": "srvOrchestrator",
+    "updatedByDisplayName": "Service User",
+    "createdByDisplayName": "Roger Bjørnstad",
+    "orderType": "VM",
+    "results": ["d26jbsl01558.test.local"],
+    "input": {
+      "memory": "2",
+      "middleWareType": "wildfly_11",
+      "applicationMappingName": "norg2",
+      "description": "wildfly node",
+      "nodeType": "WILDFLY",
+      "classification": "standard",
+      "serverCount": "1",
+      "zone": "fss",
+      "environmentName": "t9",
+      "osType": "rhel70",
+      "environmentClass": "t",
+      "cpuCount": "2"
+    },
+    "externalId": "https://orcprod.adeo.no:443/vco/api/workflows/110abd83-455e-4aef-b141-fc4512bafec2/executions/8a819397652704a001655be464327738/",
+    "uri": "https://basta.adeo.no/rest/orders/24542",
+    "status": "SUCCESS",
+    "errorMessage": null,
+    "orderDescription": "WILDFLY",
+    "orderOperation": "CREATE",
+    "resultDetails": [
+      {
+        "resultName": "d26jbsl01558.test.local",
+        "details": {
+          "nodetype": null,
+          "nodestatus": "ACTIVE",
+          "resultUrl": "https://fasit.adeo.no/search/d26jbsl01558.test.local"
+        },
+        "description": "WILDFLY"
+      }
+    ]
   },
-  "uri": "https://bakcendaddress/rest/orders/6969",
-  "status": "PROCESSING",
-  "errorMessage": null,
-  "orerDescription": "JBOSS_NODE",
-  "orderOperation": "CREATE"
-}
+
+  {
+    "id": 6666,
+    "created": 1581665294604,
+    "createdBy": "Aune Amundsen@nav.no",
+    "updated": 1581665294604,
+    "updatedBy": "Aune Amundsen@nav.no",
+    "updatedByDisplayName": "Aune Amundsen@nav.no",
+    "createdByDisplayName": "Aune Amundsen@nav.no",
+    "orderType": "ServiceUser",
+    "results": ["srvuser@bananakake.com"],
+    "input": {
+      "zone": "fss",
+      "environmentClass": "q",
+      "stsAccess": "true",
+      "abacAccess": "false",
+      "username": "srvuser",
+      "resourceType": "Credential"
+    },
+    "externalId": "N/A",
+    "uri": "https://basta.prod-fss-pub.nais.io/rest/orders/34006",
+    "status": "SUCCESS",
+    "errorMessage": null,
+    "orderDescription": "credential",
+    "orderOperation": "CREATE",
+    "resultDetails": [
+      {
+        "resultName": "srvuser@bananakake.com",
+        "details": {
+          "fasitUrl": "https://fasit.adeo.no/search",
+          "accountname": "srvuser",
+          "type": "credential",
+          "domain": "PreProd",
+          "vaultpath": "serviceuser/data/dev/srvuser"
+        },
+        "description": null
+      }
+    ]
+  }
+]

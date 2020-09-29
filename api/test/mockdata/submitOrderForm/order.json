@@ -28,8 +28,6 @@
   "errorMessage": null,
   "orderDescription": "WILDFLY",
   "orderOperation": "CREATE",
-  "nextOrderId": 24543,
-  "previousOrderId": 24541,
   "resultDetails": [
     {
       "resultName": "d26jbsl01558.test.local",
@@ -38,29 +36,6 @@
         "nodestatus": "ACTIVE",
         "resultUrl": "https://fasit.adeo.no/search/d26jbsl01558.test.local"
       },
-      "history": [
-        {
-          "id": 24542,
-          "created": 1534845018754,
-          "createdBy": "b123034",
-          "updated": 1534846265670,
-          "updatedBy": "srvOrchestrator",
-          "updatedByDisplayName": "Service User",
-          "createdByDisplayName": "Roger Bjørnstad",
-          "orderType": "VM",
-          "results": ["d26jbsl01558.test.local"],
-          "input": null,
-          "externalId": "https://orcprod.adeo.no:443/vco/api/workflows/110abd83-455e-4aef-b141-fc4512bafec2/executions/8a819397652704a001655be464327738/",
-          "uri": "https://basta.adeo.no/rest/orders/24542",
-          "status": "SUCCESS",
-          "errorMessage": null,
-          "orderDescription": "WILDFLY",
-          "orderOperation": "CREATE",
-          "nextOrderId": null,
-          "previousOrderId": null,
-          "resultDetails": []
-        }
-      ],
       "description": "WILDFLY"
     }
   ]

@@ -26,15 +26,9 @@ exports.validateRefreshAndGetToken = async (userid, refreshToken, resource) => {
     return newAccessToken
   }
   if (user && oldAccessToken) {
-    console.log('found user and existing accesstoken for', resource)
     const oldtokenExpire = user.tokens.find(token => token.resource === resource).exp
-    console.log(
-      'accessToken expire',
-      new Date(oldtokenExpire * 1000) + ' = ' + (oldtokenExpire * 1000 - Date.parse(now)) + ' ms'
-    )
     if (oldtokenExpire * 1000 < Date.parse(now)) {
       const newAccessToken = await token.getAccessTokenUser(config.tokenURI, refreshToken, resource)
-      console.log('Getting new accessToken for', resource)
       exp = JSON.parse(exports.decodeToken(newAccessToken)).exp
       if (!user.tokens) {
         user.tokens = []
@@ -44,8 +38,6 @@ exports.validateRefreshAndGetToken = async (userid, refreshToken, resource) => {
       user.tokens.push({ resource: resource, accesstoken: newAccessToken, exp: exp })
 
       return newAccessToken
-    } else {
-      console.log('token stil valid for', resource)
     }
   }
 
@@ -53,7 +45,6 @@ exports.validateRefreshAndGetToken = async (userid, refreshToken, resource) => {
 }
 
 getNewAccessToken = async (refreshToken, resource) => {
-  console.log('found user but no existing accesstoken for ', resource)
   try {
     return await token.getAccessTokenUser(config.tokenURI, refreshToken, resource)
   } catch (error) {

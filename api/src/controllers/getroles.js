@@ -1,8 +1,13 @@
-const SUPERUSER_GROUPS = process.env['SUPERUSER_GROUPS'].split(',').map(elem => elem.trim())
-const PROD_OPERATIONS_GROUPS = process.env['PROD_OPERATIONS_GROUPS']
-  .split(',')
-  .map(elem => elem.trim())
-const OPERATION_GROUPS = process.env['OPERATION_GROUPS'].split(',').map(elem => elem.trim())
+const SUPERUSER_GROUPS = getAccessGroups(process.env['SUPERUSER_GROUPS'])
+const PROD_OPERATIONS_GROUPS = getAccessGroups(process.env['PROD_OPERATIONS_GROUPS'])
+const OPERATION_GROUPS = getAccessGroups(process.env['OPERATION_GROUPS'])
+
+function getAccessGroups(groupString) {
+  if (groupString && groupString.length > 0) {
+    return groupString.split(',').map(elem => elem.trim())
+  }
+  return []
+}
 
 // match groups in token to roles
 exports.matchRoles = groups => {

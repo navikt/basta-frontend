@@ -14,7 +14,7 @@ router.get('/metrics', health.metrics())
 // AUTHENTICATION
 router.get('/login/:param1?/:param2?/:param3?', auth.authenticateAzure())
 
-router.post('/auth/openid/callback', auth.authenticateAzureCallback())
+router.get('/auth/openid/callback', auth.authenticateAzureCallback())
 
 router.get(`/auth/logout`, auth.logout())
 

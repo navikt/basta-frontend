@@ -20,8 +20,6 @@
   "errorMessage": null,
   "orderDescription": "Certificate",
   "orderOperation": "CREATE",
-  "nextOrderId": 27549,
-  "previousOrderId": 27547,
   "resultDetails": [
     {
       "resultName": "srvoppgavebacken_u@devillo.no",
@@ -33,7 +31,6 @@
         "type": "Certificate",
         "domain": "Devillo"
       },
-      "history": [],
       "description": null
     }
   ]

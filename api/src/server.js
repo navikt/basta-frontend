@@ -23,7 +23,7 @@ const app = express()
 app.use(
   logger('dev', {
     skip: function(req, res) {
-      return req.url.toLowerCase() === '/isalive' || req.url === '/user/session'
+      return res.statusCode < 400
     }
   })
 )
@@ -32,7 +32,6 @@ app.use(
 app.use(helmet())
 
 // CORS
-
 const cors = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', host)
   res.setHeader('Access-Control-Allow-Credentials', 'true')
@@ -57,7 +56,8 @@ app.use(
     name: 'basta',
     keys: [`${process.env['BASTACOOKIE_KEY1']}`, `${process.env['BASTACOOKIE_KEY2']}`],
     maxAge: 24 * 60 * 60 * 1000, // 24 timer
-    domain: cookieDomain
+    domain: cookieDomain,
+    sameSite: 'lax'
   })
 )
 app.use(passport.initialize())

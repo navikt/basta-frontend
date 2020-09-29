@@ -1,5 +1,24 @@
 [
   {
+    "id": 6666,
+    "created": 1581665294604,
+    "createdBy": "Aune Amundsen@nav.no",
+    "updated": 1581665294604,
+    "updatedBy": "Aune Amundsen@nav.no",
+    "updatedByDisplayName": "Aune Amundsen@nav.no",
+    "createdByDisplayName": "Aune Amundsen@nav.no",
+    "orderType": "ServiceUser",
+    "results": ["srvuser@bananakake.com"],
+    "input": null,
+    "externalId": "N/A",
+    "uri": "https://basta.prod-fss-pub.nais.io/rest/orders/6666",
+    "status": "SUCCESS",
+    "errorMessage": null,
+    "orderDescription": "credential",
+    "orderOperation": "CREATE",
+    "resultDetails": []
+  },
+  {
     "id": 24403,
     "created": 1534318234218,
     "createdBy": "b696969",
@@ -16,8 +35,6 @@
     "errorMessage": null,
     "orderDescription": "WILDFLY",
     "orderOperation": "CREATE",
-    "nextOrderId": null,
-    "previousOrderId": null,
     "resultDetails": []
   },
   {
@@ -35,10 +52,8 @@
     "uri": "https://basta.adeo.no/rest/orders/24402",
     "status": "ERROR",
     "errorMessage": null,
-    "orderDescription": "JBOSS",
+    "orderDescription": "UNKNOWN",
     "orderOperation": "DELETE",
-    "nextOrderId": null,
-    "previousOrderId": null,
     "resultDetails": []
   },
   {
@@ -58,8 +73,6 @@
     "errorMessage": null,
     "orderDescription": "JBOSS",
     "orderOperation": "STOP",
-    "nextOrderId": null,
-    "previousOrderId": null,
     "resultDetails": []
   },
   {
@@ -120,6 +133,27 @@
     "status": "SUCCESS",
     "errorMessage": null,
     "orderDescription": "Certificate",
+    "orderOperation": "CREATE",
+    "nextOrderId": null,
+    "previousOrderId": null,
+    "resultDetails": []
+  },
+  {
+    "id": 24297,
+    "created": 1533798842288,
+    "createdBy": "t130787",
+    "updated": 1533798842633,
+    "updatedBy": "t130787",
+    "updatedByDisplayName": "Håvard Tronhus",
+    "createdByDisplayName": "Håvard Tronhus",
+    "orderType": "BIGIP",
+    "results": ["lbConfig"],
+    "input": null,
+    "externalId": "N/A",
+    "uri": "https://basta.adeo.no/rest/orders/24297",
+    "status": "FAILURE",
+    "errorMessage": null,
+    "orderDescription": "BIG-IP Config",
     "orderOperation": "CREATE",
     "nextOrderId": null,
     "previousOrderId": null,

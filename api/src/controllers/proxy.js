@@ -7,7 +7,7 @@ exports.doProxy = () => {
     onProxyReq: restream,
     secure: true,
     changeOrigin: true,
-    logLevel: 'debug',
+    logLevel: 'info',
     onError: (err, req, res) => {
       console.log('error in proxy', err)
     }
