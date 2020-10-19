@@ -204,7 +204,10 @@ export class MqQueueOrderForm extends Component {
                   alternatives={[
                     { label: '1000', value: '1000' },
                     { label: '5000', value: '5000' },
-                    { label: '10 000', value: '10000' }
+                    { label: '10 000', value: '10000' },
+                    { label: '100 000', value: '100000' },
+                    { label: '1 000 000', value: '1000000' },
+                    { label: '2 000 000', value: '2000000' }
                   ]}
                   onChange={v => this.handleChange('queueDepth', v)}
                 />
