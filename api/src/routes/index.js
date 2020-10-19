@@ -29,8 +29,11 @@ router.get('/', auth.ensureAuthenticated())
 
 function errorLogging() {
   return (req, res) => {
-    console.log('Error occured', req, res)
-    res.status(500).send('Error...')
+    res
+      .status(500)
+      .send(
+        `Error req.headers ${req.headers} req.body ${req.body} res.headers ${res.headers} res.body ${res.body}`
+      )
   }
 }
 
