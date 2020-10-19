@@ -23,6 +23,15 @@ router.get('/user/profile', auth.ensureAuthenticated(), user.getUserProfile())
 
 router.get('/user/session', auth.ensureAuthenticated(), user.userSessionLookup())
 
+router.get('/error', errorLogging())
+
 router.get('/', auth.ensureAuthenticated())
+
+const errorLogging = () => {
+  return (req, res) => {
+    console.log('Error occured', req, res)
+    res.status(500).send('Error...')
+  }
+}
 
 module.exports = router
