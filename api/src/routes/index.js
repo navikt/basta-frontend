@@ -23,18 +23,6 @@ router.get('/user/profile', auth.ensureAuthenticated(), user.getUserProfile())
 
 router.get('/user/session', auth.ensureAuthenticated(), user.userSessionLookup())
 
-router.get('/error', errorLogging())
-
 router.get('/', auth.ensureAuthenticated())
-
-function errorLogging() {
-  return (req, res) => {
-    res
-      .status(500)
-      .send(
-        `Error req.headers ${req.headers} req.body ${req.body} res.headers ${res.headers} res.body ${res.body}`
-      )
-  }
-}
 
 module.exports = router

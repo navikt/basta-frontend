@@ -31,8 +31,7 @@ exports.authenticateAzureCallback = () => {
       passport.authenticate('azuread-openidconnect', {
         response: res,
         successRedirect: req.session.redirectUrl || '/',
-        failureRedirect: '/error',
-        failureFlash: true
+        failureRedirect: '/error'
       })(req, res, next)
     } catch (err) {
       throw `ERROR during authentication: ${err}`
