@@ -42,7 +42,7 @@
     "morgan": "^1.9.0",
     "nock": "^11.9.0",
     "passport": "^0.4.1",
-    "passport-azure-ad": "^4.2.1",
+    "passport-azure-ad": "^4.3.0",
     "pretty-quick": "^1.11.1",
     "prom-client": "^11.5.3",
     "re": "^0.1.4",
