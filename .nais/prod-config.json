@@ -1,6 +1,6 @@
 {
     "external-hosts": ["basta.prod-fss-pub.nais.io", "login.microsoftonline.com"],
-    "ingress": ["https://basta.adeo.no"],
+    "ingress": ["https://basta.adeo.no", "https://basta.intern.nav.no"],
     
     "envs": [
         { "name": "BASTA_BACKEND", "value": "https://basta.prod-fss-pub.nais.io" },
