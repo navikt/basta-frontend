@@ -1,11 +1,11 @@
 {
   "external-hosts": ["basta.dev-fss-pub.nais.io", "login.microsoftonline.com"],
-  "ingress": ["https://basta-frontend.dev-adeo.no/"],
+  "ingress": ["https://basta.dev.intern.nav.no/"],
   "envs": [
     { "name": "BASTA_BACKEND", "value": "https://basta.dev-fss-pub.nais.io" },
     {
       "name": "BASTAAZURECONFIG_CALLBACKURI",
-      "value": "https://basta-frontend.dev-adeo.no/auth/openid/callback"
+      "value": "https://basta.dev.intern.nav.no/auth/openid/callback"
     },
     {
       "name": "AZURE_OPENID_CONNECT_CONFIGURATION",
