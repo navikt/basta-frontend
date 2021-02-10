@@ -1,9 +1,9 @@
-exports.clientID = process.env['BASTAAZURECONFIG_CLIENTID']
-exports.clientSecret = process.env['BASTAAZURECONFIG_CLIENTSECRET']
+exports.clientID = process.env['AZURE_APP_CLIENT_ID']
+exports.clientSecret = process.env['AZURE_APP_CLIENT_SECRET']
 exports.responseType = 'code'
 exports.responseMode = 'query'
-exports.redirectUrl = process.env['BASTAAZURECONFIG_CALLBACKURI']
-exports.identityMetadata = process.env['AZURE_OPENID_CONNECT_CONFIGURATION']
+exports.redirectUrl = process.env['AZURE_APP_CALLBACK_URI']
+exports.identityMetadata = process.env['AZURE_APP_WELL_KNOWN_URL']
 exports.tokenURI = process.env['AZURE_TOKEN_URI']
 exports.logoutURL = process.env['AZURE_LOGOUT_URL']
 exports.passReqToCallback = true

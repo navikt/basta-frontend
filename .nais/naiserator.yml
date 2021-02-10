@@ -6,12 +6,15 @@ metadata:
   labels:
     team: aura
 spec:
+  azure:
+    application:
+      enabled: true
   accessPolicy:
     outbound:
       rules: []
       external:
       {{#each external-hosts}}
-        - host: {{this}}
+        - host: "{{ this }}" 
       {{/each}}
   image: {{ image }}
   port: 8080 

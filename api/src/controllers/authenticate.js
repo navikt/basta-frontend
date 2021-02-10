@@ -44,7 +44,7 @@ exports.authenticateAzureCallback = () => {
 exports.ensureAuthenticated = () => {
   return async (req, res, next) => {
     if (req.isAuthenticated()) {
-      resource = process.env['BASTAAZURECONFIG_CLIENTID']
+      resource = process.env['AZURE_APP_CLIENT_ID']
       return next()
     }
     res.redirect('/login')
