@@ -1,5 +1,5 @@
 {
-  "external-hosts": ["basta.prod-fss-pub.nais.io"],
+  "external-hosts": ["basta.dev-fss-pub.nais.io"],
   "ingress": ["https://basta.dev.intern.nav.no/"],
   "envs": [
     {
