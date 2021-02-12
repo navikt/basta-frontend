@@ -15,7 +15,7 @@ exports.matchRoles = groups => {
   if (!groups) {
     return arrRoles
   }
-  groups = JSON.parse(groups)
+  console.log(groups)
   groups.forEach(group => {
     Object.keys(roles).forEach(role => {
       if (roles[role].includes(group) && !arrRoles.includes(role)) {
