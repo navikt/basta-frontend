@@ -5,12 +5,8 @@
   "envs": [
     { "name": "BASTA_BACKEND", "value": "https://basta.prod-fss-pub.nais.io" },
     {
-      "name": "BASTAAZURECONFIG_CALLBACKURI",
+      "name": "AZURE_APP_CALLBACK_URI",
       "value": "https://basta.intern.nav.no/auth/openid/callback"
-    },
-    {
-      "name": "AZURE_OPENID_CONNECT_CONFIGURATION",
-      "value": "https://login.microsoftonline.com/navno.onmicrosoft.com/.well-known/openid-configuration"
     },
     {
       "name": "AZURE_TOKEN_URI",

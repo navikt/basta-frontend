@@ -5,12 +5,12 @@ exports.getAccessTokenUser = async (tokenURI, refreshToken, resource) => {
   let parameters = ''
   try {
     parameters = {
-      client_id: process.env['BASTAAZURECONFIG_CLIENTID'],
-      resource: resource, // process.env['BASTAAZURECONFIG_CLIENTID'],
-      redirect_uri: process.env['BASTAAZURECONFIG_CALLBACKURI'],
+      client_id: process.env['AZURE_APP_CLIENT_ID'],
+      resource: resource, // process.env['AZURE_APP_CLIENT_ID'],
+      redirect_uri: process.env['AZURE_APP_CALLBACK_URI'],
       grant_type: 'refresh_token',
       refresh_token: refreshToken,
-      client_secret: process.env['BASTAAZURECONFIG_CLIENTSECRET']
+      client_secret: process.env['AZURE_APP_CLIENT_SECRET']
     }
     await request.post({ url: tokenURI, formData: parameters }, function callback(
       err,
