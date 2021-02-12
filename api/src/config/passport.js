@@ -69,18 +69,14 @@ module.exports = passport => {
               arrRoles = getroles.matchRoles(profile._json.groups)
               let newUser = {}
               newUser.oid = profile.oid
-              newUser.upn = profile.upn
+              newUser.upn = profile._json.preferred_username
               newUser.displayName = profile.displayName
-              newUser.firstName = profile.name.givenName
-              newUser.lastName = profile.name.familyName
               newUser.roles = arrRoles
               newUser.refreshToken = refreshToken
               finduser.users.push(newUser)
 
               req.session.userid = profile.oid
-              req.session.upn = profile.upn
-              req.session.firstName = profile.name.givenName
-              req.session.lastName = profile.name.familyName
+              req.session.upn = profile._json.preferred_username
               req.session.displayName = profile.displayName
               req.session.roles = arrRoles
               req.session.refreshToken = refreshToken

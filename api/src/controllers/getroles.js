@@ -12,6 +12,9 @@ function getAccessGroups(groupString) {
 // match groups in token to roles
 exports.matchRoles = groups => {
   let arrRoles = ['ROLE_USER']
+  if (!groups) {
+    return arrRoles
+  }
   groups = JSON.parse(groups)
   groups.forEach(group => {
     Object.keys(roles).forEach(role => {

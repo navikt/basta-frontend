@@ -1,9 +1,13 @@
+const request = require('request')
+
+const wellKnownUrl = process.env['AZURE_APP_WELL_KNOWN_URL']
+
 exports.clientID = process.env['AZURE_APP_CLIENT_ID']
 exports.clientSecret = process.env['AZURE_APP_CLIENT_SECRET']
 exports.responseType = 'code'
 exports.responseMode = 'query'
 exports.redirectUrl = process.env['AZURE_APP_CALLBACK_URI']
-exports.identityMetadata = process.env['AZURE_APP_WELL_KNOWN_URL']
+exports.identityMetadata = wellKnownUrl
 exports.tokenURI = process.env['AZURE_TOKEN_URI']
 exports.logoutURL = process.env['AZURE_LOGOUT_URL']
 exports.passReqToCallback = true

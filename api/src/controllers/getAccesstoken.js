@@ -1,16 +1,17 @@
 const request = require('request-promise')
+const config = require('../config/passportConfig')
 let ms_access_token = ''
 
 exports.getAccessTokenUser = async (tokenURI, refreshToken, resource) => {
   let parameters = ''
   try {
     parameters = {
-      client_id: process.env['AZURE_APP_CLIENT_ID'],
-      resource: resource, // process.env['AZURE_APP_CLIENT_ID'],
-      redirect_uri: process.env['AZURE_APP_CALLBACK_URI'],
+      client_id: config.clientID,
+      redirect_uri: config.redirectUrl,
+      resource: resource,
       grant_type: 'refresh_token',
       refresh_token: refreshToken,
-      client_secret: process.env['AZURE_APP_CLIENT_SECRET']
+      client_secret: config.clientSecret
     }
     await request.post({ url: tokenURI, formData: parameters }, function callback(
       err,
