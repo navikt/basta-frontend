@@ -12,6 +12,13 @@ spec:
       tenant: nav.no
       replyURLs: 
         - "https://basta.dev.intern.nav.no/auth/openid/callback"
+      claims:
+        groups:
+          - id: 
+            "47204455-7930-4eda-af04-cd2e91825651"
+            "af129fd3-0d95-41a6-adc5-d3aa5a6c9ed6"
+            "84eb3bc1-fdac-4133-89e1-cafc8c75fa09"
+            "df17de8a-e293-4253-96f3-46544e57cc5a"
   accessPolicy:
     outbound:
       rules: []
