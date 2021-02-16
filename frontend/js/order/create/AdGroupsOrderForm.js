@@ -1,25 +1,23 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { ApplicationsDropDown, OrderCheckBox } from '../../commonUi/formComponents'
+import { ApplicationsDropDown } from '../../commonUi/formComponents'
 import SubmitButton from '../../commonUi/formComponents/SubmitButton'
 import { submitForm } from '../actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { submitCredentialLookup } from '../../operations/operateActionCreators'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import { InfoStripe } from '../../commonUi/formComponents/AlertStripe'
-import { clearExistingCredentialMessage } from '../../common/actionCreators'
-import { orderApiPath } from './configuration/credentials'
+import { orderApiPath } from './configuration/adgroups'
 
-const certificateImage = require('../../../img/orderTypes/security.png')
+const adgroupsImage = require('../../../img/orderTypes/security.png')
 const initialState = {
   zone: 'fss',
   application: '',
   groupUsage: 'MQ'
 }
 
-export class CredentialOrderForm extends Component {
+export class AdGroupsOrderForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -38,17 +36,6 @@ export class CredentialOrderForm extends Component {
     const prevZone = prevState.zone
     const prevApp = prevState.application
     const { dispatch } = this.props
-
-    if (
-      application !== '' &&
-      (environmentClass !== prevEnvClass || zone !== prevZone || application !== prevApp)
-    ) {
-      dispatch(submitCredentialLookup(this.state))
-    }
-  }
-
-  componentWillUnmount() {
-    this.props.dispatch(clearExistingCredentialMessage())
   }
 
   validOrder() {
@@ -63,11 +50,11 @@ export class CredentialOrderForm extends Component {
       <div>
         <div className="orderForm">
           <div className="orderFormImage">
-            <img src={certificateImage} />
+            <img src={adgroupsImage} />
           </div>
           <div className="orderFormHeading">
-            <div className="orderFormTitle">Credential</div>
-            <div className="orderFormDescription">for service user</div>
+            <div className="orderFormTitle">AdGroups</div>
+            <div className="orderFormDescription">for service groups</div>
           </div>
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup
@@ -92,7 +79,7 @@ export class CredentialOrderForm extends Component {
   }
 }
 
-CredentialOrderForm.propTypes = {
+AdGroupsOrderForm.propTypes = {
   dispatch: PropTypes.func
 }
 const mapStateToProps = state => {
