@@ -80,6 +80,12 @@ export const orderTypes = [
     url: '/create/customcredential'
   },
   {
+    title: 'AD groups',
+    description: 'AD groups for special use',
+    image: securityImage,
+    url: '/create/adgroups'
+  },
+  {
     title: 'Liberty',
     description: 'Application server',
     image: libertyImage,
