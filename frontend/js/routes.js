@@ -18,6 +18,7 @@ import NodeOperationsForm from './operations/node/NodeOperationsForm'
 import CredentialsOperationsForm from './operations/credentials/CredentialsOperationForm'
 import CredentialOrderForm from './order/create/CredentialOrderForm'
 import CustomCredentialOrderForm from './order/create/CustomCredentialOrderForm'
+import AdGroupsOrderForm from './order/create/AdGroupsOrderForm'
 import MqQueueOperationsForm from './operations/mq/mqQueueOperationsForm'
 import MqChannelOperationsForm from './operations/mq/mqChannelOperationsForm'
 
@@ -38,6 +39,7 @@ export const Routes = () => {
       <Route exact path="/create/certificate" component={CertificateOrderForm} />
       <Route exact path="/create/credential" component={CredentialOrderForm} />
       <Route exact path="/create/customcredential" component={CustomCredentialOrderForm} />
+      <Route exact path="/create/adgroups" component={AdGroupsOrderForm} />
       <Route exact path="/create/mqqueue" component={MqQueueOrderForm} />
       <Route exact path="/create/mqchannel" component={MqChannelOrderForm} />
       <Route exact path="/create/oracle" component={OracleDbOrderForm} />
