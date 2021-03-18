@@ -53,8 +53,8 @@ export class AdGroupsOrderForm extends Component {
             <img src={adgroupsImage} />
           </div>
           <div className="orderFormHeading">
-            <div className="orderFormTitle">AdGroups</div>
-            <div className="orderFormDescription">for service groups</div>
+            <div className="orderFormTitle">AD Groups</div>
+            <div className="orderFormDescription">for application groups</div>
           </div>
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup

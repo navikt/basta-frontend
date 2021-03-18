@@ -61,7 +61,10 @@ const orderFields = {
     fieldType: 'buttonGroup',
     alternatives: [
       { label: 'Wildfly 11', value: 'wildfly11' },
-      { label: 'Wildfly 17', value: 'wildfly17' }
+      { label: 'Wildfly 17', value: 'wildfly17' },
+      { label: 'Wildfly 19', value: 'wildfly19' },
+      { label: 'Wildfly 21', value: 'wildfly21' },
+      { label: 'Wildfly 23', value: 'wildfly23' }
     ],
     value: 'wildfly17'
   },
