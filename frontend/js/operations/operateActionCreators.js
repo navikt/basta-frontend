@@ -1,7 +1,8 @@
 import {
   SUBMIT_OPERATION,
   CREDENTIAL_LOOKUP_REQUEST,
-  CUSTOM_CREDENTIAL_LOOKUP_REQUEST
+  CUSTOM_CREDENTIAL_LOOKUP_REQUEST,
+  GROUP_LOOKUP_REQUEST
 } from '../actionTypes'
 
 export const submitOperation = (key, form, operation) => {
@@ -14,4 +15,8 @@ export const submitCredentialLookup = form => {
 
 export const submitCustomCredentialLookup = form => {
   return { type: CUSTOM_CREDENTIAL_LOOKUP_REQUEST, form }
+}
+
+export const submitGroupLookup = form => {
+  return { type: GROUP_LOOKUP_REQUEST, form }
 }

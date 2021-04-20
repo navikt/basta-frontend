@@ -16,7 +16,8 @@ import {
   VIRTUALSERVERS_REQUEST,
   CERTIFICATE_FASIT_REQUEST,
   CERTIFICATE_FASIT_RESET,
-  CREDENTIAL_LOOKUP_RESET
+  CREDENTIAL_LOOKUP_RESET,
+  GROUP_LOOKUP_RESET
 } from '../../actionTypes'
 
 export const fetchUserProfile = () => {
@@ -88,4 +89,8 @@ export const clearExistingCertificateMessage = () => {
 
 export const clearExistingCredentialMessage = () => {
   return { type: CREDENTIAL_LOOKUP_RESET }
+}
+
+export const clearExistingGroupMessage = () => {
+  return { type: GROUP_LOOKUP_RESET }
 }

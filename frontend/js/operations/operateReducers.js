@@ -5,7 +5,11 @@ import {
   CREDENTIAL_LOOKUP_SUBMITTING,
   CREDENTIAL_LOOKUP_SUCCESSFUL,
   CREDENTIAL_LOOKUP_FAILED,
-  CREDENTIAL_LOOKUP_RESET
+  CREDENTIAL_LOOKUP_RESET,
+  GROUP_LOOKUP_SUBMITTING,
+  GROUP_LOOKUP_SUCCESSFUL,
+  GROUP_LOOKUP_FAILED,
+  GROUP_LOOKUP_RESET
 } from '../actionTypes'
 
 export default (
@@ -98,6 +102,49 @@ export default (
           lookupComplete: false,
           error: action.error,
           data: state.credentialLookup.data
+        }
+      }
+    case GROUP_LOOKUP_RESET:
+      return {
+        ...state,
+        groupLookup: {
+          fetching: false,
+          lookupComplete: false,
+          error: null,
+          data: {
+            existInAD: false,
+            group: {}
+          }
+        }
+      }
+    case GROUP_LOOKUP_SUBMITTING:
+      return {
+        ...state,
+        groupLookup: {
+          fetching: true,
+          lookupComplete: false,
+          error: null,
+          data: state.groupLookup.data
+        }
+      }
+    case GROUP_LOOKUP_SUCCESSFUL:
+      return {
+        ...state,
+        groupLookup: {
+          fetching: false,
+          lookupComplete: true,
+          error: null,
+          data: action.groupInfo
+        }
+      }
+    case GROUP_LOOKUP_FAILED:
+      return {
+        ...state,
+        groupLookup: {
+          fetching: false,
+          lookupComplete: false,
+          error: action.error,
+          data: state.groupLookup.data
         }
       }
     default:

@@ -11,6 +11,9 @@ import {
   CREDENTIAL_LOOKUP_SUBMITTING,
   CREDENTIAL_LOOKUP_SUCCESSFUL,
   CREDENTIAL_LOOKUP_FAILED,
+  GROUP_LOOKUP_REQUEST,
+  GROUP_LOOKUP_SUCCESSFUL,
+  GROUP_LOOKUP_FAILED,
   HISTORY_REQUEST
 } from '../actionTypes'
 
@@ -47,6 +50,20 @@ export function* customCredentialLookup(action) {
     yield put({ type: CREDENTIAL_LOOKUP_SUCCESSFUL, credentialInfo })
   } catch (error) {
     yield put({ type: CREDENTIAL_LOOKUP_FAILED, error })
+  }
+}
+
+export function* groupLookup(action) {
+  let groupInfo = {}
+  yield put({ type: GROUP_LOOKUP_SUBMITTING })
+  try {
+    groupInfo.existInAD = yield call(
+      getUrl,
+      `/rest/orders/adgrups/existInAD?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
+    )
+    yield put({ type: GROUP_LOOKUP_SUCCESSFUL, groupInfo })
+  } catch (error) {
+    yield put({ type: GROUP_LOOKUP_FAILED, error })
   }
 }
 
@@ -116,4 +133,5 @@ export function* watchOperations() {
   yield fork(takeEvery, SUBMIT_OPERATION, submitOperation)
   yield fork(takeLatest, CREDENTIAL_LOOKUP_REQUEST, credentialLookup)
   yield fork(takeLatest, CUSTOM_CREDENTIAL_LOOKUP_REQUEST, customCredentialLookup)
+  yield fork(takeLatest, GROUP_LOOKUP_REQUEST, groupLookup)
 }
