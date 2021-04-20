@@ -57,7 +57,7 @@ export class AdGroupsOrderForm extends Component {
 
   render() {
     const { environmentClass, zone, application } = this.state
-    const { dispatch, formError, formSubmitting } = this.props
+    const { dispatch, existInAD, formError, formSubmitting } = this.props
 
     return (
       <div>
