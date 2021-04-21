@@ -60,7 +60,7 @@ export function* groupLookup(action) {
   try {
     groupInfo.existInAD = yield call(
       getUrl,
-      `/rest/orders/adgrups/existInAD?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
+      `/rest/orders/adgroups/existInAD?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
     )
     yield put({ type: GROUP_LOOKUP_SUCCESSFUL, groupInfo })
   } catch (error) {
