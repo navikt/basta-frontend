@@ -86,6 +86,10 @@ export class GroupOperationForm extends Component {
               onChange={v => this.handleChange('environmentClass', v)}
             />
             <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
+            <ApplicationsDropDown
+              onChange={v => this.handleChange('application', v)}
+              value={application}
+            />
             <ErrorStripe
               show={this.groupNotFound()}
               message={`Group for ${application} does not exist in AD. There is nothing to delete here.`}
@@ -118,7 +122,7 @@ const mapStateToProps = state => {
   return {
     application: state.application,
     submitError: state.operationsForm.operations.error,
-    lookupComplete: state.operationsForm.credentialLookup.lookupComplete,
+    lookupComplete: state.operationsForm.groupLookup.lookupComplete,
     existInAD: state.operationsForm.groupLookup.data.existInAD,
     submitting: state.operationsForm.operations.fetching,
     submitError: state.operationsForm.operations.error

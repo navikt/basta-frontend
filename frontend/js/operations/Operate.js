@@ -52,6 +52,12 @@ const orderTypes = [
     url: '/operate/credentials'
   },
   {
+    title: 'Groups',
+    description: 'Groups in AD',
+    image: securityImage,
+    url: '/operate/groups'
+  },
+  {
     title: 'WebSphere MQ',
     description: 'channel',
     image: mqImage,
