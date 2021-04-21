@@ -104,7 +104,7 @@ const mapStateToProps = state => {
   return {
     formSubmitting: state.order.form.submitting,
     formError: state.order.form.error,
-    existInAD: state.operationsForm.grupLookup.data.existInAD
+    existInAD: state.operationsForm.groupLookup.data.existInAD
   }
 }
 
