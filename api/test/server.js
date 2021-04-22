@@ -35,8 +35,8 @@ app.set('trust proxy', 1)
 
 // Proxy all API calls to orders to Basta java backend
 
+app.use('/static', express.static('./dist'))
 app.use('/', router)
-app.use(express.static('./dist'))
 app.get('*', (req, res) => {
   res.sendFile('index.html', { root: './dist' })
 })
