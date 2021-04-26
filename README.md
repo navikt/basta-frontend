@@ -22,6 +22,7 @@ Det finnes en offline modus som mocker ut Azure AD.
 For offline modus kjør:
 
 ```console
+npm run mockend
 npm run offline
 ```
 
