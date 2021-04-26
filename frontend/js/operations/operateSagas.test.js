@@ -20,6 +20,12 @@ it('(Operate view sagas - credentialLookup) disoatches with app, and sets all fi
         lookupComplete: true,
         error: null,
         data: { existInAD: false, existInFasit: false, user: false }
+      },
+      groupLookup: {
+        fetching: false,
+        lookupComplete: false,
+        error: null,
+        data: { existInAD: false, application: {} }
       }
     })
     .run()
@@ -41,6 +47,12 @@ it('(Operate view sagas - credentialLookup) dispatches with app, returns fetch e
         lookupComplete: false,
         error: error,
         data: { existInAD: false, existInFasit: false, user: {} }
+      },
+      groupLookup: {
+        fetching: false,
+        lookupComplete: false,
+        error: null,
+        data: { existInAD: false, application: {} }
       }
     })
     .run()
@@ -72,6 +84,12 @@ it('(Operate view sagas - submitOperation) dispatches with operation, returns or
           existInFasit: false,
           user: {}
         }
+      },
+      groupLookup: {
+        fetching: false,
+        lookupComplete: false,
+        error: null,
+        data: { existInAD: false, application: {} }
       }
     })
     .run()
@@ -107,5 +125,11 @@ const defaultOperationsState = {
     error: null,
     lookupComplete: false,
     data: { existInAD: false, existInFasit: false, user: {} }
+  },
+  groupLookup: {
+    fetching: false,
+    lookupComplete: false,
+    error: null,
+    data: { existInAD: false, application: {} }
   }
 }
