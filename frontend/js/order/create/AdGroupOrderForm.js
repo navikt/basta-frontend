@@ -19,7 +19,7 @@ const initialState = {
   groupUsage: 'MQ'
 }
 
-export class AdGroupsOrderForm extends Component {
+export class AdGroupOrderForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -97,7 +97,7 @@ export class AdGroupsOrderForm extends Component {
   }
 }
 
-AdGroupsOrderForm.propTypes = {
+AdGroupOrderForm.propTypes = {
   dispatch: PropTypes.func
 }
 const mapStateToProps = state => {
@@ -108,4 +108,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(AdGroupsOrderForm))
+export default withRouter(connect(mapStateToProps)(AdGroupOrderForm))

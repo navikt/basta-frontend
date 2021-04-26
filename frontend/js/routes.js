@@ -18,7 +18,8 @@ import NodeOperationsForm from './operations/node/NodeOperationsForm'
 import CredentialsOperationsForm from './operations/credentials/CredentialsOperationForm'
 import CredentialOrderForm from './order/create/CredentialOrderForm'
 import CustomCredentialOrderForm from './order/create/CustomCredentialOrderForm'
-import AdGroupsOrderForm from './order/create/AdGroupsOrderForm'
+import AdGroupsOrderForm from './order/create/AdGroupOrderForm'
+import AdGroupsOperationsForm from './operations/adgroups/AdGroupOperationForm'
 import MqQueueOperationsForm from './operations/mq/mqQueueOperationsForm'
 import MqChannelOperationsForm from './operations/mq/mqChannelOperationsForm'
 
@@ -32,6 +33,7 @@ export const Routes = () => {
       <Route exact path="/notify" component={NotificationsManagement} />
       <Route path="/operate/nodes" component={NodeOperationsForm} />
       <Route path="/operate/credentials" component={CredentialsOperationsForm} />
+      <Route path="/operate/adgroups" component={AdGroupsOperationsForm} />
       <Route path="/operate/mqqueues" component={MqQueueOperationsForm} />
       <Route path="/operate/mqchannels" component={MqChannelOperationsForm} />
       <Route exact path="/create" component={Create} />

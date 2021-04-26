@@ -55,7 +55,7 @@ const orderTypes = [
     title: 'Groups',
     description: 'Groups in AD',
     image: securityImage,
-    url: '/operate/groups'
+    url: '/operate/adgroups'
   },
   {
     title: 'WebSphere MQ',

@@ -28,6 +28,15 @@ export default (
         existInFasit: false,
         user: {}
       }
+    },
+    groupLookup: {
+      fetching: false,
+      lookupComplete: false,
+      error: null,
+      data: {
+        existInAD: false,
+        application: {}
+      }
     }
   },
   action

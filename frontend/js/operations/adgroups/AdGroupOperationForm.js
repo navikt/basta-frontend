@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { submitOperation, submitCustomCredentialLookup } from '../operateActionCreators'
+import { submitOperation, submitGroupLookup } from '../operateActionCreators'
 import { connect } from 'react-redux'
 import image from '../../../img/orderTypes/security.png'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
-import { OperationsButtons } from '../../commonUi/formComponents'
+import { ApplicationsDropDown, OperationsButtons } from '../../commonUi/formComponents'
 
 const initialState = {
   zone: 'fss',
   application: ''
 }
 
-export class GroupOperationForm extends Component {
+export class AdGroupOperationForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -109,7 +109,7 @@ export class GroupOperationForm extends Component {
   }
 }
 
-GroupOperationForm.propTypes = {
+AdGroupOperationForm.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
   orderFields: PropTypes.object,
@@ -129,4 +129,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(GroupOperationForm)
+export default connect(mapStateToProps)(AdGroupOperationForm)

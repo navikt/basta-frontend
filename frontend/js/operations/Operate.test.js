@@ -29,7 +29,7 @@ describe('Operate filter function', () => {
       title: 'Groups',
       description: 'Groups in AD',
       image: 'balls',
-      url: '/operate/groups'
+      url: '/operate/adgroups'
     }
   ]
   const wrapper = shallow(<Operate user={user} />)
