@@ -13,8 +13,8 @@ router.get('/metrics', health.metrics())
 
 // USER
 
-router.get(`${api}/user/profile`, user.getUserProfile())
+router.get(`/user/profile`, user.getUserProfile())
 
-router.get(`${api}/user/session`, user.userSessionLookup())
+router.get(`/user/session`, user.userSessionLookup())
 
 module.exports = router
