@@ -27,7 +27,7 @@ export class AdGroupOperationForm extends Component {
   }
 
   submitHandler() {
-    this.props.dispatch(submitOperation('groups', this.state))
+    this.props.dispatch(submitOperation('adgroups', this.state))
   }
 
   groupNotFound() {

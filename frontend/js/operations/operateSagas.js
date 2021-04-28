@@ -91,7 +91,13 @@ function* submitDeleteCredentialOperation(action) {
   return value
 }
 
+function* submitDeleteGroupOperation(action) {
+  let value = yield call(postForm, `/rest/operation/adgroup/delete`, action.form)
+  return value
+}
+
 function* submitDeleteQueueOperation(action) {
+  ''
   let value = yield call(putForm, `/rest/v1/mq/order/queue/remove`, action.form)
   return value
 }
