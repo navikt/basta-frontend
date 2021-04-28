@@ -10,7 +10,8 @@ import { ApplicationsDropDown, OperationsButtons } from '../../commonUi/formComp
 
 const initialState = {
   zone: 'fss',
-  application: ''
+  application: '',
+  groupUsage: 'MQ'
 }
 
 export class AdGroupOperationForm extends Component {
