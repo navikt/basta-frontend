@@ -120,7 +120,7 @@ export function* submitOperation(action) {
       case 'credentials':
         value = yield call(submitDeleteCredentialOperation, action)
         break
-      case 'groups':
+      case 'adgroups':
         value = yield call(submitDeleteGroupOperation, action)
         break
       case 'mqqueue':
