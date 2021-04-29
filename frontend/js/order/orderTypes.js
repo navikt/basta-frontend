@@ -86,6 +86,12 @@ export const orderTypes = [
     url: '/create/adgroups'
   },
   {
+    title: 'Custom AD groups',
+    description: 'Custom AD groups for special use',
+    image: securityImage,
+    url: '/create/customadgroups'
+  },
+  {
     title: 'Liberty',
     description: 'Application server',
     image: libertyImage,
