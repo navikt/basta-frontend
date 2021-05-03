@@ -35,6 +35,6 @@ Spørsmål knyttet til koden eller prosjektet kan rettes til Team Aura.
 For eksterne kontakt en av følgende:
 
 - Frode Sundby (frode.sundby@nav.no)
-- Mats Byfuglien (mats.byfuglien@nav.no)
+- Sten Røkke (sten.ivar.rokke@nav.no)
 
 For NAV-ansatte kan henvendelser sendes via slack i kanalen #aura
