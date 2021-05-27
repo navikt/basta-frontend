@@ -7,6 +7,7 @@ import EnvironmentClassButtonGroup from '../../commonUi/formComponents/Environme
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
 import { ApplicationsDropDown, OperationsButtons } from '../../commonUi/formComponents'
+import { logPageView } from '../../amplitude'
 
 const initialState = {
   zone: 'fss',
@@ -16,6 +17,7 @@ const initialState = {
 
 export class AdGroupOperationForm extends Component {
   constructor(props) {
+    logPageView('/operations/adgroups')
     super(props)
     this.state = {
       environmentClass: 'u',
