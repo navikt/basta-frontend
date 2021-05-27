@@ -1,4 +1,4 @@
-import { logPageView } from '../../amplitude'
+import { logPageView } from '../../../amplitude'
 
 const title = 'Red Hat'
 const description = 'Linux'
