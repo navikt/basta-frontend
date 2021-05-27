@@ -20,6 +20,7 @@
   "description": "ny frontend til basta",
   "main": "src/index.js",
   "dependencies": {
+    "amplitude-js": "^8.3.0",
     "@babel/runtime": "^7.7.4",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "azure-ad-jwt": "^1.1.0",
