@@ -1,3 +1,5 @@
+import { logPageView } from '../../../amplitude'
+
 const description = 'Deployment Manager'
 const title = 'Websphere'
 const image = require('../../../../img/orderTypes/websphere.png')
@@ -41,6 +43,9 @@ const orderFields = {
     value: 'rhel70'
   }
 }
+
+logPageView('/create/wasdmgr')
+
 module.exports = {
   description,
   title,

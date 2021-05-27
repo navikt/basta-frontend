@@ -1,3 +1,5 @@
+import { logPageView } from '../../../amplitude'
+
 const description = 'Node'
 const title = 'BPM'
 const image = require('../../../../img/orderTypes/websphere.png')
@@ -55,6 +57,9 @@ const orderFields = {
     value: 'rhel70'
   }
 }
+
+logPageView('/create/bpmnode')
+
 module.exports = {
   description,
   title,

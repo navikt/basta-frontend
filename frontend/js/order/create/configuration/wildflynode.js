@@ -1,3 +1,5 @@
+import { logPageView } from '../../../amplitude'
+
 const description = 'Application Server'
 const title = 'Wildfly'
 const image = require('../../../../img/orderTypes/wildfly.png')
@@ -99,6 +101,9 @@ const orderFields = {
     value: 'standard'
   }
 }
+
+logPageView('/create/wildfly')
+
 module.exports = {
   description,
   title,

@@ -1,3 +1,5 @@
+import { logPageView } from '../../../amplitude'
+
 const title = 'Container Linux'
 const description = 'Flatcar'
 const image = require('../../../../img/orderTypes/flatcarlinux.png')
@@ -58,6 +60,9 @@ const orderFields = {
     value: false
   }
 }
+
+logPageView('/create/flatcar')
+
 module.exports = {
   description,
   title,

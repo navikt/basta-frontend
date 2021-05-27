@@ -1,3 +1,5 @@
+import { logPageView } from '../../../amplitude'
+
 const description = 'Order new Devillo server'
 const title = 'Developer tools available in Devillo'
 const image = require('../../../../img/orderTypes/devtools.png')
@@ -54,6 +56,8 @@ const orderFields = {
     value: ''
   }
 }
+
+logPageView('/create/devtools')
 module.exports = {
   description,
   title,

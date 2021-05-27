@@ -1,3 +1,5 @@
+import { logPageView } from '../../../amplitude'
+
 const description = 'Application Server'
 const title = 'Jboss'
 const image = require('../../../..//img/orderTypes/jboss.png')
@@ -82,6 +84,8 @@ const orderFields = {
     value: ''
   }
 }
+
+logPageView('/create/jboss')
 module.exports = {
   description,
   title,

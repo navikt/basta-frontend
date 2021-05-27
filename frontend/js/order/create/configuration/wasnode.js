@@ -1,3 +1,5 @@
+import { logPageView } from '../../../amplitude'
+
 const description = 'Application Server'
 const title = 'Websphere'
 const image = require('../../../../img/orderTypes/websphere.png')
@@ -82,6 +84,9 @@ const orderFields = {
     value: 'standard'
   }
 }
+
+logPageView('/create/wasnode')
+
 module.exports = {
   description,
   title,

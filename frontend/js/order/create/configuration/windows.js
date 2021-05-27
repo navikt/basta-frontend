@@ -1,3 +1,5 @@
+import { logPageView } from '../../../amplitude'
+
 const title = 'Windows'
 const description = 'Server'
 const image = require('../../../../img/orderTypes/windows.png')
@@ -70,6 +72,8 @@ const orderFields = {
     value: ''
   }
 }
+
+logPageView('/create/windows')
 module.exports = {
   description,
   title,
