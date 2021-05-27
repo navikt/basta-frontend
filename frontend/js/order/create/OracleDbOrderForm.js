@@ -13,6 +13,7 @@ import EnvironmentClassButtonGroup from '../../commonUi/formComponents/Environme
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import OrderDbTemplateDropDown from '../../commonUi/formComponents/OrderDbTemplateDropDown'
 import { orderApiPath } from './configuration/oracle'
+import { logPageView } from '../../amplitude'
 
 const oracleImage = require('../../../img/orderTypes/oracle.png')
 
@@ -27,6 +28,7 @@ const initialState = {
 
 export class OracleDbOrderForm extends Component {
   constructor(props) {
+    logPageView('/create/oracle')
     super(props)
     this.state = {
       environmentClass: 'u',
