@@ -1,5 +1,3 @@
-import { logPageView } from '../../../amplitude'
-
 const title = 'Red Hat'
 const description = 'Linux'
 const image = require('../../../../img/orderTypes/redhat.png')
@@ -71,9 +69,6 @@ const orderFields = {
     value: false
   }
 }
-
-logPageView('/create/redhat')
-
 module.exports = {
   description,
   title,

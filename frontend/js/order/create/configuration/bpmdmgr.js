@@ -1,5 +1,3 @@
-import { logPageView } from '../../../amplitude'
-
 const description = 'Deployment Manager'
 const title = 'BPM'
 const image = require('../../../../img/orderTypes/websphere.png')
@@ -43,9 +41,6 @@ const orderFields = {
     value: 'rhel70'
   }
 }
-
-logPageView('/create/bpmdmgr')
-
 module.exports = {
   description,
   title,
