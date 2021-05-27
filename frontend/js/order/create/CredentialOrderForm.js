@@ -11,6 +11,7 @@ import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import { InfoStripe } from '../../commonUi/formComponents/AlertStripe'
 import { clearExistingCredentialMessage } from '../../common/actionCreators'
 import { orderApiPath } from './configuration/credentials'
+import { logPageView } from '../../amplitude'
 
 const certificateImage = require('../../../img/orderTypes/security.png')
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
 
 export class CredentialOrderForm extends Component {
   constructor(props) {
+    logPageView('/create/credential')
     super(props)
     this.state = {
       environmentClass: 'u',

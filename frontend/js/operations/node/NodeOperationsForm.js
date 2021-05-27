@@ -6,9 +6,11 @@ import { connect } from 'react-redux'
 import OperationsButtons from '../../common/components/formComponents/OperationsButtons'
 import image from '../../../img/orderTypes/redhat.png'
 import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
+import { logPageView } from '../../amplitude'
 
 export class NodeOperationsForm extends Component {
   constructor(props) {
+    logPageView('/operate/nodes')
     super(props)
     this.state = { resolvedHosts: [], hasAccess: false }
   }

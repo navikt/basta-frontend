@@ -13,6 +13,7 @@ import {
 } from '../../common/actionCreators'
 import { InfoStripe } from '../../commonUi/formComponents/AlertStripe'
 import { orderApiPath } from './configuration/certificate'
+import { logPageView } from '../../amplitude'
 
 const certificateImage = require('../../../img/orderTypes/security.png')
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
 
 export class CertificateOrderForm extends Component {
   constructor(props) {
+    logPageView('/create/certificate')
     super(props)
     this.state = {
       environmentClass: 'u',

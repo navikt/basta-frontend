@@ -11,6 +11,7 @@ import { submitOperation } from '../operateActionCreators'
 import { fetchMqChannels, clearMqChannels } from '../../common/actionCreators'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
+import { logPageView } from '../../amplitude'
 
 const mqImage = require('../../../img/orderTypes/mq.png')
 
@@ -22,6 +23,7 @@ const initialState = {
 
 export class MqChannelOperationsForm extends Component {
   constructor(props) {
+    logPageView('/operate/mqchannel')
     super(props)
     this.state = {
       environmentClass: 'u',

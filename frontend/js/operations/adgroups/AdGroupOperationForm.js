@@ -17,7 +17,7 @@ const initialState = {
 
 export class AdGroupOperationForm extends Component {
   constructor(props) {
-    logPageView('/operations/adgroups')
+    logPageView('/operate/adgroups')
     super(props)
     this.state = {
       environmentClass: 'u',
