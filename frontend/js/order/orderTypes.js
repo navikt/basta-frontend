@@ -81,13 +81,13 @@ export const orderTypes = [
   },
   {
     title: 'AD groups',
-    description: 'AD groups for special use',
+    description: 'AD groups for MQ',
     image: securityImage,
     url: '/create/adgroups'
   },
   {
     title: 'Custom AD groups',
-    description: 'Custom AD groups for special use',
+    description: 'Custom AD groups for MQ',
     image: securityImage,
     url: '/create/customadgroups'
   },
