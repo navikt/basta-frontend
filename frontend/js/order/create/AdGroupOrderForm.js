@@ -9,7 +9,11 @@ import { submitGroupLookup } from '../../operations/operateActionCreators'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
-import { clearExistingGroupMessage } from '../../common/actionCreators'
+import { InfoStripe } from '../../commonUi/formComponents/AlertStripe'
+import {
+  clearExistingGroupMessage,
+  clearExistingCredentialMessage
+} from '../../common/actionCreators'
 import { orderApiPath } from './configuration/adgroups'
 import { logPageView } from '../../amplitude'
 
@@ -51,6 +55,7 @@ export class AdGroupOrderForm extends Component {
 
   componentWillUnmount() {
     this.props.dispatch(clearExistingGroupMessage())
+    this.props.dispatch(clearExistingCredentialMessage())
   }
 
   validOrder() {
@@ -81,6 +86,11 @@ export class AdGroupOrderForm extends Component {
               onChange={v => this.handleChange('application', v)}
               value={application}
             />
+            <InfoStripe
+              show={credentialExistInAD}
+              message="Service user already exists in AD.
+              If you create this one the existing service user will be overwritten and a new password created. "
+            />
             <ErrorStripe
               show={existInAD}
               message="Group already exists in AD. Overwrite of groups is not supported.
@@ -106,7 +116,8 @@ const mapStateToProps = state => {
   return {
     formSubmitting: state.order.form.submitting,
     formError: state.order.form.error,
-    existInAD: state.operationsForm.groupLookup.data.existInAD
+    existInAD: state.operationsForm.groupLookup.data.existInAD,
+    credentialExistInAD: state.operationsForm.credentialLookup.data.existInAD
   }
 }
 
