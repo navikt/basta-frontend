@@ -85,6 +85,10 @@ export class CustomAdGroupOrderForm extends Component {
               }
               onChange={v => this.handleChange('application', v)}
             />
+            <InfoStripe
+              show={true}
+              message="If the service user already exists in AD a new password will be created for it. "
+            />
             <ErrorStripe
               show={existInAD}
               message="Group already exists in AD. Overwrite of groups is not supported.
