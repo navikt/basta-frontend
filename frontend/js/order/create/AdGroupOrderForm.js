@@ -59,12 +59,12 @@ export class AdGroupOrderForm extends Component {
   }
 
   validOrder() {
-    return !this.props.existInAD && this.state.application !== ''
+    return !this.props.existInAD && !this.props.credentialExistInAD && this.state.application !== ''
   }
 
   render() {
     const { environmentClass, zone, application } = this.state
-    const { dispatch, existInAD, formError, formSubmitting } = this.props
+    const { dispatch, existInAD, credentialExistInAD, formError, formSubmitting } = this.props
 
     return (
       <div>
