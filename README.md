@@ -28,6 +28,11 @@ npm run offline
 
 Api gir det et mock api som simulerer basta backend
 
+## Brukerdata
+
+Amplitude analytics for sidevisninger:
+https://analytics.amplitude.com/nav/chart/ptayvzg?source=space
+
 ## Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan rettes til Team Aura.
