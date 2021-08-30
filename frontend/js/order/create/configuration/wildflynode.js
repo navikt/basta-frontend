@@ -66,7 +66,7 @@ const orderFields = {
       { label: 'Wildfly 21', value: 'wildfly21' },
       { label: 'Wildfly 23', value: 'wildfly23' }
     ],
-    value: 'wildfly17'
+    value: 'wildfly21'
   },
   javaVersion: {
     label: 'Java version',
