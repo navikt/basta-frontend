@@ -86,7 +86,7 @@ const orderFields = {
       { label: 'RHEL 7', value: 'rhel70' },
       { label: 'RHEL 8', value: 'rhel80' }
     ],
-    value: 'rhel70'
+    value: 'rhel80'
   },
   classification: {
     label: 'Classification',
