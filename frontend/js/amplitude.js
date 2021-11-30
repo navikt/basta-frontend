@@ -1,4 +1,5 @@
 const amplitude = require('amplitude-js')
+amplitude = false
 export function initAmplitude() {
   if (amplitude) {
     amplitude
