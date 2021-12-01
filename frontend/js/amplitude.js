@@ -1,7 +1,7 @@
 const amplitude = require('amplitude-js')
 export function initAmplitude() {
   if (amplitude) {
-    amplitude
+    amplitude.default
       .getInstance()
       .init(
         document.domain === 'basta.intern.nav.no'
@@ -23,7 +23,7 @@ function logAmplitudeEvent(eventName, eventData) {
   setTimeout(() => {
     try {
       if (amplitude) {
-        amplitude.getInstance().logEvent(eventName, eventData)
+        amplitude.default.getInstance().logEvent(eventName, eventData)
       }
     } catch (error) {
       console.error(error)
