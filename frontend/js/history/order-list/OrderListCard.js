@@ -30,6 +30,7 @@ const OrderListCard = props => {
 
 const formatTimestamp = number => {
   if (number) {
+    console.log('date to parse: ' + number)
     return moment(number).format('DD MMM YYYY HH:mm')
   }
 }
