@@ -11,30 +11,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v1
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         with:
-          node-version: '18.14.2'
-
+          node-version: '16.19.1'
       - name: Cache NPM dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v1
         with:
           path: node_modules
           key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-cache-
-
       - name: Download dependencies
-        run: npm install --legacy-peer-deps
-
+        run: npm install
       - name: Run tests
         run: npm test
 
       - name: Docker build
         run: docker build --tag ${IMAGE} .
-
       - name: Login to Github package registry
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -55,16 +51,16 @@ jobs:
           CLUSTER: dev-gcp
           RESOURCE: .nais/naiserator-dev.yml
           VARS: .nais/dev-config.json
-  #deploy-prod:
-  #  name: Deploy to prod-gcp
-  #  needs: deploy-dev
-  #  if: github.ref == 'refs/heads/master'
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - uses: actions/checkout@v1
-  #    - uses: nais/deploy/actions/deploy@v1
-  #      env:
-  #        APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-  #        CLUSTER: prod-gcp
-  #        RESOURCE: .nais/naiserator.yml
-  #        VARS: .nais/prod-config.json
+  deploy-prod:
+    name: Deploy to prod-gcp
+    needs: deploy-dev
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: prod-gcp
+          RESOURCE: .nais/naiserator.yml
+          VARS: .nais/prod-config.json
