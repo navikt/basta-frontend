@@ -1,6 +1,9 @@
 name: Build and deploy basta-frontend
 
-on: push
+on:
+  push:
+    branches:
+      - master
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/basta-frontend:${{ github.sha }}
@@ -11,14 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: '12.16.x'
       - name: Cache NPM dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
@@ -44,23 +47,23 @@ jobs:
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           RESOURCE: .nais/naiserator-dev.yml
           VARS: .nais/dev-config.json
-  deploy-prod:
-    name: Deploy to prod-gcp
-    needs: deploy-dev
-    if: github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: nais/deploy/actions/deploy@v1
-        env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: prod-gcp
-          RESOURCE: .nais/naiserator.yml
-          VARS: .nais/prod-config.json
+  #deploy-prod:
+  #  name: Deploy to prod-gcp
+  #  needs: deploy-dev
+  #  if: github.ref == 'refs/heads/master'
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - uses: actions/checkout@v3
+  #    - uses: nais/deploy/actions/deploy@v1
+  #      env:
+  #        APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+  #        CLUSTER: prod-gcp
+  #        RESOURCE: .nais/naiserator.yml
+  #        VARS: .nais/prod-config.json
