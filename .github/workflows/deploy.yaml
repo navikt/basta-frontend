@@ -1,9 +1,6 @@
-name: Build and deploy basta-frontend
+name: 'Build and deploy basta-frontend'
 
-on:
-  push:
-    branches:
-      - master
+on: push
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/basta-frontend:${{ github.sha }}
@@ -19,7 +16,8 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: '12.16.x'
+          node-version: '16.19.x'
+
       - name: Cache NPM dependencies
         uses: actions/cache@v3
         with:
@@ -27,17 +25,21 @@ jobs:
           key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-cache-
+
       - name: Download dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
+
       - name: Run tests
         run: npm test
 
       - name: Docker build
         run: docker build --tag ${IMAGE} .
+
       - name: Login to Github package registry
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: echo "$GITHUB_TOKEN" | docker login docker.pkg.github.com -u ${{ github.repository }} --password-stdin
+
       - name: Push docker image
         run: docker push ${IMAGE}
 
@@ -54,16 +56,17 @@ jobs:
           CLUSTER: dev-gcp
           RESOURCE: .nais/naiserator-dev.yml
           VARS: .nais/dev-config.json
-  #deploy-prod:
-  #  name: Deploy to prod-gcp
-  #  needs: deploy-dev
-  #  if: github.ref == 'refs/heads/master'
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - uses: actions/checkout@v3
-  #    - uses: nais/deploy/actions/deploy@v1
-  #      env:
-  #        APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-  #        CLUSTER: prod-gcp
-  #        RESOURCE: .nais/naiserator.yml
-  #        VARS: .nais/prod-config.json
+
+  deploy-prod:
+    name: Deploy to prod-gcp
+    needs: deploy-dev
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: prod-gcp
+          RESOURCE: .nais/naiserator.yml
+          VARS: .nais/prod-config.json
