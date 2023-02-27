@@ -46,7 +46,7 @@ jobs:
   deploy-dev:
     name: Deploy to dev-gcp
     needs: build
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -60,7 +60,7 @@ jobs:
   deploy-prod:
     name: Deploy to prod-gcp
     needs: deploy-dev
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
