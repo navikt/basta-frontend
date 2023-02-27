@@ -2,12 +2,9 @@
 dist
 node_modules/
 .cache/
-.parcel-cache
 frontend/src/.DS_Store
 frontend/fonts/
 .vscode/
 .env
-dockerbuild.sh
-package-lock.json
 
 .DS_Store
