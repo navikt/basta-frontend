@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.19.x'
+
       - name: Cache NPM dependencies
         uses: actions/cache@v3
         with:
@@ -24,17 +25,21 @@ jobs:
           key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-cache-
+
       - name: Download dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
+
       - name: Run tests
         run: npm test
 
       - name: Docker build
         run: docker build --tag ${IMAGE} .
+
       - name: Login to Github package registry
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: echo "$GITHUB_TOKEN" | docker login docker.pkg.github.com -u ${{ github.repository }} --password-stdin
+
       - name: Push docker image
         run: docker push ${IMAGE}
 
