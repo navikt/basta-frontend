@@ -57,6 +57,11 @@ export class OperateNodeLookup extends Component {
         valid: false,
         reason: `${requiredRoles} or ROLE_SUPERUSER is required`
       }
+    } else if (this.isMqHost(hostname)) {
+      return {
+        valid: false,
+        reason: 'MQ production hosts are not allowed'
+      }
     } else {
       return { valid: true }
     }
@@ -69,6 +74,24 @@ export class OperateNodeLookup extends Component {
     return validPrefix.includes(prefix)
   }
 
+  isMqHost(hostname) {
+    const mqHostnames = [
+      'a01apvl247.adeo.no',
+      'a01apvl269.adeo.no',
+      'a01apvl270.adeo.no',
+      'a01apvl271.adeo.no',
+      'a01apvl279.adeo.no',
+      'a01apvl280.adeo.no',
+      'a01apvl281.adeo.no',
+      'a01apvl282.adeo.no',
+      'a01apvl283.adeo.no',
+      'a01apvl284.adeo.no',
+      'a01apvl285.adeo.no',
+      'a01apvl286.adeo.no'
+    ]
+
+    return mqHostnames.includes(hostname)
+  }
   hasUserAccessToHost(hostname) {
     const roles = this.props.user.userProfile.roles
     const requiredRole = this.requiredRoleFor(hostname)
