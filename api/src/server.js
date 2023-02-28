@@ -20,6 +20,7 @@ const auth = require('./controllers/authenticate')
 prometheus.collectDefaultMetrics()
 
 const app = express()
+
 app.use(
   logger('dev', {
     skip: function(req, res) {
