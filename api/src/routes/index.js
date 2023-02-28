@@ -10,7 +10,7 @@ const health = require('../controllers/health')
 var RateLimit = require('express-rate-limit')
 var limiter = new RateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
-  max: 20
+  max: 10
 })
 
 router.use(limiter)
