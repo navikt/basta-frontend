@@ -61,7 +61,7 @@ exports.logout = () => {
       req.session = null
     } catch (err) {
       console.log(err)
-      res.status(500).send(err)
+      res.status(500).send('Error during logout')
       return `ERROR during logout: ${err}`
     }
   }

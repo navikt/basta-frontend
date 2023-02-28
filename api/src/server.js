@@ -20,7 +20,16 @@ const auth = require('./controllers/authenticate')
 prometheus.collectDefaultMetrics()
 
 const app = express()
+
+// set up rate limiter: maximum of five requests per minute
+var RateLimit = require('express-rate-limit')
+var limiter = new RateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 10
+})
+
 app.use(
+  limiter,
   logger('dev', {
     skip: function(req, res) {
       return res.statusCode < 400

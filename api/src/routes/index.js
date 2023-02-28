@@ -6,6 +6,15 @@ const health = require('../controllers/health')
 
 //const api = '/api/v1'
 
+// set up rate limiter: maximum of five requests per minute
+var RateLimit = require('express-rate-limit')
+var limiter = new RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 20
+})
+
+router.use(limiter)
+
 // APPLICATION HEALTH
 router.get('/isalive', health.isAlive())
 
