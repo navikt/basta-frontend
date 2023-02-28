@@ -16,7 +16,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: '16.19.x'
+          node-version: '18.14.x'
 
       - name: Cache NPM dependencies
         uses: actions/cache@v3
@@ -46,7 +46,7 @@ jobs:
   deploy-dev:
     name: Deploy to dev-gcp
     needs: build
-    if: github.ref == 'refs/heads/main'
+    #if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
