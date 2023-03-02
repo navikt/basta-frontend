@@ -13,7 +13,7 @@ spec:
       enabled: true
       tenant: nav.no
       replyURLs: 
-        - "https://basta.dev.intern.nav.no/auth/openid/callback"
+        - "https://basta.intern.dev.nav.no/auth/openid/callback"
       claims:
         groups:
           - id: "47204455-7930-4eda-af04-cd2e91825651" 
