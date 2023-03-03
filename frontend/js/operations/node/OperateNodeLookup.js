@@ -57,6 +57,11 @@ export class OperateNodeLookup extends Component {
         valid: false,
         reason: `${requiredRoles} or ROLE_SUPERUSER is required`
       }
+    } else if (!this.hasValidDomain(hostname)) {
+      return {
+        valid: false,
+        reason: 'Unknown domain in hostname'
+      }
     } else if (this.isMqHost(hostname)) {
       return {
         valid: false,
@@ -72,6 +77,27 @@ export class OperateNodeLookup extends Component {
     const prefix = hostname.substring(0, 3).toLowerCase()
 
     return validPrefix.includes(prefix)
+  }
+
+  hasValidDomain(hostname) {
+    if (hostname.split('.').length < 3) {
+      return false
+    }
+    const validDomains = [
+      'adeo.no',
+      'oera.no',
+      'preprod.local',
+      'oera-q.local',
+      'test.local',
+      'oera-t.local',
+      'devillo.no'
+    ]
+    const domain = hostname
+      .split('.')
+      .slice(-2)
+      .join('.')
+
+    return validDomains.includes(domain)
   }
 
   isMqHost(hostname) {
