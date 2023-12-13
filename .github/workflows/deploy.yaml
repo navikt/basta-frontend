@@ -4,6 +4,7 @@ on: push
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/basta-frontend:${{ github.sha }}
+  ENV_NAME: basta-frontend
 
 jobs:
   build:
@@ -32,16 +33,13 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Docker build
-        run: docker build --tag ${IMAGE} .
-
-      - name: Login to Github package registry
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: echo "$GITHUB_TOKEN" | docker login docker.pkg.github.com -u ${{ github.repository }} --password-stdin
-
-      - name: Push docker image
-        run: docker push ${IMAGE}
+      - uses: nais/platform-build-push-sign@main
+        id: build-push-sign
+        with:
+          team: aura
+          tag: ${{ github.sha }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
 
   deploy-dev:
     name: Deploy to dev-gcp
@@ -55,18 +53,18 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           RESOURCE: .nais/naiserator-dev.yml
-          VARS: .nais/dev-config.json
-
-  deploy-prod:
-    name: Deploy to prod-gcp
-    needs: deploy-dev
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: nais/deploy/actions/deploy@v1
-        env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: prod-gcp
-          RESOURCE: .nais/naiserator.yml
-          VARS: .nais/prod-config.json
+          VARS:
+            .nais/dev-config.json
+            #  deploy-prod:
+            #    name: Deploy to prod-gcp
+            #    needs: deploy-dev
+            #    if: github.ref == 'refs/heads/main'
+            #    runs-on: ubuntu-latest
+            #    steps:
+            #      - uses: actions/checkout@v3
+            #      - uses: nais/deploy/actions/deploy@v1
+            #        env:
+            #          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+            #          CLUSTER: prod-gcp
+            #          RESOURCE: .nais/naiserator.yml
+            #          VARS: .nais/prod-config.json

@@ -22,7 +22,7 @@
   "description": "ny frontend til basta",
   "main": "src/index.js",
   "dependencies": {
-    "@babel/runtime": "^7.21.0",
+    "@babel/runtime": "^7.23.2",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "amplitude-js": "^8.13.0",
     "azure-ad-jwt": "^1.1.0",
@@ -54,7 +54,7 @@
     "snyk": "^1.316.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.0",
+    "@babel/core": "^7.23.2",
     "@babel/plugin-transform-regenerator": "^7.20.5",
     "@babel/plugin-transform-runtime": "^7.20.5",
     "@babel/preset-env": "^7.20.2",
