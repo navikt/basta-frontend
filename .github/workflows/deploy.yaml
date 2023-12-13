@@ -3,8 +3,8 @@ name: 'Build and deploy basta-frontend'
 on: push
 
 env:
-  IMAGE: docker.pkg.github.com/${{ github.repository }}/basta-frontend:${{ github.sha }}
-  ENV_NAME: basta-frontend
+  APP: basta-frontend
+  TEAM: aura
 
 jobs:
   build:
@@ -33,13 +33,14 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - uses: nais/platform-build-push-sign@main
+      - uses: nais/docker-build-push@v0
         id: build-push-sign
         with:
-          team: aura
+          name: ${{ env.APP }}
+          team: ${{ env.TEAM }}
           tag: ${{ github.sha }}
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
 
   deploy-dev:
     name: Deploy to dev-gcp
