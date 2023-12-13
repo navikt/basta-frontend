@@ -3,13 +3,15 @@ name: 'Build and deploy basta-frontend'
 on: push
 
 env:
-  APP: basta-frontend
   TEAM: aura
 
 jobs:
   build:
     name: Build and push Docker image
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -36,7 +38,6 @@ jobs:
       - uses: nais/docker-build-push@v0
         id: build-push-sign
         with:
-          name: ${{ env.APP }}
           team: ${{ env.TEAM }}
           tag: ${{ github.sha }}
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
