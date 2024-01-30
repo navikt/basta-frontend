@@ -3,7 +3,7 @@ name: 'Build and deploy basta-frontend'
 on: push
 
 env:
-  TEAM: aura
+  TEAM: team-atom
 
 jobs:
   build:
