@@ -57,7 +57,7 @@ jobs:
         env:
           CLUSTER: dev-gcp
           RESOURCE: .nais/naiserator-dev.yml
-          VARS: image=${{ build.outputs.image }},.nais/dev-config.json
+          VARS: image=${{ jobs.build.outputs.image }},.nais/dev-config.json
             #  deploy-prod:
             #    name: Deploy to prod-gcp
             #    needs: deploy-dev
