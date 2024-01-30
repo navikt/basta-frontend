@@ -71,3 +71,5 @@ jobs:
             #          CLUSTER: prod-gcp
             #          RESOURCE: .nais/naiserator.yml
             #          VARS: .nais/prod-config.json
+
+
