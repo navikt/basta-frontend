@@ -13,6 +13,8 @@ jobs:
   build:
     name: Build and push Docker image
     runs-on: ubuntu-latest
+    outputs:
+        image: ${{ steps.docker-build-push.outputs.image }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -55,8 +57,7 @@ jobs:
         env:
           CLUSTER: dev-gcp
           RESOURCE: .nais/naiserator-dev.yml
-          VARS:
-            .nais/dev-config.json
+          VARS: image=${{ build.outputs.image }},.nais/dev-config.json
             #  deploy-prod:
             #    name: Deploy to prod-gcp
             #    needs: deploy-dev
