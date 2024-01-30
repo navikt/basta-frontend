@@ -5,13 +5,14 @@ on: push
 env:
   TEAM: team-atom
 
+permissions:
+  contents: 'read'
+  id-token: 'write'
+
 jobs:
   build:
     name: Build and push Docker image
     runs-on: ubuntu-latest
-    permissions:
-      contents: 'read'
-      id-token: 'write'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
