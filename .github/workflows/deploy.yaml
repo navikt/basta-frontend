@@ -58,22 +58,19 @@ jobs:
           CLUSTER: dev-gcp
           RESOURCE: .nais/naiserator-dev.yml
           VAR: image=${{ needs.build.outputs.image }}
-          VARS:
-            .nais/dev-config.json
-            #  deploy-prod:
-            #    name: Deploy to prod-gcp
-            #    needs:
-            #      - build
-            #      - deploy-dev
-            #    if: github.ref == 'refs/heads/main'
-            #    runs-on: ubuntu-latest
-            #    steps:
-            #      - uses: actions/checkout@v3
-            #      - uses: nais/deploy/actions/deploy@v2
-            #        env:
-            #          CLUSTER: prod-gcp
-            #          RESOURCE: .nais/naiserator.yml
-            #          VAR: image=${{ needs.build.outputs.image }}
-            #          VARS: .nais/prod-config.json
-            #
-            #
+          VARS: .nais/dev-config.json
+  deploy-prod:
+    name: Deploy to prod-gcp
+    needs:
+      - build
+      - deploy-dev
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: nais/deploy/actions/deploy@v2
+        env:
+          CLUSTER: prod-gcp
+          RESOURCE: .nais/naiserator.yml
+          VAR: image=${{ needs.build.outputs.image }}
+          VARS: .nais/prod-config.json
