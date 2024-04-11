@@ -1,5 +1,4 @@
 const wasImage = require('../../img/orderTypes/websphere.png')
-const jbossImage = require('../../img/orderTypes/jboss.png')
 const wildflyImage = require('../../img/orderTypes/wildfly.png')
 const securityImage = require('../../img/orderTypes/security.png')
 const openamImage = require('../../img/orderTypes/openam.png')
@@ -95,13 +94,6 @@ export const orderTypes = [
     description: 'Application server',
     image: wildflyImage,
     url: '/create/wildflynode',
-    access: ['ROLE_SUPERUSER']
-  },
-  {
-    title: 'JBoss',
-    description: 'Application server',
-    image: jbossImage,
-    url: '/create/jbossnode',
     access: ['ROLE_SUPERUSER']
   },
   {

@@ -1,5 +1,4 @@
 const wasImage = require('../../img/orderTypes/websphere.png')
-const jbossImage = require('../../img/orderTypes/jboss.png')
 const wildflyImage = require('../../img/orderTypes/wildfly.png')
 const securityImage = require('../../img/orderTypes/security.png')
 const openamImage = require('../../img/orderTypes/openam.png')
@@ -30,8 +29,6 @@ export default function imageType(orderDescription) {
       return bigipImage
     case 'wildfly':
       return wildflyImage
-    case 'jboss':
-      return jbossImage
     case 'oracle':
       return dbImage
     case 'plain linux':

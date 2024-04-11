@@ -28,7 +28,7 @@ it('(History view sagas - getOrderHistory) fetches orders from backend', () => {
       orderHistory: plainOrders,
       filterApplied: false,
       searchProcessing: false,
-      totalOrders: 2,
+      totalOrders: 1,
       orderHistoryReceived: true,
       requestFailed: false,
       errorMessage: ''
@@ -82,28 +82,6 @@ const plainOrders = [
     errorMessage: null,
     orderDescription: 'WILDFLY',
     orderOperation: 'CREATE',
-    nextOrderId: null,
-    previousOrderId: null,
-    resultDetails: []
-  },
-  {
-    id: 24402,
-    created: 1534315029884,
-    createdBy: 'srvfasit',
-    updated: 1534315061586,
-    updatedBy: 'srvOrchestrator',
-    updatedByDisplayName: 'Service User',
-    createdByDisplayName: 'Service User',
-    orderType: 'VM',
-    results: ['d26jbsl01518.test.local'],
-    input: null,
-    externalId:
-      'https://orcprod.adeo.no:443/vco/api/workflows/557dccf4-863a-49b3-b9f5-53a70f5b9fc2/executions/8a819397652704a001653c4d65db2fd3/',
-    uri: 'https://basta.adeo.no/rest/orders/24402',
-    status: 'ERROR',
-    errorMessage: null,
-    orderDescription: 'JBOSS',
-    orderOperation: 'DELETE',
     nextOrderId: null,
     previousOrderId: null,
     resultDetails: []
