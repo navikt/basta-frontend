@@ -3,15 +3,18 @@ name: 'Build and deploy basta-frontend'
 on: push
 
 env:
-  TEAM: aura
+  TEAM: team-atom
+
+permissions:
+  contents: 'read'
+  id-token: 'write'
 
 jobs:
   build:
     name: Build and push Docker image
     runs-on: ubuntu-latest
-    permissions:
-      contents: 'read'
-      id-token: 'write'
+    outputs:
+      image: ${{ steps.docker-build-push.outputs.image }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -36,7 +39,7 @@ jobs:
         run: npm test
 
       - uses: nais/docker-build-push@v0
-        id: build-push-sign
+        id: docker-build-push
         with:
           team: ${{ env.TEAM }}
           tag: ${{ github.sha }}
@@ -50,23 +53,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: nais/deploy/actions/deploy@v1
+      - uses: nais/deploy/actions/deploy@v2
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           RESOURCE: .nais/naiserator-dev.yml
-          VARS:
-            .nais/dev-config.json
-            #  deploy-prod:
-            #    name: Deploy to prod-gcp
-            #    needs: deploy-dev
-            #    if: github.ref == 'refs/heads/main'
-            #    runs-on: ubuntu-latest
-            #    steps:
-            #      - uses: actions/checkout@v3
-            #      - uses: nais/deploy/actions/deploy@v1
-            #        env:
-            #          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-            #          CLUSTER: prod-gcp
-            #          RESOURCE: .nais/naiserator.yml
-            #          VARS: .nais/prod-config.json
+          VAR: image=${{ needs.build.outputs.image }}
+          VARS: .nais/dev-config.json
+  deploy-prod:
+    name: Deploy to prod-gcp
+    needs:
+      - build
+      - deploy-dev
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: nais/deploy/actions/deploy@v2
+        env:
+          CLUSTER: prod-gcp
+          RESOURCE: .nais/naiserator.yml
+          VAR: image=${{ needs.build.outputs.image }}
+          VARS: .nais/prod-config.json
+
+

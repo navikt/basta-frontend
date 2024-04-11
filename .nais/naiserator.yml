@@ -2,11 +2,11 @@ apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
   name: basta-frontend
-  namespace: aura
+  namespace: team-atom
   annotations: 
     snorlax.nais.io/enabled: "true"
   labels:
-    team: aura
+    team: team-atom
 spec:
   azure:
     application:
