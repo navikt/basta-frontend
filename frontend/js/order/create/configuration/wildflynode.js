@@ -60,11 +60,9 @@ const orderFields = {
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [
-      { label: 'Wildfly 11', value: 'wildfly11' },
       { label: 'Wildfly 17', value: 'wildfly17' },
       { label: 'Wildfly 19', value: 'wildfly19' },
-      { label: 'Wildfly 21', value: 'wildfly21' },
-      { label: 'Wildfly 23', value: 'wildfly23' }
+      { label: 'Wildfly 21', value: 'wildfly21' }
     ],
     value: 'wildfly21'
   },
@@ -82,10 +80,7 @@ const orderFields = {
     label: 'OS version',
     description: '',
     fieldType: 'buttonGroup',
-    alternatives: [
-      { label: 'RHEL 7', value: 'rhel70' },
-      { label: 'RHEL 8', value: 'rhel80' }
-    ],
+    alternatives: [{ label: 'RHEL 8', value: 'rhel80' }],
     value: 'rhel80'
   },
   classification: {

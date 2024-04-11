@@ -1,7 +1,6 @@
 const wasImage = require('../../img/orderTypes/websphere.png')
 const jbossImage = require('../../img/orderTypes/jboss.png')
 const wildflyImage = require('../../img/orderTypes/wildfly.png')
-const libertyImage = require('../../img/orderTypes/liberty.png')
 const securityImage = require('../../img/orderTypes/security.png')
 const openamImage = require('../../img/orderTypes/openam.png')
 const redhatImage = require('../../img/orderTypes/redhat.png')
@@ -90,13 +89,6 @@ export const orderTypes = [
     description: 'Custom AD groups for MQ',
     image: securityImage,
     url: '/create/customadgroups'
-  },
-  {
-    title: 'Liberty',
-    description: 'Application server',
-    image: libertyImage,
-    url: '/create/liberty',
-    access: ['ROLE_SUPERUSER']
   },
   {
     title: 'WildFly',

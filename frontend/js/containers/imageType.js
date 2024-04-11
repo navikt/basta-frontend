@@ -1,7 +1,6 @@
 const wasImage = require('../../img/orderTypes/websphere.png')
 const jbossImage = require('../../img/orderTypes/jboss.png')
 const wildflyImage = require('../../img/orderTypes/wildfly.png')
-const libertyImage = require('../../img/orderTypes/liberty.png')
 const securityImage = require('../../img/orderTypes/security.png')
 const openamImage = require('../../img/orderTypes/openam.png')
 const redhatImage = require('../../img/orderTypes/redhat.png')
@@ -20,8 +19,6 @@ export default function imageType(orderDescription) {
   }
 
   switch (orderDescription.toLowerCase()) {
-    case 'liberty nodes':
-      return libertyImage
     case 'openam server':
     case 'openam proxy':
       return openamImage

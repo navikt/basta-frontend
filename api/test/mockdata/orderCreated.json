@@ -11,7 +11,7 @@
     "results": ["d26jbsl01558.test.local"],
     "input": {
       "memory": "2",
-      "middleWareType": "wildfly_11",
+      "middleWareType": "wildfly_21",
       "applicationMappingName": "norg2",
       "description": "wildfly node",
       "nodeType": "WILDFLY",
@@ -19,7 +19,7 @@
       "serverCount": "1",
       "zone": "fss",
       "environmentName": "t9",
-      "osType": "rhel70",
+      "osType": "rhel80",
       "environmentClass": "t",
       "cpuCount": "2"
     },

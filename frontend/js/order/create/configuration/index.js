@@ -1,7 +1,6 @@
 // Create forms
 import developertools from './developertools'
 import jbossnode from './jbossnode'
-import liberty from './liberty'
 import wildflynode from './wildflynode'
 import bpmnode from './bpmnode'
 import bpmdmgr from './bpmdmgr'
@@ -20,7 +19,6 @@ module.exports = {
   // Create
   developertools,
   jbossnode,
-  liberty,
   wildflynode,
   bpmnode,
   bpmdmgr,
