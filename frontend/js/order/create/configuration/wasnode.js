@@ -59,10 +59,7 @@ const orderFields = {
     label: 'OS version',
     description: '',
     fieldType: 'buttonGroup',
-    alternatives: [
-      { label: 'RHEL 8', value: 'rhel80' },
-      { label: 'RHEL 7', value: 'rhel70' }
-    ],
+    alternatives: [{ label: 'RHEL 8', value: 'rhel80' }],
     value: 'rhel80'
   },
   description: {
