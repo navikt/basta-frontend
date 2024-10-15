@@ -48,7 +48,7 @@ const orderFields = {
     description: 'GB',
     fieldType: 'number',
     min: 0,
-    max: 400,
+    max: 1200,
     value: 0
   },
   ibmSw: {
