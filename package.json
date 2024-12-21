@@ -19,7 +19,7 @@
     ]
   },
   "version": "74.0.0",
-  "description": "ny frontend til basta",
+  "description": "frontend til basta",
   "main": "src/index.js",
   "dependencies": {
     "@babel/runtime": "^7.23.2",
