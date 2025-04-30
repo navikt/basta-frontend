@@ -61,7 +61,7 @@ export class OrderDetails extends Component {
             ' | ' +
             details.data.orderDescription +
             ' | ' +
-            moment(details.data.created).fromNow()
+            moment.unix(details.data.created).fromNow()
           }
         />
         <div className="orderDetails">
