@@ -22,7 +22,7 @@ const orderFields = {
       { label: 'RHEL 8', value: 'rhel80' },
       { label: 'RHEL 9', value: 'rhel90' }
     ],
-    value: 'rhel80'
+    value: 'rhel90'
   },
   serverCount: {
     label: 'Servers',

@@ -13,7 +13,7 @@ const orderFields = {
     value: 'fss'
   },
   osType: {
-    value: 'rhel80'
+    value: 'rhel90'
   },
   serverCount: {
     label: 'Servers',

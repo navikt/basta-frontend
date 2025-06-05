@@ -15,7 +15,6 @@ import { fetchMqClusters, clearMqClusters } from '../../common/actionCreators'
 import SubmitButton from '../../commonUi/formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import { orderApiPath } from './configuration/queue'
-import { logPageView } from '../../amplitude'
 
 const mqImage = require('../../../img/orderTypes/mq.png')
 
@@ -34,7 +33,6 @@ const initialState = {
 
 export class MqQueueOrderForm extends Component {
   constructor(props) {
-    logPageView('/create/mqqueue')
     super(props)
     this.state = {
       environmentClass: 'u',

@@ -6,14 +6,12 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { postNotification, removeNotification } from './notificationsActionCreator'
 import moment from 'moment'
-import { logPageView } from '../amplitude'
 
 const initialState = {
   message: ''
 }
 export class ServerOrderForm extends Component {
   constructor(props) {
-    logPageView('/notify')
     super(props)
     this.state = initialState
   }

@@ -16,11 +16,9 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
-import { logPageView } from '../../amplitude'
 
 export class ServerOrderForm extends Component {
   constructor(props) {
-    logPageView('/create/server')
     super(props)
     this.currentComponent = props.match.params.orderType
     this.configuration = orderTypes[this.currentComponent]
