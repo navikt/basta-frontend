@@ -24,7 +24,6 @@
   "dependencies": {
     "@babel/runtime": "^7.23.2",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
-    "amplitude-js": "^8.13.0",
     "azure-ad-jwt": "^1.1.0",
     "azure-jwt-verify": "^1.0.0",
     "better-npm-run": "^0.1.1",

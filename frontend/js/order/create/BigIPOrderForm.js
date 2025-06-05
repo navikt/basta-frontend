@@ -16,7 +16,6 @@ import SubmitButton from '../../commonUi/formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import { orderApiPath } from './configuration/bigip'
-import { logPageView } from '../../amplitude'
 
 const initialState = {
   zone: 'fss',
@@ -30,7 +29,6 @@ const initialState = {
 
 export class BigIPOrderForm extends Component {
   constructor(props) {
-    logPageView('/create/bigip')
     super(props)
     this.state = {
       environmentClass: 'u',

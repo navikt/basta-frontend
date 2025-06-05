@@ -12,7 +12,6 @@ import { submitForm } from '../actionCreators'
 import SubmitButton from '../../commonUi/formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import { orderApiPath } from './configuration/channel'
-import { logPageView } from '../../amplitude'
 
 const mqImage = require('../../../img/orderTypes/mq.png')
 
@@ -26,7 +25,6 @@ const initialState = {
 
 export class MqChannelOrderForm extends Component {
   constructor(props) {
-    logPageView('/create/mqchannel')
     super(props)
     this.state = {
       environmentClass: 'u',

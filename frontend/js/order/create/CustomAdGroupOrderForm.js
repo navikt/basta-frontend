@@ -11,7 +11,6 @@ import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import { InfoStripe, ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
 import { clearExistingGroupMessage } from '../../common/actionCreators'
 import { orderApiPath } from './configuration/adgroups'
-import { logPageView } from '../../amplitude'
 
 const adgroupsImage = require('../../../img/orderTypes/security.png')
 const initialState = {
@@ -22,7 +21,6 @@ const initialState = {
 
 export class CustomAdGroupOrderForm extends Component {
   constructor(props) {
-    logPageView('/create/customadgroups')
     super(props)
     this.state = {
       environmentClass: 'u',
