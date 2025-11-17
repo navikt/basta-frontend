@@ -16,10 +16,10 @@ const orderFields = {
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [
-      { label: 'Windows Server 2016', value: 'win2016' },
-      { label: 'Windows Server 2019', value: 'win2019' }
+      { label: 'Windows Server 2019', value: 'win2019' },
+      { label: 'Windows Server 2025', value: 'win2025' }
     ],
-    value: 'win2019'
+    value: 'win2025'
   },
   middleWareType: {
     label: 'Server type',
