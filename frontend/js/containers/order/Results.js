@@ -48,7 +48,7 @@ function createResultLine(result) {
             To get access to this user in vault, please read the{' '}
             <a
               target="new"
-              href="https://github.com/navikt/vault-iac/blob/master/doc/service-users.md"
+              href="https://github.com/navikt/vault-iac/blob/master/doc/managed-secrets/service-users.md"
             >
               vault-iac documentation
             </a>
