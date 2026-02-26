@@ -86,7 +86,7 @@ export class CustomCredentialOrderForm extends Component {
               <div className="alertStripeText">
                 Password for this user will be saved in Vault. To get access to this user in vault,
                 please read the{' '}
-                <a href="https://github.com/navikt/vault-iac/blob/master/doc/service-users.md">
+                <a href="https://github.com/navikt/vault-iac/blob/master/doc/managed-secrets/service-users.md">
                   vault-iac documentation
                 </a>
                 <br /> <strong className="errorIcon">Nothing will be saved to fasit.</strong>
