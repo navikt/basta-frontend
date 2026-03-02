@@ -29,7 +29,7 @@ const Log = props => {
             return (
               <div key={'event_' + event.id} className={'logEvent ' + event.option}>
                 <div className="status">{buildEventStatus(event.option)}</div>
-                <div className="time">{moment.unix(event.created).format('YYYY-MM-DD HH:mm:ss')}</div>
+                <div className="time">{moment(event.created).format('YYYY-MM-DD HH:mm:ss')}</div>
                 <div className="text">{event.text}</div>
               </div>
             )
