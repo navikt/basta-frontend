@@ -12,7 +12,7 @@ export const Notification = props => {
         <div className="notificationMessage alertStripeText">{data.message}</div>
         <div className=" updatedBy alertStripeText">
           <div>{data.createdByDisplayName}</div>
-          <div>{moment.unix(data.created).format('DD MMM YYYY HH:mm')}</div>
+          <div>{moment(data.created).format('DD MMM YYYY HH:mm')}</div>
         </div>
       </div>
     </InfoStripe>

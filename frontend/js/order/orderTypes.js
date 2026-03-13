@@ -45,7 +45,8 @@ export const orderTypes = [
     title: 'Oracle',
     description: 'database',
     image: dbImage,
-    url: '/create/oracle'
+    url: '/create/oracle',
+    access: ['ROLE_SUPERUSER']
   },
   {
     title: 'Flatcar Linux',

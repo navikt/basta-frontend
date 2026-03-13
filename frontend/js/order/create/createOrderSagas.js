@@ -41,7 +41,7 @@ export function* submitForm(action) {
 export function* getStatusLog(action) {
   try {
     yield put({ type: STATUSLOG_FETCHING })
-    const value = yield call(getUrl, `/rest/orders/${action.orderId}/statuslog/`)
+    const value = yield call(getUrl, `/rest/orders/${action.orderId}/statuslog`)
     yield put({ type: STATUSLOG_RECEIVED, value })
   } catch (error) {
     yield put({ type: STATUSLOG_REQUEST_FAILED, error })

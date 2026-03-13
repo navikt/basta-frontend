@@ -24,10 +24,10 @@ export class EnvironmentsDropDown extends Component {
       this.setState({ filteredEnvironments })
     }
   }
-  filterEnvironments(environments, envClass) {
+  filterEnvironments(environments, environmentclass) {
     return environments
       .filter(env => {
-        return env.envClass === envClass
+        return env.environmentclass === environmentclass
       })
       .map(env => {
         return env.name

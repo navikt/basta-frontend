@@ -1,674 +1,172 @@
 [
   {
-    "ref": "https://fasit.adeo.no/conf/environments/u19",
-    "name": "u19",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u19/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/qb",
-    "name": "qb",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/qb/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u17",
-    "name": "u17",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u17/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/t2",
-    "name": "t2",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/t2/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/q0",
-    "name": "q0",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/q0/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/q9",
-    "name": "q9",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/q9/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u88",
-    "name": "u88",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u88/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/ues0",
-    "name": "ues0",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/ues0/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u14",
-    "name": "u14",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u14/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/d1",
-    "name": "d1",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/d1/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/dx",
-    "name": "dx",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/dx/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u3",
-    "name": "u3",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u3/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/p",
-    "name": "p",
-    "envClass": "p",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/p/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u97",
-    "name": "u97",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u97/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/qa",
-    "name": "qa",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/qa/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/ues1",
-    "name": "ues1",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/ues1/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/t13",
-    "name": "t13",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/t13/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u83",
-    "name": "u83",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u83/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/d231",
-    "name": "d231",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/d231/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u",
-    "name": "u",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/t7",
-    "name": "t7",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/t7/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u69",
-    "name": "u69",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u69/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u54",
-    "name": "u54",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u54/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u93",
-    "name": "u93",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u93/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u7",
-    "name": "u7",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u7/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/ussi1",
-    "name": "ussi1",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/ussi1/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u98",
-    "name": "u98",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u98/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u96",
-    "name": "u96",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u96/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/q7",
-    "name": "q7",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/q7/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u25",
-    "name": "u25",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u25/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/ta",
-    "name": "ta",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/ta/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u28",
-    "name": "u28",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u28/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/ci",
-    "name": "ci",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/ci/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u10",
-    "name": "u10",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u10/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u5",
-    "name": "u5",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u5/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/cd-u1",
-    "name": "cd-u1",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/cd-u1/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u36",
-    "name": "u36",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u36/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/q2",
-    "name": "q2",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/q2/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/t3",
-    "name": "t3",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/t3/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/dy",
-    "name": "dy",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/dy/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/esso-u2",
-    "name": "esso-u2",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/esso-u2/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u50",
-    "name": "u50",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u50/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u18",
-    "name": "u18",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u18/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/dv",
-    "name": "dv",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/dv/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u42",
-    "name": "u42",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u42/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u34",
-    "name": "u34",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u34/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u66",
-    "name": "u66",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u66/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/dz",
-    "name": "dz",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/dz/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u91",
-    "name": "u91",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u91/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u8",
-    "name": "u8",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u8/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u85",
-    "name": "u85",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u85/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u89",
-    "name": "u89",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u89/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/d3",
-    "name": "d3",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/d3/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u90",
-    "name": "u90",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u90/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u12",
-    "name": "u12",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u12/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/q8",
-    "name": "q8",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/q8/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u82",
-    "name": "u82",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u82/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/d2",
-    "name": "d2",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/d2/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u15",
-    "name": "u15",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u15/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/q10",
-    "name": "q10",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/q10/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/uer0",
-    "name": "uer0",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/uer0/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u87",
-    "name": "u87",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u87/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u84",
-    "name": "u84",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u84/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/q11",
-    "name": "q11",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/q11/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/test",
-    "name": "test",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/test/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u99",
-    "name": "u99",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u99/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/q3",
-    "name": "q3",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/q3/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u1",
-    "name": "u1",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u1/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/t11",
-    "name": "t11",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/t11/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/abac-felles-u1",
-    "name": "abac-felles-u1",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/abac-felles-u1/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/t10",
-    "name": "t10",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/t10/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u52",
-    "name": "u52",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u52/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u56",
-    "name": "u56",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u56/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/q1",
     "name": "q1",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/q1/applications"
+    "environmentclass": "q",
+    "id": 103346,
+    "lifecycle": {},
+    "accesscontrol": {
+      "environmentclass": "q",
+      "adgroups": []
+    },
+    "links": {
+      "nodes": "https://fasit.adeo.no/api/v2/nodes?environment=q1",
+      "self": "https://fasit.adeo.no/api/v2/environments/q1",
+      "revisions": "https://fasit.adeo.no/api/v2/environments/q1/revisions",
+      "clusters": "https://fasit.adeo.no/api/v2/environments/q1/clusters"
+    }
   },
   {
-    "ref": "https://fasit.adeo.no/conf/environments/u6",
-    "name": "u6",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u6/applications"
+    "name": "p",
+    "environmentclass": "p",
+    "id": 103373,
+    "lifecycle": {},
+    "accesscontrol": {
+      "environmentclass": "p",
+      "adgroups": []
+    },
+    "links": {
+      "nodes": "https://fasit.adeo.no/api/v2/nodes?environment=p",
+      "self": "https://fasit.adeo.no/api/v2/environments/p",
+      "revisions": "https://fasit.adeo.no/api/v2/environments/p/revisions",
+      "clusters": "https://fasit.adeo.no/api/v2/environments/p/clusters"
+    }
   },
   {
-    "ref": "https://fasit.adeo.no/conf/environments/q231",
-    "name": "q231",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/q231/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/t8",
-    "name": "t8",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/t8/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/ues2",
-    "name": "ues2",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/ues2/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/t0",
-    "name": "t0",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/t0/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/d230",
-    "name": "d230",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/d230/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u55",
-    "name": "u55",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u55/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/t9",
-    "name": "t9",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/t9/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u86",
-    "name": "u86",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u86/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/q5",
-    "name": "q5",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/q5/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u92",
-    "name": "u92",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u92/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u51",
-    "name": "u51",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u51/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u23",
-    "name": "u23",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u23/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u95",
-    "name": "u95",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u95/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/lintst-u1",
-    "name": "lintst-u1",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/lintst-u1/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u80",
-    "name": "u80",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u80/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/t5",
-    "name": "t5",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/t5/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u26",
-    "name": "u26",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u26/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u32",
-    "name": "u32",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u32/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u11",
-    "name": "u11",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u11/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/t12",
-    "name": "t12",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/t12/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u16",
-    "name": "u16",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u16/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/d4",
-    "name": "d4",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/d4/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/qc",
-    "name": "qc",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/qc/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/o1",
-    "name": "o1",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/o1/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/q4",
     "name": "q4",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/q4/applications"
+    "environmentclass": "q",
+    "id": 103374,
+    "lifecycle": {},
+    "accesscontrol": {
+      "environmentclass": "q",
+      "adgroups": []
+    },
+    "links": {
+      "nodes": "https://fasit.adeo.no/api/v2/nodes?environment=q4",
+      "self": "https://fasit.adeo.no/api/v2/environments/q4",
+      "revisions": "https://fasit.adeo.no/api/v2/environments/q4/revisions",
+      "clusters": "https://fasit.adeo.no/api/v2/environments/q4/clusters"
+    }
   },
   {
-    "ref": "https://fasit.adeo.no/conf/environments/u81",
-    "name": "u81",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u81/applications"
+    "name": "q0",
+    "environmentclass": "q",
+    "id": 103376,
+    "lifecycle": {},
+    "accesscontrol": {
+      "environmentclass": "q",
+      "adgroups": []
+    },
+    "links": {
+      "nodes": "https://fasit.adeo.no/api/v2/nodes?environment=q0",
+      "self": "https://fasit.adeo.no/api/v2/environments/q0",
+      "revisions": "https://fasit.adeo.no/api/v2/environments/q0/revisions",
+      "clusters": "https://fasit.adeo.no/api/v2/environments/q0/clusters"
+    }
   },
   {
-    "ref": "https://fasit.adeo.no/conf/environments/qx",
+    "name": "q5",
+    "environmentclass": "q",
+    "id": 103377,
+    "lifecycle": {},
+    "accesscontrol": {
+      "environmentclass": "q",
+      "adgroups": []
+    },
+    "links": {
+      "nodes": "https://fasit.adeo.no/api/v2/nodes?environment=q5",
+      "self": "https://fasit.adeo.no/api/v2/environments/q5",
+      "revisions": "https://fasit.adeo.no/api/v2/environments/q5/revisions",
+      "clusters": "https://fasit.adeo.no/api/v2/environments/q5/clusters"
+    }
+  },
+  {
     "name": "qx",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/qx/applications"
+    "environmentclass": "q",
+    "id": 860715,
+    "created": "2015-05-06T13:06:43.083",
+    "updated": "2015-05-06T13:06:43.083",
+    "lifecycle": {},
+    "accesscontrol": {
+      "environmentclass": "q",
+      "adgroups": []
+    },
+    "links": {
+      "nodes": "https://fasit.adeo.no/api/v2/nodes?environment=qx",
+      "self": "https://fasit.adeo.no/api/v2/environments/qx",
+      "revisions": "https://fasit.adeo.no/api/v2/environments/qx/revisions",
+      "clusters": "https://fasit.adeo.no/api/v2/environments/qx/clusters"
+    }
   },
   {
-    "ref": "https://fasit.adeo.no/conf/environments/d234",
-    "name": "d234",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/d234/applications"
+    "name": "qa",
+    "environmentclass": "q",
+    "id": 835297,
+    "created": "2015-02-19T11:14:30.213",
+    "updated": "2015-02-19T11:14:30.213",
+    "lifecycle": {},
+    "accesscontrol": {
+      "environmentclass": "q",
+      "adgroups": []
+    },
+    "links": {
+      "nodes": "https://fasit.adeo.no/api/v2/nodes?environment=qa",
+      "self": "https://fasit.adeo.no/api/v2/environments/qa",
+      "revisions": "https://fasit.adeo.no/api/v2/environments/qa/revisions",
+      "clusters": "https://fasit.adeo.no/api/v2/environments/qa/clusters"
+    }
   },
   {
-    "ref": "https://fasit.adeo.no/conf/environments/tx",
-    "name": "tx",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/tx/applications"
+    "name": "q2",
+    "environmentclass": "q",
+    "id": 256130,
+    "created": "2013-10-29T10:46:58.292",
+    "updated": "2013-10-29T10:46:58.292",
+    "lifecycle": {},
+    "accesscontrol": {
+      "environmentclass": "q",
+      "adgroups": []
+    },
+    "links": {
+      "nodes": "https://fasit.adeo.no/api/v2/nodes?environment=q2",
+      "self": "https://fasit.adeo.no/api/v2/environments/q2",
+      "revisions": "https://fasit.adeo.no/api/v2/environments/q2/revisions",
+      "clusters": "https://fasit.adeo.no/api/v2/environments/q2/clusters"
+    }
   },
   {
-    "ref": "https://fasit.adeo.no/conf/environments/ty",
-    "name": "ty",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/ty/applications"
+    "name": "q14",
+    "environmentclass": "q",
+    "id": 11879019,
+    "created": "2023-03-27T07:47:57.445",
+    "updated": "2023-03-27T07:47:57.445",
+    "lifecycle": {},
+    "accesscontrol": {
+      "environmentclass": "q",
+      "adgroups": []
+    },
+    "links": {
+      "nodes": "https://fasit.adeo.no/api/v2/nodes?environment=q14",
+      "self": "https://fasit.adeo.no/api/v2/environments/q14",
+      "revisions": "https://fasit.adeo.no/api/v2/environments/q14/revisions",
+      "clusters": "https://fasit.adeo.no/api/v2/environments/q14/clusters"
+    }
   },
   {
-    "ref": "https://fasit.adeo.no/conf/environments/q6",
-    "name": "q6",
-    "envClass": "q",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/q6/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/t1",
-    "name": "t1",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/t1/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u4",
-    "name": "u4",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u4/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u13",
-    "name": "u13",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u13/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/t6",
-    "name": "t6",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/t6/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/t4",
-    "name": "t4",
-    "envClass": "t",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/t4/applications"
-  },
-  {
-    "ref": "https://fasit.adeo.no/conf/environments/u2",
-    "name": "u2",
-    "envClass": "u",
-    "applicationsRef": "https://fasit.adeo.no/conf/environments/u2/applications"
+    "name": "qb",
+    "environmentclass": "q",
+    "id": 12082581,
+    "created": "2024-02-08T15:08:51.354",
+    "updated": "2024-02-08T15:08:51.354",
+    "lifecycle": {},
+    "accesscontrol": {
+      "environmentclass": "q",
+      "adgroups": []
+    },
+    "links": {
+      "nodes": "https://fasit.adeo.no/api/v2/nodes?environment=qb",
+      "self": "https://fasit.adeo.no/api/v2/environments/qb",
+      "revisions": "https://fasit.adeo.no/api/v2/environments/qb/revisions",
+      "clusters": "https://fasit.adeo.no/api/v2/environments/qb/clusters"
+    }
   }
 ]
