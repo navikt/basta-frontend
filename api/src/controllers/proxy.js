@@ -2,7 +2,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 const token = require('./token')
 
 exports.doProxy = () => {
-  return createProxyMiddleware({
+  return createProxyMiddleware('/rest', {
     target: `${process.env.BASTA_BACKEND}`,
     onProxyReq: restream,
     secure: true,
