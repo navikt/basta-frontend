@@ -8,6 +8,7 @@ exports.doProxy = () => {
     secure: true,
     changeOrigin: true,
     logLevel: 'info',
+    pathRewrite: (path) => `/rest${path}`,
     onError: (err, req, res) => {
       console.log('error in proxy', err)
     },
@@ -25,7 +26,7 @@ const restream = (proxyReq, req, res, options) => {
 
 exports.attachToken = () => {
   return async (req, res, next) => {
-    resource = process.env['BASTA_BACKEND_CLIENT_ID']
+    const resource = process.env['BASTA_BACKEND_CLIENT_ID']
     const accessToken = await token.validateRefreshAndGetToken(
       req.session.userid,
       req.session.refreshToken,
