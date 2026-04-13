@@ -1,6 +1,6 @@
 const title = 'Red Hat'
 const description = 'Linux'
-const image = require('../../../../img/orderTypes/redhat.png').default
+import image from 'url:../../../../img/orderTypes/redhat.png'
 const orderApiPath = '/rest/vm/orders/linux'
 const orderFields = {
   nodeType: {

@@ -1,6 +1,6 @@
+import image from 'url:../../../../img/orderTypes/websphere.png'
 const description = 'Node'
 const title = 'BPM'
-const image = require('../../../../img/orderTypes/websphere.png').default
 const orderApiPath = '/rest/vm/orders/bpm/node'
 const orderFields = {
   nodeType: {

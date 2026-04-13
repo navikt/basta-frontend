@@ -1,6 +1,6 @@
 const title = 'Windows'
 const description = 'Server'
-const image = require('../../../../img/orderTypes/windows.png').default
+import image from 'url:../../../../img/orderTypes/windows.png'
 const orderApiPath = '/rest/vm/orders/windows'
 const orderFields = {
   environmentClass: {

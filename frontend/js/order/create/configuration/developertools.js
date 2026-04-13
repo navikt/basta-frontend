@@ -1,6 +1,6 @@
 const description = 'Order new Devillo server'
 const title = 'Developer tools available in Devillo'
-const image = require('../../../../img/orderTypes/devtools.png').default
+import image from 'url:../../../../img/orderTypes/devtools.png'
 const orderApiPath = '/rest/vm/orders/devtools'
 const orderFields = {
   nodeType: {

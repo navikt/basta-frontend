@@ -1,6 +1,6 @@
+import image from 'url:../../../../img/orderTypes/websphere.png'
 const description = 'Deployment Manager'
 const title = 'BPM'
-const image = require('../../../../img/orderTypes/websphere.png').default
 const orderApiPath = '/rest/vm/orders/bpm/dmgr'
 
 const orderFields = {

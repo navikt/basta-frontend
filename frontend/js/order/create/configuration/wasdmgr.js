@@ -1,6 +1,6 @@
 const description = 'Deployment Manager'
 const title = 'Websphere'
-const image = require('../../../../img/orderTypes/websphere.png').default
+import image from 'url:../../../../img/orderTypes/websphere.png'
 const orderApiPath = '/rest/vm/orders/was/dmgr'
 const orderFields = {
   nodeType: {
