@@ -27,7 +27,7 @@ const cors = function (req, res, next) {
   return next()
 }
 
-app.use('/rest', createProxyMiddleware({ target: `${process.env.BASTA_BACKEND}` }))
+app.use('/rest', createProxyMiddleware({ target: `${process.env.BASTA_BACKEND}`, pathRewrite: (path) => `/rest${path}` }))
 app.use(cors)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
