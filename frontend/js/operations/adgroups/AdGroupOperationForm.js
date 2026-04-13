@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { submitOperation, submitGroupLookup } from '../operateActionCreators'
 import { connect } from 'react-redux'
-import image from '../../../img/orderTypes/security.png'
+import image from 'url:../../../img/orderTypes/security.png'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
@@ -11,7 +11,7 @@ import { ApplicationsDropDown, OperationsButtons } from '../../commonUi/formComp
 const initialState = {
   zone: 'fss',
   application: '',
-  groupUsage: 'MQ'
+  groupUsage: 'MQ',
 }
 
 export class AdGroupOperationForm extends Component {
@@ -19,7 +19,7 @@ export class AdGroupOperationForm extends Component {
     super(props)
     this.state = {
       environmentClass: 'u',
-      ...initialState
+      ...initialState,
     }
   }
 
@@ -84,11 +84,11 @@ export class AdGroupOperationForm extends Component {
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup
               value={environmentClass}
-              onChange={v => this.handleChange('environmentClass', v)}
+              onChange={(v) => this.handleChange('environmentClass', v)}
             />
-            <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
+            <ZoneButtonGroup value={zone} onChange={(v) => this.handleChange('zone', v)} />
             <ApplicationsDropDown
-              onChange={v => this.handleChange('application', v)}
+              onChange={(v) => this.handleChange('application', v)}
               value={application}
             />
             <ErrorStripe
@@ -116,17 +116,17 @@ AdGroupOperationForm.propTypes = {
   orderFields: PropTypes.object,
   onSubmit: PropTypes.func,
   dispatch: PropTypes.func,
-  existInAD: PropTypes.bool
+  existInAD: PropTypes.bool,
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     application: state.application,
     submitError: state.operationsForm.operations.error,
     lookupComplete: state.operationsForm.groupLookup.lookupComplete,
     existInAD: state.operationsForm.groupLookup.data.existInAD,
     submitting: state.operationsForm.operations.fetching,
-    submitError: state.operationsForm.operations.error
+    submitError: state.operationsForm.operations.error,
   }
 }
 

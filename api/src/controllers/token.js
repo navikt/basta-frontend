@@ -1,16 +1,15 @@
 const token = require('./getAccesstoken')
 const config = require('../config/passportConfig')
-const request = require('request-promise')
 const finduser = require('../config/findUser')
 
 exports.validateRefreshAndGetToken = async (userid, refreshToken, resource) => {
   let oldAccessToken = ''
   const now = new Date()
-  const user = await finduser.findByOid(userid, async function(err, user) {
+  const user = await finduser.findByOid(userid, async function (err, user) {
     return user
   })
   try {
-    oldAccessToken = user.tokens.find(token => token.resource === resource).accesstoken
+    oldAccessToken = user.tokens.find((token) => token.resource === resource).accesstoken
   } catch (err) {
     oldAccessToken = false
   }
@@ -26,14 +25,14 @@ exports.validateRefreshAndGetToken = async (userid, refreshToken, resource) => {
     return newAccessToken
   }
   if (user && oldAccessToken) {
-    const oldtokenExpire = user.tokens.find(token => token.resource === resource).exp
+    const oldtokenExpire = user.tokens.find((token) => token.resource === resource).exp
     if (oldtokenExpire * 1000 < Date.parse(now)) {
       const newAccessToken = await token.getAccessTokenUser(config.tokenURI, refreshToken, resource)
       exp = JSON.parse(exports.decodeToken(newAccessToken)).exp
       if (!user.tokens) {
         user.tokens = []
       }
-      const index = user.tokens.indexOf(user.tokens.find(token => token.resource === resource))
+      const index = user.tokens.indexOf(user.tokens.find((token) => token.resource === resource))
       user.tokens.splice(index, 1)
       user.tokens.push({ resource: resource, accesstoken: newAccessToken, exp: exp })
 
@@ -52,7 +51,7 @@ getNewAccessToken = async (refreshToken, resource) => {
   }
 }
 
-exports.decodeToken = encodedToken => {
+exports.decodeToken = (encodedToken) => {
   if (encodedToken) {
     if (encodedToken.startsWith('eyJ0')) {
       const tokenSplit = encodedToken.split('.')

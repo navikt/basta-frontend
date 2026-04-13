@@ -5,9 +5,9 @@ import OrderGrid from '../order/OrderGrid'
 import OrderCard from '../order/OrderCard'
 import { isAvailable } from '../common/utils'
 
-const securityImage = require('../../img/orderTypes/security.png')
-const redhatImage = require('../../img/orderTypes/redhat.png')
-const mqImage = require('../../img/orderTypes/mq.png')
+import securityImage from 'url:../../img/orderTypes/security.png'
+import redhatImage from 'url:../../img/orderTypes/redhat.png'
+import mqImage from 'url:../../img/orderTypes/mq.png'
 
 export class Operate extends Component {
   constructor(props) {
@@ -43,39 +43,39 @@ const orderTypes = [
     title: 'Nodes',
     description: 'Virtual machines',
     image: redhatImage,
-    url: '/operate/nodes'
+    url: '/operate/nodes',
   },
   {
     title: 'Credentials',
     description: 'Service user in AD',
     image: securityImage,
-    url: '/operate/credentials'
+    url: '/operate/credentials',
   },
   {
     title: 'Groups',
     description: 'Groups in AD',
     image: securityImage,
-    url: '/operate/adgroups'
+    url: '/operate/adgroups',
   },
   {
     title: 'WebSphere MQ',
     description: 'channel',
     image: mqImage,
-    url: '/operate/mqchannels'
+    url: '/operate/mqchannels',
   },
   ,
   {
     title: 'WebSphere MQ',
     description: 'Queue',
     image: mqImage,
-    url: '/operate/mqqueues'
-  }
+    url: '/operate/mqqueues',
+  },
 ]
 Operate.propTypes = {}
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
   }
 }
 

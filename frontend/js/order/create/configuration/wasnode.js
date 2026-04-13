@@ -1,27 +1,27 @@
 const description = 'Application Server'
 const title = 'Websphere'
-const image = require('../../../../img/orderTypes/websphere.png')
+const image = require('../../../../img/orderTypes/websphere.png').default
 const orderApiPath = '/rest/vm/orders/was/node'
 const orderFields = {
   nodeType: {
-    value: 'WAS9_NODES'
+    value: 'WAS9_NODES',
   },
   environmentClass: {
     fieldType: 'environmentClass',
-    value: 'u'
+    value: 'u',
   },
   zone: {
     fieldType: 'zone',
-    value: 'fss'
+    value: 'fss',
   },
   environmentName: {
     fieldType: 'environments',
-    value: ''
+    value: '',
   },
   applicationMappingName: {
     description: '',
     fieldType: 'applications',
-    value: ''
+    value: '',
   },
   serverCount: {
     label: 'Servers',
@@ -29,7 +29,7 @@ const orderFields = {
     fieldType: 'number',
     min: 1,
     max: 8,
-    value: 1
+    value: 1,
   },
   cpuCount: {
     label: 'Cpu',
@@ -37,7 +37,7 @@ const orderFields = {
     fieldType: 'number',
     min: 1,
     max: 4,
-    value: 1
+    value: 1,
   },
   memory: {
     label: 'Memory',
@@ -45,7 +45,7 @@ const orderFields = {
     fieldType: 'number',
     min: 2,
     max: 32,
-    value: 2
+    value: 2,
   },
   extraDisk: {
     label: 'Extra disk',
@@ -53,20 +53,20 @@ const orderFields = {
     fieldType: 'number',
     min: 0,
     max: 100,
-    value: 0
+    value: 0,
   },
   osType: {
     label: 'OS version',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [{ label: 'RHEL 8', value: 'rhel80' }],
-    value: 'rhel80'
+    value: 'rhel80',
   },
   description: {
     label: 'Description',
     description: 'What is this server used for?',
     fieldType: 'text',
-    value: ''
+    value: '',
   },
   classification: {
     label: 'Classification',
@@ -74,15 +74,15 @@ const orderFields = {
     fieldType: 'buttonGroup',
     alternatives: [
       { label: 'Standard', value: 'standard' },
-      { label: 'Custom', value: 'custom' }
+      { label: 'Custom', value: 'custom' },
     ],
-    value: 'standard'
-  }
+    value: 'standard',
+  },
 }
 module.exports = {
   description,
   title,
   image,
   orderApiPath,
-  orderFields
+  orderFields,
 }

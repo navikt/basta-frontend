@@ -1,47 +1,47 @@
 const description = 'Deployment Manager'
 const title = 'BPM'
-const image = require('../../../../img/orderTypes/websphere.png')
+const image = require('../../../../img/orderTypes/websphere.png').default
 const orderApiPath = '/rest/vm/orders/bpm/dmgr'
 
 const orderFields = {
   nodeType: {
-    value: 'BPM86_DEPLOYMENT_MANAGER'
+    value: 'BPM86_DEPLOYMENT_MANAGER',
   },
   zone: {
-    value: 'fss'
+    value: 'fss',
   },
   serverCount: {
-    value: 1
+    value: 1,
   },
   cpuCount: {
-    value: 2
+    value: 2,
   },
   memory: {
-    value: 4
+    value: 4,
   },
   extraDisk: {
-    value: 10
+    value: 10,
   },
   environmentClass: {
     fieldType: 'environmentClass',
-    value: 'u'
+    value: 'u',
   },
   environmentName: {
     fieldType: 'environments',
-    value: ''
+    value: '',
   },
   osType: {
     label: 'OS version',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [{ label: 'RHEL 8', value: 'rhel80' }],
-    value: 'rhel80'
-  }
+    value: 'rhel80',
+  },
 }
 module.exports = {
   description,
   title,
   image,
   orderApiPath,
-  orderFields
+  orderFields,
 }

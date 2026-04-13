@@ -13,11 +13,11 @@ import { InfoStripe } from '../../commonUi/formComponents/AlertStripe'
 import { clearExistingGroupMessage } from '../../common/actionCreators'
 import { orderApiPath } from './configuration/adgroups'
 
-const adgroupsImage = require('../../../img/orderTypes/security.png')
+import adgroupsImage from 'url:../../../img/orderTypes/security.png'
 const initialState = {
   zone: 'fss',
   application: '',
-  groupUsage: 'MQ'
+  groupUsage: 'MQ',
 }
 
 export class AdGroupOrderForm extends Component {
@@ -25,7 +25,7 @@ export class AdGroupOrderForm extends Component {
     super(props)
     this.state = {
       environmentClass: 'u',
-      ...initialState
+      ...initialState,
     }
   }
 
@@ -73,11 +73,11 @@ export class AdGroupOrderForm extends Component {
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup
               value={environmentClass}
-              onChange={v => this.handleChange('environmentClass', v)}
+              onChange={(v) => this.handleChange('environmentClass', v)}
             />
-            <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
+            <ZoneButtonGroup value={zone} onChange={(v) => this.handleChange('zone', v)} />
             <ApplicationsDropDown
-              onChange={v => this.handleChange('application', v)}
+              onChange={(v) => this.handleChange('application', v)}
               value={application}
             />
             <InfoStripe
@@ -103,13 +103,13 @@ export class AdGroupOrderForm extends Component {
 }
 
 AdGroupOrderForm.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     formSubmitting: state.order.form.submitting,
     formError: state.order.form.error,
-    existInAD: state.operationsForm.groupLookup.data.existInAD
+    existInAD: state.operationsForm.groupLookup.data.existInAD,
   }
 }
 

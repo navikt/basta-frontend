@@ -12,11 +12,11 @@ import { InfoStripe, ErrorStripe } from '../../commonUi/formComponents/AlertStri
 import { clearExistingGroupMessage } from '../../common/actionCreators'
 import { orderApiPath } from './configuration/adgroups'
 
-const adgroupsImage = require('../../../img/orderTypes/security.png')
+import adgroupsImage from 'url:../../../img/orderTypes/security.png'
 const initialState = {
   zone: 'fss',
   application: '',
-  groupUsage: 'MQ'
+  groupUsage: 'MQ',
 }
 
 export class CustomAdGroupOrderForm extends Component {
@@ -24,7 +24,7 @@ export class CustomAdGroupOrderForm extends Component {
     super(props)
     this.state = {
       environmentClass: 'u',
-      ...initialState
+      ...initialState,
     }
   }
 
@@ -72,16 +72,16 @@ export class CustomAdGroupOrderForm extends Component {
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup
               value={environmentClass}
-              onChange={v => this.handleChange('environmentClass', v)}
+              onChange={(v) => this.handleChange('environmentClass', v)}
             />
-            <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
+            <ZoneButtonGroup value={zone} onChange={(v) => this.handleChange('zone', v)} />
             <OrderTextBox
               label="Group name"
               value={application}
               placeholder={
                 'Prefix "0000-GA-(MQ-)" added in AD, service user will be srv + group name'
               }
-              onChange={v => this.handleChange('application', v)}
+              onChange={(v) => this.handleChange('application', v)}
             />
             <InfoStripe
               show={true}
@@ -106,13 +106,13 @@ export class CustomAdGroupOrderForm extends Component {
 }
 
 CustomAdGroupOrderForm.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     formSubmitting: state.order.form.submitting,
     formError: state.order.form.error,
-    existInAD: state.operationsForm.groupLookup.data.existInAD
+    existInAD: state.operationsForm.groupLookup.data.existInAD,
   }
 }
 

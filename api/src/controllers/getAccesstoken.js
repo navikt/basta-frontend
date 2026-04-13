@@ -1,4 +1,3 @@
-const request = require('request-promise')
 const config = require('../config/passportConfig')
 let ms_access_token = ''
 
@@ -11,15 +10,18 @@ exports.getAccessTokenUser = async (tokenURI, refreshToken, resource) => {
       resource: resource,
       grant_type: 'refresh_token',
       refresh_token: refreshToken,
-      client_secret: config.clientSecret
+      client_secret: config.clientSecret,
     }
-    await request.post({ url: tokenURI, formData: parameters }, function callback(
-      err,
-      httpResponse,
-      body
-    ) {
-      ms_access_token = JSON.parse(body).access_token
+    const response = await fetch(tokenURI, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(parameters).toString(),
     })
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+    }
+    const data = await response.json()
+    ms_access_token = data.access_token
     return ms_access_token
   } catch (e) {
     console.log(e)

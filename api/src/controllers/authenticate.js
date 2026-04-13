@@ -5,19 +5,19 @@ const { logoutURL } = require('../config/passportConfig')
 
 exports.authenticateAzure = () => {
   return (req, res, next) => {
-    const concatUrl = params => {
+    const concatUrl = (params) => {
       let string = ''
-      Object.keys(params).forEach(e => {
+      Object.keys(params).forEach((e) => {
         if (params[e]) string = `${string}/${params[e]}`
       })
       return string.toString()
     }
     req.session.redirectUrl = concatUrl(req.params)
     try {
-      passport.authenticate('azuread-openidconnect', {
+      passport.authenticate('oidc', {
         response: res,
         successRedirect: '/',
-        failureRedirect: '/error'
+        failureRedirect: '/error',
       })(req, res, next)
     } catch (err) {
       throw `ERROR during authentication: ${err}`
@@ -28,10 +28,10 @@ exports.authenticateAzure = () => {
 exports.authenticateAzureCallback = () => {
   return (req, res, next) => {
     try {
-      passport.authenticate('azuread-openidconnect', {
+      passport.authenticate('oidc', {
         response: res,
         successRedirect: req.session.redirectUrl || '/',
-        failureRedirect: '/error'
+        failureRedirect: '/error',
       })(req, res, next)
     } catch (err) {
       throw `ERROR during authentication: ${err}`

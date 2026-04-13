@@ -12,12 +12,12 @@ import { ErrorStripe, InfoStripe } from '../../commonUi/formComponents/AlertStri
 import { clearExistingCredentialMessage } from '../../common/actionCreators'
 import { orderApiPath } from './configuration/customCredential'
 
-const certificateImage = require('../../../img/orderTypes/security.png')
+import certificateImage from 'url:../../../img/orderTypes/security.png'
 const initialState = {
   username: '',
   zone: 'fss',
   abacAccess: false,
-  stsAccess: false
+  stsAccess: false,
 }
 
 export class CustomCredentialOrderForm extends Component {
@@ -25,7 +25,7 @@ export class CustomCredentialOrderForm extends Component {
     super(props)
     this.state = {
       environmentClass: 'u',
-      ...initialState
+      ...initialState,
     }
   }
 
@@ -73,14 +73,14 @@ export class CustomCredentialOrderForm extends Component {
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup
               value={environmentClass}
-              onChange={v => this.handleChange('environmentClass', v)}
+              onChange={(v) => this.handleChange('environmentClass', v)}
             />
-            <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
+            <ZoneButtonGroup value={zone} onChange={(v) => this.handleChange('zone', v)} />
             <OrderTextBox
               label="Username"
               value={username}
               placeholder={'Username starting with srv'}
-              onChange={v => this.handleChange('username', v)}
+              onChange={(v) => this.handleChange('username', v)}
             />
             <InfoStripe show={true}>
               <div className="alertStripeText">
@@ -100,13 +100,13 @@ export class CustomCredentialOrderForm extends Component {
               label="ABAC"
               value={abacAccess}
               description="Adds user to ABAC pdp group in AD"
-              onChange={v => this.handleChange('abacAccess', v)}
+              onChange={(v) => this.handleChange('abacAccess', v)}
             />
             <OrderCheckBox
               label="STS"
               value={stsAccess}
               description="Gives user access to read from STS"
-              onChange={v => this.handleChange('stsAccess', v)}
+              onChange={(v) => this.handleChange('stsAccess', v)}
             />
             <ErrorStripe
               show={existInAD}
@@ -128,13 +128,13 @@ export class CustomCredentialOrderForm extends Component {
 }
 
 CustomCredentialOrderForm.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     formSubmitting: state.order.form.submitting,
     formError: state.order.form.error,
-    existInAD: state.operationsForm.credentialLookup.data.existInAD
+    existInAD: state.operationsForm.credentialLookup.data.existInAD,
   }
 }
 

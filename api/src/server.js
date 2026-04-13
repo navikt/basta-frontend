@@ -10,7 +10,6 @@ const session = require('cookie-session')
 const router = require('./routes/index')
 const prometheus = require('prom-client')
 const helmet = require('helmet')
-require('./config/passport')(passport)
 const { startApp } = require('./startApp')
 
 const proxy = require('./controllers/proxy')
@@ -23,23 +22,23 @@ const app = express()
 
 app.use(
   logger('dev', {
-    skip: function(req, res) {
+    skip: function (req, res) {
       return res.statusCode < 400
-    }
-  })
+    },
+  }),
 )
 
 // HELMET
 app.use(helmet())
 
 // CORS
-const cors = function(req, res, next) {
+const cors = function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', host)
   res.setHeader('Access-Control-Allow-Credentials', 'true')
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'Origin, Content-Type, X-AUTHENTICATION, X-IP, Content-Type, Accept, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+    'Origin, Content-Type, X-AUTHENTICATION, X-IP, Content-Type, Accept, Access-Control-Allow-Headers, Authorization, X-Requested-With',
   )
   return next()
 }
@@ -58,8 +57,8 @@ app.use(
     keys: [`${process.env['BASTACOOKIE_KEY1']}`, `${process.env['BASTACOOKIE_KEY2']}`],
     maxAge: 24 * 60 * 60 * 1000, // 24 timer
     domain: cookieDomain,
-    sameSite: 'lax'
-  })
+    sameSite: 'lax',
+  }),
 )
 app.use(passport.initialize())
 app.use(passport.session())
@@ -81,7 +80,11 @@ app.use((err, req, res, next) => {
   next()
 })
 
-// STARTUP
-startApp(app)
+require('./config/passport')(passport)
+  .then(() => startApp(app))
+  .catch((err) => {
+    console.error('Failed to initialize passport:', err)
+    process.exit(1)
+  })
 
 module.exports = app

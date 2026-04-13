@@ -1,8 +1,8 @@
-const proxy = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 const token = require('./token')
 
 exports.doProxy = () => {
-  return proxy('/rest', {
+  return createProxyMiddleware({
     target: `${process.env.BASTA_BACKEND}`,
     onProxyReq: restream,
     secure: true,
@@ -10,7 +10,7 @@ exports.doProxy = () => {
     logLevel: 'info',
     onError: (err, req, res) => {
       console.log('error in proxy', err)
-    }
+    },
   })
 }
 
@@ -29,7 +29,7 @@ exports.attachToken = () => {
     const accessToken = await token.validateRefreshAndGetToken(
       req.session.userid,
       req.session.refreshToken,
-      resource
+      resource,
     )
     req.headers['Authorization'] = `Bearer ${accessToken}`
     return next()

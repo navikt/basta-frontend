@@ -1,24 +1,24 @@
 const description = 'Node'
 const title = 'BPM'
-const image = require('../../../../img/orderTypes/websphere.png')
+const image = require('../../../../img/orderTypes/websphere.png').default
 const orderApiPath = '/rest/vm/orders/bpm/node'
 const orderFields = {
   nodeType: {
-    value: 'BPM86_NODES'
+    value: 'BPM86_NODES',
   },
   extraDisk: {
-    value: 10
+    value: 10,
   },
   environmentClass: {
     fieldType: 'environmentClass',
-    value: 'u'
+    value: 'u',
   },
   zone: {
-    value: 'fss'
+    value: 'fss',
   },
   environmentName: {
     fieldType: 'environments',
-    value: ''
+    value: '',
   },
   serverCount: {
     label: 'Servers',
@@ -26,7 +26,7 @@ const orderFields = {
     fieldType: 'number',
     min: 1,
     max: 8,
-    value: 1
+    value: 1,
   },
   cpuCount: {
     label: 'Cpu',
@@ -34,7 +34,7 @@ const orderFields = {
     fieldType: 'number',
     min: 1,
     max: 4,
-    value: 4
+    value: 4,
   },
   memory: {
     label: 'Memory',
@@ -42,20 +42,20 @@ const orderFields = {
     fieldType: 'number',
     min: 2,
     max: 32,
-    value: 16
+    value: 16,
   },
   osType: {
     label: 'OS version',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [{ label: 'RHEL 8', value: 'rhel80' }],
-    value: 'rhel80'
-  }
+    value: 'rhel80',
+  },
 }
 module.exports = {
   description,
   title,
   image,
   orderApiPath,
-  orderFields
+  orderFields,
 }

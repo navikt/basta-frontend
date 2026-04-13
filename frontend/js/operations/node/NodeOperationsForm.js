@@ -4,7 +4,7 @@ import OperateNodeLookup from './OperateNodeLookup'
 import { submitOperation } from '../operateActionCreators'
 import { connect } from 'react-redux'
 import OperationsButtons from '../../common/components/formComponents/OperationsButtons'
-import image from '../../../img/orderTypes/redhat.png'
+import image from 'url:../../../img/orderTypes/redhat.png'
 import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
 
 export class NodeOperationsForm extends Component {
@@ -20,12 +20,12 @@ export class NodeOperationsForm extends Component {
   }
 
   hasAccessToAllHosts(hosts) {
-    return hosts.filter(host => !host.validation.valid).length === 0
+    return hosts.filter((host) => !host.validation.valid).length === 0
   }
 
   submitHandler(operationsType) {
     const { dispatch } = this.props
-    const hostnames = this.state.resolvedHosts.map(host => host.hostname)
+    const hostnames = this.state.resolvedHosts.map((host) => host.hostname)
     const uniqueHostnames = new Set(hostnames)
 
     dispatch(submitOperation('nodes', uniqueHostnames, operationsType))
@@ -47,7 +47,7 @@ export class NodeOperationsForm extends Component {
               key="hostnames"
               label=""
               placeholder={'Comma separated list of hosts'}
-              onChange={v => this.handleChange(v)}
+              onChange={(v) => this.handleChange(v)}
             />
             <ErrorStripe
               show={this.state.resolvedHosts.length > 0 && this.props.submitError}
@@ -70,13 +70,13 @@ NodeOperationsForm.propTypes = {
   title: PropTypes.string,
   orderFields: PropTypes.object,
   onSubmit: PropTypes.func,
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.user,
     submitting: state.operationsForm.operations.fetching,
-    submitError: state.operationsForm.operations.error
+    submitError: state.operationsForm.operations.error,
   }
 }
 

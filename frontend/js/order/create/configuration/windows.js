@@ -1,15 +1,15 @@
 const title = 'Windows'
 const description = 'Server'
-const image = require('../../../../img/orderTypes/windows.png')
+const image = require('../../../../img/orderTypes/windows.png').default
 const orderApiPath = '/rest/vm/orders/windows'
 const orderFields = {
   environmentClass: {
     fieldType: 'environmentClass',
-    value: 'u'
+    value: 'u',
   },
   zone: {
     fieldType: 'zone',
-    value: 'fss'
+    value: 'fss',
   },
   osType: {
     label: 'Operating system',
@@ -17,9 +17,9 @@ const orderFields = {
     fieldType: 'buttonGroup',
     alternatives: [
       { label: 'Windows Server 2019', value: 'win2019' },
-      { label: 'Windows Server 2025', value: 'win2025' }
+      { label: 'Windows Server 2025', value: 'win2025' },
     ],
-    value: 'win2025'
+    value: 'win2025',
   },
   middleWareType: {
     label: 'Server type',
@@ -27,9 +27,9 @@ const orderFields = {
     fieldType: 'buttonGroup',
     alternatives: [
       { label: 'Application (ap)', value: 'windows_ap' },
-      { label: 'Information server (is)', value: 'windows_is' }
+      { label: 'Information server (is)', value: 'windows_is' },
     ],
-    value: 'windows_ap'
+    value: 'windows_ap',
   },
   serverCount: {
     label: 'Servers',
@@ -37,7 +37,7 @@ const orderFields = {
     fieldType: 'number',
     min: 1,
     max: 8,
-    value: 1
+    value: 1,
   },
   cpuCount: {
     label: 'Cpu',
@@ -45,7 +45,7 @@ const orderFields = {
     fieldType: 'number',
     min: 1,
     max: 4,
-    value: 1
+    value: 1,
   },
   memory: {
     label: 'Memory',
@@ -53,7 +53,7 @@ const orderFields = {
     fieldType: 'number',
     min: 2,
     max: 32,
-    value: 4
+    value: 4,
   },
   extraDisk: {
     label: 'Extra disk',
@@ -61,19 +61,19 @@ const orderFields = {
     fieldType: 'number',
     min: 0,
     max: 100,
-    value: 0
+    value: 0,
   },
   description: {
     label: 'Description',
     description: 'What is this server used for?',
     fieldType: 'text',
-    value: ''
-  }
+    value: '',
+  },
 }
 module.exports = {
   description,
   title,
   image,
   orderApiPath,
-  orderFields
+  orderFields,
 }

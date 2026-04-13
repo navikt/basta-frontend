@@ -1,5 +1,3 @@
-const request = require('request')
-
 const wellKnownUrl = process.env['AZURE_APP_WELL_KNOWN_URL']
 
 exports.clientID = process.env['AZURE_APP_CLIENT_ID']

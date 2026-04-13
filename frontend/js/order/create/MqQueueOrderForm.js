@@ -7,7 +7,7 @@ import {
   EnvironmentsDropDown,
   QueueManagerDropDown,
   MqClusterCheckBox,
-  ApplicationsDropDown
+  ApplicationsDropDown,
 } from '../../commonUi/formComponents'
 import OrderDropDown from '../../commonUi/formComponents/OrderDropDown'
 import { submitForm } from '../actionCreators'
@@ -16,7 +16,7 @@ import SubmitButton from '../../commonUi/formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import { orderApiPath } from './configuration/queue'
 
-const mqImage = require('../../../img/orderTypes/mq.png')
+import mqImage from 'url:../../../img/orderTypes/mq.png'
 
 const initialState = {
   environmentName: '',
@@ -28,7 +28,7 @@ const initialState = {
   maxMessageSize: '4',
   queueDepth: '5000',
   createBackoutQueue: false,
-  exposed: false
+  exposed: false,
 }
 
 export class MqQueueOrderForm extends Component {
@@ -36,7 +36,7 @@ export class MqQueueOrderForm extends Component {
     super(props)
     this.state = {
       environmentClass: 'u',
-      ...initialState
+      ...initialState,
     }
   }
 
@@ -53,7 +53,7 @@ export class MqQueueOrderForm extends Component {
       const normalizedAppName = application.replace(new RegExp('-', 'g'), '_').toUpperCase()
       this.setState({
         mqQueueName: `${environmentName.toUpperCase()}_${normalizedAppName}.${name.toUpperCase()}`,
-        fasitAlias: `${application}_${name}`
+        fasitAlias: `${application}_${name}`,
       })
     }
     if (queueManager && prevState.queueManager != queueManager && queueManager != '') {
@@ -65,7 +65,7 @@ export class MqQueueOrderForm extends Component {
     if (exposeQueue) {
       this.setState({
         exposed: exposeQueue,
-        clusterName: this.guessClusterName()
+        clusterName: this.guessClusterName(),
       })
     } else {
       this.setState({ exposed: exposeQueue })
@@ -108,7 +108,7 @@ export class MqQueueOrderForm extends Component {
       u: 'DEV',
       t: 'TEST',
       q: 'QASS',
-      p: 'PROD'
+      p: 'PROD',
     }
 
     let environmentDesignator = ''
@@ -135,7 +135,7 @@ export class MqQueueOrderForm extends Component {
       maxMessageSize,
       queueDepth,
       createBackoutQueue,
-      exposed
+      exposed,
     } = this.state
 
     return (
@@ -151,19 +151,19 @@ export class MqQueueOrderForm extends Component {
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup
               value={environmentClass}
-              onChange={v => this.handleChange('environmentClass', v)}
+              onChange={(v) => this.handleChange('environmentClass', v)}
             />
             <EnvironmentsDropDown
-              onChange={v => this.handleChange('environmentName', v)}
+              onChange={(v) => this.handleChange('environmentName', v)}
               environmentClass={environmentClass}
               value={this.state['environmentName']}
             />
             <ApplicationsDropDown
-              onChange={v => this.handleChange('application', v)}
+              onChange={(v) => this.handleChange('application', v)}
               value={application}
             />
             <QueueManagerDropDown
-              onChange={v => this.handleChange('queueManager', v)}
+              onChange={(v) => this.handleChange('queueManager', v)}
               envClass={environmentClass}
               envName={environmentName}
               application={application}
@@ -173,19 +173,19 @@ export class MqQueueOrderForm extends Component {
               label="Queue name"
               value={name}
               placeholder="Name of queue"
-              onChange={v => this.handleChange('name', v)}
+              onChange={(v) => this.handleChange('name', v)}
             />
             {environmentName && application && name ? (
               <div className={'subcomponents'}>
                 <OrderTextBox
                   label="Fasit alias"
                   value={fasitAlias}
-                  onChange={v => this.handleChange('fasitAlias', v)}
+                  onChange={(v) => this.handleChange('fasitAlias', v)}
                 />
                 <OrderTextBox
                   label={'MQ queue name'}
                   value={mqQueueName}
-                  onChange={v => this.handleChange('mqQueueName', v)}
+                  onChange={(v) => this.handleChange('mqQueueName', v)}
                 />
                 <OrderDropDown
                   label="Max size"
@@ -194,9 +194,9 @@ export class MqQueueOrderForm extends Component {
                     { label: '4 Mb', value: '4' },
                     { label: '10 MB', value: '10' },
                     { label: '20 MB', value: '20' },
-                    { label: '100 MB', value: '100' }
+                    { label: '100 MB', value: '100' },
                   ]}
-                  onChange={v => this.handleChange('maxMessageSize', v)}
+                  onChange={(v) => this.handleChange('maxMessageSize', v)}
                 />
                 <OrderDropDown
                   label="Queue depth"
@@ -207,16 +207,16 @@ export class MqQueueOrderForm extends Component {
                     { label: '10 000', value: '10000' },
                     { label: '100 000', value: '100000' },
                     { label: '1 000 000', value: '1000000' },
-                    { label: '2 000 000', value: '2000000' }
+                    { label: '2 000 000', value: '2000000' },
                   ]}
-                  onChange={v => this.handleChange('queueDepth', v)}
+                  onChange={(v) => this.handleChange('queueDepth', v)}
                 />
 
                 <OrderCheckBox
                   label="Backout queue"
                   value={createBackoutQueue}
                   description="A queue for nondeliverable messages"
-                  onChange={v => this.handleChange('createBackoutQueue', v)}
+                  onChange={(v) => this.handleChange('createBackoutQueue', v)}
                 />
                 <MqClusterCheckBox
                   queueManager={this.state.queueManager}
@@ -226,7 +226,7 @@ export class MqQueueOrderForm extends Component {
                   label="Expose to cluster"
                   value={exposed}
                   description="Will expose to all Queue Managers in cluster"
-                  onChange={v => this.exposeToCluster(v)}
+                  onChange={(v) => this.exposeToCluster(v)}
                 />
               </div>
             ) : null}
@@ -243,10 +243,10 @@ export class MqQueueOrderForm extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     formSubmitting: state.order.form.submitting,
-    formError: state.order.form.error
+    formError: state.order.form.error,
   }
 }
 
@@ -254,7 +254,7 @@ MqQueueOrderForm.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
   onSubmit: PropTypes.func,
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
 
 export default connect(mapStateToProps)(MqQueueOrderForm)
