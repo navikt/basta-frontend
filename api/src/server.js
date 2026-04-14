@@ -10,6 +10,7 @@ const session = require('cookie-session')
 const router = require('./routes/index')
 const prometheus = require('prom-client')
 const helmet = require('helmet')
+require('./config/passport')(passport)
 const { startApp } = require('./startApp')
 
 const proxy = require('./controllers/proxy')
@@ -89,11 +90,6 @@ app.use((err, req, res, next) => {
   next()
 })
 
-require('./config/passport')(passport)
-  .then(() => startApp(app))
-  .catch((err) => {
-    console.error('Failed to initialize passport:', err)
-    process.exit(1)
-  })
+startApp(app)
 
 module.exports = app
