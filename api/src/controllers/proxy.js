@@ -26,12 +26,28 @@ const exchangeForOboToken = async (userToken) => {
 
   if (!response.ok) {
     const error = await response.text()
+    console.error(
+      '[obo] exchange failed. endpoint:',
+      process.env.AZURE_OPENID_CONFIG_TOKEN_ENDPOINT,
+      'scope:',
+      process.env.BASTA_BACKEND_SCOPE,
+    )
     throw new Error(`OBO exchange failed: ${response.status} ${error}`)
   }
 
   const data = await response.json()
   const oboToken = data.access_token
   const expiresAt = Date.now() + data.expires_in * 1000
+
+  const payload = JSON.parse(Buffer.from(oboToken.split('.')[1], 'base64').toString())
+  console.log(
+    '[obo] aud:',
+    payload.aud,
+    'azp:',
+    payload.azp,
+    'exp:',
+    new Date(payload.exp * 1000).toISOString(),
+  )
 
   oboCache.set(userToken, { oboToken, expiresAt })
 
