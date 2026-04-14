@@ -29,7 +29,7 @@ app.use(
 )
 
 // HELMET
-app.use(helmet())
+app.use(helmet({ contentSecurityPolicy: false }))
 
 // CORS
 const cors = function (req, res, next) {
