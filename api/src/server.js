@@ -10,7 +10,6 @@ const session = require('cookie-session')
 const router = require('./routes/index')
 const prometheus = require('prom-client')
 const helmet = require('helmet')
-require('./config/passport')(passport)
 const { startApp } = require('./startApp')
 
 const proxy = require('./controllers/proxy')
@@ -30,7 +29,7 @@ app.use(
 )
 
 // HELMET
-app.use(helmet())
+app.use(helmet({ contentSecurityPolicy: false }))
 
 // CORS
 const cors = function (req, res, next) {
@@ -90,6 +89,7 @@ app.use((err, req, res, next) => {
   next()
 })
 
+require('./config/passport')(passport)
 startApp(app)
 
 module.exports = app
