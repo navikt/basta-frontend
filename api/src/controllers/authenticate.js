@@ -4,6 +4,7 @@ const { logoutURL } = require('../config/passportConfig')
 // AZURE AUTHENTICATE
 
 exports.authenticateAzure = () => {
+  console.log('Starting Azure authentication process')
   return (req, res, next) => {
     const concatUrl = (params) => {
       let string = ''
