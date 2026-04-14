@@ -90,6 +90,10 @@ app.use((err, req, res, next) => {
 })
 
 require('./config/passport')(passport)
-startApp(app)
+  .then(() => startApp(app))
+  .catch((err) => {
+    console.error('Failed to initialize passport:', err)
+    process.exit(1)
+  })
 
 module.exports = app

@@ -4,8 +4,8 @@ const { logoutURL } = require('../config/passportConfig')
 // AZURE AUTHENTICATE
 
 exports.authenticateAzure = () => {
-  console.log('Starting Azure authentication process')
   return (req, res, next) => {
+    console.log('[authenticate] /login hit, params:', req.params)
     const concatUrl = (params) => {
       let string = ''
       Object.keys(params).forEach((e) => {
@@ -15,12 +15,14 @@ exports.authenticateAzure = () => {
     }
     req.session.redirectUrl = concatUrl(req.params)
     try {
+      console.log('[authenticate] calling passport.authenticate oidc')
       passport.authenticate('oidc', {
         response: res,
         successRedirect: '/',
         failureRedirect: '/error',
       })(req, res, next)
     } catch (err) {
+      console.error('[authenticate] caught error:', err)
       throw `ERROR during authentication: ${err}`
     }
   }
@@ -28,6 +30,7 @@ exports.authenticateAzure = () => {
 
 exports.authenticateAzureCallback = () => {
   return (req, res, next) => {
+    console.log('[authenticate] callback hit')
     try {
       passport.authenticate('oidc', {
         response: res,
@@ -35,6 +38,7 @@ exports.authenticateAzureCallback = () => {
         failureRedirect: '/error',
       })(req, res, next)
     } catch (err) {
+      console.error('[authenticate] callback caught error:', err)
       throw `ERROR during authentication: ${err}`
     }
   }

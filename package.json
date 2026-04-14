@@ -176,10 +176,5 @@
     "react-router"
   ],
   "author": "@navikt/aura",
-  "license": "MIT",
-  "pnpm": {
-    "overrides": {
-      "cheerio": "0.22.0"
-    }
-  }
+  "license": "MIT"
 }
