@@ -71,6 +71,9 @@ exports.doProxy = () => {
     changeOrigin: true,
     logLevel: 'info',
     pathRewrite: (path, req) => req.originalUrl,
+    onProxyRes: (proxyRes, req) => {
+      console.log(`[proxy] ${req.method} ${req.originalUrl} -> ${proxyRes.statusCode}`)
+    },
     onError: (err, req, res) => {
       console.log('error in proxy', err)
     },
