@@ -1,19 +1,15 @@
 'use strict'
 
-const { host, sessionSecret, cookieDomain } = require('./config/config')
+const { host } = require('./config/config')
 const express = require('express')
 const logger = require('morgan')
-const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
-const passport = require('passport')
-const session = require('cookie-session')
 const router = require('./routes/index')
 const prometheus = require('prom-client')
 const helmet = require('helmet')
 const { startApp } = require('./startApp')
 
 const proxy = require('./controllers/proxy')
-const token = require('./controllers/token')
 const auth = require('./controllers/authenticate')
 
 prometheus.collectDefaultMetrics()
@@ -44,44 +40,32 @@ const cors = function (req, res, next) {
 }
 app.use(cors)
 
-// SESSION
-
 app.use(bodyParser.json())
-app.use(cookieParser(sessionSecret))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.set('trust proxy', 1)
 
-app.use(
-  session({
-    name: 'basta',
-    keys: [`${process.env['BASTACOOKIE_KEY1']}`, `${process.env['BASTACOOKIE_KEY2']}`],
-    maxAge: 24 * 60 * 60 * 1000, // 24 timer
-    domain: cookieDomain,
-    sameSite: 'lax',
-  }),
-)
-app.use(passport.initialize())
+// Decode JWT claims from the sidecar-injected Authorization header
 app.use((req, res, next) => {
-  if (req.session && !req.session.regenerate) {
-    req.session.regenerate = (cb) => cb()
-  }
-  if (req.session && !req.session.save) {
-    req.session.save = (cb) => cb()
+  const authHeader = req.headers['authorization']
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    try {
+      const payload = authHeader.split('.')[1]
+      req.user = JSON.parse(Buffer.from(payload, 'base64').toString('utf8'))
+    } catch (_) {}
   }
   next()
 })
-app.use(passport.session())
 
 // ROUTES
 app.use('/static', express.static('./dist'))
-app.use('/rest/', auth.ensureAuthenticated(), proxy.attachToken(), proxy.doProxy())
+app.use('/rest/', auth.ensureAuthenticated(), proxy.doProxy())
 app.use('/', router)
 
 app.get('*', (req, res) => {
   res.sendFile('index.html', { root: './dist' })
 })
-// ERROR HANDLING
 
+// ERROR HANDLING
 app.use((err, req, res, next) => {
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
@@ -89,7 +73,6 @@ app.use((err, req, res, next) => {
   next()
 })
 
-require('./config/passport')(passport)
 startApp(app)
 
 module.exports = app

@@ -11,13 +11,6 @@ router.get('/isalive', health.isAlive())
 
 router.get('/metrics', health.metrics())
 
-// AUTHENTICATION
-router.get('/login/:param1?/:param2?/:param3?', auth.authenticateAzure())
-
-router.get('/auth/openid/callback', auth.authenticateAzureCallback())
-
-router.get(`/auth/logout`, auth.logout())
-
 // USER
 router.get('/user/profile', auth.ensureAuthenticated(), user.getUserProfile())
 

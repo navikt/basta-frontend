@@ -31,9 +31,7 @@
     "common": "^0.2.5",
     "connect": "^3.7.0",
     "cookie-parser": "^1.4.6",
-    "cookie-session": "^2.0.0",
     "express": "^4.18.2",
-    "express-session": "^1.18.0",
     "helmet": "^7.1.0",
     "http-proxy-middleware": "^2.0.6",
     "husky": "^4.0.0",
@@ -41,8 +39,6 @@
     "moment": "^2.22.2",
     "morgan": "^1.9.0",
     "nock": "^11.9.0",
-    "openid-client": "^5.7.0",
-    "passport": "^0.7.0",
     "pretty-quick": "^4.0.0",
     "prom-client": "^11.5.3",
     "re": "^0.1.4"

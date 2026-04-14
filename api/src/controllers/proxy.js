@@ -1,5 +1,4 @@
 const { createProxyMiddleware } = require('http-proxy-middleware')
-const token = require('./token')
 
 exports.doProxy = () => {
   return createProxyMiddleware('/rest', {
@@ -21,18 +20,5 @@ const restream = (proxyReq, req, res, options) => {
     proxyReq.setHeader('Content-Type', 'application/json')
     proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData))
     proxyReq.write(bodyData)
-  }
-}
-
-exports.attachToken = () => {
-  return async (req, res, next) => {
-    const resource = process.env['BASTA_BACKEND_CLIENT_ID']
-    const accessToken = await token.validateRefreshAndGetToken(
-      req.session.userid,
-      req.session.refreshToken,
-      resource,
-    )
-    req.headers['Authorization'] = `Bearer ${accessToken}`
-    return next()
   }
 }
