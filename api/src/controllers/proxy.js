@@ -70,7 +70,7 @@ exports.doProxy = () => {
     secure: true,
     changeOrigin: true,
     logLevel: 'info',
-    pathRewrite: (path) => `/rest${path}`,
+    pathRewrite: (path, req) => req.originalUrl,
     onError: (err, req, res) => {
       console.log('error in proxy', err)
     },
