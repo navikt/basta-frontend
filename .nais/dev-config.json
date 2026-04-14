@@ -15,6 +15,10 @@
       "value": "https://login.microsoftonline.com/navno.onmicrosoft.com/oauth2/token"
     },
     {
+      "name": "BASTA_BACKEND_SCOPE",
+      "value": "api://dev-fss.team-atom.basta/.default"
+    },
+    {
       "name": "AZURE_LOGOUT_URL",
       "value": "https://login.microsoftonline.com/navno.onmicrosoft.com/oauth2/logout?post_logout_redirect_uri=http:\\\\localhost:8080"
     }

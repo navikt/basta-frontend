@@ -58,7 +58,7 @@ app.use((req, res, next) => {
 
 // ROUTES
 app.use('/static', express.static('./dist'))
-app.use('/rest/', auth.ensureAuthenticated(), proxy.doProxy())
+app.use('/rest/', auth.ensureAuthenticated(), proxy.attachToken(), proxy.doProxy())
 app.use('/', router)
 
 app.get('*', (req, res) => {

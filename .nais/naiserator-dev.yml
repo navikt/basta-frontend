@@ -25,7 +25,10 @@ spec:
       enabled: true
   accessPolicy:
     outbound:
-      rules: []
+      rules:
+        - application: basta
+          namespace: team-atom
+          cluster: dev-fss
       external:
       {{#each external-hosts}}
         - host: "{{ this }}" 
