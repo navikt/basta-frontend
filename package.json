@@ -58,6 +58,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "less": "^3.11.1",
     "lodash.throttle": "^4.1.1",
+    "mkdirp": "^3.0.1",
     "ncp": "^2.0.0",
     "nock": "^11.9.0",
     "nodemon": "^3.1.7",
@@ -107,5 +108,14 @@
     "react-router"
   ],
   "author": "@navikt/aura",
-  "license": "MIT"
+  "license": "MIT",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@swc/core",
+      "lmdb",
+      "msgpackr-extract"
+    ]
+  },
+  "packageManager": "pnpm@10.33.0"
 }

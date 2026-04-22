@@ -10,9 +10,9 @@ Dette er frontend til basta som kaller Basta APIet internt.
 Kjør
 
 ```console
-npm install
-npm run api
-npm run frontend
+pnpm install
+pnpm api
+pnpm frontend
 ```
 
 ### Offline modus
@@ -22,8 +22,8 @@ Det finnes en offline modus som mocker ut Azure AD.
 For offline modus kjør:
 
 ```console
-npm run mockend
-npm run offline
+pnpm mockend
+pnpm offline
 ```
 
 Api gir det et mock api som simulerer basta backend

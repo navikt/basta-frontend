@@ -1,17 +1,20 @@
 FROM node:22-alpine AS builder
 WORKDIR /home/app
+RUN corepack enable
 
-COPY ./package* ./
+COPY ./package.json ./pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 COPY ./ ./
-RUN npm run build
+RUN pnpm run build
 
 FROM node:22-alpine
 ENV NODE_ENV=production
 EXPOSE 8080
 WORKDIR /home/app
+RUN corepack enable
 
-COPY ./package* ./
-COPY --from=builder /home/app/node_modules/ ./node_modules/
+COPY ./package.json ./pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile --prod
 COPY --from=builder /home/app/dist/ ./dist/
 COPY ./api/src ./api/src
 
