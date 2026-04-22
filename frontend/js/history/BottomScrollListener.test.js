@@ -1,10 +1,10 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
 import { BottomScrollListener } from './BottomScrollListener'
 
-describe('(Component) HistoryFilter', () => {
-  const wrapper = shallow(<BottomScrollListener />)
+describe('(Component) BottomScrollListener', () => {
   it('Renders without exploding', () => {
-    expect(wrapper.length).toBe(1)
+    const { container } = render(<BottomScrollListener />)
+    expect(container).toBeTruthy()
   })
 })

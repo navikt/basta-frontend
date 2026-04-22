@@ -15,5 +15,5 @@ export function* initializeApplication() {
 }
 
 export function* watchInitialize() {
-  yield fork(takeEvery, INITIALIZE_APPLICATION, initializeApplication)
+  yield takeEvery(INITIALIZE_APPLICATION, initializeApplication)
 }

@@ -6,7 +6,7 @@ import {
   USER_PROFILE_RECEIVED,
   USER_PROFILE_REQUEST_FAILED,
   USER_LOGOUT,
-  USER_SESSION_EXPIRED
+  USER_SESSION_EXPIRED,
 } from '../../actionTypes'
 
 export function* fetchUserProfile() {
@@ -31,6 +31,6 @@ export function* logoutUser() {
 }
 
 export function* watchUser() {
-  yield fork(takeEvery, USER_PROFILE_REQUEST, fetchUserProfile)
-  yield fork(takeEvery, USER_LOGOUT, logoutUser)
+  yield takeEvery(USER_PROFILE_REQUEST, fetchUserProfile)
+  yield takeEvery(USER_LOGOUT, logoutUser)
 }

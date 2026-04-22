@@ -8,13 +8,14 @@ import Request from './Request'
 import Results from './Results'
 import Log from './Log'
 import { getOrder, getStatusLog } from '../../order/actionCreators'
+import { withRouter } from '../../common/withRouter'
 
 export class OrderDetails extends Component {
   constructor(props) {
     super(props)
     this.state = {
       time: 0,
-      monitoring: true
+      monitoring: true,
     }
   }
 
@@ -83,10 +84,10 @@ export class OrderDetails extends Component {
 
 OrderDetails.propTypes = {}
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    order: state.order
+    order: state.order,
   }
 }
 
-export default connect(mapStateToProps)(OrderDetails)
+export default withRouter(connect(mapStateToProps)(OrderDetails))

@@ -36,7 +36,7 @@ import {
   CERTIFICATE_FASIT_RECEIVED,
   CERTIFICATE_FASIT_REQUEST,
   CERTIFICATE_FASIT_REQUEST_FAILED,
-  MQQUEUES_REQUEST
+  MQQUEUES_REQUEST,
 } from '../../actionTypes'
 
 export function* fetchQueueManagers(action) {
@@ -44,12 +44,12 @@ export function* fetchQueueManagers(action) {
   try {
     let queueManagers = yield call(
       getUrl,
-      `/rest/v2/fasit/resources?environmentclass=${action.envClass}&type=queuemanager`
+      `/rest/v2/fasit/resources?environmentclass=${action.envClass}&type=queuemanager`,
     )
     const distinctQueueManagers = yield call(
       groupQueueManagersByName,
       queueManagers,
-      action.envName
+      action.envName,
     )
     yield put({ type: MQ_QUEUE_MANAGERS_RECEIVED, value: distinctQueueManagers })
   } catch (err) {
@@ -65,7 +65,7 @@ export function* fetchMqClusters(action) {
       getUrl,
       `/rest/v1/mq/clusters?environmentClass=${
         action.environmentClass
-      }&queueManager=${encodeURIComponent(action.queueManager)}`
+      }&queueManager=${encodeURIComponent(action.queueManager)}`,
     )
     yield put({ type: MQCLUSTERS_RECEIVED, value: resources })
   } catch (err) {
@@ -81,7 +81,7 @@ export function* fetchMqQueues(action) {
       getUrl,
       `/rest/v1/mq/queuenames?environmentClass=${
         action.environmentClass
-      }&queueManager=${encodeURIComponent(action.queueManager)}`
+      }&queueManager=${encodeURIComponent(action.queueManager)}`,
     )
     yield put({ type: MQQUEUES_RECEIVED, value: resources })
   } catch (err) {
@@ -97,7 +97,7 @@ export function* fetchMqChannels(action) {
       getUrl,
       `/rest/v1/mq/channels?environmentClass=${
         action.environmentClass
-      }&queueManager=${encodeURIComponent(action.queueManager)}`
+      }&queueManager=${encodeURIComponent(action.queueManager)}`,
     )
     yield put({ type: MQCHANNELS_RECEIVED, value: resources })
   } catch (err) {
@@ -109,7 +109,7 @@ export function* fetchApplications() {
   yield put({ type: APPLICATIONS_FETCHING })
   try {
     let applications = yield call(getUrl, '/rest/v1/fasit/applications')
-    let filteredApplications = applications.map(application => {
+    let filteredApplications = applications.map((application) => {
       return application.name
     })
     yield put({ type: APPLICATIONS_RECEIVED, value: filteredApplications })
@@ -133,7 +133,7 @@ export function* fetchDbTemplates(action) {
   try {
     let templates = yield call(
       getUrl,
-      `/rest/v1/oracledb/templates?environmentClass=${action.environmentClass}&zone=${action.zone}`
+      `/rest/v1/oracledb/templates?environmentClass=${action.environmentClass}&zone=${action.zone}`,
     )
     yield put({ type: DBTEMPLATES_RECEIVED, value: templates })
   } catch (err) {
@@ -146,13 +146,13 @@ export function* fetchVirtualServers(action) {
   try {
     const virtualServers = yield call(
       getUrl,
-      `/rest/v1/bigip/virtualservers?application=${action.application}&environmentClass=${action.environmentClass}&environmentName=${action.environment}&zone=${action.zone}`
+      `/rest/v1/bigip/virtualservers?application=${action.application}&environmentClass=${action.environmentClass}&environmentName=${action.environment}&zone=${action.zone}`,
     )
     yield put({ type: VIRTUALSERVERS_RECEIVED, value: virtualServers })
   } catch (error) {
     yield put({
       type: VIRTUALSERVERS_REQUEST_FAILED,
-      error: `Failed fetching virtual server list. ${error} `
+      error: `Failed fetching virtual server list. ${error} `,
     })
   }
 }
@@ -161,7 +161,7 @@ export function* certificateExistInFasit(action) {
   try {
     let certificateExists = yield call(
       getUrl,
-      `/rest/orders/serviceuser/certificate/existInFasit?application=${action.application}&environmentClass=${action.environmentClass}&zone=${action.zone}`
+      `/rest/orders/serviceuser/certificate/existInFasit?application=${action.application}&environmentClass=${action.environmentClass}&zone=${action.zone}`,
     )
     yield put({ type: CERTIFICATE_FASIT_RECEIVED, value: certificateExists })
   } catch (err) {
@@ -170,13 +170,13 @@ export function* certificateExistInFasit(action) {
 }
 
 export function* watchOrderData() {
-  yield fork(takeEvery, ENVIRONMENTS_REQUEST, fetchEnvironments)
-  yield fork(takeEvery, APPLICATIONS_REQUEST, fetchApplications)
-  yield fork(takeEvery, MQ_QUEUE_MANAGERS_REQUEST, fetchQueueManagers)
-  yield fork(takeEvery, MQCLUSTERS_REQUEST, fetchMqClusters)
-  yield fork(takeEvery, MQQUEUES_REQUEST, fetchMqQueues)
-  yield fork(takeEvery, MQCHANNELS_REQUEST, fetchMqChannels)
-  yield fork(takeEvery, DBTEMPLATES_REQUEST, fetchDbTemplates)
-  yield fork(takeEvery, VIRTUALSERVERS_REQUEST, fetchVirtualServers)
-  yield fork(takeEvery, CERTIFICATE_FASIT_REQUEST, certificateExistInFasit)
+  yield takeEvery(ENVIRONMENTS_REQUEST, fetchEnvironments)
+  yield takeEvery(APPLICATIONS_REQUEST, fetchApplications)
+  yield takeEvery(MQ_QUEUE_MANAGERS_REQUEST, fetchQueueManagers)
+  yield takeEvery(MQCLUSTERS_REQUEST, fetchMqClusters)
+  yield takeEvery(MQQUEUES_REQUEST, fetchMqQueues)
+  yield takeEvery(MQCHANNELS_REQUEST, fetchMqChannels)
+  yield takeEvery(DBTEMPLATES_REQUEST, fetchDbTemplates)
+  yield takeEvery(VIRTUALSERVERS_REQUEST, fetchVirtualServers)
+  yield takeEvery(CERTIFICATE_FASIT_REQUEST, certificateExistInFasit)
 }

@@ -1,21 +1,17 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
 import ErrorPanel from './ErrorPanel'
 
 describe('(Component) ErrorPanel', () => {
-  let wrapper
-
-  beforeEach(() => {
-    wrapper = shallow(<ErrorPanel />)
+  it('renders without exploding', () => {
+    const { container } = render(<ErrorPanel />)
+    expect(container).toBeTruthy()
   })
 
-  it('(Component) ErrorPanel renders without exploding', () => {
-    expect(wrapper.length).toBe(1)
-  })
-
-  it('(Component) ErrorPanel renders component if show', () => {
-    expect(wrapper.find('.error-message')).toHaveLength(0)
-    wrapper = shallow(<ErrorPanel show={true} />)
-    expect(wrapper.find('.error-message')).toHaveLength(1)
+  it('renders message div if show', () => {
+    const { container: c1 } = render(<ErrorPanel />)
+    expect(c1.querySelectorAll('.error-message').length).toBe(0)
+    const { container: c2 } = render(<ErrorPanel show={true} />)
+    expect(c2.querySelectorAll('.error-message').length).toBe(1)
   })
 })

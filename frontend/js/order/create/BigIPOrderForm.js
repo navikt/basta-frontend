@@ -8,7 +8,7 @@ import {
 } from '../../commonUi/formComponents'
 import VirtualServerDropDown from '../../commonUi/formComponents/VirtualServerDropDown'
 import { submitForm } from '../actionCreators'
-import { withRouter } from 'react-router-dom'
+import { withRouter } from '../../common/withRouter'
 import { connect } from 'react-redux'
 import image from 'url:../../../img/orderTypes/big-ip.png'
 import { InfoStripe } from '../../commonUi/formComponents/AlertStripe'

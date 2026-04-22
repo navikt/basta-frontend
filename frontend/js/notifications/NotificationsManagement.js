@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { OrderTextBox } from '../commonUi/formComponents'
 import SubmitButton from '../commonUi/formComponents/SubmitButton'
-import { withRouter } from 'react-router-dom'
+import { withRouter } from '../common/withRouter'
 import { connect } from 'react-redux'
 import { postNotification, removeNotification } from './notificationsActionCreator'
 import moment from 'moment'
 
 const initialState = {
-  message: ''
+  message: '',
 }
 export class ServerOrderForm extends Component {
   constructor(props) {
@@ -45,7 +45,7 @@ export class ServerOrderForm extends Component {
               label="Notification message"
               placeholder="Enter notification message"
               value={message}
-              onChange={v => this.setState({ message: v })}
+              onChange={(v) => this.setState({ message: v })}
             />
             <SubmitButton
               submitting={submitting}
@@ -104,14 +104,14 @@ ServerOrderForm.propTypes = {
   title: PropTypes.string,
   orderFields: PropTypes.object,
   onSubmit: PropTypes.func,
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     error: state.notificationsForm.form.error,
     submitting: state.notificationsForm.form.submitting,
-    activeNotifications: state.notificationsForm.activeNotifications
+    activeNotifications: state.notificationsForm.activeNotifications,
   }
 }
 

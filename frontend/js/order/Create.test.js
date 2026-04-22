@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { renderWithProviders } from '../common/testUtils'
 import { Create } from './Create'
 
 describe('Order filter function', () => {
@@ -9,27 +9,12 @@ describe('Order filter function', () => {
       firstName: 'mock',
       lastName: 'name',
       displayName: 'Mock User',
-      roles: ['ROLE1', 'ROLE2']
-    }
-  }
-  const orderTypes = [
-    {
-      title: 'IApp Tools',
-      description: 'Available via VPN',
-      image: 'balls',
-      url: '/create/iapptools'
+      roles: ['ROLE1', 'ROLE2'],
     },
-    {
-      title: 'Devillo Tools',
-      description: 'Jenkins etc. in Devillo',
-      image: 'balls',
-      url: '/create/developertools'
-    }
-  ]
-  const wrapper = shallow(<Create user={user} />)
-  wrapper.setState({ orderTypes })
+  }
 
   it('should return a list of all elementsv without exploding', () => {
-    expect(wrapper.length).toBe(1)
+    const { container } = renderWithProviders(<Create user={user} />)
+    expect(container).toBeTruthy()
   })
 })

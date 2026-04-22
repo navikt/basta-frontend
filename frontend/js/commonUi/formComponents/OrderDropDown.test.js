@@ -1,11 +1,11 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
 import { OrderDropDown } from './OrderDropDown'
 
 describe('(Component) EnvironmentsDropDown', () => {
   const alternatives = [{ label: 'a', value: 'a' }]
-  const wrapper = shallow(<OrderDropDown alternatives={alternatives} />)
   it('Renders without exploding', () => {
-    expect(wrapper.length).toBe(1)
+    const { container } = render(<OrderDropDown alternatives={alternatives} />)
+    expect(container).toBeTruthy()
   })
 })

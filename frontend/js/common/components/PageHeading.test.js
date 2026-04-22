@@ -1,10 +1,10 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
 import { PageHeading } from './PageHeading'
 
 describe('(Component) PageHeading', () => {
-  const wrapper = shallow(<PageHeading />)
   it('Renders without exploding', () => {
-    expect(wrapper.length).toBe(1)
+    const { container } = render(<PageHeading />)
+    expect(container).toBeTruthy()
   })
 })

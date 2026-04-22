@@ -1,16 +1,30 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './common/store'
 import history from './common/history'
 import App from './App'
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-      <App />
+const HistoryRouter = ({ history, children }) => {
+  const [state, setState] = React.useState({
+    action: history.action,
+    location: history.location,
+  })
+  React.useLayoutEffect(() => history.listen(setState), [history])
+  return (
+    <Router navigator={history} location={state.location} navigationType={state.action}>
+      {children}
     </Router>
+  )
+}
+
+const container = document.getElementById('app')
+const root = createRoot(container)
+root.render(
+  <Provider store={store}>
+    <HistoryRouter history={history}>
+      <App />
+    </HistoryRouter>
   </Provider>,
-  document.getElementById('app')
 )

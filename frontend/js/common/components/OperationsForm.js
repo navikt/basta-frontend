@@ -4,11 +4,11 @@ import {
   OrderTextBox,
   OrderButtonGroup,
   ApplicationsDropDown,
-  OrderCheckBox
+  OrderCheckBox,
 } from '../../commonUi/formComponents'
 import orderTypes from '../../order/create/configuration'
 import OrderDropDown from '../../commonUi/formComponents/OrderDropDown'
-import { withRouter } from 'react-router-dom'
+import { withRouter } from '../withRouter'
 import { connect } from 'react-redux'
 import { submitOperation } from '../../operations/operateActionCreators'
 import OperationsButtons from './formComponents/OperationsButtons'
@@ -55,7 +55,7 @@ export class OperationsForm extends Component {
             <div className="orderFormDescription">{this.configuration.description}</div>
           </div>
           <div className="orderFormItems">
-            {Object.keys(orderFields).map(orderFieldKey => {
+            {Object.keys(orderFields).map((orderFieldKey) => {
               const orderField = orderFields[orderFieldKey]
               switch (orderField.fieldType) {
                 case 'text':
@@ -65,7 +65,7 @@ export class OperationsForm extends Component {
                       label={orderField.label}
                       value={this.state[orderFieldKey]}
                       placeholder={orderField.description}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
+                      onChange={(v) => this.handleChange(orderFieldKey, v)}
                     />
                   )
                 case 'buttonGroup':
@@ -77,7 +77,7 @@ export class OperationsForm extends Component {
                       description={orderField.description}
                       alternatives={orderField.alternatives}
                       roles={this.props.user.userProfile.roles}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
+                      onChange={(v) => this.handleChange(orderFieldKey, v)}
                     />
                   )
 
@@ -85,7 +85,7 @@ export class OperationsForm extends Component {
                   return (
                     <ApplicationsDropDown
                       key={orderFieldKey}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
+                      onChange={(v) => this.handleChange(orderFieldKey, v)}
                       value={this.state[orderFieldKey]}
                     />
                   )
@@ -98,7 +98,7 @@ export class OperationsForm extends Component {
                       value={this.state[orderFieldKey]}
                       description={orderField.description}
                       alternatives={orderField.alternatives}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
+                      onChange={(v) => this.handleChange(orderFieldKey, v)}
                     />
                   )
 
@@ -109,7 +109,7 @@ export class OperationsForm extends Component {
                       label={orderField.label}
                       value={this.state[orderFieldKey]}
                       description={orderField.description}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
+                      onChange={(v) => this.handleChange(orderFieldKey, v)}
                     />
                   )
 
@@ -118,7 +118,7 @@ export class OperationsForm extends Component {
                     console.log(
                       'fieldType',
                       orderField.fieldType,
-                      'is not a valid OrderForm component'
+                      'is not a valid OrderForm component',
                     )
                   }
               }
@@ -139,11 +139,11 @@ OperationsForm.propTypes = {
   title: PropTypes.string,
   orderFields: PropTypes.object,
   onSubmit: PropTypes.func,
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
   }
 }
 

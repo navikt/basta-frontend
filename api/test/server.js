@@ -31,7 +31,7 @@ app.use(
   createProxyMiddleware({
     target: `${process.env.BASTA_BACKEND}`,
     logger: console,
-    pathRewrite: (path) => `${path}`,
+    pathRewrite: (path) => `/rest${path}`,
   }),
 )
 app.use(cors)

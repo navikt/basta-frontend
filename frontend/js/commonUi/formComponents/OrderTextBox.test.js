@@ -1,10 +1,10 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
 import { OrderTextBox } from './OrderTextBox'
 
 describe('(Component) OrderTextBox', () => {
-  const wrapper = shallow(<OrderTextBox />)
   it('Renders without exploding', () => {
-    expect(wrapper.length).toBe(1)
+    const { container } = render(<OrderTextBox />)
+    expect(container).toBeTruthy()
   })
 })
