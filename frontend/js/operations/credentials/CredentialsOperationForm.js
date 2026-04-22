@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { submitOperation, submitCredentialLookup } from '../operateActionCreators'
 import { connect } from 'react-redux'
-import image from '../../../img/orderTypes/redhat.png'
+import image from 'url:../../../img/orderTypes/redhat.png'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import { InfoStripe, ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
@@ -10,7 +10,7 @@ import { ApplicationsDropDown, OperationsButtons } from '../../commonUi/formComp
 
 const initialState = {
   zone: 'fss',
-  application: ''
+  application: '',
 }
 
 export class CredentialsOperationForm extends Component {
@@ -18,7 +18,7 @@ export class CredentialsOperationForm extends Component {
     super(props)
     this.state = {
       environmentClass: 'u',
-      ...initialState
+      ...initialState,
     }
   }
 
@@ -83,11 +83,11 @@ export class CredentialsOperationForm extends Component {
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup
               value={environmentClass}
-              onChange={v => this.handleChange('environmentClass', v)}
+              onChange={(v) => this.handleChange('environmentClass', v)}
             />
-            <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
+            <ZoneButtonGroup value={zone} onChange={(v) => this.handleChange('zone', v)} />
             <ApplicationsDropDown
-              onChange={v => this.handleChange('application', v)}
+              onChange={(v) => this.handleChange('application', v)}
               value={application}
             />
             <InfoStripe
@@ -124,10 +124,10 @@ CredentialsOperationForm.propTypes = {
   onSubmit: PropTypes.func,
   dispatch: PropTypes.func,
   existInFasit: PropTypes.bool,
-  existInAD: PropTypes.bool
+  existInAD: PropTypes.bool,
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.user,
     submitError: state.operationsForm.operations.error,
@@ -135,7 +135,7 @@ const mapStateToProps = state => {
     existInFasit: state.operationsForm.credentialLookup.data.existInFasit,
     existInAD: state.operationsForm.credentialLookup.data.existInAD,
     submitting: state.operationsForm.operations.fetching,
-    submitError: state.operationsForm.operations.error
+    submitError: state.operationsForm.operations.error,
   }
 }
 

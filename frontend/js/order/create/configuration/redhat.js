@@ -1,18 +1,18 @@
 const title = 'Red Hat'
 const description = 'Linux'
-const image = require('../../../../img/orderTypes/redhat.png')
+import image from 'url:../../../../img/orderTypes/redhat.png'
 const orderApiPath = '/rest/vm/orders/linux'
 const orderFields = {
   nodeType: {
-    value: 'PLAIN_LINUX'
+    value: 'PLAIN_LINUX',
   },
   environmentClass: {
     fieldType: 'environmentClass',
-    value: 'u'
+    value: 'u',
   },
   zone: {
     fieldType: 'zone',
-    value: 'fss'
+    value: 'fss',
   },
   osType: {
     label: 'OS version',
@@ -20,9 +20,9 @@ const orderFields = {
     fieldType: 'buttonGroup',
     alternatives: [
       { label: 'RHEL 8', value: 'rhel80' },
-      { label: 'RHEL 9', value: 'rhel90' }
+      { label: 'RHEL 9', value: 'rhel90' },
     ],
-    value: 'rhel90'
+    value: 'rhel90',
   },
   serverCount: {
     label: 'Servers',
@@ -30,7 +30,7 @@ const orderFields = {
     fieldType: 'number',
     min: 1,
     max: 8,
-    value: 1
+    value: 1,
   },
   cpuCount: {
     label: 'Cpu',
@@ -38,7 +38,7 @@ const orderFields = {
     fieldType: 'number',
     min: 1,
     max: 4,
-    value: 1
+    value: 1,
   },
   memory: {
     label: 'Memory',
@@ -46,7 +46,7 @@ const orderFields = {
     fieldType: 'number',
     min: 2,
     max: 32,
-    value: 2
+    value: 2,
   },
   extraDisk: {
     label: 'Extra disk',
@@ -54,25 +54,25 @@ const orderFields = {
     fieldType: 'number',
     min: 0,
     max: 100,
-    value: 0
+    value: 0,
   },
   description: {
     label: 'Description',
     description: 'What is this server used for?',
     fieldType: 'text',
-    value: ''
+    value: '',
   },
   ibmSw: {
     label: 'IBM',
     description: 'Will install ILMT agent',
     fieldType: 'checkBox',
-    value: false
-  }
+    value: false,
+  },
 }
 module.exports = {
   description,
   title,
   image,
   orderApiPath,
-  orderFields
+  orderFields,
 }

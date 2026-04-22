@@ -12,8 +12,6 @@ spec:
     application:
       enabled: true
       tenant: nav.no
-      replyURLs: 
-        - "https://basta.intern.dev.nav.no/auth/openid/callback"
       claims:
         groups:
           - id: "47204455-7930-4eda-af04-cd2e91825651" 
@@ -23,9 +21,14 @@ spec:
           - id: "c10e6466-4d28-4467-8e93-43cacfbcff92"
         extra:
           - 'NAVident'
+    sidecar:
+      enabled: true
   accessPolicy:
     outbound:
-      rules: []
+      rules:
+        - application: basta
+          namespace: team-atom
+          cluster: dev-fss
       external:
       {{#each external-hosts}}
         - host: "{{ this }}" 
@@ -39,8 +42,8 @@ spec:
   prometheus:
     path: /metrics
   replicas:
-    min: 2
-    max: 2
+    min: 1
+    max: 1
   ingresses: 
     {{#each ingress}}
     - "{{ this }}"

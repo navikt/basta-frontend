@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { submitOperation, submitCustomCredentialLookup } from '../operateActionCreators'
 import { connect } from 'react-redux'
-import image from '../../../img/orderTypes/security.png'
+import image from 'url:../../../img/orderTypes/security.png'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
@@ -10,7 +10,7 @@ import { OperationsButtons } from '../../commonUi/formComponents'
 
 const initialState = {
   zone: 'fss',
-  application: ''
+  application: '',
 }
 
 export class CredentialsOperationForm extends Component {
@@ -18,7 +18,7 @@ export class CredentialsOperationForm extends Component {
     super(props)
     this.state = {
       environmentClass: 'u',
-      ...initialState
+      ...initialState,
     }
   }
 
@@ -83,9 +83,9 @@ export class CredentialsOperationForm extends Component {
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup
               value={environmentClass}
-              onChange={v => this.handleChange('environmentClass', v)}
+              onChange={(v) => this.handleChange('environmentClass', v)}
             />
-            <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
+            <ZoneButtonGroup value={zone} onChange={(v) => this.handleChange('zone', v)} />
             <ErrorStripe
               show={this.userNotFound()}
               message={`Service user for ${application} does not exist in AD. There is nothing to delete here.`}
@@ -112,10 +112,10 @@ CredentialsOperationForm.propTypes = {
   onSubmit: PropTypes.func,
   dispatch: PropTypes.func,
   existInFasit: PropTypes.bool,
-  existInAD: PropTypes.bool
+  existInAD: PropTypes.bool,
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.user,
     submitError: state.operationsForm.operations.error,
@@ -123,7 +123,7 @@ const mapStateToProps = state => {
     existInFasit: state.operationsForm.credentialLookup.data.existInFasit,
     existInAD: state.operationsForm.credentialLookup.data.existInAD,
     submitting: state.operationsForm.operations.fetching,
-    submitError: state.operationsForm.operations.error
+    submitError: state.operationsForm.operations.error,
   }
 }
 

@@ -1,13 +1,15 @@
-// USER SESSION
+const getroles = require('./getroles')
 
 exports.getUserProfile = () => {
-  return async (req, res) => {
+  return (req, res) => {
+    if (!req.user) {
+      return res.status(401).send('Unauthorized')
+    }
     const user = {
-      userName: req.session.upn,
-      firstName: req.session.firstName,
-      lastName: req.session.lastName,
-      displayName: req.session.displayName,
-      roles: req.session.roles
+      userName: req.user.preferred_username || req.user.NAVident,
+      displayName: req.user.name,
+      NAVident: req.user.NAVident,
+      roles: getroles.matchRoles(req.user.groups || []),
     }
     res.status(200).send(user)
   }
@@ -15,8 +17,6 @@ exports.getUserProfile = () => {
 
 exports.userSessionLookup = () => {
   return (req, res) => {
-    res.status(200).send({
-      session: 'active'
-    })
+    res.status(200).send({ session: 'active' })
   }
 }

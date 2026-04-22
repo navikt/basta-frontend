@@ -12,12 +12,12 @@ import { InfoStripe } from '../../commonUi/formComponents/AlertStripe'
 import { clearExistingCredentialMessage } from '../../common/actionCreators'
 import { orderApiPath } from './configuration/credentials'
 
-const certificateImage = require('../../../img/orderTypes/security.png')
+import certificateImage from 'url:../../../img/orderTypes/security.png'
 const initialState = {
   zone: 'fss',
   application: '',
   abacAccess: false,
-  stsAccess: false
+  stsAccess: false,
 }
 
 export class CredentialOrderForm extends Component {
@@ -25,7 +25,7 @@ export class CredentialOrderForm extends Component {
     super(props)
     this.state = {
       environmentClass: 'u',
-      ...initialState
+      ...initialState,
     }
   }
 
@@ -73,24 +73,24 @@ export class CredentialOrderForm extends Component {
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup
               value={environmentClass}
-              onChange={v => this.handleChange('environmentClass', v)}
+              onChange={(v) => this.handleChange('environmentClass', v)}
             />
-            <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
+            <ZoneButtonGroup value={zone} onChange={(v) => this.handleChange('zone', v)} />
             <ApplicationsDropDown
-              onChange={v => this.handleChange('application', v)}
+              onChange={(v) => this.handleChange('application', v)}
               value={application}
             />
             <OrderCheckBox
               label="ABAC"
               value={abacAccess}
               description="Adds user to ABAC pdp group in AD"
-              onChange={v => this.handleChange('abacAccess', v)}
+              onChange={(v) => this.handleChange('abacAccess', v)}
             />
             <OrderCheckBox
               label="STS"
               value={stsAccess}
               description="Gives user access to read from STS"
-              onChange={v => this.handleChange('stsAccess', v)}
+              onChange={(v) => this.handleChange('stsAccess', v)}
             />
             <InfoStripe
               show={existInFasit}
@@ -116,14 +116,14 @@ export class CredentialOrderForm extends Component {
 }
 
 CredentialOrderForm.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     formSubmitting: state.order.form.submitting,
     formError: state.order.form.error,
     existInFasit: state.operationsForm.credentialLookup.data.existInFasit,
-    existInAD: state.operationsForm.credentialLookup.data.existInAD
+    existInAD: state.operationsForm.credentialLookup.data.existInAD,
   }
 }
 

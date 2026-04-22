@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {
   OrderTextBox,
   EnvironmentsDropDown,
-  ApplicationsDropDown
+  ApplicationsDropDown,
 } from '../../commonUi/formComponents'
 import SubmitButton from '../../commonUi/formComponents/SubmitButton'
 import { submitForm } from '../actionCreators'
@@ -14,7 +14,7 @@ import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import OrderDbTemplateDropDown from '../../commonUi/formComponents/OrderDbTemplateDropDown'
 import { orderApiPath } from './configuration/oracle'
 
-const oracleImage = require('../../../img/orderTypes/oracle.png')
+import oracleImage from 'url:../../../img/orderTypes/oracle.png'
 
 const initialState = {
   zone: 'fss',
@@ -22,7 +22,7 @@ const initialState = {
   applicationName: '',
   databaseName: '',
   fasitAlias: '',
-  dbTemplate: {}
+  dbTemplate: {},
 }
 
 export class OracleDbOrderForm extends Component {
@@ -30,7 +30,7 @@ export class OracleDbOrderForm extends Component {
     super(props)
     this.state = {
       environmentClass: 'u',
-      ...initialState
+      ...initialState,
     }
   }
 
@@ -55,7 +55,7 @@ export class OracleDbOrderForm extends Component {
 
   setDbTemplate(template) {
     this.setState({
-      dbTemplate: template
+      dbTemplate: template,
     })
   }
 
@@ -76,7 +76,7 @@ export class OracleDbOrderForm extends Component {
     const dbOrderPayload = {
       ...formData,
       templateURI: dbTemplate.uri,
-      zoneURI: dbTemplate.zoneuri
+      zoneURI: dbTemplate.zoneuri,
     }
 
     this.props.dispatch(submitForm(dbOrderPayload, orderApiPath))
@@ -98,7 +98,7 @@ export class OracleDbOrderForm extends Component {
     const dbName = `${this.state.applicationName}_${this.state.environmentName}`
     this.setState({
       databaseName: this.trimToLength(this.removeIllegalCharacters(dbName.toUpperCase()), 28),
-      fasitAlias: `${this.state.applicationName}DB`
+      fasitAlias: `${this.state.applicationName}DB`,
     })
   }
 
@@ -111,7 +111,7 @@ export class OracleDbOrderForm extends Component {
       applicationName,
       databaseName,
       fasitAlias,
-      dbTemplate
+      dbTemplate,
     } = this.state
 
     return (
@@ -127,35 +127,35 @@ export class OracleDbOrderForm extends Component {
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup
               value={environmentClass}
-              onChange={v => this.handleChange('environmentClass', v)}
+              onChange={(v) => this.handleChange('environmentClass', v)}
             />
-            <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
+            <ZoneButtonGroup value={zone} onChange={(v) => this.handleChange('zone', v)} />
             <EnvironmentsDropDown
-              onChange={v => this.handleChange('environmentName', v)}
+              onChange={(v) => this.handleChange('environmentName', v)}
               environmentClass={environmentClass}
               value={environmentName}
             />
             <ApplicationsDropDown
-              onChange={v => this.handleChange('applicationName', v)}
+              onChange={(v) => this.handleChange('applicationName', v)}
               value={applicationName}
             />
             <OrderTextBox
               label="Database name"
               value={databaseName}
-              onChange={v =>
+              onChange={(v) =>
                 this.handleChange(
                   'databaseName',
-                  this.trimToLength(this.removeIllegalCharacters(v.toUpperCase()), 28)
+                  this.trimToLength(this.removeIllegalCharacters(v.toUpperCase()), 28),
                 )
               }
             />
             <OrderTextBox
               label="Fasit alias"
               value={fasitAlias}
-              onChange={v => this.handleChange('fasitAlias', v)}
+              onChange={(v) => this.handleChange('fasitAlias', v)}
             />
             <OrderDbTemplateDropDown
-              onChange={template => this.setDbTemplate(template)}
+              onChange={(template) => this.setDbTemplate(template)}
               environmentClass={environmentClass}
               zone={zone}
               value={dbTemplate.description}
@@ -174,12 +174,12 @@ export class OracleDbOrderForm extends Component {
 }
 
 OracleDbOrderForm.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     formSubmitting: state.order.form.submitting,
-    formError: state.order.form.error
+    formError: state.order.form.error,
   }
 }
 

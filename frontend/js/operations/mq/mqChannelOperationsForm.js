@@ -5,19 +5,19 @@ import {
   QueueManagerDropDown,
   EnvironmentsDropDown,
   OrderDropDown,
-  OperationsButtons
+  OperationsButtons,
 } from '../../commonUi/formComponents'
 import { submitOperation } from '../operateActionCreators'
 import { fetchMqChannels, clearMqChannels } from '../../common/actionCreators'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import { ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
 
-const mqImage = require('../../../img/orderTypes/mq.png')
+import mqImage from 'url:../../../img/orderTypes/mq.png'
 
 const initialState = {
   environmentName: '',
   queueManager: '',
-  mqChannelName: ''
+  mqChannelName: '',
 }
 
 export class MqChannelOperationsForm extends Component {
@@ -25,7 +25,7 @@ export class MqChannelOperationsForm extends Component {
     super(props)
     this.state = {
       environmentClass: 'u',
-      ...initialState
+      ...initialState,
     }
   }
 
@@ -77,15 +77,15 @@ export class MqChannelOperationsForm extends Component {
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup
               value={environmentClass}
-              onChange={v => this.handleChange('environmentClass', v)}
+              onChange={(v) => this.handleChange('environmentClass', v)}
             />
             <EnvironmentsDropDown
-              onChange={v => this.handleChange('environmentName', v)}
+              onChange={(v) => this.handleChange('environmentName', v)}
               environmentClass={environmentClass}
               value={environmentName}
             />
             <QueueManagerDropDown
-              onChange={v => this.handleChange('queueManager', v)}
+              onChange={(v) => this.handleChange('queueManager', v)}
               envClass={environmentClass}
               envName={environmentName}
               value={queueManager}
@@ -94,7 +94,7 @@ export class MqChannelOperationsForm extends Component {
               label="MQ channel name"
               value={mqChannelName}
               alternatives={channels}
-              onChange={v => this.handleChange('mqChannelName', v)}
+              onChange={(v) => this.handleChange('mqChannelName', v)}
             />
             <OperationsButtons
               hasAccess={this.validForm()}
@@ -113,11 +113,11 @@ export class MqChannelOperationsForm extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     submitting: state.operationsForm.operations.fetching,
     submitError: state.operationsForm.operations.error,
-    channels: state.orderFormData.channels.data
+    channels: state.orderFormData.channels.data,
   }
 }
 
@@ -125,7 +125,7 @@ MqChannelOperationsForm.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
   onSubmit: PropTypes.func,
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
 
 export default connect(mapStateToProps)(MqChannelOperationsForm)

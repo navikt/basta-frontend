@@ -1,7 +1,7 @@
 import React from 'react'
-const bastaLogo = require('../../../img/basta.png')
+import bastaLogo from 'url:../../../img/basta.png'
 
-const Login = props => {
+const Login = (props) => {
   const { pathname } = props.location
   return (
     <div className="login-background">

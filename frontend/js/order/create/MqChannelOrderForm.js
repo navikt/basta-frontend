@@ -5,7 +5,7 @@ import {
   OrderTextBox,
   EnvironmentsDropDown,
   QueueManagerDropDown,
-  ApplicationsDropDown
+  ApplicationsDropDown,
 } from '../../commonUi/formComponents'
 import { connect } from 'react-redux'
 import { submitForm } from '../actionCreators'
@@ -13,14 +13,14 @@ import SubmitButton from '../../commonUi/formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import { orderApiPath } from './configuration/channel'
 
-const mqImage = require('../../../img/orderTypes/mq.png')
+import mqImage from 'url:../../../img/orderTypes/mq.png'
 
 const initialState = {
   environmentName: '',
   application: '',
   queueManager: '',
   mqChannelName: '',
-  fasitAlias: ''
+  fasitAlias: '',
 }
 
 export class MqChannelOrderForm extends Component {
@@ -28,7 +28,7 @@ export class MqChannelOrderForm extends Component {
     super(props)
     this.state = {
       environmentClass: 'u',
-      ...initialState
+      ...initialState,
     }
   }
 
@@ -44,7 +44,7 @@ export class MqChannelOrderForm extends Component {
       const normalizedAppName = application.replace(new RegExp('-', 'g'), '_').toUpperCase()
       this.setState({
         mqChannelName: `${environmentName.toUpperCase()}_${normalizedAppName}`,
-        fasitAlias: `${application}_channel`
+        fasitAlias: `${application}_channel`,
       })
     }
   }
@@ -74,7 +74,7 @@ export class MqChannelOrderForm extends Component {
       queueManager,
       mqChannelName,
       fasitAlias,
-      encrypted
+      encrypted,
     } = this.state
     return (
       <div>
@@ -89,19 +89,19 @@ export class MqChannelOrderForm extends Component {
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup
               value={environmentClass}
-              onChange={v => this.handleChange('environmentClass', v)}
+              onChange={(v) => this.handleChange('environmentClass', v)}
             />
             <EnvironmentsDropDown
-              onChange={v => this.handleChange('environmentName', v)}
+              onChange={(v) => this.handleChange('environmentName', v)}
               environmentClass={this.state.environmentClass}
               value={environmentName}
             />
             <ApplicationsDropDown
-              onChange={v => this.handleChange('application', v)}
+              onChange={(v) => this.handleChange('application', v)}
               value={application}
             />
             <QueueManagerDropDown
-              onChange={v => this.handleChange('queueManager', v)}
+              onChange={(v) => this.handleChange('queueManager', v)}
               envClass={environmentClass}
               envName={environmentName}
               value={queueManager}
@@ -111,18 +111,18 @@ export class MqChannelOrderForm extends Component {
                 <OrderTextBox
                   label="Channel name"
                   value={mqChannelName}
-                  onChange={v => this.handleChange('mqChannelName', v)}
+                  onChange={(v) => this.handleChange('mqChannelName', v)}
                 />
                 <OrderTextBox
                   label="Fasit alias"
                   value={fasitAlias}
-                  onChange={v => this.handleChange('fasitAlias', v)}
+                  onChange={(v) => this.handleChange('fasitAlias', v)}
                 />
                 <OrderCheckBox
                   label="Encrypted connection"
                   value={encrypted}
                   description="Adds TLS encryption on connection to MQ"
-                  onChange={v => this.handleChange('encrypted', v)}
+                  onChange={(v) => this.handleChange('encrypted', v)}
                 />
               </div>
             ) : null}
@@ -143,13 +143,13 @@ MqChannelOrderForm.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
   onSubmit: PropTypes.func,
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     formSubmitting: state.order.form.submitting,
-    formError: state.order.form.error
+    formError: state.order.form.error,
   }
 }
 

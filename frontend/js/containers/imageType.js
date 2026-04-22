@@ -1,16 +1,16 @@
-const wasImage = require('../../img/orderTypes/websphere.png')
-const wildflyImage = require('../../img/orderTypes/wildfly.png')
-const securityImage = require('../../img/orderTypes/security.png')
-const openamImage = require('../../img/orderTypes/openam.png')
-const redhatImage = require('../../img/orderTypes/redhat.png')
-const dbImage = require('../../img/orderTypes/oracle.png')
-const windowsImage = require('../../img/orderTypes/windows.png')
-const bigipImage = require('../../img/orderTypes/big-ip.png')
-const mqImage = require('../../img/orderTypes/mq.png')
-const developertoolsImage = require('../../img/orderTypes/devtools.png')
-const coreosImage = require('../../img/orderTypes/containerlinux.png')
-const flatcarImage = require('../../img/orderTypes/flatcarlinux.png')
-const unknown = require('../../img/basta.png')
+import wasImage from 'url:../../img/orderTypes/websphere.png'
+import wildflyImage from 'url:../../img/orderTypes/wildfly.png'
+import securityImage from 'url:../../img/orderTypes/security.png'
+import openamImage from 'url:../../img/orderTypes/openam.png'
+import redhatImage from 'url:../../img/orderTypes/redhat.png'
+import dbImage from 'url:../../img/orderTypes/oracle.png'
+import windowsImage from 'url:../../img/orderTypes/windows.png'
+import bigipImage from 'url:../../img/orderTypes/big-ip.png'
+import mqImage from 'url:../../img/orderTypes/mq.png'
+import developertoolsImage from 'url:../../img/orderTypes/devtools.png'
+import coreosImage from 'url:../../img/orderTypes/containerlinux.png'
+import flatcarImage from 'url:../../img/orderTypes/flatcarlinux.png'
+import unknown from 'url:../../img/basta.png'
 
 export default function imageType(orderDescription) {
   if (!orderDescription) {

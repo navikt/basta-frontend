@@ -1,27 +1,27 @@
 const description = 'Application Server'
 const title = 'Wildfly'
-const image = require('../../../../img/orderTypes/wildfly.png')
+import image from 'url:../../../../img/orderTypes/wildfly.png'
 const orderApiPath = '/rest/vm/orders/wildfly'
 const orderFields = {
   nodeType: {
-    value: 'WILDFLY'
+    value: 'WILDFLY',
   },
   environmentClass: {
     fieldType: 'environmentClass',
-    value: 'u'
+    value: 'u',
   },
   zone: {
     fieldType: 'zone',
-    value: 'fss'
+    value: 'fss',
   },
   environmentName: {
     fieldType: 'environments',
-    value: ''
+    value: '',
   },
   applicationMappingName: {
     description: '',
     fieldType: 'applications',
-    value: ''
+    value: '',
   },
   serverCount: {
     label: 'Servers',
@@ -29,7 +29,7 @@ const orderFields = {
     fieldType: 'number',
     min: 1,
     max: 8,
-    value: 1
+    value: 1,
   },
   cpuCount: {
     label: 'Cpu',
@@ -37,7 +37,7 @@ const orderFields = {
     fieldType: 'number',
     min: 1,
     max: 4,
-    value: 1
+    value: 1,
   },
   memory: {
     label: 'Memory',
@@ -45,7 +45,7 @@ const orderFields = {
     fieldType: 'number',
     min: 2,
     max: 32,
-    value: 2
+    value: 2,
   },
   extraDisk: {
     label: 'Extra disk',
@@ -53,7 +53,7 @@ const orderFields = {
     fieldType: 'number',
     min: 0,
     max: 100,
-    value: 0
+    value: 0,
   },
   wildflyVersion: {
     label: 'Wildfly version',
@@ -62,9 +62,9 @@ const orderFields = {
     alternatives: [
       { label: 'Wildfly 17', value: 'wildfly17' },
       { label: 'Wildfly 19', value: 'wildfly19' },
-      { label: 'Wildfly 21', value: 'wildfly21' }
+      { label: 'Wildfly 21', value: 'wildfly21' },
     ],
-    value: 'wildfly21'
+    value: 'wildfly21',
   },
   javaVersion: {
     label: 'Java version',
@@ -72,16 +72,16 @@ const orderFields = {
     fieldType: 'buttonGroup',
     alternatives: [
       { label: 'OpenJDK 8', value: 'OpenJDK8' },
-      { label: 'OpenJDK 11', value: 'OpenJDK11' }
+      { label: 'OpenJDK 11', value: 'OpenJDK11' },
     ],
-    value: 'OpenJDK11'
+    value: 'OpenJDK11',
   },
   osType: {
     label: 'OS version',
     description: '',
     fieldType: 'buttonGroup',
     alternatives: [{ label: 'RHEL 8', value: 'rhel80' }],
-    value: 'rhel80'
+    value: 'rhel80',
   },
   classification: {
     label: 'Classification',
@@ -89,15 +89,15 @@ const orderFields = {
     fieldType: 'buttonGroup',
     alternatives: [
       { label: 'Standard', value: 'standard' },
-      { label: 'Custom', value: 'custom' }
+      { label: 'Custom', value: 'custom' },
     ],
-    value: 'standard'
-  }
+    value: 'standard',
+  },
 }
 module.exports = {
   description,
   title,
   image,
   orderApiPath,
-  orderFields
+  orderFields,
 }

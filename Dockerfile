@@ -1,11 +1,11 @@
-FROM node:16-alpine AS builder
+FROM node:20-alpine AS builder
 WORKDIR /home/app
 
 COPY ./package* ./
 COPY ./ ./
 RUN npm run build
 
-FROM node:16-alpine
+FROM node:20-alpine
 ENV NODE_ENV=production
 EXPOSE 8080
 WORKDIR /home/app

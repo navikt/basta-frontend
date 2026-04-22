@@ -10,9 +10,9 @@ import MqClusterCheckBox from './MqClusterCheckBox'
 import OperationsButtons from '../../common/components/formComponents/OperationsButtons'
 import ErrorPanel from '../../common/components/formComponents/ErrorPanel'
 import InfoPanel from '../../common/components/formComponents/InfoPanel'
-import AlertStripe from './AlertStripe'
+import * as AlertStripe from './AlertStripe'
 
-module.exports = {
+export {
   EnvironmentsDropDown,
   ApplicationsDropDown,
   QueueManagerDropDown,
@@ -25,5 +25,5 @@ module.exports = {
   OperationsButtons,
   ErrorPanel,
   InfoPanel,
-  AlertStripe
+  AlertStripe,
 }

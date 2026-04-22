@@ -1,19 +1,19 @@
 const description = 'Order new Devillo server'
 const title = 'Developer tools available in Devillo'
-const image = require('../../../../img/orderTypes/devtools.png')
+import image from 'url:../../../../img/orderTypes/devtools.png'
 const orderApiPath = '/rest/vm/orders/devtools'
 const orderFields = {
   nodeType: {
-    value: 'DEV_TOOLS'
+    value: 'DEV_TOOLS',
   },
   environmentClass: {
-    value: 'u'
+    value: 'u',
   },
   zone: {
-    value: 'fss'
+    value: 'fss',
   },
   osType: {
-    value: 'rhel90'
+    value: 'rhel90',
   },
   serverCount: {
     label: 'Servers',
@@ -21,7 +21,7 @@ const orderFields = {
     fieldType: 'number',
     min: 1,
     max: 8,
-    value: 1
+    value: 1,
   },
   cpuCount: {
     label: 'Cpu',
@@ -29,7 +29,7 @@ const orderFields = {
     fieldType: 'number',
     min: 1,
     max: 4,
-    value: 1
+    value: 1,
   },
   memory: {
     label: 'Memory',
@@ -37,7 +37,7 @@ const orderFields = {
     fieldType: 'number',
     min: 2,
     max: 32,
-    value: 2
+    value: 2,
   },
   Extradisk: {
     label: 'Extra disk',
@@ -45,19 +45,19 @@ const orderFields = {
     fieldType: 'number',
     min: 0,
     max: 100,
-    value: 0
+    value: 0,
   },
   description: {
     label: 'Description',
     description: 'What is this server used for?',
     fieldType: 'text',
-    value: ''
-  }
+    value: '',
+  },
 }
 module.exports = {
   description,
   title,
   image,
   orderApiPath,
-  orderFields
+  orderFields,
 }

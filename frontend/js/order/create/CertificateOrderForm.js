@@ -9,15 +9,15 @@ import EnvironmentClassButtonGroup from '../../commonUi/formComponents/Environme
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
 import {
   certificateExistInFasit,
-  clearExistingCertificateMessage
+  clearExistingCertificateMessage,
 } from '../../common/actionCreators'
 import { InfoStripe } from '../../commonUi/formComponents/AlertStripe'
 import { orderApiPath } from './configuration/certificate'
 
-const certificateImage = require('../../../img/orderTypes/security.png')
+import certificateImage from 'url:../../../img/orderTypes/security.png'
 const initialState = {
   zone: 'fss',
-  application: ''
+  application: '',
 }
 
 export class CertificateOrderForm extends Component {
@@ -25,7 +25,7 @@ export class CertificateOrderForm extends Component {
     super(props)
     this.state = {
       environmentClass: 'u',
-      ...initialState
+      ...initialState,
     }
   }
 
@@ -72,11 +72,11 @@ export class CertificateOrderForm extends Component {
           <div className="orderFormItems">
             <EnvironmentClassButtonGroup
               value={environmentClass}
-              onChange={v => this.handleChange('environmentClass', v)}
+              onChange={(v) => this.handleChange('environmentClass', v)}
             />
-            <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
+            <ZoneButtonGroup value={zone} onChange={(v) => this.handleChange('zone', v)} />
             <ApplicationsDropDown
-              onChange={v => this.handleChange('application', v)}
+              onChange={(v) => this.handleChange('application', v)}
               value={application}
             />
             <InfoStripe
@@ -97,13 +97,13 @@ export class CertificateOrderForm extends Component {
 }
 
 CertificateOrderForm.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     certExistsInFasit: state.orderFormData.certificate.existsInFasit,
     formSubmitting: state.order.form.submitting,
-    formError: state.order.form.error
+    formError: state.order.form.error,
   }
 }
 

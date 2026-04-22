@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-const userImage = require('../../../img/default-user.jpeg')
+import userImage from 'url:../../../img/default-user.jpeg'
 
 export class NavUserMenu extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      displayMenu: false
+      displayMenu: false,
     }
   }
 
@@ -33,7 +33,7 @@ export class NavUserMenu extends Component {
               Access: <br />{' '}
               {user.isUserAuthenticated && user.userProfile.roles ? (
                 <ul>
-                  {user.userProfile.roles.map(role => {
+                  {user.userProfile.roles.map((role) => {
                     return <li key={role}>{role}</li>
                   })}
                 </ul>
@@ -58,9 +58,9 @@ export class NavUserMenu extends Component {
 }
 NavUserMenu.propTypes = {}
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
   }
 }
 export default connect(mapStateToProps)(NavUserMenu)

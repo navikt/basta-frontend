@@ -4,13 +4,13 @@ import {
   OrderTextBox,
   OrderButtonGroup,
   EnvironmentsDropDown,
-  ApplicationsDropDown
+  ApplicationsDropDown,
 } from '../../commonUi/formComponents'
 import VirtualServerDropDown from '../../commonUi/formComponents/VirtualServerDropDown'
 import { submitForm } from '../actionCreators'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import image from '../../../img/orderTypes/big-ip.png'
+import image from 'url:../../../img/orderTypes/big-ip.png'
 import { InfoStripe } from '../../commonUi/formComponents/AlertStripe'
 import SubmitButton from '../../commonUi/formComponents/SubmitButton'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
@@ -24,7 +24,7 @@ const initialState = {
   virtualserver: '',
   matchingTypes: 'context',
   contextroots: '',
-  hostname: ''
+  hostname: '',
 }
 
 export class BigIPOrderForm extends Component {
@@ -32,7 +32,7 @@ export class BigIPOrderForm extends Component {
     super(props)
     this.state = {
       environmentClass: 'u',
-      ...initialState
+      ...initialState,
     }
   }
 
@@ -62,7 +62,7 @@ export class BigIPOrderForm extends Component {
     const { matchingTypes, ...formData } = this.state
     const payload = {
       ...formData,
-      useHostnameMatching: matchingTypes === 'hostname' ? 'true' : 'false'
+      useHostnameMatching: matchingTypes === 'hostname' ? 'true' : 'false',
     }
 
     this.props.dispatch(submitForm(payload, orderApiPath))
@@ -77,7 +77,7 @@ export class BigIPOrderForm extends Component {
       virtualserver,
       matchingTypes,
       contextroots,
-      hostname
+      hostname,
     } = this.state
     const { formError, formSubmitting } = this.props
 
@@ -100,16 +100,16 @@ export class BigIPOrderForm extends Component {
             />
             <EnvironmentClassButtonGroup
               value={environmentClass}
-              onChange={v => this.handleChange('environmentClass', v)}
+              onChange={(v) => this.handleChange('environmentClass', v)}
             />
-            <ZoneButtonGroup value={zone} onChange={v => this.handleChange('zone', v)} />
+            <ZoneButtonGroup value={zone} onChange={(v) => this.handleChange('zone', v)} />
             <EnvironmentsDropDown
-              onChange={v => this.handleChange('environmentName', v)}
+              onChange={(v) => this.handleChange('environmentName', v)}
               environmentClass={environmentClass}
               value={environmentName}
             />
             <ApplicationsDropDown
-              onChange={v => this.handleChange('application', v)}
+              onChange={(v) => this.handleChange('application', v)}
               value={application}
             />
             <VirtualServerDropDown
@@ -118,7 +118,7 @@ export class BigIPOrderForm extends Component {
               environment={environmentName}
               application={application}
               zone={zone}
-              onChange={v => this.handleChange('virtualserver', v)}
+              onChange={(v) => this.handleChange('virtualserver', v)}
               value={virtualserver}
             />
             <OrderButtonGroup
@@ -126,22 +126,22 @@ export class BigIPOrderForm extends Component {
               value={matchingTypes}
               alternatives={[
                 { label: 'Context root', value: 'context' },
-                { label: 'Hostname', value: 'hostname' }
+                { label: 'Hostname', value: 'hostname' },
               ]}
               roles={this.props.user.userProfile.roles}
-              onChange={v => this.handleChange('matchingTypes', v)}
+              onChange={(v) => this.handleChange('matchingTypes', v)}
             />
             <OrderTextBox
               label="Context root(s)"
               value={contextroots}
               placeholder="Add context roots"
-              onChange={v => this.handleChange('contextroots', v)}
+              onChange={(v) => this.handleChange('contextroots', v)}
             />
             <OrderTextBox
               label="VS hostname / DNS"
               value={hostname}
               placeholder="Hostname of the virutal server"
-              onChange={v => this.handleChange('hostname', v)}
+              onChange={(v) => this.handleChange('hostname', v)}
             />
             <InfoStripe
               message="Use hostname matching only if you have control over this DNS entry. If you are unsure what this means, ask Marcel or #aura on Slack"
@@ -161,14 +161,14 @@ export class BigIPOrderForm extends Component {
 }
 
 BigIPOrderForm.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.user,
     formSubmitting: state.order.form.submitting,
-    formError: state.order.form.error
+    formError: state.order.form.error,
   }
 }
 
