@@ -1,4 +1,3 @@
-const logger = require('morgan')
 const prometheus = require('prom-client')
 
 exports.isAlive = () => {
@@ -8,8 +7,12 @@ exports.isAlive = () => {
 }
 
 exports.metrics = () => {
-  return (req, res) => {
-    res.set('Content-Type', prometheus.register.contentType)
-    res.end(prometheus.register.metrics())
+  return async (req, res, next) => {
+    try {
+      res.set('Content-Type', prometheus.register.contentType)
+      res.end(await prometheus.register.metrics())
+    } catch (err) {
+      next(err)
+    }
   }
 }
