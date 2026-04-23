@@ -35,7 +35,7 @@ export class OrderDbTemplateDropDown extends Component {
               options={mapToOptions(dbTemplates)}
               placeholder="Selct DB template"
               value={value ? { label: value } : null}
-              onChange={e => onChange(e.value)}
+              onChange={(e) => onChange(e.value)}
             />
           </div>
         </div>
@@ -49,9 +49,9 @@ export class OrderDbTemplateDropDown extends Component {
  * We do a weired sort here beacuse we want all the templates that have the
  * word deprecated in its description to show up at the bottom of the list
  */
-const mapToOptions = alternatives => {
+export const mapToOptions = (alternatives) => {
   return alternatives
-    .map(alt => {
+    .map((alt) => {
       return { label: alt.description, value: alt }
     })
     .sort((a, b) => {
@@ -68,10 +68,10 @@ const mapToOptions = alternatives => {
 }
 OrderDbTemplateDropDown.propTypes = {}
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     dbTemplates: state.orderFormData.dbTemplates.data,
-    dbTemplatesFetchError: state.orderFormData.dbTemplates.error
+    dbTemplatesFetchError: state.orderFormData.dbTemplates.error,
   }
 }
 export default connect(mapStateToProps)(OrderDbTemplateDropDown)

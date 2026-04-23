@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import { routerReducer } from 'react-router-redux'
 import user from './user'
 import initialize from './initialize'
 import navMenu from '../../commonUi/menus/reducer'
@@ -10,7 +9,6 @@ import operationsForm from '../../operations/operateReducers'
 import notificationsForm from '../../notifications/notificationsReducer'
 
 const rootReducer = combineReducers({
-  routing: routerReducer,
   navMenu,
   user,
   initialize,
@@ -19,7 +17,7 @@ const rootReducer = combineReducers({
   orderFormData,
   orderHistory,
   operationsForm,
-  notificationsForm
+  notificationsForm,
 })
 
 export default rootReducer

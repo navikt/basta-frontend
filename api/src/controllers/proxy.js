@@ -82,16 +82,18 @@ exports.attachToken = () => {
 exports.doProxy = () => {
   return createProxyMiddleware({
     target: `${process.env.BASTA_BACKEND}`,
-    onProxyReq: restream,
     secure: true,
     changeOrigin: true,
-    logLevel: 'info',
+    logger: console,
     pathRewrite: (path, req) => req.originalUrl,
-    onProxyRes: (proxyRes, req) => {
-      console.log(`[proxy] ${req.method} ${req.originalUrl} -> ${proxyRes.statusCode}`)
-    },
-    onError: (err, req, res) => {
-      console.log('error in proxy', err)
+    on: {
+      proxyReq: restream,
+      proxyRes: (proxyRes, req) => {
+        console.log(`[proxy] ${req.method} ${req.originalUrl} -> ${proxyRes.statusCode}`)
+      },
+      error: (err, req, res) => {
+        console.log('error in proxy', err)
+      },
     },
   })
 }

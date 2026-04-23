@@ -1,4 +1,4 @@
-import { takeEvery, put, fork, call } from 'redux-saga/effects'
+import { takeEvery, put, call } from 'redux-saga/effects'
 import { postForm, getUrl, putForm } from '../common/utils'
 import {
   POST_NOTIFICATION,
@@ -9,7 +9,7 @@ import {
   ACTIVE_NOTIFICATIONS_RECEIVED,
   NOTIFICATIONS_REQUEST_FAILED,
   REMOVE_NOTIFICATION,
-  REMOVE_NOTIFICATION_FAILED
+  REMOVE_NOTIFICATION_FAILED,
 } from '../actionTypes'
 
 export function* postNotification(action) {
@@ -19,7 +19,7 @@ export function* postNotification(action) {
     yield call(postForm, '/rest/system/notifications/create', action.messagePayload)
     yield put({ type: POST_NOTIFICATION_SUCCESSFUL })
     yield put({
-      type: NOTIFICATIONS_REQUEST
+      type: NOTIFICATIONS_REQUEST,
     })
   } catch (error) {
     yield put({ type: POST_NOTIFICATION_FAILED, error })
@@ -31,7 +31,7 @@ export function* fetchActiveNotifications() {
     const activeNotifications = yield call(getUrl, '/rest/system/notifications/active')
     yield put({
       type: ACTIVE_NOTIFICATIONS_RECEIVED,
-      value: activeNotifications
+      value: activeNotifications,
     })
   } catch (err) {
     yield put({ type: NOTIFICATIONS_REQUEST_FAILED, err })
@@ -42,7 +42,7 @@ export function* removeNotification(action) {
   try {
     yield call(putForm, `/rest/system/notifications/${action.id}/inactive`)
     yield put({
-      type: NOTIFICATIONS_REQUEST
+      type: NOTIFICATIONS_REQUEST,
     })
   } catch (err) {
     yield put({ type: REMOVE_NOTIFICATION_FAILED, err })
@@ -50,7 +50,7 @@ export function* removeNotification(action) {
 }
 
 export function* watchNotification() {
-  yield fork(takeEvery, POST_NOTIFICATION, postNotification)
-  yield fork(takeEvery, NOTIFICATIONS_REQUEST, fetchActiveNotifications)
-  yield fork(takeEvery, REMOVE_NOTIFICATION, removeNotification)
+  yield takeEvery(POST_NOTIFICATION, postNotification)
+  yield takeEvery(NOTIFICATIONS_REQUEST, fetchActiveNotifications)
+  yield takeEvery(REMOVE_NOTIFICATION, removeNotification)
 }

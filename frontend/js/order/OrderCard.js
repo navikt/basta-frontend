@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import ReactTooltip from 'react-tooltip'
+import { Tooltip } from 'react-tooltip'
+import 'react-tooltip/dist/react-tooltip.css'
 
-export const OrderCard = props => {
+export const OrderCard = (props) => {
   const { label, description, image, url, access, enabled } = props
   return enabled ? (
     <Link to={url} className="orderCard">
@@ -16,8 +17,12 @@ export const OrderCard = props => {
       </div>
     </Link>
   ) : (
-    <div className="orderCard disabled" data-tip={'missing permissions: ' + access}>
-      <ReactTooltip />
+    <div
+      className="orderCard disabled"
+      data-tooltip-id="orderCard-tooltip"
+      data-tooltip-content={'missing permissions: ' + access}
+    >
+      <Tooltip id="orderCard-tooltip" />
 
       <div className="orderCardGrid">
         <div className="orderImage">
@@ -36,7 +41,7 @@ OrderCard.propTypes = {
   image: PropTypes.string,
   url: PropTypes.string,
   access: PropTypes.array,
-  enabled: PropTypes.bool
+  enabled: PropTypes.bool,
 }
 
 export default OrderCard

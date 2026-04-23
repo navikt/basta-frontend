@@ -1,21 +1,17 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
 import InfoPanel from './InfoPanel'
 
 describe('(Component) InfoPanel', () => {
-  let wrapper
-
-  beforeEach(() => {
-    wrapper = shallow(<InfoPanel />)
+  it('renders without exploding', () => {
+    const { container } = render(<InfoPanel />)
+    expect(container).toBeTruthy()
   })
 
-  it('(Component) InfoPanel renders without exploding', () => {
-    expect(wrapper.length).toBe(1)
-  })
-
-  it('(Component) InfoPanel renders component if show', () => {
-    expect(wrapper.find('.info-message')).toHaveLength(0)
-    wrapper = shallow(<InfoPanel show={true} />)
-    expect(wrapper.find('.info-message')).toHaveLength(1)
+  it('renders message div if show', () => {
+    const { container: c1 } = render(<InfoPanel />)
+    expect(c1.querySelectorAll('.info-message').length).toBe(0)
+    const { container: c2 } = render(<InfoPanel show={true} />)
+    expect(c2.querySelectorAll('.info-message').length).toBe(1)
   })
 })

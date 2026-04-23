@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
+import { withRouter } from '../common/withRouter'
 import { connect } from 'react-redux'
 import { Notification } from './Notification'
 import { fetchActiveNotifications } from './notificationsActionCreator'
@@ -29,9 +29,9 @@ export class ActiveNotificationsList extends Component {
 
 ActiveNotificationsList.propTypes = {}
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    notifications: state.notificationsForm.activeNotifications
+    notifications: state.notificationsForm.activeNotifications,
   }
 }
 

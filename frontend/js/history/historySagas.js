@@ -8,14 +8,14 @@ import {
   SEARCH_ORDERS_REQUEST,
   SEARCH_FETCHING,
   SEARCH_FAILED,
-  SEARCH_RESULTS_RECEIVED
+  SEARCH_RESULTS_RECEIVED,
 } from '../actionTypes'
 
 const ORDERS_TO_FETCH = 50
 
 export function* getOrderHistory() {
   yield put({
-    type: HISTORY_FETCHING
+    type: HISTORY_FETCHING,
   })
   try {
     let orders = yield call(getUrl, `/rest/orders/page/0/${ORDERS_TO_FETCH}`)
@@ -36,6 +36,6 @@ export function* searchOrders(action) {
 }
 
 export function* watcHistory() {
-  yield fork(takeLatest, HISTORY_REQUEST, getOrderHistory)
-  yield fork(takeLatest, SEARCH_ORDERS_REQUEST, searchOrders)
+  yield takeLatest(HISTORY_REQUEST, getOrderHistory)
+  yield takeLatest(SEARCH_ORDERS_REQUEST, searchOrders)
 }

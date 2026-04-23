@@ -1,125 +1,161 @@
 import React from 'react'
-import sinon from 'sinon'
-import { shallow } from 'enzyme'
-import { CredentialsOperationForm } from './CredentialsOperationForm'
-import { ApplicationsDropDown, OperationsButtons } from '../../commonUi/formComponents'
-import { InfoStripe, ErrorStripe } from '../../commonUi/formComponents/AlertStripe'
+import { fireEvent, screen } from '@testing-library/react'
+import { renderWithProviders } from '../../common/testUtils'
 
-const props = {
+jest.mock('../../commonUi/formComponents', () => {
+  const actual = jest.requireActual('../../commonUi/formComponents')
+  const MockApplicationsDropDown = ({ value, onChange }) => (
+    <div>
+      <span data-testid="app-value">{value}</span>
+      <button type="button" onClick={() => onChange('myapp')}>
+        select-app
+      </button>
+    </div>
+  )
+  return { ...actual, ApplicationsDropDown: MockApplicationsDropDown }
+})
+
+import { CredentialsOperationForm } from './CredentialsOperationForm'
+
+const baseProps = {
   user: {
     userProfile: {
-      roles: ['ROLE_USER', 'ROLE_SUPERUSER', 'ROLE_PROD_OPERATIONS', 'ROLE_OPERATIONS']
-    }
+      roles: ['ROLE_USER', 'ROLE_SUPERUSER', 'ROLE_PROD_OPERATIONS', 'ROLE_OPERATIONS'],
+    },
   },
   existInAD: true,
-  existInFasit: false
+  existInFasit: false,
 }
 
-const form = {
-  environmentClass: 'env',
-  zone: 'zone',
-  application: 'app'
+const baseState = {
+  user: baseProps.user,
+  orderFormData: { applications: { data: [] } },
 }
 
-describe('(Component) CredentialsOperationForm logic', () => {
-  let dispatch
-  let wrapper
+const renderForm = (overrideProps = {}, dispatch = jest.fn()) => {
+  const utils = renderWithProviders(
+    <CredentialsOperationForm {...baseProps} {...overrideProps} dispatch={dispatch} />,
+    { state: baseState },
+  )
+  return { ...utils, dispatch }
+}
 
-  beforeEach(() => {
-    dispatch = sinon.spy()
-    wrapper = shallow(<CredentialsOperationForm {...props} dispatch={dispatch} />)
+describe('CredentialsOperationForm rendering', () => {
+  it('renders without exploding', () => {
+    const { container } = renderForm()
+    expect(container).toBeTruthy()
   })
 
-  it('(handleChange) sets state with args', () => {
-    wrapper.instance().handleChange('zone', 'party')
-    expect(wrapper.state().zone).toBe('party')
-  })
-
-  it('(submitHandler) dispatches right action with args', () => {
-    wrapper.setState({ application: 'app' })
-    wrapper.instance().submitHandler()
-
-    expect(dispatch.args[0][0].type).toBe('CREDENTIAL_LOOKUP_REQUEST')
-    expect(dispatch.args[1][0].type).toBe('SUBMIT_OPERATION')
-    expect(dispatch.args[1][0].key).toBe('credentials')
-    expect(dispatch.args[1][0].form).toEqual({
-      environmentClass: 'u',
-      zone: 'fss',
-      application: 'app'
-    })
-  })
-
-  it('(credentialLookup) dispatches right action with args', () => {
-    wrapper.instance().credentialLookup(form)
-    expect(dispatch.args[0][0].type).toBe('CREDENTIAL_LOOKUP_REQUEST')
-    expect(dispatch.args[0][0].form).toBe(form)
-  })
-
-  it('(componentDidUpdate) credential lookup action is fired when local state changes', () => {
-    wrapper.setState({ ...form })
-    wrapper
-      .instance()
-      .componentDidUpdate(
-        { ...props, existInAD: true, existInFasit: false },
-        { ...form, zone: 'party' }
-      )
-
-    expect(dispatch.args[0][0].type).toBe('CREDENTIAL_LOOKUP_REQUEST')
-    expect(dispatch.args[0][0].form).toEqual(form)
-  })
-
-  it('correct info message is shown of user is missing from fasit', () => {
-    wrapper.setState({ ...form })
-    wrapper.setProps({ existInAD: true, existInFasit: false })
-    expect(
-      wrapper
-        .find(InfoStripe)
-        .findWhere(n => n.prop('show') === true)
-        .prop('message')
-    ).toEqual(
-      'Service user for app does not exist in fasit for this in this environment class and zone. Service user will only be deleted from AD.'
-    )
-  })
-
-  it('correct info message is shown of user is missing from AD', () => {
-    wrapper.setState({ ...form })
-    wrapper.setProps({ existInAD: false, existInFasit: true })
-
-    expect(
-      wrapper
-        .find(InfoStripe)
-        .findWhere(n => n.prop('show') === true)
-        .prop('message')
-    ).toEqual(
-      'Service user for app does not exist in AD for this in this environment class and zone. Service user will only be deleted from Fasit.'
-    )
-  })
-
-  it('Error message is shown and delete button is disabled if user is missing from both fasit and AD', () => {
-    wrapper.setState({ ...form })
-    wrapper.setProps({ lookupComplete: true, existInAD: false, existInFasit: false })
-
-    expect(wrapper.find(ErrorStripe).findWhere(n => n.prop('show') === true).length).toBe(1)
-    expect(wrapper.find(OperationsButtons).prop('hasAccess')).toBe(false)
+  it('renders ApplicationsDropDown and operations buttons', () => {
+    renderForm()
+    expect(screen.getByRole('button', { name: 'select-app' })).toBeInTheDocument()
+    expect(document.querySelector('.delete')).toBeInTheDocument()
   })
 })
 
-describe('(Component) CredentialsOperationForm rendering', () => {
-  let wrapper
+describe('CredentialsOperationForm logic', () => {
+  it('selecting an application dispatches CREDENTIAL_LOOKUP_REQUEST (componentDidUpdate)', () => {
+    const { dispatch } = renderForm()
+    fireEvent.click(screen.getByRole('button', { name: 'select-app' }))
 
-  beforeEach(() => {
-    wrapper = shallow(<CredentialsOperationForm {...props} />)
+    const lookups = dispatch.mock.calls
+      .map((c) => c[0])
+      .filter((a) => a.type === 'CREDENTIAL_LOOKUP_REQUEST')
+    expect(lookups).toHaveLength(1)
+    expect(lookups[0].form).toEqual({
+      environmentClass: 'u',
+      zone: 'fss',
+      application: 'myapp',
+    })
   })
 
-  it('Renders without exploding', () => {
-    expect(wrapper.length).toBe(1)
+  it('changing zone after selecting application triggers another CREDENTIAL_LOOKUP_REQUEST', () => {
+    const { dispatch } = renderForm()
+    fireEvent.click(screen.getByRole('button', { name: 'select-app' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Selvbetjeningssone' }))
+
+    const lookups = dispatch.mock.calls
+      .map((c) => c[0])
+      .filter((a) => a.type === 'CREDENTIAL_LOOKUP_REQUEST')
+    expect(lookups).toHaveLength(2)
+    expect(lookups[1].form).toMatchObject({ zone: 'sbs', application: 'myapp' })
   })
 
-  it('renders ApplicationsDropDown once', () => {
-    expect(wrapper.find(ApplicationsDropDown)).toHaveLength(1)
+  it('changing environment class after selecting application triggers CREDENTIAL_LOOKUP_REQUEST', () => {
+    const { dispatch } = renderForm()
+    fireEvent.click(screen.getByRole('button', { name: 'select-app' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Test' }))
+
+    const lookups = dispatch.mock.calls
+      .map((c) => c[0])
+      .filter((a) => a.type === 'CREDENTIAL_LOOKUP_REQUEST')
+    expect(lookups[lookups.length - 1].form).toMatchObject({
+      environmentClass: 't',
+      application: 'myapp',
+    })
   })
 
-  it('renders OperationsButtons once', () => {
-    expect(wrapper.find(OperationsButtons)).toHaveLength(1)
+  it('does not dispatch CREDENTIAL_LOOKUP_REQUEST when application is empty', () => {
+    const { dispatch } = renderForm()
+    fireEvent.click(screen.getByRole('button', { name: 'Test' }))
+
+    const lookups = dispatch.mock.calls
+      .map((c) => c[0])
+      .filter((a) => a.type === 'CREDENTIAL_LOOKUP_REQUEST')
+    expect(lookups).toHaveLength(0)
+  })
+
+  it('clicking Delete dispatches SUBMIT_OPERATION with key=credentials and current form', () => {
+    const { dispatch } = renderForm()
+    fireEvent.click(screen.getByRole('button', { name: 'select-app' }))
+    fireEvent.click(document.querySelector('.delete'))
+    fireEvent.click(screen.getByText('Confirm'))
+
+    const submits = dispatch.mock.calls
+      .map((c) => c[0])
+      .filter((a) => a.type === 'SUBMIT_OPERATION')
+    expect(submits).toHaveLength(1)
+    expect(submits[0]).toMatchObject({
+      type: 'SUBMIT_OPERATION',
+      key: 'credentials',
+      form: { environmentClass: 'u', zone: 'fss', application: 'myapp' },
+    })
+  })
+})
+
+describe('CredentialsOperationForm messages', () => {
+  it('shows InfoStripe when user is missing from Fasit', () => {
+    renderForm({ existInAD: true, existInFasit: false })
+    fireEvent.click(screen.getByRole('button', { name: 'select-app' }))
+
+    expect(
+      screen.getByText(
+        /Service user for myapp does not exist in fasit.*will only be deleted from AD/,
+      ),
+    ).toBeInTheDocument()
+  })
+
+  it('shows InfoStripe when user is missing from AD', () => {
+    renderForm({ existInAD: false, existInFasit: true })
+    fireEvent.click(screen.getByRole('button', { name: 'select-app' }))
+
+    expect(
+      screen.getByText(
+        /Service user for myapp does not exist in AD.*will only be deleted from Fasit/,
+      ),
+    ).toBeInTheDocument()
+  })
+
+  it('shows ErrorStripe and disables submit when user missing from both AD and Fasit', () => {
+    renderForm({ lookupComplete: true, existInAD: false, existInFasit: false })
+    fireEvent.click(screen.getByRole('button', { name: 'select-app' }))
+
+    expect(
+      screen.getByText(
+        /Service user for myapp does not exist in either AD or Fasit\. There is nothing to delete here\./,
+      ),
+    ).toBeInTheDocument()
+
+    expect(document.querySelector('.orderFormOperateButtons.disabled')).toBeInTheDocument()
   })
 })

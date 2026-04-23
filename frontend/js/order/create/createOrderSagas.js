@@ -1,5 +1,5 @@
 import history from '../../common/history'
-import { takeEvery, put, fork, call } from 'redux-saga/effects'
+import { takeEvery, put, call } from 'redux-saga/effects'
 import { getUrl, postForm } from '../../common/utils'
 import {
   SUBMIT_FORM,
@@ -14,7 +14,7 @@ import {
   ORDER_FETCHING,
   ORDER_RECEIVED,
   ORDER_REQUEST_FAILED,
-  HISTORY_REQUEST
+  HISTORY_REQUEST,
 } from '../../actionTypes'
 
 export function* submitServerOrderForm(action) {}
@@ -59,7 +59,7 @@ export function* getOrderDetails(action) {
 }
 
 export function* watchOrder() {
-  yield fork(takeEvery, SUBMIT_FORM, submitForm)
-  yield fork(takeEvery, ORDER_REQUEST, getOrderDetails)
-  yield fork(takeEvery, STATUSLOG_REQUEST, getStatusLog)
+  yield takeEvery(SUBMIT_FORM, submitForm)
+  yield takeEvery(ORDER_REQUEST, getOrderDetails)
+  yield takeEvery(STATUSLOG_REQUEST, getStatusLog)
 }

@@ -1,9 +1,8 @@
 import React from 'react'
-import ReactTooltip from 'react-tooltip'
 
 import PropTypes from 'prop-types'
 
-export const OrderTextBox = props => {
+export const OrderTextBox = (props) => {
   const { label, value, onChange, placeholder, disabled } = props
 
   return (
@@ -15,11 +14,10 @@ export const OrderTextBox = props => {
           type="text"
           placeholder={placeholder || 'description...'}
           value={value}
-          onChange={e => onChange(e.target.value)}
+          onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
         />
       </div>
-      <ReactTooltip />
     </div>
   )
 }
@@ -27,7 +25,7 @@ OrderTextBox.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
   description: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 }
 
 export default OrderTextBox

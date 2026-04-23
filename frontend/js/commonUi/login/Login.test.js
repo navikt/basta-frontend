@@ -1,16 +1,16 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
 import Login from './Login'
 
 const props = {
   location: {
-    pathname: 'jesusRodriguez'
-  }
+    pathname: 'jesusRodriguez',
+  },
 }
 
-describe('(Component) Spinner', () => {
-  const wrapper = shallow(<Login {...props} />)
+describe('(Component) Login', () => {
   it('Renders without exploding', () => {
-    expect(wrapper.length).toBe(1)
+    const { container } = render(<Login {...props} />)
+    expect(container).toBeTruthy()
   })
 })

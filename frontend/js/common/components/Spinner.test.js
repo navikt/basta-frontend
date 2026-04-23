@@ -1,16 +1,10 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
 import Spinner from './Spinner'
 
-const props = {
-  order: {
-    prototype: ''
-  }
-}
-
 describe('(Component) Spinner', () => {
-  const wrapper = shallow(<Spinner />)
   it('Renders without exploding', () => {
-    expect(wrapper.length).toBe(1)
+    const { container } = render(<Spinner />)
+    expect(container).toBeTruthy()
   })
 })

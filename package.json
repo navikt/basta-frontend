@@ -24,24 +24,16 @@
   "dependencies": {
     "@babel/runtime": "^7.23.2",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
-    "better-npm-run": "^0.1.1",
-    "bluebird": "^3.7.2",
-    "body-parser": "1.20.3",
-    "cache-manager": "3.4.0",
-    "common": "^0.2.5",
-    "connect": "^3.7.0",
+    "@redux-devtools/extension": "^3.3.0",
     "cookie-parser": "^1.4.6",
-    "express": "^4.18.2",
-    "helmet": "^7.1.0",
-    "http-proxy-middleware": "^2.0.6",
-    "husky": "^4.0.0",
-    "js-cookie": "^2.2.1",
+    "express": "^5.1.0",
+    "helmet": "^8.0.0",
+    "history": "^5.3.0",
+    "http-proxy-middleware": "^3.0.3",
     "moment": "^2.22.2",
     "morgan": "^1.9.0",
-    "nock": "^11.9.0",
     "pretty-quick": "^4.0.0",
-    "prom-client": "^11.5.3",
-    "re": "^0.1.4"
+    "prom-client": "^15.1.3"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
@@ -51,116 +43,59 @@
     "@babel/preset-react": "^7.18.6",
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@parcel/transformer-less": "^2.16.4",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "babel-jest": "^29.7.0",
     "chai": "^4.1.2",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
     "font-awesome": "^4.7.0",
-    "history": "^4.10.1",
+    "husky": "^9.1.7",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "less": "^3.11.1",
     "lodash.throttle": "^4.1.1",
     "ncp": "^2.0.0",
+    "nock": "^11.9.0",
     "nodemon": "^3.1.7",
     "parcel": "^2.13.3",
     "prettier": "^3.0.0",
     "prop-types": "^15.6.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-redux": "^5.1.2",
-    "react-router-dom": "^4.3.1",
-    "react-router-redux": "^4.0.8",
-    "react-select": "^2.4.4",
-    "react-tooltip": "^3.11.6",
-    "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-redux": "^9.1.2",
+    "react-router-dom": "^6.27.0",
+    "react-select": "^5.10.2",
+    "react-tooltip": "^5.30.1",
+    "redux": "^5.0.1",
     "redux-mock-store": "^1.5.4",
-    "redux-saga": "^0.16.0",
-    "redux-saga-test-plan": "^3.7.0",
-    "regenerator-runtime": "^0.12.1",
+    "redux-saga": "^1.3.0",
+    "redux-saga-test-plan": "^4.0.6",
     "rimraf": "^2.7.1",
     "sinon": "^6.3.4"
   },
   "scripts": {
     "test": "jest",
-    "start": "better-npm-run start",
-    "build": "better-npm-run build",
-    "prebuild": "better-npm-run prebuild",
-    "prefrontend": "better-npm-run prebuild",
-    "frontend": "better-npm-run dev-frontend",
-    "api": "better-npm-run dev-api",
-    "real-basta-backend": "better-npm-run dev-real-basta-backend",
-    "offline": "better-npm-run dev-offline",
-    "mockend": "better-npm-run dev-mockend",
-    "auth": "better-npm-run auth"
-  },
-  "betterScripts": {
-    "start": {
-      "command": "node api/src/server.js",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "prebuild": {
-      "command": "better-npm-run mkdir && better-npm-run copy-fonts"
-    },
-    "dev-frontend": {
-      "command": "parcel frontend/index.html --public-url /static",
-      "env": {
-        "NODE_ENV": "development"
-      }
-    },
-    "mkdir": {
-      "command": "mkdirp frontend/fonts"
-    },
-    "copy-fonts": {
-      "command": "ncp node_modules/font-awesome/fonts/ frontend/fonts"
-    },
-    "dev-api": {
-      "command": "parcel frontend/index.html --public-url /static |nodemon api/src/server.js",
-      "env": {
-        "NODE_ENV": "development",
-        "BASTA_BACKEND": "http://localhost:6996"
-      }
-    },
-    "dev-real-basta-backend": {
-      "command": "nodemon api/src/server.js",
-      "env": {
-        "NODE_ENV": "development",
-        "BASTA_BACKEND": "http://localhost:1337"
-      }
-    },
-    "dev-offline": {
-      "command": "parcel frontend/index.html --public-url /static|nodemon api/test/server.js",
-      "env": {
-        "NODE_ENV": "offline",
-        "BASTA_BACKEND": "http://localhost:6996"
-      }
-    },
-    "dev-mockend": {
-      "command": "nodemon api/test/mockend/mock-backend.js",
-      "env": {
-        "NODE_ENV": "offline"
-      }
-    },
-    "build": {
-      "command": "rimraf dist/ &&  parcel build frontend/index.html --public-url /static",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    }
+    "start": "cross-env NODE_ENV=production node api/src/server.js",
+    "build": "cross-env NODE_ENV=production rimraf dist/ && parcel build frontend/index.html --public-url /static",
+    "prebuild": "npm run mkdir && npm run copy-fonts",
+    "prefrontend": "npm run prebuild",
+    "mkdir": "node -e \"require('node:fs').mkdirSync('frontend/fonts',{recursive:true})\"",
+    "copy-fonts": "ncp node_modules/font-awesome/fonts/ frontend/fonts",
+    "frontend": "cross-env NODE_ENV=development parcel frontend/index.html --public-url /static",
+    "api": "cross-env NODE_ENV=development BASTA_BACKEND=http://localhost:6996 concurrently -k -n parcel,api -c blue,green \"parcel frontend/index.html --public-url /static\" \"nodemon api/src/server.js\"",
+    "real-basta-backend": "cross-env NODE_ENV=development BASTA_BACKEND=http://localhost:1337 nodemon api/src/server.js",
+    "offline": "cross-env NODE_ENV=offline BASTA_BACKEND=http://localhost:6996 concurrently -k -n parcel,api -c blue,green \"parcel frontend/index.html --public-url /static\" \"nodemon api/test/server.js\"",
+    "mockend": "cross-env NODE_ENV=offline nodemon api/test/mockend/mock-backend.js",
+    "prepare": "husky || true"
   },
   "nodemonConfig": {
     "ignore": [
       "dist/*"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
   },
   "keywords": [
     "frontend",
@@ -172,5 +107,14 @@
     "react-router"
   ],
   "author": "@navikt/aura",
-  "license": "MIT"
+  "license": "MIT",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@swc/core",
+      "lmdb",
+      "msgpackr-extract"
+    ]
+  },
+  "packageManager": "pnpm@10.33.0"
 }

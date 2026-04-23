@@ -4,29 +4,29 @@ import { fetchUserProfile, logoutUser } from './user'
 import userReducer from '../reducers/user'
 import * as matchers from 'redux-saga-test-plan/matchers'
 import { throwError } from 'redux-saga-test-plan/providers'
-import { getUrl, postForm } from '../../common/utils'
+import { getUrl } from '../../common/utils'
 
 it('(Saga - fetchUserProfile) GETs user object and stores it in store ', () => {
   const action = {}
   const value = {
-    id: 6969
+    id: 6969,
   }
   return expectSaga(fetchUserProfile, action)
     .withReducer(userReducer)
     .provide([[matchers.call.fn(getUrl), value]])
     .put({
-      type: 'USER_PROFILE_FETCHING'
+      type: 'USER_PROFILE_FETCHING',
     })
     .put({
       type: 'USER_PROFILE_RECEIVED',
-      value: value
+      value: value,
     })
     .hasFinalState({
       userProfile: { id: 6969 },
       isUserAuthenticated: true,
       isFetching: false,
       requestFailed: false,
-      requestStatus: 'User profile lookup successful'
+      requestStatus: 'User profile lookup successful',
     })
     .run()
 })
@@ -38,18 +38,18 @@ it('(Sagas - fetchUserProfile) handles errors', () => {
     .withReducer(userReducer)
     .provide([[matchers.call.fn(getUrl), throwError(err)]])
     .put({
-      type: 'USER_PROFILE_FETCHING'
+      type: 'USER_PROFILE_FETCHING',
     })
     .put({
       type: 'USER_PROFILE_REQUEST_FAILED',
-      err: err
+      err: err,
     })
     .hasFinalState({
       userProfile: {},
       isUserAuthenticated: false,
       isFetching: false,
       requestFailed: true,
-      requestStatus: err
+      requestStatus: err,
     })
     .run()
 })
@@ -61,14 +61,14 @@ it('(Saga - logoutUser) GETs user logout endpoint and updates user session local
     .withReducer(userReducer)
     .provide([[matchers.call.fn(getUrl), value]])
     .put({
-      type: 'USER_SESSION_EXPIRED'
+      type: 'USER_SESSION_EXPIRED',
     })
     .hasFinalState({
       userProfile: {},
       isUserAuthenticated: false,
       isFetching: false,
       requestFailed: false,
-      requestStatus: 'Session expired'
+      requestStatus: 'Session expired',
     })
     .run()
 })
@@ -81,14 +81,14 @@ it('(Sagas - logoutUser) handles errors', () => {
     .provide([[matchers.call.fn(getUrl), throwError(err)]])
     .put({
       type: 'USER_PROFILE_REQUEST_FAILED',
-      err: err
+      err: err,
     })
     .hasFinalState({
       userProfile: {},
       isUserAuthenticated: false,
       isFetching: false,
       requestFailed: true,
-      requestStatus: err
+      requestStatus: err,
     })
     .run()
 })

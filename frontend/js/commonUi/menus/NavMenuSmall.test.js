@@ -1,14 +1,17 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import { NavMenuSmall } from './NavMenuSmall'
 
+const renderWithRouter = (ui) => render(<MemoryRouter>{ui}</MemoryRouter>)
+
 describe('(Component) NavMenuSmall', () => {
-  const wrapper = shallow(<NavMenuSmall navMenu={{ visible: true }} />)
   it('Renders without exploding when visible', () => {
-    expect(wrapper.length).toBe(1)
+    const { container } = renderWithRouter(<NavMenuSmall navMenu={{ visible: true }} />)
+    expect(container.firstChild).toBeTruthy()
   })
-  const wrapper2 = shallow(<NavMenuSmall navMenu={{ visible: false }} />)
   it('Does not render when not visible', () => {
-    expect(wrapper2.type()).toBeNull()
+    const { container } = renderWithRouter(<NavMenuSmall navMenu={{ visible: false }} />)
+    expect(container.firstChild).toBeNull()
   })
 })

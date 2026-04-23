@@ -1,14 +1,17 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import { OrderCard } from './OrderCard'
 
+const renderWithRouter = (ui) => render(<MemoryRouter>{ui}</MemoryRouter>)
+
 describe('(Component) OrderCard', () => {
-  const wrapper = shallow(<OrderCard enabled={true} url={'xx'} />)
   it('Renders without exploding', () => {
-    expect(wrapper.length).toBe(1)
+    const { container } = renderWithRouter(<OrderCard enabled={true} url={'xx'} />)
+    expect(container.firstChild).toBeTruthy()
   })
   it('Returns a disabled component when no matching access', () => {
-    const wrapper2 = shallow(<OrderCard enabled={false} />)
-    expect(wrapper2.find('div.disabled').length).toBe(1)
+    const { container } = renderWithRouter(<OrderCard enabled={false} />)
+    expect(container.querySelectorAll('div.disabled').length).toBe(1)
   })
 })

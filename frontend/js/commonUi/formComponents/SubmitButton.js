@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
+import { withRouter } from '../../common/withRouter'
 import { connect } from 'react-redux'
 import FormSubmitSpinner from './FormSubmitSpinner'
 import { ErrorStripe } from './AlertStripe'
@@ -46,7 +46,7 @@ SubmitButton.propTypes = {
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
   error: PropTypes.string,
-  submitting: PropTypes.bool
+  submitting: PropTypes.bool,
 }
 
 export default withRouter(connect()(SubmitButton))

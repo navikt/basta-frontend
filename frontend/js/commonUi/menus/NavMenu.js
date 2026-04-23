@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { isAvailable } from '../../common/utils'
+import { withRouter } from '../../common/withRouter'
 
 export class NavMenu extends Component {
   isActive(context) {
@@ -62,12 +63,11 @@ export class NavMenu extends Component {
 
 NavMenu.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  location: PropTypes.object
+  location: PropTypes.object,
 }
 
-const mapStateToProps = state => ({
-  location: state.routing.locationBeforeTransitions,
-  user: state.user
+const mapStateToProps = (state) => ({
+  user: state.user,
 })
 
-export default connect(mapStateToProps)(NavMenu)
+export default withRouter(connect(mapStateToProps)(NavMenu))

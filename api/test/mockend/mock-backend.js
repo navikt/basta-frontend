@@ -2,7 +2,6 @@
 const express = require('express')
 const router = express.Router()
 const logger = require('morgan')
-const bodyParser = require('body-parser')
 const orderMock = require('./orderMock')
 const fasitMock = require('./fasitMock')
 const mqMock = require('./mqMock')
@@ -14,19 +13,19 @@ const app = express()
 app.use(logger('dev'))
 
 // CORS
-const cors = function(req, res, next) {
+const cors = function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', host)
   res.setHeader('Access-Control-Allow-Credentials', 'true')
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'Origin, Content-Type, X-AUTHENTICATION, X-IP, Content-Type, Accept, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+    'Origin, Content-Type, X-AUTHENTICATION, X-IP, Content-Type, Accept, Access-Control-Allow-Headers, Authorization, X-Requested-With',
   )
   return next()
 }
 app.use(cors)
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use('/', router)
 router.get('/rest/orders', orderMock.getAllOrders())
 router.get(`/rest/orders/page/:pageId/:pageSize/`, orderMock.getOrders())

@@ -3,7 +3,6 @@
 const { host } = require('./config/config')
 const express = require('express')
 const logger = require('morgan')
-const bodyParser = require('body-parser')
 const router = require('./routes/index')
 const prometheus = require('prom-client')
 const helmet = require('helmet')
@@ -40,8 +39,8 @@ const cors = function (req, res, next) {
 }
 app.use(cors)
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.set('trust proxy', 1)
 
 // Decode JWT claims from the sidecar-injected Authorization header
@@ -61,7 +60,7 @@ app.use('/static', express.static('./dist'))
 app.use('/rest/', auth.ensureAuthenticated(), proxy.attachToken(), proxy.doProxy())
 app.use('/', router)
 
-app.get('*', (req, res) => {
+app.get('/{*path}', (req, res) => {
   res.sendFile('index.html', { root: './dist' })
 })
 
@@ -70,7 +69,6 @@ app.use((err, req, res, next) => {
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
   res.status(err.status || 500).send(err)
-  next()
 })
 
 startApp(app)

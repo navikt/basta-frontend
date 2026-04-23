@@ -1,32 +1,33 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import { NavMenu } from './NavMenu'
+
+const renderWithRouter = (ui) => render(<MemoryRouter>{ui}</MemoryRouter>)
 
 const unpriviligedUser = {
   userProfile: {
-    roles: ['ROLE_USER']
-  }
+    roles: ['ROLE_USER'],
+  },
 }
 
 const priviligedUser = {
   userProfile: {
-    roles: ['ROLE_SUPERUSER']
-  }
+    roles: ['ROLE_SUPERUSER'],
+  },
 }
 
 describe('(Component) NavMenu', () => {
-  const wrapper = shallow(<NavMenu dispatch={() => {}} user={unpriviligedUser} />)
-
   it('Renders without exploding', () => {
-    expect(wrapper.length).toBe(1)
-    expect(wrapper.find('ul').children().length).toBe(3)
+    const { container } = renderWithRouter(<NavMenu dispatch={() => {}} user={unpriviligedUser} />)
+    expect(container).toBeTruthy()
+    expect(container.querySelector('ul').children.length).toBe(3)
   })
 })
 
-describe('(Component) NavMenu with notifications aceess', () => {
-  const wrapper = shallow(<NavMenu dispatch={() => {}} user={priviligedUser} />)
-
-  it('Superusers see the notifications meny item', () => {
-    expect(wrapper.find('ul').children().length).toBe(4)
+describe('(Component) NavMenu with notifications access', () => {
+  it('Superusers see the notifications menu item', () => {
+    const { container } = renderWithRouter(<NavMenu dispatch={() => {}} user={priviligedUser} />)
+    expect(container.querySelector('ul').children.length).toBe(4)
   })
 })

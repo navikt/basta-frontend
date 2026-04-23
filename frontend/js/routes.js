@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch, Layout } from 'react-router'
+import { Route, Routes as RouterRoutes } from 'react-router-dom'
 
 import History from './history/History'
 import Operate from './operations/Operate'
@@ -27,28 +27,28 @@ import MqChannelOperationsForm from './operations/mq/mqChannelOperationsForm'
 // Routes
 export const Routes = () => {
   return (
-    <Switch>
-      <Route exact path="/" component={History} />
-      <Route path="/orders/:orderId" component={OrderDetails} />
-      <Route exact path="/operate" component={Operate} />
-      <Route exact path="/notify" component={NotificationsManagement} />
-      <Route path="/operate/nodes" component={NodeOperationsForm} />
-      <Route path="/operate/credentials" component={CredentialsOperationsForm} />
-      <Route path="/operate/adgroups" component={AdGroupsOperationsForm} />
-      <Route path="/operate/mqqueues" component={MqQueueOperationsForm} />
-      <Route path="/operate/mqchannels" component={MqChannelOperationsForm} />
-      <Route exact path="/create" component={Create} />
-      <Route exact path="/create/bigip" component={BigIPOrderForm} />
-      <Route exact path="/create/certificate" component={CertificateOrderForm} />
-      <Route exact path="/create/credential" component={CredentialOrderForm} />
-      <Route exact path="/create/customcredential" component={CustomCredentialOrderForm} />
-      <Route exact path="/create/adgroups" component={AdGroupsOrderForm} />
-      <Route exact path="/create/customadgroups" component={CustomAdGroupsOrderForm} />
-      <Route exact path="/create/mqqueue" component={MqQueueOrderForm} />
-      <Route exact path="/create/mqchannel" component={MqChannelOrderForm} />
-      <Route exact path="/create/oracle" component={OracleDbOrderForm} />
-      <Route path="/create/:orderType" component={ServerOrderForm} />
-      <Route path="*" component={NotFound} />
-    </Switch>
+    <RouterRoutes>
+      <Route path="/" element={<History />} />
+      <Route path="/orders/:orderId" element={<OrderDetails />} />
+      <Route path="/operate" element={<Operate />} />
+      <Route path="/notify" element={<NotificationsManagement />} />
+      <Route path="/operate/nodes" element={<NodeOperationsForm />} />
+      <Route path="/operate/credentials" element={<CredentialsOperationsForm />} />
+      <Route path="/operate/adgroups" element={<AdGroupsOperationsForm />} />
+      <Route path="/operate/mqqueues" element={<MqQueueOperationsForm />} />
+      <Route path="/operate/mqchannels" element={<MqChannelOperationsForm />} />
+      <Route path="/create" element={<Create />} />
+      <Route path="/create/bigip" element={<BigIPOrderForm />} />
+      <Route path="/create/certificate" element={<CertificateOrderForm />} />
+      <Route path="/create/credential" element={<CredentialOrderForm />} />
+      <Route path="/create/customcredential" element={<CustomCredentialOrderForm />} />
+      <Route path="/create/adgroups" element={<AdGroupsOrderForm />} />
+      <Route path="/create/customadgroups" element={<CustomAdGroupsOrderForm />} />
+      <Route path="/create/mqqueue" element={<MqQueueOrderForm />} />
+      <Route path="/create/mqchannel" element={<MqChannelOrderForm />} />
+      <Route path="/create/oracle" element={<OracleDbOrderForm />} />
+      <Route path="/create/:orderType" element={<ServerOrderForm />} />
+      <Route path="*" element={<NotFound />} />
+    </RouterRoutes>
   )
 }

@@ -6,13 +6,13 @@ import {
   OrderTextBox,
   OrderButtonGroup,
   EnvironmentsDropDown,
-  ApplicationsDropDown
+  ApplicationsDropDown,
 } from '../../commonUi/formComponents'
 import SubmitButton from '../../commonUi/formComponents/SubmitButton'
 import orderTypes from './configuration'
 import OrderDropDown from '../../commonUi/formComponents/OrderDropDown'
 import { submitForm } from '../actionCreators'
-import { withRouter } from 'react-router-dom'
+import { withRouter } from '../../common/withRouter'
 import { connect } from 'react-redux'
 import EnvironmentClassButtonGroup from '../../commonUi/formComponents/EnvironmentClassButtonGroup'
 import ZoneButtonGroup from '../../commonUi/formComponents/ZoneButtonGroup'
@@ -50,8 +50,8 @@ export class ServerOrderForm extends Component {
 
   validOrder() {
     return Object.keys(this.orderFields)
-      .filter(orderFieldKey => this.unvalidatableField(orderFieldKey))
-      .map(orderFieldKey => this.isValidField(orderFieldKey))
+      .filter((orderFieldKey) => this.unvalidatableField(orderFieldKey))
+      .map((orderFieldKey) => this.isValidField(orderFieldKey))
       .reduce((accumulator, currentValue) => accumulator && currentValue)
   }
 
@@ -96,7 +96,7 @@ export class ServerOrderForm extends Component {
             <div className="orderFormDescription">{this.configuration.description}</div>
           </div>
           <div className="orderFormItems">
-            {Object.keys(orderFields).map(orderFieldKey => {
+            {Object.keys(orderFields).map((orderFieldKey) => {
               const orderField = orderFields[orderFieldKey]
               switch (orderField.fieldType) {
                 case 'number':
@@ -108,7 +108,7 @@ export class ServerOrderForm extends Component {
                       min={orderField.min}
                       max={orderField.max}
                       description={orderField.description}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
+                      onChange={(v) => this.handleChange(orderFieldKey, v)}
                     />
                   )
                 case 'text':
@@ -118,7 +118,7 @@ export class ServerOrderForm extends Component {
                       label={orderField.label}
                       value={this.state[orderFieldKey]}
                       placeholder={orderField.description}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
+                      onChange={(v) => this.handleChange(orderFieldKey, v)}
                     />
                   )
 
@@ -129,7 +129,7 @@ export class ServerOrderForm extends Component {
                       label={orderField.label}
                       value={this.state[orderFieldKey]}
                       description={orderField.description}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
+                      onChange={(v) => this.handleChange(orderFieldKey, v)}
                     />
                   )
                 case 'environmentClass':
@@ -137,7 +137,7 @@ export class ServerOrderForm extends Component {
                     <EnvironmentClassButtonGroup
                       key={orderFieldKey}
                       value={this.state[orderFieldKey]}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
+                      onChange={(v) => this.handleChange(orderFieldKey, v)}
                     />
                   )
                 case 'zone': {
@@ -145,7 +145,7 @@ export class ServerOrderForm extends Component {
                     <ZoneButtonGroup
                       key={orderFieldKey}
                       value={this.state[orderFieldKey]}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
+                      onChange={(v) => this.handleChange(orderFieldKey, v)}
                     />
                   )
                 }
@@ -158,14 +158,14 @@ export class ServerOrderForm extends Component {
                       description={orderField.description}
                       alternatives={orderField.alternatives}
                       roles={this.props.user.userProfile.roles}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
+                      onChange={(v) => this.handleChange(orderFieldKey, v)}
                     />
                   )
                 case 'environments':
                   return (
                     <EnvironmentsDropDown
                       key={orderFieldKey}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
+                      onChange={(v) => this.handleChange(orderFieldKey, v)}
                       environmentClass={this.state.environmentClass}
                       value={this.state[orderFieldKey]}
                     />
@@ -174,7 +174,7 @@ export class ServerOrderForm extends Component {
                   return (
                     <ApplicationsDropDown
                       key={orderFieldKey}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
+                      onChange={(v) => this.handleChange(orderFieldKey, v)}
                       value={this.state[orderFieldKey]}
                     />
                   )
@@ -187,7 +187,7 @@ export class ServerOrderForm extends Component {
                       value={this.state[orderFieldKey]}
                       description={orderField.description}
                       alternatives={orderField.alternatives}
-                      onChange={v => this.handleChange(orderFieldKey, v)}
+                      onChange={(v) => this.handleChange(orderFieldKey, v)}
                     />
                   )
                 default:
@@ -195,7 +195,7 @@ export class ServerOrderForm extends Component {
                     console.log(
                       'fieldType',
                       orderField.fieldType,
-                      'is not a valid OrderForm component'
+                      'is not a valid OrderForm component',
                     )
                   }
               }
@@ -218,13 +218,13 @@ ServerOrderForm.propTypes = {
   title: PropTypes.string,
   orderFields: PropTypes.object,
   onSubmit: PropTypes.func,
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.user,
     formSubmitting: state.order.form.submitting,
-    formError: state.order.form.error
+    formError: state.order.form.error,
   }
 }
 

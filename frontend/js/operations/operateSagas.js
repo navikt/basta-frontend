@@ -1,4 +1,4 @@
-import { takeEvery, takeLatest, put, fork, call, select } from 'redux-saga/effects'
+import { takeEvery, takeLatest, put, call } from 'redux-saga/effects'
 import { getUrl, postForm, putForm } from '../common/utils'
 import history from '../common/history'
 import {
@@ -15,7 +15,7 @@ import {
   GROUP_LOOKUP_SUCCESSFUL,
   GROUP_LOOKUP_FAILED,
   GROUP_LOOKUP_SUBMITTING,
-  HISTORY_REQUEST
+  HISTORY_REQUEST,
 } from '../actionTypes'
 
 export function* credentialLookup(action) {
@@ -24,15 +24,15 @@ export function* credentialLookup(action) {
   try {
     credentialInfo.existInAD = yield call(
       getUrl,
-      `/rest/orders/serviceuser/credential/existInAD?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
+      `/rest/orders/serviceuser/credential/existInAD?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`,
     )
     credentialInfo.existInFasit = yield call(
       getUrl,
-      `/rest/orders/serviceuser/credential/existInFasit?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
+      `/rest/orders/serviceuser/credential/existInFasit?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`,
     )
     credentialInfo.user = yield call(
       getUrl,
-      `/rest/operation/serviceuser/credential/user?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
+      `/rest/operation/serviceuser/credential/user?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`,
     )
     yield put({ type: CREDENTIAL_LOOKUP_SUCCESSFUL, credentialInfo })
   } catch (error) {
@@ -46,7 +46,7 @@ export function* customCredentialLookup(action) {
   try {
     credentialInfo.existInAD = yield call(
       getUrl,
-      `/rest/orders/serviceuser/customcredential/existInAD?username=${action.form.username}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`
+      `/rest/orders/serviceuser/customcredential/existInAD?username=${action.form.username}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}`,
     )
     yield put({ type: CREDENTIAL_LOOKUP_SUCCESSFUL, credentialInfo })
   } catch (error) {
@@ -60,7 +60,7 @@ export function* groupLookup(action) {
   try {
     groupInfo.existInAD = yield call(
       getUrl,
-      `/rest/orders/adgroups/existInAD?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}&groupUsage=${action.form.groupUsage}`
+      `/rest/orders/adgroups/existInAD?application=${action.form.application}&environmentClass=${action.form.environmentClass}&zone=${action.form.zone}&groupUsage=${action.form.groupUsage}`,
     )
     yield put({ type: GROUP_LOOKUP_SUCCESSFUL, groupInfo })
   } catch (error) {
@@ -140,8 +140,8 @@ export function* submitOperation(action) {
 }
 
 export function* watchOperations() {
-  yield fork(takeEvery, SUBMIT_OPERATION, submitOperation)
-  yield fork(takeLatest, CREDENTIAL_LOOKUP_REQUEST, credentialLookup)
-  yield fork(takeLatest, CUSTOM_CREDENTIAL_LOOKUP_REQUEST, customCredentialLookup)
-  yield fork(takeLatest, GROUP_LOOKUP_REQUEST, groupLookup)
+  yield takeEvery(SUBMIT_OPERATION, submitOperation)
+  yield takeLatest(CREDENTIAL_LOOKUP_REQUEST, credentialLookup)
+  yield takeLatest(CUSTOM_CREDENTIAL_LOOKUP_REQUEST, customCredentialLookup)
+  yield takeLatest(GROUP_LOOKUP_REQUEST, groupLookup)
 }
