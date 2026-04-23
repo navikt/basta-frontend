@@ -110,9 +110,6 @@ importers:
       lodash.throttle:
         specifier: ^4.1.1
         version: 4.1.1
-      mkdirp:
-        specifier: ^3.0.1
-        version: 3.0.1
       ncp:
         specifier: ^2.0.0
         version: 2.0.0
@@ -4750,14 +4747,6 @@ packages:
       {
         integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==,
       }
-    hasBin: true
-
-  mkdirp@3.0.1:
-    resolution:
-      {
-        integrity: sha512-+NsyUUAZDmo6YVHzL/stxSu3t9YS1iljliy3BSDrXJ/dkn1KYdmtZODGGjLcc9XLgVVpH4KshHB8XmZgMhaBXg==,
-      }
-    engines: { node: '>=10' }
     hasBin: true
 
   moment@2.29.4:
@@ -9634,8 +9623,6 @@ snapshots:
   mkdirp@0.5.5:
     dependencies:
       minimist: 1.2.6
-
-  mkdirp@3.0.1: {}
 
   moment@2.29.4: {}
 
