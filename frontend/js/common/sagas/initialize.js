@@ -1,4 +1,4 @@
-import { put, fork, takeEvery, take } from 'redux-saga/effects'
+import { put, takeEvery, take } from 'redux-saga/effects'
 import { INITIALIZE_APPLICATION, APPLICATION_READY, USER_PROFILE_REQUEST } from '../../actionTypes'
 
 export function* initializeApplication() {

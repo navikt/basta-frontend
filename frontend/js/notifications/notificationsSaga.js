@@ -1,4 +1,4 @@
-import { takeEvery, put, fork, call } from 'redux-saga/effects'
+import { takeEvery, put, call } from 'redux-saga/effects'
 import { postForm, getUrl, putForm } from '../common/utils'
 import {
   POST_NOTIFICATION,

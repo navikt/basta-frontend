@@ -1,4 +1,4 @@
-import { takeEvery, put, fork, call } from 'redux-saga/effects'
+import { takeEvery, put, call } from 'redux-saga/effects'
 import { getUrl } from '../utils'
 import { groupQueueManagersByName } from '../mqUtils'
 import {

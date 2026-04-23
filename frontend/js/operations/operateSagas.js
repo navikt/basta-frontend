@@ -1,4 +1,4 @@
-import { takeEvery, takeLatest, put, fork, call, select } from 'redux-saga/effects'
+import { takeEvery, takeLatest, put, call } from 'redux-saga/effects'
 import { getUrl, postForm, putForm } from '../common/utils'
 import history from '../common/history'
 import {

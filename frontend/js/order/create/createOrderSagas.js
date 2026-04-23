@@ -1,5 +1,5 @@
 import history from '../../common/history'
-import { takeEvery, put, fork, call } from 'redux-saga/effects'
+import { takeEvery, put, call } from 'redux-saga/effects'
 import { getUrl, postForm } from '../../common/utils'
 import {
   SUBMIT_FORM,

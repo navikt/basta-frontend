@@ -13,7 +13,7 @@ describe('Order filter function', () => {
     },
   }
 
-  it('should return a list of all elementsv without exploding', () => {
+  it('should return a list of all elements without exploding', () => {
     const { container } = renderWithProviders(<Create user={user} />)
     expect(container).toBeTruthy()
   })
