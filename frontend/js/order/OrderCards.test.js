@@ -3,7 +3,12 @@ import { render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { OrderCard } from './OrderCard'
 
-const renderWithRouter = (ui) => render(<MemoryRouter>{ui}</MemoryRouter>)
+const renderWithRouter = (ui) =>
+  render(
+    <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      {ui}
+    </MemoryRouter>,
+  )
 
 describe('(Component) OrderCard', () => {
   it('Renders without exploding', () => {

@@ -13,7 +13,12 @@ const HistoryRouter = ({ history, children }) => {
   })
   React.useLayoutEffect(() => history.listen(setState), [history])
   return (
-    <Router navigator={history} location={state.location} navigationType={state.action}>
+    <Router
+      navigator={history}
+      location={state.location}
+      navigationType={state.action}
+      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+    >
       {children}
     </Router>
   )
