@@ -91,7 +91,7 @@
     "real-basta-backend": "cross-env NODE_ENV=development BASTA_BACKEND=http://localhost:1337 nodemon api/src/server.js",
     "offline": "cross-env NODE_ENV=offline BASTA_BACKEND=http://localhost:6996 concurrently -k -n parcel,api -c blue,green \"parcel frontend/index.html --public-url /static\" \"nodemon api/test/server.js\"",
     "mockend": "cross-env NODE_ENV=offline nodemon api/test/mockend/mock-backend.js",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "nodemonConfig": {
     "ignore": [
