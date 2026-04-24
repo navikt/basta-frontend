@@ -80,9 +80,6 @@ importers:
       babel-jest:
         specifier: ^29.7.0
         version: 29.7.0(@babel/core@7.29.0)
-      chai:
-        specifier: ^4.1.2
-        version: 4.3.4
       concurrently:
         specifier: ^9.2.1
         version: 9.2.1
@@ -113,9 +110,6 @@ importers:
       ncp:
         specifier: ^2.0.0
         version: 2.0.0
-      nock:
-        specifier: ^11.9.0
-        version: 11.9.1
       nodemon:
         specifier: ^3.1.7
         version: 3.1.14
@@ -161,9 +155,6 @@ importers:
       rimraf:
         specifier: ^2.7.1
         version: 2.7.1
-      sinon:
-        specifier: ^6.3.4
-        version: 6.3.5
 
 packages:
   '@adobe/css-tools@4.4.4':
@@ -2214,12 +2205,6 @@ packages:
         integrity: sha512-MTBk/3jGLNB2tVxv6uLlFh1iu64iYOQ2PbdOSK3NW8JZsmlaOh2q6sdtKowBhfw8QFLmYNzTW4/oK4uATIi6ZA==,
       }
 
-  '@sinonjs/commons@1.8.3':
-    resolution:
-      {
-        integrity: sha512-xkNcLAn/wZaX14RPlwizcKicDk9G3F8m2nU3L7Ukm5zBgTwiT0wsoFAHx9Jq56fJA1z/7uKGtCRu16sOUCLIHQ==,
-      }
-
   '@sinonjs/commons@3.0.1':
     resolution:
       {
@@ -2231,33 +2216,6 @@ packages:
       {
         integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==,
       }
-
-  '@sinonjs/formatio@3.2.2':
-    resolution:
-      {
-        integrity: sha512-B8SEsgd8gArBLMD6zpRw3juQ2FVSsmdd7qlevyDqzS9WTCtvF55/gAL+h6gue8ZvPYcdiPdvueM/qm//9XzyTQ==,
-      }
-
-  '@sinonjs/samsam@2.1.3':
-    resolution:
-      {
-        integrity: sha512-8zNeBkSKhU9a5cRNbpCKau2WWPfan+Q2zDlcXvXyhn9EsMqgYs4qzo0XHNVlXC6ABQL8fT6nV+zzo5RTHJzyXw==,
-      }
-
-  '@sinonjs/samsam@3.3.3':
-    resolution:
-      {
-        integrity: sha512-bKCMKZvWIjYD0BLGnNrxVuw4dkWCYsLqFOUWw8VgKF/+5Y+mE7LfHWPIYoDXowH+3a9LsWDMo0uAP8YDosPvHQ==,
-      }
-
-  '@sinonjs/text-encoding@0.7.1':
-    resolution:
-      {
-        integrity: sha512-+iTbntw2IZPb/anVDbypzfQa+ay64MW0Zo8aJ8gZPWMMK6/OubMVb6lUPMagqjOPnmtauXnFCACVl3O7ogjeqQ==,
-      }
-    deprecated: |-
-      Deprecated: no longer maintained and no longer used by Sinon packages. See
-        https://github.com/sinonjs/nise/issues/243 for replacement details.
 
   '@swc/core-darwin-arm64@1.15.24':
     resolution:
@@ -2675,18 +2633,6 @@ packages:
       }
     engines: { node: '>= 0.4' }
 
-  array-from@2.1.1:
-    resolution:
-      {
-        integrity: sha512-GQTc6Uupx1FCavi5mPzBvVT7nEOeWMmUA9P95wpfpW1XwMSKs+KaymD5C2Up7KAUKg/mYwbsUYzdZWcoajlNZg==,
-      }
-
-  assertion-error@1.1.0:
-    resolution:
-      {
-        integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==,
-      }
-
   asynckit@0.4.0:
     resolution:
       {
@@ -2906,13 +2852,6 @@ packages:
         integrity: sha512-mNcrMN9KeI68u7muanUpEejSLghOKlVhRqS/Za2IeyGllJ9I9otGpR9g3nsw7n4W378TE/LyIteA0+/FOZm4Kg==,
       }
 
-  chai@4.3.4:
-    resolution:
-      {
-        integrity: sha512-yS5H68VYOCtN1cjfwumDSuzn/9c+yza4f3reKXlE5rUg7SFcCEy90gJvydNgOYtblyf4Zi6jIWRnXOgErta0KA==,
-      }
-    engines: { node: '>=4' }
-
   chalk@4.1.2:
     resolution:
       {
@@ -2926,12 +2865,6 @@ packages:
         integrity: sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==,
       }
     engines: { node: '>=10' }
-
-  check-error@1.0.2:
-    resolution:
-      {
-        integrity: sha512-BrgHpW9NURQgzoNyjfq0Wu6VFO6D7IZEmJNdtgNqpzGG8RuNFHt2jQxWlAs4HMe119chBnv+34syEZtc6IhLtA==,
-      }
 
   chokidar@3.6.0:
     resolution:
@@ -3221,13 +3154,6 @@ packages:
       babel-plugin-macros:
         optional: true
 
-  deep-eql@3.0.1:
-    resolution:
-      {
-        integrity: sha512-+QeIQyN5ZuO+3Uk5DYh6/1eKO0m0YmJFGNmFHGACpf1ClL1nmlV/p4gNgbl2pJGxgXb4faqo6UE+M5ACEMyVcw==,
-      }
-    engines: { node: '>=0.12' }
-
   deepmerge@4.3.1:
     resolution:
       {
@@ -3284,13 +3210,6 @@ packages:
         integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==,
       }
     engines: { node: ^14.15.0 || ^16.10.0 || >=18.0.0 }
-
-  diff@3.5.0:
-    resolution:
-      {
-        integrity: sha512-A46qtFgd+g7pDZinpnwiRJtxbC1hpgf0uzP3iG89scHk0AUC7A1TGxf5OiiOUv/JMZR8GOt8hL900hV0bOy5xA==,
-      }
-    engines: { node: '>=0.3.1' }
 
   dom-accessibility-api@0.5.16:
     resolution:
@@ -3635,12 +3554,6 @@ packages:
         integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==,
       }
     engines: { node: 6.* || 8.* || >= 10.* }
-
-  get-func-name@2.0.0:
-    resolution:
-      {
-        integrity: sha512-Hm0ixYtaSZ/V7C8FJrtZIuBBI+iSgL+1Aq82zSu8VQNB4S3Gk8e7Qs3VwBDJAhmRZcFqkl3tQu36g/Foh5I5ig==,
-      }
 
   get-intrinsic@1.3.0:
     resolution:
@@ -4038,12 +3951,6 @@ packages:
       }
     engines: { node: '>=12.13' }
 
-  isarray@0.0.1:
-    resolution:
-      {
-        integrity: sha512-D2S+3GLxWH+uhrNEcoh/fnmYeP8E8/zHl644d/jdA0g2uyXvy3sb0qxotE+ne0LtccHknQzWwZEzhak7oJ0COQ==,
-      }
-
   isexe@2.0.0:
     resolution:
       {
@@ -4357,12 +4264,6 @@ packages:
         integrity: sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==,
       }
 
-  json-stringify-safe@5.0.1:
-    resolution:
-      {
-        integrity: sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==,
-      }
-
   json5@2.2.3:
     resolution:
       {
@@ -4370,12 +4271,6 @@ packages:
       }
     engines: { node: '>=6' }
     hasBin: true
-
-  just-extend@4.2.1:
-    resolution:
-      {
-        integrity: sha512-g3UB796vUFIY90VIv/WX3L2c8CS2MdWUww3CNrYmqza1Fg0DURc2K/O4YrnklBdQarSJ/y8JnJYDGc+1iumQjg==,
-      }
 
   kleur@3.0.3:
     resolution:
@@ -4543,13 +4438,6 @@ packages:
         integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==,
       }
 
-  lodash.get@4.4.2:
-    resolution:
-      {
-        integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==,
-      }
-    deprecated: This package is deprecated. Use the optional chaining (?.) operator instead.
-
   lodash.isequal@4.5.0:
     resolution:
       {
@@ -4573,24 +4461,6 @@ packages:
     resolution:
       {
         integrity: sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==,
-      }
-
-  lodash@4.18.1:
-    resolution:
-      {
-        integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==,
-      }
-
-  lolex@2.7.5:
-    resolution:
-      {
-        integrity: sha512-l9x0+1offnKKIzYVjyXU2SiwhXDLekRzKyhnbyldPHvC7BvLPVpdNUNR2KeMAiCN2D/kLNttZgQD5WjSxuBx3Q==,
-      }
-
-  lolex@5.1.2:
-    resolution:
-      {
-        integrity: sha512-h4hmjAvHTmd+25JSwrtTIuwbKdwg5NzZVRMLn9saij4SZaepCrTCxPr35H/3bjwfMJtN+t3CX8672UIkglz28A==,
       }
 
   loose-envify@1.4.0:
@@ -4736,19 +4606,6 @@ packages:
         integrity: sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==,
       }
 
-  minimist@1.2.6:
-    resolution:
-      {
-        integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==,
-      }
-
-  mkdirp@0.5.5:
-    resolution:
-      {
-        integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==,
-      }
-    hasBin: true
-
   moment@2.29.4:
     resolution:
       {
@@ -4827,19 +4684,6 @@ packages:
         integrity: sha512-8Ofs/AUQh8MaEcrlq5xOX0CQ9ypTF5dl78mjlMNfOK08fzpgTHQRQPBxcPlEtIw0yRpws+Zo/3r+5WRby7u3Gg==,
       }
     engines: { node: '>= 0.6' }
-
-  nise@1.5.3:
-    resolution:
-      {
-        integrity: sha512-Ymbac/94xeIrMf59REBPOv0thr+CJVFMhrlAkW/gjCIE58BGQdCj0x7KRCb3yz+Ga2Rz3E9XXSvUyyxqqhjQAQ==,
-      }
-
-  nock@11.9.1:
-    resolution:
-      {
-        integrity: sha512-U5wPctaY4/ar2JJ5Jg4wJxlbBfayxgKbiAeGh+a1kk6Pwnc2ZEuKviLyDSG6t0uXl56q7AALIxoM6FJrBSsVXA==,
-      }
-    engines: { node: '>= 8.0' }
 
   node-addon-api@6.1.0:
     resolution:
@@ -5071,12 +4915,6 @@ packages:
         integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==,
       }
 
-  path-to-regexp@1.8.0:
-    resolution:
-      {
-        integrity: sha512-n43JRhlUKUAlibEJhPeir1ncUID16QnEjNpwzNdO3Lm4ywrBpBZ5oLD0I6br9evr1Y9JTqwRtAh7JLoOzAQdVA==,
-      }
-
   path-to-regexp@8.4.2:
     resolution:
       {
@@ -5089,12 +4927,6 @@ packages:
         integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==,
       }
     engines: { node: '>=8' }
-
-  pathval@1.1.1:
-    resolution:
-      {
-        integrity: sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==,
-      }
 
   picocolors@1.1.1:
     resolution:
@@ -5194,13 +5026,6 @@ packages:
       {
         integrity: sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==,
       }
-
-  propagate@2.0.1:
-    resolution:
-      {
-        integrity: sha512-vGrhOavPSTz4QVNuBNdcNXePNdNMaO1xj9yBeH1ScQPjk/rhg9sSlCXPhMkFuaNNW/syTvYqsnbIJxMBfRbbag==,
-      }
-    engines: { node: '>= 8' }
 
   proxy-addr@2.0.7:
     resolution:
@@ -5651,13 +5476,6 @@ packages:
         integrity: sha512-a2B9Y0KlNXl9u/vsW6sTIu9vGEpfKu2wRV6l1H3XEas/0gUIzGzBoP/IouTcUQbm9JWZLH3COxyn03TYlFax6w==,
       }
     engines: { node: '>=10' }
-
-  sinon@6.3.5:
-    resolution:
-      {
-        integrity: sha512-xgoZ2gKjyVRcF08RrIQc+srnSyY1JDJtxu3Nsz07j1ffjgXoY6uPLf/qja6nDBZgzYYEovVkFryw2+KiZz11xQ==,
-      }
-    deprecated: 16.1.1
 
   sisteransi@1.0.5:
     resolution:
@@ -7983,10 +7801,6 @@ snapshots:
 
   '@sinclair/typebox@0.27.10': {}
 
-  '@sinonjs/commons@1.8.3':
-    dependencies:
-      type-detect: 4.0.8
-
   '@sinonjs/commons@3.0.1':
     dependencies:
       type-detect: 4.0.8
@@ -7994,21 +7808,6 @@ snapshots:
   '@sinonjs/fake-timers@10.3.0':
     dependencies:
       '@sinonjs/commons': 3.0.1
-
-  '@sinonjs/formatio@3.2.2':
-    dependencies:
-      '@sinonjs/commons': 1.8.3
-      '@sinonjs/samsam': 3.3.3
-
-  '@sinonjs/samsam@2.1.3': {}
-
-  '@sinonjs/samsam@3.3.3':
-    dependencies:
-      '@sinonjs/commons': 1.8.3
-      array-from: 2.1.1
-      lodash: 4.18.1
-
-  '@sinonjs/text-encoding@0.7.1': {}
 
   '@swc/core-darwin-arm64@1.15.24':
     optional: true
@@ -8236,10 +8035,6 @@ snapshots:
 
   aria-query@5.3.2: {}
 
-  array-from@2.1.1: {}
-
-  assertion-error@1.1.0: {}
-
   asynckit@0.4.0: {}
 
   babel-jest@29.7.0(@babel/core@7.29.0):
@@ -8406,23 +8201,12 @@ snapshots:
 
   caniuse-lite@1.0.30001787: {}
 
-  chai@4.3.4:
-    dependencies:
-      assertion-error: 1.1.0
-      check-error: 1.0.2
-      deep-eql: 3.0.1
-      get-func-name: 2.0.0
-      pathval: 1.1.1
-      type-detect: 4.0.8
-
   chalk@4.1.2:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
   char-regex@1.0.2: {}
-
-  check-error@1.0.2: {}
 
   chokidar@3.6.0:
     dependencies:
@@ -8580,10 +8364,6 @@ snapshots:
     optionalDependencies:
       babel-plugin-macros: 3.1.0
 
-  deep-eql@3.0.1:
-    dependencies:
-      type-detect: 4.0.8
-
   deepmerge@4.3.1: {}
 
   delayed-stream@1.0.0: {}
@@ -8599,8 +8379,6 @@ snapshots:
   detect-newline@3.1.0: {}
 
   diff-sequences@29.6.3: {}
-
-  diff@3.5.0: {}
 
   dom-accessibility-api@0.5.16: {}
 
@@ -8802,8 +8580,6 @@ snapshots:
   gensync@1.0.0-beta.2: {}
 
   get-caller-file@2.0.5: {}
-
-  get-func-name@2.0.0: {}
 
   get-intrinsic@1.3.0:
     dependencies:
@@ -9011,8 +8787,6 @@ snapshots:
   is-what@3.14.1: {}
 
   is-what@4.1.16: {}
-
-  isarray@0.0.1: {}
 
   isexe@2.0.0: {}
 
@@ -9426,11 +9200,7 @@ snapshots:
 
   json-parse-even-better-errors@2.3.1: {}
 
-  json-stringify-safe@5.0.1: {}
-
   json5@2.2.3: {}
-
-  just-extend@4.2.1: {}
 
   kleur@3.0.3: {}
 
@@ -9534,8 +9304,6 @@ snapshots:
 
   lodash.debounce@4.0.8: {}
 
-  lodash.get@4.4.2: {}
-
   lodash.isequal@4.5.0: {}
 
   lodash.ismatch@4.4.0: {}
@@ -9543,14 +9311,6 @@ snapshots:
   lodash.isplainobject@4.0.6: {}
 
   lodash.throttle@4.1.1: {}
-
-  lodash@4.18.1: {}
-
-  lolex@2.7.5: {}
-
-  lolex@5.1.2:
-    dependencies:
-      '@sinonjs/commons': 1.8.3
 
   loose-envify@1.4.0:
     dependencies:
@@ -9618,12 +9378,6 @@ snapshots:
     dependencies:
       brace-expansion: 1.1.11
 
-  minimist@1.2.6: {}
-
-  mkdirp@0.5.5:
-    dependencies:
-      minimist: 1.2.6
-
   moment@2.29.4: {}
 
   morgan@1.10.0:
@@ -9672,24 +9426,6 @@ snapshots:
     optional: true
 
   negotiator@1.0.0: {}
-
-  nise@1.5.3:
-    dependencies:
-      '@sinonjs/formatio': 3.2.2
-      '@sinonjs/text-encoding': 0.7.1
-      just-extend: 4.2.1
-      lolex: 5.1.2
-      path-to-regexp: 1.8.0
-
-  nock@11.9.1:
-    dependencies:
-      debug: 4.4.3(supports-color@5.5.0)
-      json-stringify-safe: 5.0.1
-      lodash: 4.18.1
-      mkdirp: 0.5.5
-      propagate: 2.0.1
-    transitivePeerDependencies:
-      - supports-color
 
   node-addon-api@6.1.0: {}
 
@@ -9821,15 +9557,9 @@ snapshots:
 
   path-parse@1.0.7: {}
 
-  path-to-regexp@1.8.0:
-    dependencies:
-      isarray: 0.0.1
-
   path-to-regexp@8.4.2: {}
 
   path-type@4.0.0: {}
-
-  pathval@1.1.1: {}
 
   picocolors@1.1.1: {}
 
@@ -9888,8 +9618,6 @@ snapshots:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
-
-  propagate@2.0.1: {}
 
   proxy-addr@2.0.7:
     dependencies:
@@ -10169,18 +9897,6 @@ snapshots:
   simple-update-notifier@2.0.0:
     dependencies:
       semver: 7.7.4
-
-  sinon@6.3.5:
-    dependencies:
-      '@sinonjs/commons': 1.8.3
-      '@sinonjs/formatio': 3.2.2
-      '@sinonjs/samsam': 2.1.3
-      diff: 3.5.0
-      lodash.get: 4.4.2
-      lolex: 2.7.5
-      nise: 1.5.3
-      supports-color: 5.5.0
-      type-detect: 4.0.8
 
   sisteransi@1.0.5: {}
 
