@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes as RouterRoutes } from 'react-router-dom'
+import { Route, Routes as RouterRoutes } from 'react-router'
 
 import History from './history/History'
 import Operate from './operations/Operate'

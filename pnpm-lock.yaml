@@ -14,8 +14,8 @@ importers:
         specifier: ^5.12.1
         version: 5.15.4
       '@redux-devtools/extension':
-        specifier: ^4.0.0
-        version: 4.0.0(redux@5.0.1)
+        specifier: ^3.3.0
+        version: 3.3.0(redux@5.0.1)
       cookie-parser:
         specifier: ^1.4.6
         version: 1.4.6
@@ -131,7 +131,7 @@ importers:
       react-redux:
         specifier: ^9.1.2
         version: 9.2.0(@types/react@19.2.14)(react@19.2.5)(redux@5.0.1)
-      react-router-dom:
+      react-router:
         specifier: ^7.14.2
         version: 7.14.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react-select:
@@ -2285,10 +2285,10 @@ packages:
       }
     engines: { node: ^12.20.0 || ^14.18.0 || >=16.0.0 }
 
-  '@redux-devtools/extension@4.0.0':
+  '@redux-devtools/extension@3.3.0':
     resolution:
       {
-        integrity: sha512-pLIzgo5MvqdDLe5D1pzHLgmr8THra/DOyRf5MvOEPZnKKDn6RhFbNSS5oXZ3Cal0cpx08kx7sR6zD8QgoXEnZA==,
+        integrity: sha512-X34S/rC8S/M1BIrkYD1mJ5f8vlH0BDqxXrs96cvxSBo4FhMdbhU+GUGsmNYov1xjSyLMHgo8NYrUG8bNX7525g==,
       }
     peerDependencies:
       redux: ^3.1.0 || ^4.0.0 || ^5.0.0
@@ -4035,6 +4035,12 @@ packages:
     engines: { node: '>=0.10.0' }
     hasBin: true
 
+  immutable@4.3.8:
+    resolution:
+      {
+        integrity: sha512-d/Ld9aLbKpNwyl0KiM2CT1WYvkitQ1TSvmRtkcV8FKStiDoA7Slzgjmb/1G2yhKM1p0XeNOieaTbFZmU1d3Xuw==,
+      }
+
   import-fresh@3.3.0:
     resolution:
       {
@@ -5355,16 +5361,6 @@ packages:
         integrity: sha512-FPvF2XxTSikpJxcr+bHut2H4gJ17+18Uy20D5/F+SKzFap62R3cM5wH6b8WN3LyGSYeQilLEcJcR1fjBSI2S1A==,
       }
     engines: { node: '>=0.10.0' }
-
-  react-router-dom@7.14.2:
-    resolution:
-      {
-        integrity: sha512-YZcM5ES8jJSM+KrJ9BdvHHqlnGTg5tH3sC5ChFRj4inosKctdyzBDhOyyHdGk597q2OT6NTrCA1OvB/YDwfekQ==,
-      }
-    engines: { node: '>=20.0.0' }
-    peerDependencies:
-      react: '>=18'
-      react-dom: '>=18'
 
   react-router@7.14.2:
     resolution:
@@ -8114,8 +8110,10 @@ snapshots:
 
   '@pkgr/core@0.2.9': {}
 
-  '@redux-devtools/extension@4.0.0(redux@5.0.1)':
+  '@redux-devtools/extension@3.3.0(redux@5.0.1)':
     dependencies:
+      '@babel/runtime': 7.29.2
+      immutable: 4.3.8
       redux: 5.0.1
 
   '@redux-saga/core@1.4.2':
@@ -9084,6 +9082,8 @@ snapshots:
   image-size@0.5.5:
     optional: true
 
+  immutable@4.3.8: {}
+
   import-fresh@3.3.0:
     dependencies:
       parent-module: 1.0.1
@@ -10000,12 +10000,6 @@ snapshots:
       redux: 5.0.1
 
   react-refresh@0.16.0: {}
-
-  react-router-dom@7.14.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
-    dependencies:
-      react: 19.2.5
-      react-dom: 19.2.5(react@19.2.5)
-      react-router: 7.14.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
 
   react-router@7.14.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
