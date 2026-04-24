@@ -21,6 +21,9 @@
   },
   "version": "74.0.0",
   "description": "frontend til basta",
+  "engines": {
+    "node": ">=24"
+  },
   "dependencies": {
     "@babel/runtime": "^7.23.2",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
