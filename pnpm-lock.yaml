@@ -14,8 +14,8 @@ importers:
         specifier: ^5.12.1
         version: 5.15.4
       '@redux-devtools/extension':
-        specifier: ^3.3.0
-        version: 3.3.0(redux@5.0.1)
+        specifier: ^4.0.0
+        version: 4.0.0(redux@5.0.1)
       cookie-parser:
         specifier: ^1.4.6
         version: 1.4.6
@@ -102,8 +102,8 @@ importers:
         specifier: ^29.7.0
         version: 29.7.0
       less:
-        specifier: ^3.11.1
-        version: 3.13.1
+        specifier: ^4.6.4
+        version: 4.6.4
       lodash.throttle:
         specifier: ^4.1.1
         version: 4.1.1
@@ -153,8 +153,8 @@ importers:
         specifier: ^4.0.6
         version: 4.0.6(@redux-saga/is@1.2.1)(@redux-saga/symbols@1.2.1)(redux-saga@1.4.2)
       rimraf:
-        specifier: ^2.7.1
-        version: 2.7.1
+        specifier: ^6.1.3
+        version: 6.1.3
 
 packages:
   '@adobe/css-tools@4.4.4':
@@ -2148,10 +2148,10 @@ packages:
       }
     engines: { node: ^12.20.0 || ^14.18.0 || >=16.0.0 }
 
-  '@redux-devtools/extension@3.3.0':
+  '@redux-devtools/extension@4.0.0':
     resolution:
       {
-        integrity: sha512-X34S/rC8S/M1BIrkYD1mJ5f8vlH0BDqxXrs96cvxSBo4FhMdbhU+GUGsmNYov1xjSyLMHgo8NYrUG8bNX7525g==,
+        integrity: sha512-pLIzgo5MvqdDLe5D1pzHLgmr8THra/DOyRf5MvOEPZnKKDn6RhFbNSS5oXZ3Cal0cpx08kx7sR6zD8QgoXEnZA==,
       }
     peerDependencies:
       redux: ^3.1.0 || ^4.0.0 || ^5.0.0
@@ -3027,12 +3027,6 @@ packages:
       }
     engines: { node: '>= 0.6' }
 
-  copy-anything@2.0.3:
-    resolution:
-      {
-        integrity: sha512-GK6QUtisv4fNS+XcI7shX0Gx9ORg7QqIznyfho79JTnX1XhLiyZHfftvGiziqzRiEi/Bjhgpi+D2o7HxJFPnDQ==,
-      }
-
   copy-anything@3.0.5:
     resolution:
       {
@@ -3597,6 +3591,13 @@ packages:
       }
     engines: { node: '>= 6' }
 
+  glob@13.0.6:
+    resolution:
+      {
+        integrity: sha512-Wjlyrolmm8uDpm/ogGyXZXb1Z+Ca2B8NbJwqBVg0axK9GbBeoS7yGV6vjXnYdGm6X53iehEuxxbyiKp8QmN4Vw==,
+      }
+    engines: { node: 18 || 20 || >=22 }
+
   glob@7.2.0:
     resolution:
       {
@@ -3803,12 +3804,6 @@ packages:
     engines: { node: '>=0.10.0' }
     hasBin: true
 
-  immutable@4.3.8:
-    resolution:
-      {
-        integrity: sha512-d/Ld9aLbKpNwyl0KiM2CT1WYvkitQ1TSvmRtkcV8FKStiDoA7Slzgjmb/1G2yhKM1p0XeNOieaTbFZmU1d3Xuw==,
-      }
-
   import-fresh@3.3.0:
     resolution:
       {
@@ -3937,12 +3932,6 @@ packages:
         integrity: sha512-hFoiJiTl63nn+kstHGBtewWSKnQLpyb155KHheA1l39uvtO9nWIop1p3udqPcUd/xbF1VLMO4n7OI6p7RbngDg==,
       }
     engines: { node: '>=8' }
-
-  is-what@3.14.1:
-    resolution:
-      {
-        integrity: sha512-sNxgpk9793nzSs7bA6JQJGeIuRBQhAaNGG77kzYQgMkrID+lS6SlK07K5LaptscDlSaIgH+GPFzf+d75FVxozA==,
-      }
 
   is-what@4.1.16:
     resolution:
@@ -4279,14 +4268,6 @@ packages:
       }
     engines: { node: '>=6' }
 
-  less@3.13.1:
-    resolution:
-      {
-        integrity: sha512-SwA1aQXGUvp+P5XdZslUOhhLnClSLIjWvJhmd+Vgib5BFIr9lMNlQwmwUNOjXThF/A0x+MCYYPeWEfeWiLRnTw==,
-      }
-    engines: { node: '>=6' }
-    hasBin: true
-
   less@4.6.4:
     resolution:
       {
@@ -4470,6 +4451,13 @@ packages:
       }
     hasBin: true
 
+  lru-cache@11.3.5:
+    resolution:
+      {
+        integrity: sha512-NxVFwLAnrd9i7KUBxC4DrUhmgjzOs+1Qm50D3oF1/oL+r1NpZ4gA7xvG0/zJ8evR7zIKn4vLf7qTNduWFtCrRw==,
+      }
+    engines: { node: 20 || >=22 }
+
   lru-cache@5.1.1:
     resolution:
       {
@@ -4606,6 +4594,13 @@ packages:
         integrity: sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==,
       }
 
+  minipass@7.1.3:
+    resolution:
+      {
+        integrity: sha512-tEBHqDnIoM/1rXME1zgka9g6Q2lcoCkxHLuc7ODJ5BxbP5d4c2Z5cGgtXAku59200Cx7diuHTOYfSBD8n6mm8A==,
+      }
+    engines: { node: '>=16 || 14 >=14.17' }
+
   moment@2.29.4:
     resolution:
       {
@@ -4649,12 +4644,6 @@ packages:
     resolution:
       {
         integrity: sha512-FkoAAyyA6HM8wL882EcEyFZ9s7hVADSwG9xrVx3dxxNQAtgADTrJoEWivID82Iv1zWDsv/OtbrrcZAzGzOMdNw==,
-      }
-
-  native-request@1.1.0:
-    resolution:
-      {
-        integrity: sha512-uZ5rQaeRn15XmpgE0xoPL8YWqcX90VtCFglYwAgkvKM5e8fog+vePLAhHxuuv/gRkrQxIeh5U3q9sMNUrENqWw==,
       }
 
   natural-compare@1.4.0:
@@ -4846,6 +4835,12 @@ packages:
       }
     engines: { node: '>=6' }
 
+  package-json-from-dist@1.0.1:
+    resolution:
+      {
+        integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==,
+      }
+
   parcel@2.16.4:
     resolution:
       {
@@ -4914,6 +4909,13 @@ packages:
       {
         integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==,
       }
+
+  path-scurry@2.0.2:
+    resolution:
+      {
+        integrity: sha512-3O/iVVsJAPsOnpwWIeD+d6z/7PmqApyQePUtCndjatj/9I5LylHvt5qluFaBT3I5h3r1ejfR056c+FCv+NnNXg==,
+      }
+    engines: { node: 18 || 20 || >=22 }
 
   path-to-regexp@8.4.2:
     resolution:
@@ -5321,12 +5323,12 @@ packages:
         integrity: sha512-wENBPt4ySzg4ybFQW2TT1zMQucPK95HSh/nq2CFTZVOGut2+pQvSsgtda4d26YrYcr067wjbmzOG8byDPBX63A==,
       }
 
-  rimraf@2.7.1:
+  rimraf@6.1.3:
     resolution:
       {
-        integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==,
+        integrity: sha512-LKg+Cr2ZF61fkcaK1UdkH2yEBBKnYjTyWzTJT6KNPcSPaiT7HSdhtMXQuN5wkTX0Xu72KQ1l8S42rlmexS2hSA==,
       }
-    deprecated: Rimraf versions prior to v4 are no longer supported
+    engines: { node: 20 || >=22 }
     hasBin: true
 
   router@2.2.0:
@@ -5685,12 +5687,6 @@ packages:
         integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==,
       }
     hasBin: true
-
-  tslib@1.14.1:
-    resolution:
-      {
-        integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==,
-      }
 
   tslib@2.8.1:
     resolution:
@@ -7766,10 +7762,8 @@ snapshots:
 
   '@pkgr/core@0.2.9': {}
 
-  '@redux-devtools/extension@3.3.0(redux@5.0.1)':
+  '@redux-devtools/extension@4.0.0(redux@5.0.1)':
     dependencies:
-      '@babel/runtime': 7.29.2
-      immutable: 4.3.8
       redux: 5.0.1
 
   '@redux-saga/core@1.4.2':
@@ -8284,10 +8278,6 @@ snapshots:
 
   cookie@0.7.2: {}
 
-  copy-anything@2.0.3:
-    dependencies:
-      is-what: 3.14.1
-
   copy-anything@3.0.5:
     dependencies:
       is-what: 4.1.16
@@ -8609,6 +8599,12 @@ snapshots:
     dependencies:
       is-glob: 4.0.3
 
+  glob@13.0.6:
+    dependencies:
+      minimatch: 10.2.5
+      minipass: 7.1.3
+      path-scurry: 2.0.2
+
   glob@7.2.0:
     dependencies:
       fs.realpath: 1.0.0
@@ -8729,8 +8725,6 @@ snapshots:
   image-size@0.5.5:
     optional: true
 
-  immutable@4.3.8: {}
-
   import-fresh@3.3.0:
     dependencies:
       parent-module: 1.0.1
@@ -8783,8 +8777,6 @@ snapshots:
   is-promise@4.0.0: {}
 
   is-stream@2.0.1: {}
-
-  is-what@3.14.1: {}
 
   is-what@4.1.16: {}
 
@@ -9204,19 +9196,6 @@ snapshots:
 
   kleur@3.0.3: {}
 
-  less@3.13.1:
-    dependencies:
-      copy-anything: 2.0.3
-      tslib: 1.14.1
-    optionalDependencies:
-      errno: 0.1.8
-      graceful-fs: 4.2.9
-      image-size: 0.5.5
-      make-dir: 2.1.0
-      mime: 1.6.0
-      native-request: 1.1.0
-      source-map: 0.6.1
-
   less@4.6.4:
     dependencies:
       copy-anything: 3.0.5
@@ -9316,6 +9295,8 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
+  lru-cache@11.3.5: {}
+
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
@@ -9378,6 +9359,8 @@ snapshots:
     dependencies:
       brace-expansion: 1.1.11
 
+  minipass@7.1.3: {}
+
   moment@2.29.4: {}
 
   morgan@1.10.0:
@@ -9411,9 +9394,6 @@ snapshots:
   msgpackr@1.11.9:
     optionalDependencies:
       msgpackr-extract: 3.0.3
-
-  native-request@1.1.0:
-    optional: true
 
   natural-compare@1.4.0: {}
 
@@ -9509,6 +9489,8 @@ snapshots:
 
   p-try@2.2.0: {}
 
+  package-json-from-dist@1.0.1: {}
+
   parcel@2.16.4(@swc/helpers@0.5.21):
     dependencies:
       '@parcel/config-default': 2.16.4(@parcel/core@2.16.4(@swc/helpers@0.5.21))(@swc/helpers@0.5.21)
@@ -9556,6 +9538,11 @@ snapshots:
   path-key@3.1.1: {}
 
   path-parse@1.0.7: {}
+
+  path-scurry@2.0.2:
+    dependencies:
+      lru-cache: 11.3.5
+      minipass: 7.1.3
 
   path-to-regexp@8.4.2: {}
 
@@ -9791,9 +9778,10 @@ snapshots:
       is-core-module: 2.8.0
       path-parse: 1.0.7
 
-  rimraf@2.7.1:
+  rimraf@6.1.3:
     dependencies:
-      glob: 7.2.0
+      glob: 13.0.6
+      package-json-from-dist: 1.0.1
 
   router@2.2.0:
     dependencies:
@@ -9998,8 +9986,6 @@ snapshots:
       punycode: 2.1.1
 
   tree-kill@1.2.2: {}
-
-  tslib@1.14.1: {}
 
   tslib@2.8.1: {}
 
