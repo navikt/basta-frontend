@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter } from 'react-router'
 import { History } from './History'
 import { HISTORY_REQUEST, SEARCH_ORDERS_REQUEST } from '../actionTypes'
 

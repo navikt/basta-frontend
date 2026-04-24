@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import imageType from '../../containers/imageType'
 import moment from 'moment'
 
-const OrderListCard = props => {
+const OrderListCard = (props) => {
   const { order } = props
   const image = imageType(order.orderDescription)
   return (
@@ -28,18 +28,18 @@ const OrderListCard = props => {
   )
 }
 
-const formatTimestamp = number => {
+const formatTimestamp = (number) => {
   if (number) {
     return moment(number).format('DD MMM YYYY HH:mm')
   }
 }
 
-const formatString = string => {
+const formatString = (string) => {
   if (string) {
     return string
       .toLowerCase()
       .replace('_', ' ')
-      .replace(/\b\w/g, firstLetter => {
+      .replace(/\b\w/g, (firstLetter) => {
         return firstLetter.toUpperCase()
       })
   }
@@ -52,20 +52,20 @@ const formatDisplayName = (displayName, userId) => {
   return `${displayName} ( ${userId} )`
 }
 
-const orderOperation = order => {
+const orderOperation = (order) => {
   const { orderOperation, id } = order
 
   return <span className="bold">{`${orderOperation} | ${id}`} </span>
 }
 
-const orderType = order => {
+const orderType = (order) => {
   const { orderType, orderDescription } = order
   const description =
     orderDescription.toLowerCase() !== 'unknown' ? `| ${formatString(orderDescription)}` : ''
   return <span>{`${formatString(orderType)} ${description}`}</span>
 }
 
-const orderResults = results => {
+const orderResults = (results) => {
   return results.map((e, i) => {
     return (
       <div key={i}>
@@ -75,7 +75,7 @@ const orderResults = results => {
   })
 }
 
-const orderListCardStatus = status => {
+const orderListCardStatus = (status) => {
   switch (status) {
     case 'SUCCESS':
       return 'orderListCardStatus success'
@@ -91,7 +91,7 @@ const orderListCardStatus = status => {
 }
 
 OrderListCard.propTypes = {
-  order: PropTypes.object
+  order: PropTypes.object,
 }
 
 export default OrderListCard

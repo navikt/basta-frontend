@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate, useParams, useLocation } from 'react-router-dom'
+import { useNavigate, useParams, useLocation } from 'react-router'
 
 export const withRouter = (Component) => {
   const Wrapped = (props) => {

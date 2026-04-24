@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import PropTypes from 'prop-types'
 import RequestOverview from './RequestOverview'
 import RequestForm from './RequestForm'
@@ -8,7 +8,7 @@ export class Request extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      active: 'overview'
+      active: 'overview',
     }
   }
   render() {
@@ -24,7 +24,7 @@ export class Request extends Component {
             <ul className="nav nav-tabs nav-request-tabs">
               <li className={active === 'overview' ? 'active' : null}>
                 <a
-                  onClick={e => {
+                  onClick={(e) => {
                     e.preventDefault()
                     this.setState({ active: 'overview' })
                   }}
@@ -35,7 +35,7 @@ export class Request extends Component {
               </li>
               <li className={active === 'form' ? 'active' : null}>
                 <a
-                  onClick={e => {
+                  onClick={(e) => {
                     e.preventDefault()
                     this.setState({ active: 'form' })
                   }}
@@ -66,7 +66,7 @@ Request.propTypes = {
   tags: PropTypes.array,
   url: PropTypes.string,
   access: PropTypes.array,
-  enabled: PropTypes.bool
+  enabled: PropTypes.bool,
 }
 
 export default Request

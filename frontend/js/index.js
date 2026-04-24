@@ -1,6 +1,6 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { Router } from 'react-router-dom'
+import { Router } from 'react-router'
 import { Provider } from 'react-redux'
 import store from './common/store'
 import history from './common/history'

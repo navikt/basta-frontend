@@ -25,7 +25,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v6
         with:
-          node-version: '22.21.x'
+          node-version: '24.x'
           cache: 'pnpm'
 
       - name: Install dependencies
