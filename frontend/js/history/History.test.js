@@ -36,7 +36,7 @@ const defaultProps = {
 
 const renderHistory = (props = {}, dispatch = jest.fn()) =>
   render(
-    <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <MemoryRouter>
       <History {...defaultProps} {...props} dispatch={dispatch} />
     </MemoryRouter>,
   )

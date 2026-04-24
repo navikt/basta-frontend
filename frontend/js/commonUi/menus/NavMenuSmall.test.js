@@ -3,12 +3,7 @@ import { render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { NavMenuSmall } from './NavMenuSmall'
 
-const renderWithRouter = (ui) =>
-  render(
-    <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      {ui}
-    </MemoryRouter>,
-  )
+const renderWithRouter = (ui) => render(<MemoryRouter>{ui}</MemoryRouter>)
 
 describe('(Component) NavMenuSmall', () => {
   it('Renders without exploding when visible', () => {

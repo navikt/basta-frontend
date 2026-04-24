@@ -10,12 +10,7 @@ export const renderWithProviders = (ui, { state = {}, route = '/' } = {}) => {
   const store = mockStore(state)
   return render(
     <Provider store={store}>
-      <MemoryRouter
-        initialEntries={[route]}
-        future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-      >
-        {ui}
-      </MemoryRouter>
+      <MemoryRouter initialEntries={[route]}>{ui}</MemoryRouter>
     </Provider>,
   )
 }
