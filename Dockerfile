@@ -1,25 +1,29 @@
-FROM node:24-alpine AS builder
-WORKDIR /home/app
-RUN corepack enable
+ARG PNPM_VERSION=11.25.0
 
-COPY ./package.json ./pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+FROM node:24-alpine AS base
+RUN apk upgrade --no-cache
+RUN apk add --no-cache ca-certificates
+
+FROM base AS builder
+ARG PNPM_VERSION
+RUN corepack enable && corepack prepare pnpm@${PNPM_VERSION} --activate
+WORKDIR /home/app
+
+COPY ./package.json ./pnpm-lock.yaml ./pnpm-workspace.yaml ./
 COPY ./ ./
+ENV CI=true
+RUN pnpm install --frozen-lockfile
 RUN pnpm run build
 
-FROM node:24-alpine
+FROM base
 ENV NODE_ENV=production
 EXPOSE 8080
 WORKDIR /home/app
-RUN corepack enable
 
-COPY ./package.json ./pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile --prod
 COPY --from=builder /home/app/dist/ ./dist/
 COPY ./api/src ./api/src
 
 COPY navcerts.crt /usr/local/share/ca-certificates/
-RUN apk add --no-cache ca-certificates
 RUN	update-ca-certificates
 
 ENV NODE_TLS_REJECT_UNAUTHORIZED=0
