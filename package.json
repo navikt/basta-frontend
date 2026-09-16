@@ -33,7 +33,7 @@
   "dependencies": {
     "@babel/runtime": "^7.29.7",
     "@fortawesome/free-solid-svg-icons": "^7.3.1",
-    "@redux-devtools/extension": "^3.3.0",
+    "@redux-devtools/extension": "^4.0.0",
     "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
     "helmet": "^8.3.0",
