@@ -86,7 +86,7 @@
     "ncp": "^2.0.0",
     "nodemon": "^3.1.14",
     "parcel": "^2.16.4",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "prop-types": "^15.8.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
